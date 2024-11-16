@@ -1,0 +1,28 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:prettier/recommended",
+    "plugin:@tanstack/eslint-plugin-query/recommended"
+  ],
+  "plugins": ["react"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+  // TanStack Query 권장 규칙! (plugin:@tanstack/eslint-plugin-query/recommended)
+  // '@tanstack/query/exhaustive-deps': 'error',
+  // '@tanstack/query/stable-query-client': 'error',
+  // '@tanstack/query/no-rest-destructuring': 'warn'
+}

@@ -20,7 +20,14 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* Path alias */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "node_modules/*": ["./node_modules/*"]
+    }
   },
-  "include": ["src"]
+  "include": ["./src/**/*.ts", "./src/**/*.tsx"]
 }
