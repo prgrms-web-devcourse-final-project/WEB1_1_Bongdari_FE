@@ -1,7 +1,7 @@
 ---
 name: Bug report
-about: Create a report to help us improve
-title: "\U0001FAB2[BUG]"
+about: 오류 발생 시, Fix 하는 템플릿
+title: "[Fix]"
 labels: ''
 assignees: ''
 
