@@ -6,7 +6,7 @@ interface ButtonProps {
   bgColor?: 'default' | 'emphasize'; // 버튼 배경 색상
   disabled?: boolean; // 버튼 비활성화 여부
   width?: string; // 버튼 너비
-  height?: string; // 버튼 높이
+  height?: string; // 버튼 높이!
 }
 
 const Button = ({ label, onClick, bgColor = 'default', disabled = false, width, height }: ButtonProps) => {
