@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-// colortype===true : 일반 입력창
-// colortype===false : 검색 입력창
+// colortype ? 회색입력창 : 흰색입력창
 interface InputBoxCssProps {
-  width: string;
-  height?: string;
   colortype: boolean;
+  borderradius: '8px' | '12px';
+  width: string;
+  height: string;
 }
 
 const InputBoxCss = styled.input<InputBoxCssProps>`
@@ -13,11 +13,11 @@ const InputBoxCss = styled.input<InputBoxCssProps>`
   outline: none;
 
   width: ${(props) => props.width};
-  height: ${(props) => props.height ?? ''};
+  height: ${(props) => props.height};
   color: '#363636';
   background-color: ${(props) => (props.colortype ? '#F5F5F5' : '#fff')};
   border: 1px solid ${(props) => (props.colortype ? 'transparent' : '#dbdbdb')};
-  border-radius: 8px;
+  border-radius: ${(props) => props.borderradius};
   line-height: 16px;
   font-size: 16px;
   padding: 5px;
