@@ -3,7 +3,7 @@ import { useInput } from './logic/useInput';
 
 interface InputCompProps {
   getInputText: (inputText: string) => void; // inputText 상위전달
-  colortype: boolean; // 색상 타입
+  colortype: 0 | 1; // 색상 타입
   borderradius?: '8px' | '12px';
   width: string;
   height?: string;
@@ -13,7 +13,7 @@ interface InputCompProps {
 
 const InputBox: React.FC<InputCompProps> = ({
   getInputText,
-  colortype,
+  colortype = 0,
   borderradius = '8px',
   width,
   height = '',

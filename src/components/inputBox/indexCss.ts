@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 // colortype ? 회색입력창 : 흰색입력창
 interface InputBoxCssProps {
-  colortype: boolean;
+  colortype: 0 | 1;
   borderradius: '8px' | '12px';
   width: string;
   height: string;
