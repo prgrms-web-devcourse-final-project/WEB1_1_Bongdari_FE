@@ -205,12 +205,15 @@ const size = {
 const theme = {
   colors,
   mediaSize,
-  fontSize,
   size,
   box,
   label,
   submitButton,
-  tabMenu
+  tabMenu,
+  inputWhite,
+  inputGray,
+  modal,
+  fontSize
 };
 
 export default theme;
