@@ -39,5 +39,13 @@ const ListItemCss = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
+  .mainText.read {
+    color: #8f8f8f;
+  }
+
+  &:hover {
+    background-color: #e3e3e3;
+  }
 `;
 export default ListItemCss;
