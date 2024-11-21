@@ -147,13 +147,13 @@ export const inputGray = {
 export const modal = {
   borderRadius: '25px',
   variants: {
-    // 큰모달
-    big: {
+    // 작은모달
+    small: {
       width: '800px',
       height: '500px'
     },
-    // 작은모달
-    small: {
+    // 큰모달
+    big: {
       width: '1300px',
       height: '600px'
     }
