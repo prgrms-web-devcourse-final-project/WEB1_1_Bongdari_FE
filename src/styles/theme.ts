@@ -105,7 +105,7 @@ export const tabMenu = {
     // 클릭 안된 메뉴
     notClicked: {
       backgroundColor: '#FFFFFF',
-      color: '#2382FF',
+      color: '#848484',
       border: '1px solid #DFDFDF'
     }
   }
