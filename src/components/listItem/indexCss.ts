@@ -1,10 +1,11 @@
+import { box, fontSize } from './../../styles/theme';
 import styled from 'styled-components';
 
 const ListItemCss = styled.div`
   box-sizing: border-box;
-  background-color: #fff;
-  border: 1.5px solid #e3e3e3;
-  border-radius: 8px;
+  background-color: ${() => box.section.backgroundColor};
+  border-radius: ${() => box.section.borderRadius};
+  border: ${() => box.section.border};
   width: 100%;
   padding: 30px 10px;
 
@@ -18,34 +19,33 @@ const ListItemCss = styled.div`
     border: 1px solid gray;
   } */
 
-  .numbering,
-  .writer,
-  .modifiedDate {
-    padding: 0 3%;
+  .numbering {
+    padding-left: 20px;
     color: #808080;
     font-weight: 300;
-    font-size: 14px;
+    font-size: ${() => fontSize.eighthSize};
   }
 
   .mainText {
-    width: 100%;
-    padding: 0 3rem;
+    margin: 0 60px 0 70px;
     color: #000;
     font-weight: 500;
     font-size: 16px;
+    text-align: left;
 
-    /* 제목이 길어지면 말줄임표 */
+    /* 길어지면 말줄임표 */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
+  //* 개인 마이페이지 쪽지 리스트(읽음처리) *//
   .mainText.read {
     color: #8f8f8f;
   }
 
   &:hover {
-    background-color: #e3e3e3;
+    // TODO: hover시 디자인 변경사항 있다면 적용하기.
   }
 `;
 export default ListItemCss;
