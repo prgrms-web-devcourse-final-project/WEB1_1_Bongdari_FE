@@ -1,7 +1,7 @@
 import { box, fontSize } from './../../styles/theme';
 import styled from 'styled-components';
 
-const ListItemCss = styled.div`
+const LongListItemCss = styled.div`
   box-sizing: border-box;
   background-color: ${() => box.section.backgroundColor};
   border-radius: ${() => box.section.borderRadius};
@@ -48,4 +48,4 @@ const ListItemCss = styled.div`
     // TODO: hover시 디자인 변경사항 있다면 적용하기.
   }
 `;
-export default ListItemCss;
+export default LongListItemCss;

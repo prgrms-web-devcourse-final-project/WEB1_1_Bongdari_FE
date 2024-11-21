@@ -1,8 +1,8 @@
-import ListItemCss from './indexCss';
+import LongListItemCss from './indexCss';
 import MailInfo from './ui/MailInfo';
 import CommunityInfo from './ui/CommunityInfo';
 
-interface ListItemProps {
+interface LongListItemProps {
   content_id: string;
   mainText: string;
   writer?: string;
@@ -14,7 +14,7 @@ interface ListItemProps {
   getContentId: (id: string) => void; // 클릭한 item의 content_id 반환
 }
 
-const ListItem: React.FC<ListItemProps> = ({
+const LongListItem: React.FC<LongListItemProps> = ({
   content_id,
   mainText,
   writer,
@@ -25,14 +25,14 @@ const ListItem: React.FC<ListItemProps> = ({
   getContentId
 }) => {
   return (
-    <ListItemCss onClick={() => getContentId(content_id)}>
+    <LongListItemCss onClick={() => getContentId(content_id)}>
       {indexNum ? <p className="numbering">{indexNum}</p> : ''}
       <p className={`mainText ${isRead ? 'read' : ''}`}>{mainText}</p>
 
       {modifiedDate && writer ? <CommunityInfo writer={writer} modifiedDate={modifiedDate} /> : ''}
 
       {mailWriter && isRead !== undefined ? <MailInfo isRead={isRead} mailWriter={mailWriter} /> : ''}
-    </ListItemCss>
+    </LongListItemCss>
   );
 };
-export default ListItem;
+export default LongListItem;
