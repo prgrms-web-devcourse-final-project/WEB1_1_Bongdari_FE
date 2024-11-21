@@ -25,7 +25,6 @@ export const ModalContainer = styled.div<{ variant: ModalVariant; width?: string
   height: ${({ variant }) => (variant === 'big' ? theme.modal.variants.big.height : theme.modal.variants.small.height)};
   position: relative;
   flex-direction: column;
-  padding: ${({ padding }) => padding || '2rem'};
 `;
 
 export const CloseButton = styled.button`
