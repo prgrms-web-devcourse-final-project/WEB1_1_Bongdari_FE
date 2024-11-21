@@ -28,15 +28,18 @@ export const lightTheme = {
 
 export const pointColor = {
   Regular: '#62A6FF',
-  event: '#2382FF'
+  event: '#2382FF',
+  clicked: '#0A66DE'
 };
 
 export const box = {
   section: {
+    border: '1px solid #e3e3e3',
     backgroundColor: '#FFFFFF',
     borderRadius: '8px'
   },
   item: {
+    border: '1px solid #e6e6e6',
     backgroundColor: '#FFFFFF',
     borderRadius: '16px'
   }
@@ -203,6 +206,7 @@ const size = {
 };
 
 const theme = {
+  pointColor,
   colors,
   mediaSize,
   size,

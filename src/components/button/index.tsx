@@ -1,4 +1,4 @@
-import Button from './ui';
-import useButton from './logic/useButton';
+import OtherButton from './other-button';
+import SubmitButton from './submit-button';
 
-export { Button, useButton };
+export { OtherButton, SubmitButton };
