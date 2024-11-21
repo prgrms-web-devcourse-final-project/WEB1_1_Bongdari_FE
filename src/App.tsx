@@ -16,9 +16,9 @@ function App() {
       <ErrorBoundary>
         <QueryClientProvider client={queryClient}>
           <ThemeProvider theme={theme}>
+            <GlobalStyle />
             <RouterProvider router={router} />
             <ReactQueryDevtools initialIsOpen={true} />
-            <GlobalStyle />
           </ThemeProvider>
         </QueryClientProvider>
       </ErrorBoundary>
