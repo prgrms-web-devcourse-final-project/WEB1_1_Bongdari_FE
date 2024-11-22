@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import theme from '@/styles/theme';
 
-export const PPPG_Component2Css = styled.div`
+export const PPPG_Component1Css = styled.div`
   width: 725px;
   height: 291px;
 

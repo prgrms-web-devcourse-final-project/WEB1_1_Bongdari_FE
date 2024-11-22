@@ -1,7 +1,7 @@
 import theme from '@/styles/theme';
 import styled from 'styled-components';
 
-export const PPPG_Component1Css = styled.div`
+export const ProfileBoxCss = styled.div`
   width: 462px;
   height: 480px;
 
