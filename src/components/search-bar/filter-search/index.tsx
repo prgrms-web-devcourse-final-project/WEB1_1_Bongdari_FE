@@ -3,7 +3,7 @@ import InputBox from '@/components/inputBox';
 import testFunc from './logic/testFunc';
 import { Wrapper } from './indexCss';
 
-const SearchBar = () => {
+const FilterSearchBar = () => {
   return (
     <Wrapper>
       <InputBox
@@ -17,4 +17,4 @@ const SearchBar = () => {
     </Wrapper>
   );
 };
-export default SearchBar;
+export default FilterSearchBar;
