@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import theme from '@/styles/theme';
 
 export const Box = styled.select<{ width: string; height: string }>`
   width: ${(props) => props.width};
@@ -9,6 +10,7 @@ export const Box = styled.select<{ width: string; height: string }>`
   border: 1px solid #dbdbdb;
   outline: none;
   transition: 0.2s;
+  font-size: ${theme.fontSize.seventhSize};
 
   &:hover {
     cursor: pointer;
