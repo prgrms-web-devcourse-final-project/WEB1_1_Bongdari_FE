@@ -21,13 +21,14 @@ const InputBoxCss = styled.input<InputBoxCssProps>`
   line-height: 16px;
   font-size: 16px;
   padding: 5px;
+  padding-left: 20px;
 
   &::placeholder {
     color: ${(props) => (props.colortype ? '#363636' : '#E0E0E0')};
   }
 
   &:focus-within {
-    border: 1px solid ${(props) => (props.colortype ? '#E0E0E0' : '#363636')};
+    border: 1px solid ${(props) => (props.colortype ? '#E0E0E0' : '#62A6FF')};
   }
 `;
 export default InputBoxCss;
