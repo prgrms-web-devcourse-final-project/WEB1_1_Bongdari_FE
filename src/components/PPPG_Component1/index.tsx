@@ -5,7 +5,7 @@ interface PPPG_Component1Props {
   user_id: string;
   profileName: string;
   profileAidTime: number;
-  profileAidNum: number;
+  profileAidCount: number;
   profileMitten: string;
   profileDescription?: string;
 }
@@ -13,7 +13,7 @@ const PPPG_Component1: React.FC<PPPG_Component1Props> = ({
   user_id,
   profileName,
   profileAidTime,
-  profileAidNum,
+  profileAidCount,
   profileMitten,
   profileDescription
 }) => {
@@ -34,7 +34,7 @@ const PPPG_Component1: React.FC<PPPG_Component1Props> = ({
       </p>
       <p className="info">
         <i className="label rightLabel">총 봉사 횟수</i>
-        <i className="data">{profileAidNum}회</i>
+        <i className="data">{profileAidCount}회</i>
       </p>
       <p className="info wide">
         <i className="label ">설명</i>
