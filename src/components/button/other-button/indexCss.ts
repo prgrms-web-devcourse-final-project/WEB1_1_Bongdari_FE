@@ -8,6 +8,7 @@ const OtherButtonComponent = styled.button<{
   bgColor?: string;
   color?: string;
   width?: string;
+  height?: string;
   fontWeight?: string;
   disabled?: boolean;
 }>`
@@ -17,6 +18,7 @@ const OtherButtonComponent = styled.button<{
   background-color: ${({ bgColor }) => bgColor || theme.pointColor.Regular};
   color: ${({ color }) => color || theme.submitButton.variants.enabledOne.color};
   width: ${({ width }) => width || '167px'};
+  height: ${({ height }) => height || '53px'};
   font-weight: ${({ fontWeight }) => fontWeight || 'medium'};
 
   padding: 0.87rem;

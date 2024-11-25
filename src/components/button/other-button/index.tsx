@@ -9,6 +9,7 @@ const OtherButton = ({
   onClick = () => {},
   label,
   width,
+  height,
   border,
   borderRadius,
   bgColor,
@@ -21,6 +22,7 @@ const OtherButton = ({
     <OtherButtonComponent
       onClick={onClick}
       width={width}
+      height={height}
       border={border}
       borderRadius={borderRadius}
       bgColor={bgColor}
