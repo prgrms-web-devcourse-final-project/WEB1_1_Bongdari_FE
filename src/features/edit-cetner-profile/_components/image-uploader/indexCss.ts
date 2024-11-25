@@ -18,13 +18,6 @@ export const ImageCircle = styled.div`
   overflow: hidden;
 `;
 
-export const PlaceholderCircle = styled.div`
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background-color: '#B3B3B3';
-`;
-
 export const PreviewImage = styled.img`
   width: 100%;
   height: 100%;

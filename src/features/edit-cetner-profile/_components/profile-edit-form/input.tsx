@@ -1,20 +1,25 @@
 import InputBox from '@/components/inputBox';
 import { EditFormWrapper, EditItem, EditItem_TextArea, EditLabel } from './inputCss';
-import { useState } from 'react';
 import TextArea from '@/components/textArea';
 
-const EditProfileForm = () => {
-  const [centerName, setCenterName] = useState<string>('');
-  const handleInputText = (inputText: string) => {
-    setCenterName(inputText);
-    console.log('일단 작성', inputText);
+interface EditProfileFormProps {
+  centerName: string;
+  handleInputText: (inputText: string) => void;
+  onChangeCenterName: (newName: string) => void;
+}
+
+const EditProfileForm = ({ centerName, handleInputText, onChangeCenterName }: EditProfileFormProps) => {
+  // 기관명 작성 후, 상위 컴포넌트로 전달하여 마이페이지 title 부분에 바로 반영하는 로직
+  const handleCenterName = (newName: string) => {
+    onChangeCenterName(newName);
   };
+
   return (
     <EditFormWrapper>
       <EditItem>
         <EditLabel htmlFor="centerName">기관명</EditLabel>
         <InputBox
-          getInputText={handleInputText}
+          getInputText={handleCenterName}
           colortype={1}
           width="480px"
           height="38px"
