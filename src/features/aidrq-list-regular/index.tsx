@@ -1,7 +1,9 @@
 import AidReqListItem from '@/components/aidreq-list-Item';
 import { Wrapper } from './indexCss';
 
-const AidRqList = () => {
+interface AidRqListProps {}
+
+const AidRqList = ({ data }) => {
   return (
     <Wrapper>
       <AidReqListItem width="calc((100% - 20px) / 3)"></AidReqListItem>
