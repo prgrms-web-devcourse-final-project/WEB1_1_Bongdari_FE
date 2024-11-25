@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import SectionTitle from '../PMPG-section-title';
+import SectionTitle from '../section-title';
 import { ReviewListCss } from './indexCss';
 import ReviewBox from './review-box/ReviewBox';
 

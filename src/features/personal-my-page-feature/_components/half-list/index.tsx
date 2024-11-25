@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
 import { HalfListCss } from './indexCss';
-import LongListItem from '../longListItem';
-import SectionTitle from '../PMPG-section-title';
+import LongListItem from '@/components/longListItem';
+import SectionTitle from '../section-title';
 
 interface HalfListProps {
   data: string[];

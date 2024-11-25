@@ -1,5 +1,5 @@
 import { HeartedOrgCss } from './indexCss';
-import SectionTitle from '../PMPG-section-title';
+import SectionTitle from '../section-title';
 import OrgBox from './org-box/OrgBox';
 import { useEffect, useState } from 'react';
 
