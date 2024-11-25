@@ -28,3 +28,11 @@ export const EditItem_TextArea = styled.div`
   justify-content: space-between;
   align-items: start;
 `;
+
+export const ErrorMessage = styled.p`
+  color: #ff0000;
+  font-size: ${theme.fontSize.ninthSize};
+  margin-top: 4px;
+  margin-left: 4px;
+  padding-bottom: 10px;
+`;

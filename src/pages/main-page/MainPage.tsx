@@ -1,4 +1,4 @@
-import EditCenterProfile from '@/features/edit-cetner-profile';
+import EditCenterProfile from '@/features/edit-center-profile';
 import { Wrapper } from './MainpageCss';
 
 export default function MainPage() {
