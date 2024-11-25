@@ -2,9 +2,13 @@ import { Wrapper } from './indexCss';
 import Bottom from './ui/bottom';
 import Top from './ui/top';
 
-const AidReqListItem = () => {
+interface AidReqListItem {
+  width: string;
+}
+
+const AidReqListItem: React.FC<AidReqListItem> = ({ width }) => {
   return (
-    <Wrapper>
+    <Wrapper width={width}>
       <Top></Top>
       <Bottom></Bottom>
     </Wrapper>

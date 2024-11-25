@@ -23,4 +23,8 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: 400;
     letter-spacing: -0.02em;
   }
+
+  html, body {
+    background-color: #f9f9f9;
+  }
 `;
