@@ -12,7 +12,7 @@ const routes: RouteObject[] = [
     children: [
       {
         path: '/',
-        element: <Navigate to="/aidrqlist" replace />
+        element: <Navigate to="/main" replace />
       },
       {
         path: '/main',
