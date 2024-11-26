@@ -1,25 +1,24 @@
-import InputBox from '@/components/inputBox';
-import { RegisterBarContainer, RegisterButton } from './indexCss';
+import { RegisterBarContainer, RegisterButton, RegisterInput } from './indexCss';
 
 interface RegisterBarProps {
-  inputGoods: string;
-  setInputGoods: (value: string) => void;
-  handleRegisterButton: () => void;
+  currentInput: string;
+  setCurrentInput: (value: string) => void;
+  handleAddGoods: () => void;
+  handleKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
-const RegisterBar: React.FC<RegisterBarProps> = ({ inputGoods, setInputGoods, handleRegisterButton }) => {
+const RegisterBar: React.FC<RegisterBarProps> = ({ currentInput, setCurrentInput, handleAddGoods, handleKeyPress }) => {
   return (
     <RegisterBarContainer>
-      <InputBox
-        getInputText={setInputGoods}
-        setFunc={setInputGoods}
-        colortype={1}
-        width="776px"
-        height="53px"
+      <RegisterInput
         placeholder="최대 15자 이내로 입력해주세요."
-        initialVal={inputGoods}
+        type="text"
+        value={currentInput}
+        maxLength={15}
+        onChange={(e) => setCurrentInput(e.target.value)}
+        onKeyUp={handleKeyPress}
       />
-      <RegisterButton onClick={handleRegisterButton}>등록하기</RegisterButton>
+      <RegisterButton onClick={handleAddGoods}>등록하기</RegisterButton>
     </RegisterBarContainer>
   );
 };

@@ -1,16 +1,16 @@
 import { GoodsItemBox, GoodsTitle, Xmark } from './indexCss';
 
 interface GoodsItemProps {
-  centerId: number;
+  id: number;
   itemName: string;
-  onDelete: (centerId: number) => void;
+  onDelete: (id: number) => void;
 }
 
-const GoodsItem: React.FC<GoodsItemProps> = ({ centerId, itemName, onDelete }) => {
+const GoodsItem: React.FC<GoodsItemProps> = ({ id, itemName, onDelete }) => {
   return (
     <GoodsItemBox>
       <GoodsTitle>{itemName}</GoodsTitle>
-      <Xmark className="fa-solid fa-x" onClick={() => onDelete(centerId)}></Xmark>
+      <Xmark className="fa-solid fa-x" onClick={() => onDelete(id)}></Xmark>
     </GoodsItemBox>
   );
 };
