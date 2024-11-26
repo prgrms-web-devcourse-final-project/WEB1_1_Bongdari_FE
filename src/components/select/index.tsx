@@ -5,11 +5,16 @@ interface SelectProps {
   width?: string;
   height?: string;
   data: string[];
+  getSelectedOption: (selected: string) => void;
 }
 
-const Select: React.FC<SelectProps> = ({ text, width = '325px', height = '56px', data }) => {
+const Select: React.FC<SelectProps> = ({ text, width = '325px', height = '56px', data, getSelectedOption }) => {
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    getSelectedOption(e.target.value);
+  };
+
   return (
-    <Box width={width} height={height}>
+    <Box width={width} height={height} onChange={handleChange}>
       <OptionPlaceholder value="" disabled selected>
         {text}
       </OptionPlaceholder>
