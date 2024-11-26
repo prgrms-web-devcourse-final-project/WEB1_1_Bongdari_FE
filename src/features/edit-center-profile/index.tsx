@@ -36,7 +36,7 @@ const EditCenterProfile = () => {
   return (
     <CenterProfileEditContainer>
       {displayName === '' ? (
-        <CenterProfileTitle>프로필을 완성해보세요!</CenterProfileTitle>
+        <CenterProfileTitle>프로필을 완성해보세요!!</CenterProfileTitle>
       ) : (
         <CenterProfileTitle>안녕하세요, {displayName}님!</CenterProfileTitle>
       )}
