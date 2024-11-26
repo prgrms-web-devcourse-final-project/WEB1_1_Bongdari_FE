@@ -1,18 +1,8 @@
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
-import {
-  GoodsContainer,
-  GoodsItemBox,
-  GoodsTitle,
-  RegisterBarContainer,
-  RegisterButton,
-  RegisterTitleSection,
-  ResisterTitle,
-  SectionBox,
-  TooltipBorder,
-  Xmark
-} from './indexCss';
-import InputBox from '@/components/inputBox';
+import { GoodsContainer, RegisterTitleSection, ResisterTitle, SectionBox, TooltipBorder } from './indexCss';
+import GoodsItem from './_components/goods-item-box';
+import RegisterBar from './_components/register-bar';
 
 const RegisterGoods = () => {
   return (
@@ -28,46 +18,9 @@ const RegisterGoods = () => {
         </Tooltip>
       </RegisterTitleSection>
       <GoodsContainer>
-        <GoodsItemBox>
-          <GoodsTitle>어린이 동화 10권</GoodsTitle>
-          <Xmark className="fa-solid fa-x"></Xmark>
-        </GoodsItemBox>
-        <GoodsItemBox>
-          <GoodsTitle>어린이 동화 10권</GoodsTitle>
-          <Xmark className="fa-solid fa-x"></Xmark>
-        </GoodsItemBox>
-        <GoodsItemBox>
-          <GoodsTitle>어린이 동화 10권</GoodsTitle>
-          <Xmark className="fa-solid fa-x"></Xmark>
-        </GoodsItemBox>
-        <GoodsItemBox>
-          <GoodsTitle>어린이 동화 10권</GoodsTitle>
-          <Xmark className="fa-solid fa-x"></Xmark>
-        </GoodsItemBox>
-        <GoodsItemBox>
-          <GoodsTitle>어린이 동화 10권</GoodsTitle>
-          <Xmark className="fa-solid fa-x"></Xmark>
-        </GoodsItemBox>
-        <GoodsItemBox>
-          <GoodsTitle>어린이 동화 10권</GoodsTitle>
-          <Xmark className="fa-solid fa-x"></Xmark>
-        </GoodsItemBox>
-        <GoodsItemBox>
-          <GoodsTitle>어린이 동화 10권</GoodsTitle>
-          <Xmark className="fa-solid fa-x"></Xmark>
-        </GoodsItemBox>
+        <GoodsItem />
       </GoodsContainer>
-      <RegisterBarContainer>
-        <InputBox
-          getInputText={() => console.log('입력')}
-          colortype={1}
-          borderradius="8px"
-          width="776px"
-          height="53px"
-          placeholder="최대 15자 이내로 입력해주세요."
-        />
-        <RegisterButton>등록하기</RegisterButton>
-      </RegisterBarContainer>
+      <RegisterBar />
     </SectionBox>
   );
 };
