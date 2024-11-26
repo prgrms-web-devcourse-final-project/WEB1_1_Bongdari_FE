@@ -11,6 +11,7 @@ export const Wrapper = styled.div`
     gap: 20px;
 
     max-width: 1200px;
+    margin-top: 10%;
     width: 90%;
   }
 
