@@ -3,6 +3,7 @@ import { createBrowserRouter, Navigate, RouteObject } from 'react-router-dom';
 import Layout from '@/layout/Layout';
 import MainPage from '@/pages/main-page/MainPage';
 import TestPage from '@/pages/test-page';
+import AidReqListPage from '@/pages/aidrq-list-page';
 
 const routes: RouteObject[] = [
   {
@@ -16,6 +17,10 @@ const routes: RouteObject[] = [
       {
         path: '/main',
         element: <MainPage />
+      },
+      {
+        path: '/aidrqlist',
+        element: <AidReqListPage />
       },
       // "/test" 경로는 아래에 둘 수 있도록 해주세요 (이 위로 라우팅 설정 해달라는 뜻입니다)
       {
