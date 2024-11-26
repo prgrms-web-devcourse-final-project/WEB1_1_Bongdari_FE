@@ -11,7 +11,6 @@ export const OrgLoginCss = styled.div`
   .inputWrap {
     width: 100%;
   }
-
   .inputWrap .label {
     display: inline-block;
     padding: 10px;
@@ -19,6 +18,15 @@ export const OrgLoginCss = styled.div`
     font-size: ${Theme.fontSize.ninthSize};
     font-weight: 500;
     color: #6f6f6f;
+  }
+  .inputWrap .checkErr {
+    font-size: ${Theme.fontSize.ninthSize};
+    color: red;
+    opacity: 0.6;
+    padding: 0 15px 10px;
+    text-align: end;
+    width: 100%;
+    display: inline-block;
   }
 
   .btnWrap {
