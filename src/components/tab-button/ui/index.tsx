@@ -4,11 +4,28 @@ interface TabButtonProps extends React.ComponentProps<typeof TabButtonComponent>
   onClick?: () => void; // 버튼 클릭 이벤트 핸들러
   label: string; // 버튼에 표시될 텍스트
   variant?: 'clicked' | 'notClicked';
+  height?: string;
 }
 
-const TabButton = ({ onClick, label, variant = 'notClicked', width, fontSize, fontWeight }: TabButtonProps) => {
+const TabButton = ({
+  onClick,
+  label,
+  variant = 'notClicked',
+  width,
+  height,
+  borderRadius,
+  fontSize,
+  fontWeight
+}: TabButtonProps) => {
   return (
-    <TabButtonComponent onClick={onClick} variant={variant} width={width} fontSize={fontSize} fontWeight={fontWeight}>
+    <TabButtonComponent
+      onClick={onClick}
+      variant={variant}
+      width={width}
+      height={height}
+      borderRadius={borderRadius}
+      fontSize={fontSize}
+      fontWeight={fontWeight}>
       {label}
     </TabButtonComponent>
   );

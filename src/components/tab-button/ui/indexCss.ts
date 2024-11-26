@@ -8,16 +8,17 @@ const TabButtonComponent = styled.button<{
   borderRadius?: string;
   fontSize?: string;
   width?: string;
+  height?: string;
   fontWeight?: string;
 }>`
   border-radius: ${({ borderRadius }) => borderRadius || '10px'};
   font-size: ${({ fontSize }) => fontSize || theme.fontSize.seventhSize};
   color: ${({ color }) => color || theme.tabMenu.variants.notClicked.color};
   width: ${({ width }) => width || '167px'};
+  height: ${({ height }) => height || '3rem'};
   font-weight: ${({ fontWeight }) => fontWeight || 'medium'};
   cursor: pointer;
 
-  padding: 0.82rem;
   transition:
     background-color 0.3s ease,
     border-color 0.3s ease,

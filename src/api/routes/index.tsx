@@ -3,6 +3,7 @@ import { createBrowserRouter, Navigate, RouteObject } from 'react-router-dom';
 import Layout from '@/layout/Layout';
 import MainPage from '@/pages/main-page/MainPage';
 import TestPage from '@/pages/test-page';
+import LoginPage from '@/pages/login-page/LoginPage';
 import AidRqListPage from '@/pages/aidrq-list-page';
 import AidRqDetailPage from '@/pages/aidrq-detail-page';
 import CenterPage from '@/pages/center-page';
@@ -32,6 +33,10 @@ const routes: RouteObject[] = [
       {
         path: '/center',
         element: <CenterPage />
+      },
+      {
+        path: '/login',
+        element: <LoginPage />
       },
       {
         path: '/profile/:userId',
