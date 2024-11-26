@@ -1,7 +1,7 @@
 import React from 'react';
-import { PPPG_Component1Css } from './indexCss';
+import { ProfileInfoBoxCss } from './indexCss';
 
-interface PPPG_Component1Props {
+interface ProfileInfoBoxProps {
   user_id: string;
   profileName: string;
   profileAidTime: number;
@@ -9,7 +9,7 @@ interface PPPG_Component1Props {
   profileMitten: string;
   profileDescription?: string;
 }
-const PPPG_Component1: React.FC<PPPG_Component1Props> = ({
+const ProfileInfoBox: React.FC<ProfileInfoBoxProps> = ({
   user_id,
   profileName,
   profileAidTime,
@@ -18,7 +18,7 @@ const PPPG_Component1: React.FC<PPPG_Component1Props> = ({
   profileDescription
 }) => {
   return (
-    <PPPG_Component1Css id={user_id}>
+    <ProfileInfoBoxCss id={user_id}>
       <p className="blueTitle">상세정보</p>
       <p className="info">
         <i className="label">닉네임</i>
@@ -30,7 +30,7 @@ const PPPG_Component1: React.FC<PPPG_Component1Props> = ({
       </p>
       <p className="info">
         <i className="label">등급</i>
-        <i className="data">{profileMitten}</i>
+        <img src={`/assets/imgs/mitten-${profileMitten}.svg`} className="data" />
       </p>
       <p className="info">
         <i className="label rightLabel">총 봉사 횟수</i>
@@ -40,7 +40,7 @@ const PPPG_Component1: React.FC<PPPG_Component1Props> = ({
         <i className="label ">설명</i>
         <i className="data">{profileDescription}</i>
       </p>
-    </PPPG_Component1Css>
+    </ProfileInfoBoxCss>
   );
 };
-export default PPPG_Component1;
+export default ProfileInfoBox;

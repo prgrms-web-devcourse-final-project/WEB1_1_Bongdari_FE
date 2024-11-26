@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import theme from '@/styles/theme';
 
-export const PPPG_Component1Css = styled.div`
-  width: 725px;
-  height: 291px;
+export const ProfileInfoBoxCss = styled.div`
+  max-width: 720px;
+  width: 100%;
+  height: 290px;
 
   background-color: ${theme.box.section.backgroundColor};
   border: ${theme.box.section.border};
@@ -11,40 +12,52 @@ export const PPPG_Component1Css = styled.div`
   font-size: ${theme.fontSize.seventhSize};
 
   display: grid;
-  grid-template-columns: 250px 250px;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto auto;
   grid-gap: 10px; // 간격 추가
   padding: 30px; // 여백 추가
 
   .blueTitle {
-    grid-column: 1/3;
-    grid-row: 1/2;
+    grid-column: 1/-1;
     color: ${theme.pointColor.Regular};
     font-size: ${theme.fontSize.sixthSize};
+    font-weight: 600;
   }
 
   .info {
-    width: 300px;
+    line-height: ${theme.fontSize.fourthSize};
+    display: flex;
   }
   .info.wide {
-    grid-column: 1/3;
-    grid-row: 4/5;
-    width: 100%;
-    line-height: ${theme.fontSize.secondSize};
+    grid-column: 1 / -1;
   }
+
   .label {
+    /* border: 1px solid red; */
     display: inline-block;
     color: #282828;
     font-weight: 600;
     margin-right: 10px;
-    width: 50px;
+    min-width: 90px;
   }
   .rightLabel {
     width: 90px;
   }
+
   .data {
-    color: #282828;
+    /* border: 1px solid red; */
+    display: inline-block;
+    color: #828282;
     font-weight: 300;
-    width: 50%;
+    width: 100%;
+  }
+  img.data {
+    width: ${theme.fontSize.fourthSize};
+    height: ${theme.fontSize.fourthSize};
+    object-fit: contain;
+    transform: rotateZ(30deg);
+  }
+  .info.wide .data {
+    color: #858585;
   }
 `;
