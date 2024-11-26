@@ -1,10 +1,10 @@
 import { PersonLoginCss } from './indexCss';
 
-const PersonLogin = ({
-  onClickNaver
-}: {
-  onClickNaver: (ev: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-}) => {
+const PersonLogin = () => {
+  const onClickNaver = () => {
+    console.log('네이버로그인으로 리디렉트');
+  };
+
   return (
     <PersonLoginCss>
       <i className="helloLogin">손모아와 함께 봉사활동을 시작해볼까요?</i>

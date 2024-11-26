@@ -2,11 +2,13 @@ import Theme from '@/styles/theme';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  max-width: 460px;
-  width: 30%;
-  min-width: 100vh;
-  margin: 0 auto;
-  border: 1px solid red;
+  .innerWrap {
+    margin-top: 20%;
+    max-width: 460px;
+    width: 90%;
+    min-height: 100vh;
+    margin: 0 auto;
+  }
 
   .title {
     display: inline-block;

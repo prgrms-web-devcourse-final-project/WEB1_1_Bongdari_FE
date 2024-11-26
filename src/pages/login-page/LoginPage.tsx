@@ -14,10 +14,12 @@ export default function LoginPage() {
 
   return (
     <Wrapper>
-      <TabButtonGroup tabs={[{ label: '봉사자' }, { label: '기관' }]} onTabChange={onTabChange} />
-      <i className="title">손모아 로그인</i>
+      <div className="innerWrap">
+        <TabButtonGroup tabs={[{ label: '봉사자' }, { label: '기관' }]} onTabChange={onTabChange} />
+        <i className="title">손모아 로그인</i>
 
-      {isOrg ? <OrgLogin /> : <PersonLogin />}
+        {isOrg ? <OrgLogin /> : <PersonLogin />}
+      </div>
     </Wrapper>
   );
 }
