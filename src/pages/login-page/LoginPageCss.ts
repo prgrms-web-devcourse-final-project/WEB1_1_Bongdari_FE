@@ -10,6 +10,11 @@ export const Wrapper = styled.div`
     margin: 0 auto;
   }
 
+  .tabWrap {
+    width: 200px;
+    padding: 10px;
+  }
+
   .title {
     display: inline-block;
     font-size: ${Theme.fontSize.secondSize};

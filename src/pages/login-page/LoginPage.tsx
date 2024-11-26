@@ -15,7 +15,17 @@ export default function LoginPage() {
   return (
     <Wrapper>
       <div className="innerWrap">
-        <TabButtonGroup tabs={[{ label: '봉사자' }, { label: '기관' }]} onTabChange={onTabChange} />
+        <div className="tabWrap">
+          <TabButtonGroup
+            tabs={[{ label: '봉사자' }, { label: '기관' }]}
+            onTabChange={onTabChange}
+            width="85px"
+            height="30px"
+            borderRadius="30px"
+            fontSize="14px"
+          />
+        </div>
+
         <i className="title">손모아 로그인</i>
 
         {isOrg ? <OrgLogin /> : <PersonLogin />}
