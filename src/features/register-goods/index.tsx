@@ -3,8 +3,12 @@ import Tooltip from '@mui/material/Tooltip';
 import { GoodsContainer, RegisterTitleSection, ResisterTitle, SectionBox, TooltipBorder } from './indexCss';
 import GoodsItem from './_components/goods-item-box';
 import RegisterBar from './_components/register-bar';
+import useHandleItem from './logic/useAddItem';
 
 const RegisterGoods = () => {
+  const { goodsList, currentInput, setCurrentInput, handleAddGoods, handleKeyPress, handleDeleteGoods } =
+    useHandleItem();
+
   return (
     <SectionBox>
       <RegisterTitleSection>
@@ -18,9 +22,16 @@ const RegisterGoods = () => {
         </Tooltip>
       </RegisterTitleSection>
       <GoodsContainer>
-        <GoodsItem />
+        {goodsList.map((item) => (
+          <GoodsItem key={item.id} id={item.id} itemName={item.itemName} onDelete={handleDeleteGoods} />
+        ))}
       </GoodsContainer>
-      <RegisterBar />
+      <RegisterBar
+        currentInput={currentInput}
+        setCurrentInput={setCurrentInput}
+        handleAddGoods={handleAddGoods}
+        handleKeyPress={handleKeyPress}
+      />
     </SectionBox>
   );
 };

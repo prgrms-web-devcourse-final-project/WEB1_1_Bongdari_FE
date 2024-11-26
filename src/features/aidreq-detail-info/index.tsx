@@ -3,17 +3,22 @@ import Location from './_components/location';
 import RecruitDate from './_components/recruit-date';
 import VolunteerDate from './_components/volunteer-date';
 import { InfoFirstLine, InfoSecondLine, Wrapper } from './indexCss';
+import { AidRqDetailType } from '@/shared/types/aidrq-detail/aidrqDetailType';
 
-const AidRqDetailInfo = () => {
+interface AidRqDetailCenterProfileProps {
+  data: AidRqDetailType;
+}
+
+const AidRqDetailInfo: React.FC<AidRqDetailCenterProfileProps> = ({ data }) => {
   return (
     <Wrapper>
       <InfoFirstLine>
-        <CurrentRecruit></CurrentRecruit>
-        <RecruitDate></RecruitDate>
+        <CurrentRecruit data={data}></CurrentRecruit>
+        <RecruitDate data={data}></RecruitDate>
       </InfoFirstLine>
       <InfoSecondLine>
-        <Location></Location>
-        <VolunteerDate></VolunteerDate>
+        <Location data={data}></Location>
+        <VolunteerDate data={data}></VolunteerDate>
       </InfoSecondLine>
     </Wrapper>
   );
