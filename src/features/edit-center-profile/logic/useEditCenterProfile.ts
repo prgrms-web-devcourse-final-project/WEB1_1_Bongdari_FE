@@ -27,6 +27,8 @@ const useEditCenterProfile = () => {
 
       setValidPhone(validatePhone(data.contact_number));
       setValidURL(validateURL(data.homepage_link));
+
+      console.log(data);
     } catch (error) {
       console.error('데이터 로딩 실패:', error);
     }

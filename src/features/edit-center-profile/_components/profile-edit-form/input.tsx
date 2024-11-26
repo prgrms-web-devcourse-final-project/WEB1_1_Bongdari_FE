@@ -27,6 +27,7 @@ const EditProfileForm = ({
   handleURLChange,
   handleIntroductionChange
 }: EditProfileFormProps) => {
+  console.log('centerName', centerName);
   return (
     <EditFormWrapper>
       <EditItem>

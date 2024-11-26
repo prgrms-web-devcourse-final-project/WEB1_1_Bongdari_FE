@@ -40,7 +40,7 @@ const useCenterProfile = () => {
 
       formData.append('centerData', JSON.stringify(centerData));
 
-      const response = await axiosInstance.put('/api/center/profile/1', formData);
+      const response = axiosInstance.put('/api/center/profile/1', formData);
       setDisplayName(centerName);
       alert('프로필이 성공적으로 수정되었습니다.');
 
