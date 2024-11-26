@@ -4,7 +4,7 @@ import { useInput } from './logic/useInput';
 interface InputCompProps {
   getInputText: (inputText: string) => void; // inputText 상위전달
   colortype: 0 | 1; // 색상 타입
-  textType?: 'text' | 'password';
+  textType?: 'text' | 'password' | 'url';
   width: string;
   height?: string;
   initialVal?: string; // input내의 초깃값
@@ -15,7 +15,7 @@ interface InputCompProps {
 
 const InputBox: React.FC<InputCompProps> = ({
   getInputText,
-  colortype = 0,
+  colortype,
   textType = 'text',
   width,
   height = '',
