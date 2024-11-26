@@ -1,4 +1,3 @@
-import AidRqDetailCenterProfile from '@/features/aidreq-detail-center-profile';
 import { Wrapper } from './MainpageCss';
 
 export default function MainPage() {

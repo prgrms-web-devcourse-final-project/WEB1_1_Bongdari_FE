@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 interface UseInputProps {
   getInputText: (inputText: string) => void;
   initialVal: string;
+  setFunc?: (inputText: string) => void;
 }
 
 interface UseInputReturn {
@@ -12,12 +13,13 @@ interface UseInputReturn {
   onBlur: () => void; // 다른곳 클릭시 상위전달
 }
 
-export const useInput = ({ getInputText, initialVal }: UseInputProps): UseInputReturn => {
+export const useInput = ({ getInputText, initialVal, setFunc }: UseInputProps): UseInputReturn => {
   const [inputText, setInputText] = useState(initialVal);
 
   // inputText 내부적으로 저장
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
+    if (setFunc) setFunc(e.target.value);
   };
 
   // Enter 누르면 inputText 상위로 전달
