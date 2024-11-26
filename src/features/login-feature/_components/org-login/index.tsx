@@ -39,7 +39,9 @@ const OrgLogin = () => {
         />
       </div>
       <div className="btnWrap">
-        <SubmitButton label="계정 찾기" width="49%" height="55px" onClick={onClickFindAcount} />
+        <button className="findAccountBtn" onClick={onClickFindAcount}>
+          계정 찾기
+        </button>
         <SubmitButton label="로그인" width="49%" height="55px" onClick={onClickLogin} />
       </div>
       <button className="firstVisitBtn" onClick={onClickFirstVisit}>

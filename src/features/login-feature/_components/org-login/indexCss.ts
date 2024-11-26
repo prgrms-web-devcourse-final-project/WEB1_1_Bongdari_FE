@@ -1,4 +1,4 @@
-import Theme from '@/styles/theme';
+import Theme, { tabMenu } from '@/styles/theme';
 import styled from 'styled-components';
 
 export const OrgLoginCss = styled.div`
@@ -28,9 +28,20 @@ export const OrgLoginCss = styled.div`
     display: flex;
     justify-content: space-between;
   }
+  .findAccountBtn {
+    width: 49%;
+    height: 55px;
+    background-color: ${tabMenu.variants.notClicked.backgroundColor};
+    border: ${tabMenu.variants.notClicked.border};
+    border-radius: 10px;
+    color: ${tabMenu.variants.notClicked.color};
+    font-size: ${Theme.fontSize.seventhSize};
+    font-weight: 600;
+    cursor: pointer;
+  }
   .firstVisitBtn {
     background-color: transparent;
-    padding: 10px 15px;
+    padding: 10px 20px;
     border-radius: 30px;
     border: 1.5px solid #e0e0e0;
 
