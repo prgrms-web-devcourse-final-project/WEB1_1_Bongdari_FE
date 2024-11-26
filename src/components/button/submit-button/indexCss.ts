@@ -7,11 +7,13 @@ export type ButtonVariant = 'disabled' | 'enabledOne' | 'enabledTwo';
 const SubmitButtonComponent = styled.button<{
   variant?: ButtonVariant;
   width?: string;
+  height?: string;
   fontSize?: string;
   fontWeight?: string;
 }>`
   border-radius: ${submitButton.borderRadius};
   width: ${({ width }) => width || '220px'};
+  height: ${({ height }) => height || ''};
   font-size: ${({ fontSize }) => fontSize || theme.fontSize.seventhSize};
   font-weight: ${({ fontWeight }) => fontWeight || 'bold'};
   cursor: ${({ variant }) => (variant === 'disabled' ? 'not-allowed' : 'pointer')};
