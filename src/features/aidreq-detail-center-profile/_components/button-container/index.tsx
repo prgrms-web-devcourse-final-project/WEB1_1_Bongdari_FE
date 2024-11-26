@@ -16,6 +16,7 @@ const ButtonContainer: React.FC<ButtonContainerProps> = ({ centerProfile }) => {
         }}
         label="프로필 보러가기"
         width="220px"
+        height="47px"
         border={`1px solid ${theme.pointColor.Regular}`}
         borderRadius="8px"
         bgColor={theme.pointColor.Regular}

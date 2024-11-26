@@ -7,6 +7,4 @@ export const Wrapper = styled.div`
   background-color: ${theme.box.section.backgroundColor};
   border-radius: ${theme.box.section.borderRadius};
   padding: 50px;
-  max-width: 1200px;
-  width: 90%;
 `;

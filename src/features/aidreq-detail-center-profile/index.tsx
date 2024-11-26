@@ -2,16 +2,18 @@ import ButtonContainer from './_components/button-container';
 import InfoContainer from './_components/info-container';
 import PictureContainer from './_components/picture-container';
 import { Wrapper } from './indexCss';
-import { dummyData } from './dummydata';
+import { AidRqDetailType } from '@/shared/types/aidrq-detail/aidrqDetailType';
 
-const centerProfile = dummyData.data.center;
+interface AidRqDetailCenterProfileProps {
+  data: AidRqDetailType;
+}
 
-const AidRqDetailCenterProfile = () => {
+const AidRqDetailCenterProfile: React.FC<AidRqDetailCenterProfileProps> = ({ data }) => {
   return (
     <Wrapper>
-      <PictureContainer centerProfile={centerProfile}></PictureContainer>
-      <InfoContainer centerProfile={centerProfile}></InfoContainer>
-      <ButtonContainer centerProfile={centerProfile}></ButtonContainer>
+      <PictureContainer centerProfile={data.center}></PictureContainer>
+      <InfoContainer centerProfile={data.center}></InfoContainer>
+      <ButtonContainer centerProfile={data.center}></ButtonContainer>
     </Wrapper>
   );
 };

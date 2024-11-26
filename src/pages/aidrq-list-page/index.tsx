@@ -3,7 +3,7 @@ import AidRqListWrapper from './ui/aidrqlist-wrapper';
 import Search from './ui/search';
 import Tab from './ui/tab';
 
-const AidReqListPage = () => {
+const AidRqListPage = () => {
   return (
     <Wrapper>
       <Title>도움요청글</Title>
@@ -14,4 +14,4 @@ const AidReqListPage = () => {
   );
 };
 
-export default AidReqListPage;
+export default AidRqListPage;

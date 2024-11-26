@@ -1,6 +1,11 @@
 import { Container, Wrapper } from './indexCss';
+import { AidRqDetailType } from '@/shared/types/aidrq-detail/aidrqDetailType';
 
-const CurrentRecruit = () => {
+interface AidRqDetailCenterProfileProps {
+  data: AidRqDetailType;
+}
+
+const CurrentRecruit: React.FC<AidRqDetailCenterProfileProps> = ({ data }) => {
   return (
     <Wrapper>
       <h2>모집상태</h2>
@@ -10,7 +15,7 @@ const CurrentRecruit = () => {
         </div>
         <div>
           <p>
-            현재 <span>15</span>명이 지원했습니다.
+            현재 <span>{data.current_recruitment_count}</span>명이 지원했습니다.
           </p>
         </div>
       </Container>
