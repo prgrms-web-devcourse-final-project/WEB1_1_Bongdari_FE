@@ -23,10 +23,11 @@ export const dummyData = {
     center: {
       id: 1,
       name: '프로그래머스',
-      introduce: 'adsasd',
+      introduce:
+        '서울도서관에 대한 설명입니다.서울도서관에 대한 설명입니다.서울도서관에 대한 설명입니다. 서울도서관에 대한 설명입니다.서울도서관에 대한 설명입니다.',
       prefer_items: ['어린이 동화 10권', '어린이 동화 10권', '동화 10권'],
       homepage_link: 'https://homepage.domain.com/links',
-      img_url: 'https://image.domain.com/links',
+      img_url: 'https://avatars.githubusercontent.com/u/187719732?s=200&v=4',
       is_interested: true
     }
   }

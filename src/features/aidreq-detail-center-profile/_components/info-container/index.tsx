@@ -1,17 +1,19 @@
 import { Explain, PreferItemContainer, Site, Title, Wrapper } from './indexCss';
 import InterestButton from './ui/interest-center';
 import PreferItem from './ui/prefer-items';
+import { aidRqCenterProfileType } from '@/shared/types/aidrq-detail-center/aidRqCenterProfileType';
 
-const InfoContainer = () => {
+interface InfoContainerProps {
+  centerProfile: aidRqCenterProfileType;
+}
+
+const InfoContainer: React.FC<InfoContainerProps> = ({ centerProfile }) => {
   return (
     <Wrapper>
       <InterestButton></InterestButton>
-      <Title>서울도서관</Title>
-      <Site>www.seoullibrary.com</Site>
-      <Explain>
-        서울도서관에 대한 설명입니다.서울도서관에 대한 설명입니다.서울도서관에 대한 설명입니다. 서울도서관에 대한
-        설명입니다.서울도서관에 대한 설명입니다.
-      </Explain>
+      <Title>{centerProfile.name}</Title>
+      <Site>{centerProfile.homepage_link}</Site>
+      <Explain>{centerProfile.introduce}</Explain>
       <PreferItemContainer>
         <p>이러한 지원이 필요해요!</p>
         <PreferItem label="어린이동화 10권"></PreferItem>

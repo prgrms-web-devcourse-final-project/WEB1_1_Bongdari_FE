@@ -1,7 +1,12 @@
 import { ProfileImg } from './indexCss';
+import { aidRqCenterProfileType } from '@/shared/types/aidrq-detail-center/aidRqCenterProfileType';
 
-const PictureContainer = () => {                                                                                                                                                                                                                                                                                
-  return <ProfileImg></ProfileImg>;
+interface PictureContainerProps {
+  centerProfile: aidRqCenterProfileType;
+}
+
+const PictureContainer: React.FC<PictureContainerProps> = ({ centerProfile }) => {
+  return <ProfileImg imgurl={centerProfile.img_url}></ProfileImg>;
 };
 
 export default PictureContainer;

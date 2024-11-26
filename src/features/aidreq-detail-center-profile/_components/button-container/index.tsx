@@ -1,12 +1,20 @@
 import { OtherButton } from '@/components/button';
-import { Wrapper } from './indexCss';
+import { MailButton, Wrapper } from './indexCss';
 import theme from '@/styles/theme';
+import { aidRqCenterProfileType } from '@/shared/types/aidrq-detail-center/aidRqCenterProfileType';
 
-const ButtonContainer = () => {
+interface ButtonContainerProps {
+  centerProfile: aidRqCenterProfileType;
+}
+
+const ButtonContainer: React.FC<ButtonContainerProps> = ({ centerProfile }) => {
   return (
     <Wrapper>
       <OtherButton
-        label="프로필보기"
+        onClick={() => {
+          console.log(centerProfile.id);
+        }}
+        label="프로필 보러가기"
         width="220px"
         border={`1px solid ${theme.pointColor.Regular}`}
         borderRadius="8px"
@@ -15,16 +23,12 @@ const ButtonContainer = () => {
         fontSize="14px"
         fontWeight="400"
         disabled={false}></OtherButton>
-      <OtherButton
-        label="쪽지보내기"
-        width="220px"
-        border="1px solid #DCDCDC"
-        borderRadius="8px"
-        bgColor="white"
-        color="#A4A4A4"
-        fontSize="14px"
-        fontWeight="400"
-        disabled={false}></OtherButton>
+      <MailButton
+        onClick={() => {
+          console.log(centerProfile.id);
+        }}>
+        쪽지 전달하기
+      </MailButton>
     </Wrapper>
   );
 };
