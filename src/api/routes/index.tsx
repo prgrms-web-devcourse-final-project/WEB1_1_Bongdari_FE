@@ -5,6 +5,7 @@ import MainPage from '@/pages/main-page/MainPage';
 import TestPage from '@/pages/test-page';
 import AidRqListPage from '@/pages/aidrq-list-page';
 import AidRqDetailPage from '@/pages/aidrq-detail-page';
+import CenterPage from '@/pages/center-page';
 
 const routes: RouteObject[] = [
   {
@@ -26,6 +27,10 @@ const routes: RouteObject[] = [
       {
         path: '/aidrqdetail',
         element: <AidRqDetailPage />
+      },
+      {
+        path: '/center',
+        element: <CenterPage />
       },
       // "/test" 경로는 아래에 둘 수 있도록 해주세요 (이 위로 라우팅 설정 해달라는 뜻입니다)
       {
