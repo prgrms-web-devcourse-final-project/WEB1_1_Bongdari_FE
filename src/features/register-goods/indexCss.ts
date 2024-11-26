@@ -5,8 +5,7 @@ export const SectionBox = styled.div`
   border: ${theme.box.section.border};
   border-radius: ${theme.box.section.borderRadius};
   background-color: ${theme.box.section.backgroundColor};
-  max-width: 1200px;
-  width: 90%;
+  width: 100%;
   padding: 58px 100px 84px 80px;
   margin: auto;
 `;

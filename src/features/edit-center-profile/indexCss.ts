@@ -4,8 +4,7 @@ import styled from 'styled-components';
 export const CenterProfileEditContainer = styled.section`
   display: flex;
   flex-direction: column;
-  width: 90%;
-  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   gap: 1rem;
 `;
