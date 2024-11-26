@@ -10,6 +10,7 @@ export const GoodsItemBox = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 182px;
+  gap: 5px;
 `;
 
 export const GoodsTitle = styled.p`
