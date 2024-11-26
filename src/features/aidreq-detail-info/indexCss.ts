@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
-  max-width: 1200px;
-  width: 90%;
-`;
+export const Wrapper = styled.div``;
 
 export const InfoFirstLine = styled.div`
   display: flex;

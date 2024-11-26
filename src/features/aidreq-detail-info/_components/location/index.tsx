@@ -1,13 +1,18 @@
 import { Container, Wrapper } from './indexCss';
+import { AidRqDetailType } from '@/shared/types/aidrq-detail/aidrqDetailType';
 
-const Location = () => {
+interface AidRqDetailCenterProfileProps {
+  data: AidRqDetailType;
+}
+
+const Location: React.FC<AidRqDetailCenterProfileProps> = ({ data }) => {
   return (
     <Wrapper>
       <h2>활동위치</h2>
       <Container>
         <div>
           <img src="assets/imgs/icon-location.svg" alt=""></img>
-          <p>(07933) 서울시 영등포구 신풍로77, 민준빌딩</p>
+          <p>{data.location.address}</p>
         </div>
         <div>
           <p>지도보기</p>
