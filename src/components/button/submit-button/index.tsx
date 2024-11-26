@@ -4,6 +4,7 @@ interface SubmitButtonProps extends React.ComponentProps<typeof SubmitButtonComp
   onClick?: () => void; // 버튼 클릭 이벤트 핸들러
   label: string; // 버튼에 표시될 텍스트
   variant?: 'disabled' | 'enabledOne' | 'enabledTwo'; // 버튼 스타일을 위한 variant
+  height?: string;
 }
 
 const SubmitButton = ({
@@ -11,6 +12,7 @@ const SubmitButton = ({
   label,
   variant = 'enabledOne',
   width,
+  height,
   fontSize,
   fontWeight,
   disabled = false
@@ -20,6 +22,7 @@ const SubmitButton = ({
       onClick={onClick}
       variant={variant}
       width={width}
+      height={height}
       fontSize={fontSize}
       fontWeight={fontWeight}
       disabled={disabled}>
