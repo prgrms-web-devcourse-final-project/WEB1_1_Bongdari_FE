@@ -9,6 +9,7 @@ import AidRqDetailPage from '@/pages/aidrq-detail-page';
 import CenterPage from '@/pages/center-page';
 import PersonalProfilePage from '@/pages/personal-profile-page/PersonalProfilePage';
 import AdminAidRqListPage from '@/pages/admin-aidrq-list-page';
+import PersonalMyPage from '@/pages/personal-my-page/PersonalMyPage';
 
 const routes: RouteObject[] = [
   {
@@ -46,6 +47,10 @@ const routes: RouteObject[] = [
       {
         path: '/profile/:userId',
         element: <PersonalProfilePage />
+      },
+      {
+        path: '/mypage',
+        element: <PersonalMyPage />
       },
       // "/test" 경로는 아래에 둘 수 있도록 해주세요 (이 위로 라우팅 설정 해달라는 뜻입니다)
       {

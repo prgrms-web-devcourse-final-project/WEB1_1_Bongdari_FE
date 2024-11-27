@@ -5,27 +5,44 @@ import LongListItem from '@/components/longListItem';
 import SectionTitle from '../section-title';
 
 interface HalfListProps {
-  data: string[];
-  // TODO: 받아오는 data의 타입을 지정해주기(api 보고 타입 지정하기)
+  user_id: string;
+  listType: 'myVolunteer' | 'myMessage';
 }
-const HalfList: React.FC<HalfListProps> = ({ data }) => {
+const HalfList: React.FC<HalfListProps> = ({ user_id, listType }) => {
   const [totPage, setTotPage] = useState<number>(0);
   const [currPage, setCurrPage] = useState<number>(1);
+  const tmpdata = ['내용1', '내용2', '내용3'];
 
-  const getId = (id: string) => {
+  useEffect(() => {
+    // TODO: user_id를 가지고 데이터 불러오기
+    // TODO: 받아오는 data의 타입을 지정해주기(api 보고 타입 지정하기)
+    if (listType === 'myVolunteer') console.log('TODO: ', user_id, '의 봉사목록 조회');
+    else if (listType === 'myMessage') console.log('TODO: ', user_id, '의 쪽지목록 조회');
+
+    setTotPage(Math.ceil(tmpdata.length / 5));
+  }, []);
+
+  const onClickGetId = (id: string) => {
     console.log('클릭한 ', id, '로 이동');
   };
 
-  useEffect(() => {
-    setTotPage(Math.ceil(data.length / 5));
-  }, [data]);
-
   return (
     <HalfListCss>
-      <SectionTitle title="내 봉사 목록" totPage={totPage} currPage={currPage} setCurrPage={setCurrPage} />
+      <SectionTitle
+        title={listType === 'myVolunteer' ? '내 봉사 목록' : '내 쪽지 목록'}
+        totPage={totPage}
+        currPage={currPage}
+        setCurrPage={setCurrPage}
+      />
       <div className="listWrap">
-        {data.map((v) => (
-          <LongListItem content_id="2" mainText={v} getContentId={getId} isRead={false} mailWriter="서울도서관" />
+        {tmpdata.map((v) => (
+          <LongListItem
+            content_id="idid"
+            mainText={v}
+            getContentId={onClickGetId}
+            isRead={listType === 'myVolunteer' ? undefined : false}
+            mailWriter={listType === 'myVolunteer' ? undefined : '서울도서관'}
+          />
         ))}
       </div>
     </HalfListCss>
