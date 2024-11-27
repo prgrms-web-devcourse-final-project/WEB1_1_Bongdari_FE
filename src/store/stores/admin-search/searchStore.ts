@@ -43,7 +43,7 @@ const initialState = {
   status: ''
 };
 
-const useSearchStore = create<SearchState>((set) => ({
+const useAdminSearchStore = create<SearchState>((set) => ({
   ...initialState,
 
   setKeyword: (keyword) => set({ keyword }),
@@ -62,4 +62,4 @@ const useSearchStore = create<SearchState>((set) => ({
   resetSearch: () => set(initialState)
 }));
 
-export default useSearchStore;
+export default useAdminSearchStore;
