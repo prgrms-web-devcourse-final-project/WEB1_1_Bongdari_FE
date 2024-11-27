@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 // import { useNavigate, useParams } from 'react-router-dom';
 
@@ -5,10 +6,12 @@ import { Wrapper } from './PersonalProfilePageCss';
 import { personProfileType } from '@/shared/types/person-profile/personProfile';
 import ProfileImgBox from '@/features/profile-page-img-box';
 import ProfileInfoBox from '@/features/profile-page-info-box';
+import ProfileMailModal from '@/features/profile-page-mail-modal';
 import circleCat from './circleCat.jpg';
 
 const PersonalProfilePage = () => {
   const { userId } = useParams();
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   // const navigate = useNavigate();
   const tmpdata: personProfileType = {
     nickname: 'jooyoung',
@@ -23,8 +26,9 @@ const PersonalProfilePage = () => {
   return (
     <Wrapper>
       <div className="innerWrap">
-        <ProfileImgBox user_id={userId || ''} {...tmpdata} />
+        <ProfileImgBox user_id={userId || ''} {...tmpdata} setIsModalOpen={setIsModalOpen} />
         <ProfileInfoBox user_id={userId || ''} {...tmpdata} />
+        <ProfileMailModal user_id={userId || ''} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       </div>
     </Wrapper>
   );
