@@ -7,6 +7,7 @@ import TextContent from './ui/text-content';
 import AidRqDetailInfo from '@/features/aidreq-detail-info';
 import { AidRqDetailType } from '@/shared/types/aidrq-detail/aidrqDetailType';
 import { fetchData } from './logic/fetchData';
+import ReviewCreateModal from '@/features/review-create-modal';
 
 interface ApiResponse {
   code: number;
@@ -16,6 +17,7 @@ interface ApiResponse {
 
 const AidRqDetailPage = () => {
   const [data, setData] = useState<ApiResponse | null>(null);
+  const [reviewModalState, SetReviewModalState] = useState(false);
 
   useEffect(() => {
     fetchData(setData);
@@ -29,10 +31,18 @@ const AidRqDetailPage = () => {
       {data && <AidRqDetailInfo data={data.data}></AidRqDetailInfo>}
       {data && (
         <ButtonBox>
-          <button>리뷰쓰기</button>
+          <button
+            onClick={() => {
+              SetReviewModalState(true);
+            }}>
+            리뷰쓰기
+          </button>
           <button>지원하기</button>
         </ButtonBox>
       )}
+      <ReviewCreateModal
+        reviewModalState={reviewModalState}
+        SetReviewModalState={SetReviewModalState}></ReviewCreateModal>
       {!data && <p>요청하신 글에 접근이 불가합니다.</p>}
     </Wrapper>
   );
