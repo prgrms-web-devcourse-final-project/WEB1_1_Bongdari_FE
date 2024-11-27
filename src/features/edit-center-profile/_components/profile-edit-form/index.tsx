@@ -1,6 +1,12 @@
-import InputBox from '@/components/inputBox';
-import TextArea from '@/components/textArea';
-import { EditFormWrapper, EditItem, EditItem_TextArea, EditLabel, ErrorMessage } from './inputCss';
+import {
+  CenterIntroTextArea,
+  EditFormWrapper,
+  EditItem,
+  EditItem_TextArea,
+  EditLabel,
+  ErrorMessage,
+  Input
+} from './indexCss';
 
 interface EditProfileFormProps {
   centerName: string;
@@ -27,19 +33,17 @@ const EditProfileForm = ({
   handleURLChange,
   handleIntroductionChange
 }: EditProfileFormProps) => {
-  console.log('centerName', centerName);
   return (
     <EditFormWrapper>
       <EditItem>
         <EditLabel htmlFor="centerName">기관명</EditLabel>
         <div>
-          <InputBox
-            getInputText={handleNameChange}
-            colortype={1}
-            width="480px"
-            height="38px"
+          <Input
+            id="centerName"
+            type="text"
+            value={centerName}
+            onChange={(e) => handleNameChange(e.target.value)}
             placeholder="기관명을 입력해주세요"
-            initialVal={centerName}
           />
           {centerName === '' && <ErrorMessage>⚠️ 기관명을 입력해주세요.</ErrorMessage>}
         </div>
@@ -47,13 +51,12 @@ const EditProfileForm = ({
       <EditItem>
         <EditLabel htmlFor="centerPhone">연락처</EditLabel>
         <div>
-          <InputBox
-            getInputText={handlePhoneChange}
-            colortype={1}
-            width="480px"
-            height="38px"
-            placeholder="연락처를 입력해주세요"
-            initialVal={centerPhone}
+          <Input
+            id="centerPhone"
+            type="text"
+            value={centerPhone}
+            onChange={(e) => handlePhoneChange(e.target.value)}
+            placeholder="연락처를 입력하세요."
           />
           {centerPhone && !validPhone && (
             <ErrorMessage>⚠️ 연락처는 "oo-oooo-oooo" 또는 "ooo-oooo-oooo" 형식으로 입력해주세요.</ErrorMessage>
@@ -63,13 +66,12 @@ const EditProfileForm = ({
       <EditItem>
         <EditLabel htmlFor="centerURL">사이트</EditLabel>
         <div>
-          <InputBox
-            getInputText={handleURLChange}
-            colortype={1}
-            width="480px"
-            height="38px"
-            placeholder="사이트 주소를 입력해주세요"
-            initialVal={centerURL}
+          <Input
+            id="centerURL"
+            type="text"
+            value={centerURL}
+            onChange={(e) => handleURLChange(e.target.value)}
+            placeholder="사이트 주소를 입력하세요."
           />
           {centerURL && !validURL && <ErrorMessage>⚠️ 올바른 URL 형식이 아닙니다.</ErrorMessage>}
         </div>
@@ -78,13 +80,10 @@ const EditProfileForm = ({
         <EditLabel htmlFor="centerDescription" style={{ paddingTop: '14px' }}>
           설명
         </EditLabel>
-        <TextArea
-          getInputText={handleIntroductionChange}
-          colortype={1}
-          width="480px"
-          height="220px"
+        <CenterIntroTextArea
           placeholder="기관에 대한 간단한 소개를 작성해주세요"
-          initialVal={centerIntroduction}
+          value={centerIntroduction}
+          onChange={(e) => handleIntroductionChange(e.target.value)}
         />
       </EditItem_TextArea>
     </EditFormWrapper>
