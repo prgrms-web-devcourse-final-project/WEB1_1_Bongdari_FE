@@ -1,18 +1,28 @@
 import FilterSearchBar from '@/components/search-bar/filter-search';
-import FindVolunteer from './_components/findVolunteer';
-import { PageWrapper } from './indexCss';
+import WriteAidReqButtonComponent from './_components/writeAidReqButtonComponent';
+import { PageWrapper, Title } from './indexCss';
+import TabButtonGroup from '@/components/tab-button';
+import AidRqAdminListWrapper from './_components/aidrqlistadmin-wrapper';
 
 const AdminAidRqListPage = () => {
+  const tabs = [{ label: '모집중' }, { label: '모집완료' }, { label: '종료' }];
+
+  const handleTabChange = () => {
+    console.log('TODO: 실행함수 넣기');
+  };
+
   const handleSearchAidRequests = () => {
     // api 호출 로직 와야 함
     console.log('요청 검색 실행');
   };
+
   return (
     <PageWrapper>
-      <h1>내가 등록한 도움요청 글</h1>
-      <FindVolunteer />
+      <Title>내가 등록한 도움요청 글</Title>
+      <WriteAidReqButtonComponent />
       <FilterSearchBar searchAidRequests={handleSearchAidRequests} />
-      <div>글 리스트 feature로 만들어야 함</div>
+      <TabButtonGroup tabs={tabs} onTabChange={handleTabChange} />
+      <AidRqAdminListWrapper />
     </PageWrapper>
   );
 };
