@@ -1,21 +1,21 @@
-import { ProfileMailModalCss } from './indexCss';
+import { MessageCreateModalCss } from './indexCss';
 import { useSendMail } from './logic/useSendMail';
 import { SubmitButton } from '@/components/button';
 import InputBox from '@/components/inputBox';
 import TextArea from '@/components/textArea';
 import Modal from '@/components/modal';
 
-interface ProfileMailModalProps {
+interface MessageCreateModalProps {
   user_id: string;
   isModalOpen: boolean;
   setIsModalOpen: (bool: boolean) => void;
 }
 
-const ProfileMailModal: React.FC<ProfileMailModalProps> = ({ user_id, isModalOpen, setIsModalOpen }) => {
+const MessageCreateModal: React.FC<MessageCreateModalProps> = ({ user_id, isModalOpen, setIsModalOpen }) => {
   const my_id = '내 아이디';
   const { checkTitle, checkContent, checkSend, errMsg } = useSendMail({ user_id, my_id, setIsModalOpen });
   return (
-    <ProfileMailModalCss id={user_id}>
+    <MessageCreateModalCss id={user_id}>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} variant="small">
         <div className="modalInnerWrap">
           <i>쪽지 작성</i>
@@ -46,7 +46,7 @@ const ProfileMailModal: React.FC<ProfileMailModalProps> = ({ user_id, isModalOpe
           </div>
         </div>
       </Modal>
-    </ProfileMailModalCss>
+    </MessageCreateModalCss>
   );
 };
-export default ProfileMailModal;
+export default MessageCreateModal;

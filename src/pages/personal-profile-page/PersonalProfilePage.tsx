@@ -6,7 +6,7 @@ import { Wrapper } from './PersonalProfilePageCss';
 import { personProfileType } from '@/shared/types/person-profile/personProfile';
 import ProfileImgBox from '@/features/profile-page-img-box';
 import ProfileInfoBox from '@/features/profile-page-info-box';
-import ProfileMailModal from '@/features/profile-page-mail-modal';
+import MessageCreateModal from '@/features/message-create-modal';
 import circleCat from './circleCat.jpg';
 
 const PersonalProfilePage = () => {
@@ -28,7 +28,7 @@ const PersonalProfilePage = () => {
       <div className="innerWrap">
         <ProfileImgBox user_id={userId || ''} {...tmpdata} setIsModalOpen={setIsModalOpen} />
         <ProfileInfoBox user_id={userId || ''} {...tmpdata} />
-        <ProfileMailModal user_id={userId || ''} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+        <MessageCreateModal user_id={userId || ''} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       </div>
     </Wrapper>
   );

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import theme from '@/styles/theme';
 
-export const ProfileMailModalCss = styled.div`
+export const MessageCreateModalCss = styled.div`
   .modalInnerWrap {
     padding: 45px;
   }
