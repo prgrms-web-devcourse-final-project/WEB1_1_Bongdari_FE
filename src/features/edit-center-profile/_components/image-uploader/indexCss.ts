@@ -45,7 +45,7 @@ export const UploadButton = styled.label`
   right: 0;
   bottom: 1rem;
   padding-bottom: 5px;
-  z-index: 100;
+  z-index: 1;
 
   span {
     display: flex;
