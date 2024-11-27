@@ -8,6 +8,7 @@ import AidRqListPage from '@/pages/aidrq-list-page';
 import AidRqDetailPage from '@/pages/aidrq-detail-page';
 import CenterPage from '@/pages/center-page';
 import PersonalProfilePage from '@/pages/personal-profile-page/PersonalProfilePage';
+import AdminAidRqListPage from '@/pages/admin-aidrq-list-page';
 import PersonalMyPage from '@/pages/personal-my-page/PersonalMyPage';
 
 const routes: RouteObject[] = [
@@ -34,6 +35,10 @@ const routes: RouteObject[] = [
       {
         path: '/center',
         element: <CenterPage />
+      },
+      {
+        path: '/center/adminaidreqlist',
+        element: <AdminAidRqListPage />
       },
       {
         path: '/login',
