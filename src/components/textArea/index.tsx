@@ -9,6 +9,7 @@ interface TextAreaProps {
   initialVal?: string; // input내의 초깃값
   placeholder?: string; // input의 placeholder
   isDisabled?: boolean;
+  setFunc?: (inputText: string) => void;
 }
 
 const TextArea: React.FC<TextAreaProps> = ({
@@ -18,9 +19,10 @@ const TextArea: React.FC<TextAreaProps> = ({
   height = '',
   initialVal = '',
   placeholder = '작성하세요.',
-  isDisabled = false
+  isDisabled = false,
+  setFunc
 }: TextAreaProps) => {
-  const { inputText, onChangeInput, onBlur } = useInput({ initialVal, getInputText });
+  const { inputText, onChangeInput, onBlur } = useInput({ initialVal, getInputText, setFunc });
 
   return (
     <TextAreaCss

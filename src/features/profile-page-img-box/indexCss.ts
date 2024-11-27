@@ -1,8 +1,10 @@
 import theme from '@/styles/theme';
 import styled from 'styled-components';
 
-export const ProfileBoxCss = styled.div`
-  width: 462px;
+export const ProfileImgBoxCss = styled.div`
+  max-width: 460px;
+  width: 100%;
+  min-width: 400px;
   height: 480px;
 
   background-color: ${theme.box.section.backgroundColor};
@@ -17,7 +19,7 @@ export const ProfileBoxCss = styled.div`
 
   cursor: pointer;
 
-  img {
+  & > img {
     background-color: #b3b3b3;
     object-fit: cover;
     border-radius: 190px;
@@ -28,10 +30,15 @@ export const ProfileBoxCss = styled.div`
   p {
     text-align: center;
   }
-
   i {
     font-size: ${theme.fontSize.fourthSize};
     font-weight: 600;
-    margin: 0 5px;
+    margin: 0 12px;
+  }
+  .mitten {
+    width: ${theme.fontSize.fourthSize};
+    height: ${theme.fontSize.fourthSize};
+    object-fit: contain;
+    transform: rotateZ(30deg);
   }
 `;
