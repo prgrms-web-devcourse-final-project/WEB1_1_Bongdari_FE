@@ -5,6 +5,7 @@ export const PageWrapper = styled.div`
   width: 90%;
   display: flex;
   flex-direction: column;
-  margin: 302px auto 250px;
+  margin: 0 auto;
+  padding: 250px 0;
   gap: 26px;
 `;
