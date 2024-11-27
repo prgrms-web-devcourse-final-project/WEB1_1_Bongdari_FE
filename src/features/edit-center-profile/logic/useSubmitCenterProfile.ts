@@ -1,9 +1,26 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axiosInstance from '@/api/apis';
 
 const useCenterProfile = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [displayName, setDisplayName] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+
+  // TODO: 리액트 쿼리로 분리할 것 -> api 호출 하나로 통합할 수 있도록
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const response = await axiosInstance.get('/api/center/profile/1');
+        setDisplayName(response.data.name || '');
+      } catch (error) {
+        console.error('프로필 로드 실패:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProfile();
+  }, []);
 
   const handleEditProfile = async (
     centerName: string,
@@ -17,7 +34,7 @@ const useCenterProfile = () => {
     if (isSubmitting) return;
 
     if (!centerName || !validPhone || !validURL) {
-      alert('모든 필드를 올바르게 입력해주세요.');
+      alert('모든 필드를 올바르게 입력해주세요.'); // TODO: 토스트 UI로 바꿀 예정
       return;
     }
 
@@ -30,6 +47,7 @@ const useCenterProfile = () => {
       }
 
       const centerData = {
+        center_id: 1,
         name: centerName,
         contact_number: centerPhone,
         introduce: centerIntroduction,
@@ -40,7 +58,12 @@ const useCenterProfile = () => {
 
       formData.append('centerData', JSON.stringify(centerData));
 
-      const response = axiosInstance.put('/api/center/profile/1', formData);
+      const response = axiosInstance.put('/api/center/profile/1', formData, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
       setDisplayName(centerName);
       alert('프로필이 성공적으로 수정되었습니다.');
 
@@ -55,7 +78,8 @@ const useCenterProfile = () => {
   return {
     isSubmitting,
     displayName,
-    handleEditProfile
+    handleEditProfile,
+    isLoading
   };
 };
 
