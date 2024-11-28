@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DateInfo, DatePickerWrapper, Wrapper } from './indexCss';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const AidRqCreateDate = () => {
+interface AidRqCreateDateProps {
+  getDate: (date: Date | null) => void;
+}
+
+const AidRqCreateDate: React.FC<AidRqCreateDateProps> = ({ getDate }) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -17,6 +21,10 @@ const AidRqCreateDate = () => {
       setIsOpen(false);
     }
   };
+
+  useEffect(() => {
+    getDate(selectedDate);
+  }, [selectedDate]);
 
   return (
     <Wrapper>

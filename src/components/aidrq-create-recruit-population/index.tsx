@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { PopulationInfo, Wrapper } from './indexCss';
 
 interface AidRqCreateRecruitPopulationProps {
@@ -7,7 +7,9 @@ interface AidRqCreateRecruitPopulationProps {
 
 const AidRqCreateRecruitPopulation: React.FC<AidRqCreateRecruitPopulationProps> = ({ getPopulation }) => {
   const [populationState, setPopulationState] = useState(0);
-  getPopulation(populationState);
+  useEffect(() => {
+    getPopulation(populationState);
+  }, [populationState]);
   return (
     <Wrapper>
       <button

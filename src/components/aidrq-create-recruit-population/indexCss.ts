@@ -14,6 +14,12 @@ export const Wrapper = styled.div`
     font-size: 30px;
     color: #62a6ff;
     background-color: white;
+    transition: 0.2s;
+
+    &:hover {
+      background-color: #dfedff;
+      cursor: pointer;
+    }
   }
 `;
 

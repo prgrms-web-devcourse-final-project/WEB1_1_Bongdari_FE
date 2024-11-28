@@ -4,7 +4,7 @@ import SelectContainer from './ui/select-container';
 import { VolunteerType } from '@/shared/types/aidrq-create-type/AidRqCreateType';
 
 interface AidRqCreateSharedProps {
-  getTitleAndFilter: (key: keyof VolunteerType, value: string) => void;
+  getTitleAndFilter: (key: keyof VolunteerType, value: string | number | boolean) => void;
 }
 
 const AidRqCreateShared: React.FC<AidRqCreateSharedProps> = ({ getTitleAndFilter }) => {
@@ -27,7 +27,11 @@ const AidRqCreateShared: React.FC<AidRqCreateSharedProps> = ({ getTitleAndFilter
           getTitleAndFilter('region', text);
         }}
         getSelectedCertification={(text) => {
-          getTitleAndFilter('admitted', text);
+          if (text === '인증') {
+            getTitleAndFilter('admitted', true);
+          } else if (text === '미인증') {
+            getTitleAndFilter('admitted', false);
+          }
         }}
       />
     </Wrapper>

@@ -24,3 +24,27 @@ export const FourthLine = styled.div`
   gap: 20px;
   padding-top: 16px;
 `;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+
+  & > button {
+    width: 220px;
+    height: 53px;
+    border-radius: 12px;
+    background-color: #2382ff;
+    color: white;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    transition: 0.2s;
+
+    &:hover {
+      background-color: #0a66de;
+      cursor: pointer;
+    }
+  }
+`;
