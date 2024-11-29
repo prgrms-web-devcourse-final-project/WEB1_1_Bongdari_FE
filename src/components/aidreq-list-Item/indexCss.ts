@@ -6,4 +6,5 @@ export const Wrapper = styled.li<{ width: string }>`
   border: ${theme.box.item.border};
   background-color: white;
   border-radius: ${theme.box.item.borderRadius};
+  cursor: pointer;
 `;
