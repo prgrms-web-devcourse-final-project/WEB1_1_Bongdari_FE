@@ -15,7 +15,7 @@ const ActivityTime = () => {
           </DateInfo>
         </DateInfoWrap>
         <TimeInfo>
-          활동 시간 <ActiveTime>1</ActiveTime>시간 입니다.
+          활동 시간 &nbsp;<ActiveTime>1</ActiveTime>&nbsp;시간 입니다.
         </TimeInfo>
       </SectionBox2>
     </div>

@@ -31,4 +31,5 @@ export const VolunteerTitleBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
+  padding-right: 14px;
 `;

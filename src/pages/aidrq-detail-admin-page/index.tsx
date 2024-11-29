@@ -4,6 +4,7 @@ import AdminReqDetailAdminRecruitState from '@/features/aidreq-detail-admin-recr
 // import { useAidRequestStore } from '@/store/stores/aid-request/aidRequestItemStore';
 import { useParams } from 'react-router-dom';
 import { PageWrapper } from './indexCss';
+import ButtonGroup from './ui/button-group';
 
 const AidRqDetailAdminPage = () => {
   // 라우터 파라미터 가져오기
@@ -17,10 +18,7 @@ const AidRqDetailAdminPage = () => {
       <AidRqDetailAdminContent />
       <AdminReqDetailAdminRecruitState />
       <AidReqDetailAdminInfo />
-      <div>
-        <button>수정하기</button>
-        <button>정산하기</button>
-      </div>
+      <ButtonGroup />
     </PageWrapper>
   );
 };

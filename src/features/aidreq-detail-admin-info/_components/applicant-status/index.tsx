@@ -1,11 +1,11 @@
-import { EmptyButton, SectionBox, Title } from '../../indexCss';
+import { EmptyButton, SectionBox3, Title } from '../../indexCss';
 import { UserBox, UserIcon, VolunteerSubTitle, VolunteerTitle, VolunteerTitleBox } from './indexCss';
 
 const ApplicantStatus = () => {
   return (
     <div>
       <Title>지원자 현황</Title>
-      <SectionBox>
+      <SectionBox3>
         <UserBox>
           <UserIcon src="/assets/imgs/user-icon.svg" alt="유저아이콘" />
         </UserBox>
@@ -14,7 +14,7 @@ const ApplicantStatus = () => {
           <VolunteerSubTitle>지원자 리스트를 확인해보세요</VolunteerSubTitle>
         </VolunteerTitleBox>
         <EmptyButton>바로가기</EmptyButton>
-      </SectionBox>
+      </SectionBox3>
     </div>
   );
 };
