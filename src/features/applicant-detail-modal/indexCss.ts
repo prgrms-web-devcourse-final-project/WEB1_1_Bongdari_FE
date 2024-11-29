@@ -98,6 +98,7 @@ export const Key = styled.p`
 export const Value = styled.p`
   font-size: ${theme.fontSize.seventhSize};
   color: #828282;
+  line-height: 1.4;
 `;
 
 export const ProfileImg = styled.img`
