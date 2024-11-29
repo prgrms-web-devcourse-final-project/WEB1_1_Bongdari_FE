@@ -1,4 +1,5 @@
 import { ModalWrapper, ModalContainer, CloseButton } from './indexCss';
+import useScrollLock from '@/shared/hooks/useScrollLock';
 
 interface ModalProps {
   isOpen: boolean;
@@ -8,6 +9,8 @@ interface ModalProps {
 }
 
 const Modal = ({ isOpen, onClose, variant, children }: ModalProps) => {
+  useScrollLock(isOpen);
+
   if (!isOpen) return null;
 
   // 모달 내부 클릭 시 이벤트 버블링 방지
