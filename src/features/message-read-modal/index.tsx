@@ -15,12 +15,15 @@ import {
 } from './indexCss';
 import { OtherButton } from '@/components/button';
 import theme from '@/styles/theme';
+import { useNavigate } from 'react-router-dom';
 
 interface NoteModalProps {
   handleModalClose: () => void;
 }
 
 const MessageReadModal: React.FC<NoteModalProps> = ({ handleModalClose }) => {
+  const navigate = useNavigate();
+
   return (
     <Modal variant="small" isOpen onClose={handleModalClose}>
       <ModalContentWrapper>
@@ -55,6 +58,9 @@ const MessageReadModal: React.FC<NoteModalProps> = ({ handleModalClose }) => {
               height="53px"
               fontSize={theme.fontSize.eighthSize}
               fontWeight="600"
+              onClick={() => {
+                navigate(`/profile/1`);
+              }}
             />
           </ProfileBox>
         </ScrollSection>

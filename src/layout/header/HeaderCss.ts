@@ -19,9 +19,14 @@ export const Contents = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  & > .link {
+    text-decoration: none;
+  }
 `;
 
 export const Logo = styled.h1`
+  color: black;
   font-size: 20px;
   font-weight: 700;
 `;

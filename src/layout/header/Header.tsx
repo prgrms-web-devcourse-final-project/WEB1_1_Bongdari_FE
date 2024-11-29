@@ -5,7 +5,9 @@ export default function Header() {
   return (
     <Wrapper>
       <Contents>
-        <Logo>SOMEMORE</Logo>
+        <Link to="/main" className="link">
+          <Logo>SOMEMORE</Logo>
+        </Link>
         <Menu>
           <Link to="/aidrqlist" className="link">
             <li>활동구인</li>
@@ -16,7 +18,7 @@ export default function Header() {
           <Link to="/main" className="link">
             <li>커뮤니티</li>
           </Link>
-          <Link to="/main" className="link">
+          <Link to="/centermypage" className="link">
             <li>마이페이지</li>
           </Link>
         </Menu>

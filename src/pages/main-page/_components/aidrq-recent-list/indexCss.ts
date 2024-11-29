@@ -16,6 +16,10 @@ export const Top = styled.div`
     border-radius: 20px;
     outline: none;
     background-color: transparent;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 `;
 

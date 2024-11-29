@@ -33,7 +33,7 @@ const AidRqCreateDate: React.FC<AidRqCreateDateProps> = ({ getDate }) => {
         placeholder="일시를 설정해주세요."
         value={selectedDate ? selectedDate.toLocaleString() : ''}></DateInfo>
       <button onClick={handleButtonClick}>
-        <img src="assets/imgs/calendar.svg" alt=""></img>
+        <img src="/assets/imgs/calendar.svg" alt=""></img>
       </button>
       {isOpen && (
         <DatePickerWrapper>
