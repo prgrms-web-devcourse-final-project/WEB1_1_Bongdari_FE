@@ -13,7 +13,7 @@ export const ModalWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 50;
+  z-index: 99999;
 `;
 
 export const ModalContainer = styled.div<{ variant: ModalVariant; width?: string; padding?: string }>`
