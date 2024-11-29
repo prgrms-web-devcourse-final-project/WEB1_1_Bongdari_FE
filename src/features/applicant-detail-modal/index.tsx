@@ -1,19 +1,20 @@
 import Modal from '@/components/modal';
 import {
-  ItemLabel,
-  ItemText,
+  GridBox,
+  GridSection1,
+  Key,
   ModalWrapper,
-  ProfileTitle,
-  SimpleProfileInfoBox,
-  SimpleProfileList,
-  ProfileListItem,
-  SimpleProfileWrapper,
-  DetailProfileList,
   ProfileImg,
-  ProfileImgWrapper,
-  Tier,
+  GridSection2,
   ScrollSection,
-  Introduction
+  Title,
+  Value,
+  GridSection3,
+  SectionBox,
+  DetailItem,
+  Tier,
+  SimpleProfileList,
+  SimpleItem
 } from './indexCss';
 
 interface ApplicantDetailModalProps {
@@ -26,62 +27,71 @@ const ApplicantDetailModal: React.FC<ApplicantDetailModalProps> = ({ handleOpenD
     <Modal isOpen onClose={handleOpenDetailProfileModal} variant="small">
       <ModalWrapper>
         <ScrollSection>
-          <SimpleProfileWrapper>
-            <SimpleProfileInfoBox>
-              <ProfileTitle>김민준 님의 상세 프로필</ProfileTitle>
+          <GridBox>
+            <GridSection1>
+              <Title>홍유진 님의 상세프로필</Title>
               <SimpleProfileList>
-                <ProfileListItem>
-                  <ItemLabel>닉네임</ItemLabel>
-                  <ItemText>710minjoon</ItemText>
-                </ProfileListItem>
-                <ProfileListItem>
-                  <ItemLabel>총 봉사 시간</ItemLabel>
-                  <ItemText>1503시간</ItemText>
-                </ProfileListItem>
-                <ProfileListItem>
-                  <ItemLabel>총 봉사 횟수</ItemLabel>
-                  <ItemText>200회</ItemText>
-                </ProfileListItem>
-                <ProfileListItem>
-                  <ItemLabel>등급</ItemLabel>
+                <SimpleItem>
+                  <Key>닉네임</Key>
+                  <Value>bboongbboong</Value>
+                </SimpleItem>
+                <SimpleItem>
+                  <Key>총 봉사 시간</Key>
+                  <Value>1503시간</Value>
+                </SimpleItem>
+                <SimpleItem>
+                  <Key>총 봉사 횟수</Key>
+                  <Value>200회</Value>
+                </SimpleItem>
+                <SimpleItem>
+                  <Key>등급</Key>
                   <Tier src="/assets/imgs/mitten-white.svg" alt="tier" />
-                </ProfileListItem>
-                <ProfileListItem>
-                  <ItemLabel>설명</ItemLabel>
-                  <Introduction>
-                    해적왕이 되기 위하여 이 자리에 왔습니다. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Ipsam consectetur nostrum vitae nisi labore eveniet eius quas facere totam provident perspiciatis
-                    iusto ducimus, soluta tempora perferendis, cumque dolorem itaque minus.
-                  </Introduction>
-                </ProfileListItem>
+                </SimpleItem>
               </SimpleProfileList>
-            </SimpleProfileInfoBox>
-            <ProfileImgWrapper>
-              <ProfileImg src="" alt="profile_img" />
-            </ProfileImgWrapper>
-          </SimpleProfileWrapper>
-          <DetailProfileList>
-            <ProfileListItem>
-              <ItemLabel>이름</ItemLabel>
-              <ItemText>김민준</ItemText>
-            </ProfileListItem>
-            <ProfileListItem>
-              <ItemLabel>성별</ItemLabel>
-              <ItemText>남자</ItemText>
-            </ProfileListItem>
-            <ProfileListItem>
-              <ItemLabel>생년월일</ItemLabel>
-              <ItemText>1997.02.05</ItemText>
-            </ProfileListItem>
-            <ProfileListItem>
-              <ItemLabel>전화번호</ItemLabel>
-              <ItemText>010-7388-8752</ItemText>
-            </ProfileListItem>
-            <ProfileListItem>
-              <ItemLabel>이메일</ItemLabel>
-              <ItemText>minjoon@naver.com</ItemText>
-            </ProfileListItem>
-          </DetailProfileList>
+            </GridSection1>
+            <GridSection2>
+              <div>
+                <ProfileImg src="/assets/imgs/mitten-white.svg" alt="profile_img" />
+              </div>
+            </GridSection2>
+            <GridSection3>
+              <Key>설명</Key>
+              <Value>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum eos quod aspernatur magni expedita
+                alias neque, quasi tempora tempore maxime culpa earum rem facere totam quidem eveniet magnam ab et.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus ab quibusdam odit ipsa at?
+                Corrupti iusto unde doloribus iure, consectetur autem odio sint hic, porro consequatur amet! Atque, unde
+                labore? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum eos quod aspernatur magni
+                expedita alias neque, quasi tempora tempore maxime culpa earum rem facere totam quidem eveniet magnam ab
+                et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus ab quibusdam odit ipsa at?
+                Corrupti iusto unde doloribus iure, consectetur autem odio sint hic, porro consequatur amet! Atque, unde
+                labore?
+              </Value>
+            </GridSection3>
+          </GridBox>
+
+          <SectionBox>
+            <DetailItem>
+              <Key>이름</Key>
+              <Value>홍유진</Value>
+            </DetailItem>
+            <DetailItem>
+              <Key>성별</Key>
+              <Value>여자</Value>
+            </DetailItem>
+            <DetailItem>
+              <Key>생년월일</Key>
+              <Value>2001.04.10</Value>
+            </DetailItem>
+            <DetailItem>
+              <Key>전화번호</Key>
+              <Value>010-3922-4828</Value>
+            </DetailItem>
+            <DetailItem>
+              <Key>이메일</Key>
+              <Value>jinnie_h@naver.com</Value>
+            </DetailItem>
+          </SectionBox>
         </ScrollSection>
       </ModalWrapper>
     </Modal>

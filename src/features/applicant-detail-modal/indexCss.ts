@@ -36,20 +36,37 @@ export const ScrollSection = styled.div`
   }
 `;
 
-export const SimpleProfileWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
+export const GridBox = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 `;
 
-export const SimpleProfileInfoBox = styled.div`
+export const GridSection1 = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 49px;
 `;
 
-export const ProfileTitle = styled.p`
-  font-size: ${theme.fontSize.fourthSize};
-  font-weight: 600;
+export const GridSection2 = styled.div`
+  display: flex;
+  justify-content: end;
+  align-items: start;
+  padding: 0 3rem 0 8px;
+
+  // 이미지를 감싸는 div 스타일
+  > div {
+    width: 182px;
+    height: 182px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #d9d9d9;
+  }
+`;
+
+export const GridSection3 = styled.div`
+  display: flex;
+  grid-column: 1 / -1;
+  gap: 28px;
+  padding: 28px 0;
 `;
 
 export const SimpleProfileList = styled.ul`
@@ -58,43 +75,29 @@ export const SimpleProfileList = styled.ul`
   gap: 35px;
 `;
 
-export const ProfileListItem = styled.li`
+export const SimpleItem = styled.li`
   display: flex;
-  gap: 33px;
+  gap: 28px;
   align-items: center;
 `;
 
-export const ItemLabel = styled.p`
+export const Title = styled.h1`
+  font-size: ${theme.fontSize.fourthSize};
+  font-weight: 600;
+  padding-bottom: 48px;
+`;
+
+export const Key = styled.p`
   font-size: ${theme.fontSize.seventhSize};
   font-weight: 600;
   color: #282828;
   width: 75px;
-  height: 100%;
+  flex-shrink: 0;
 `;
 
-export const ItemText = styled.p`
+export const Value = styled.p`
   font-size: ${theme.fontSize.seventhSize};
   color: #828282;
-  /* width: 370px; */
-`;
-
-export const DetailProfileList = styled.ul`
-  border: ${theme.box.section.border};
-  border-radius: ${theme.box.section.borderRadius};
-  background-color: ${theme.box.section.backgroundColor};
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  padding: 24px;
-  gap: 26px 0;
-  margin-top: 150px;
-`;
-
-export const ProfileImgWrapper = styled.div`
-  width: 182px;
-  height: 182px;
-  border-radius: 50%;
-  overflow: hidden;
-  background-color: #d9d9d9;
 `;
 
 export const ProfileImg = styled.img`
@@ -108,9 +111,20 @@ export const Tier = styled.img`
   height: 28px;
 `;
 
-export const Introduction = styled.p`
-  line-height: 1.4;
-  font-size: ${theme.fontSize.seventhSize};
-  color: #828282;
-  width: 370px;
+// 디테일 박스 --------------------------------------------
+export const SectionBox = styled.ul`
+  border: ${theme.box.section.border};
+  border-radius: ${theme.box.section.borderRadius};
+  background-color: ${theme.box.section.backgroundColor};
+
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 33px 28px;
+  gap: 27px;
+  margin-top: 100px;
+`;
+
+export const DetailItem = styled.li`
+  display: flex;
 `;
