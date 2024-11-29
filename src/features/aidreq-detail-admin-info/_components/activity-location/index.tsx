@@ -7,7 +7,7 @@ const ActivityLocation = () => {
       <Title>활동 위치</Title>
       <SectionBox>
         <LocationBox>
-          <LocationIcon src="/assets/imgs/location-icon.svg" alt="위치아이콘" />
+          <LocationIcon src="/assets/imgs/icon-location.svg" alt="위치아이콘" />
           <LocationText>(07933) 서울시 영등포구 신풍로77, 민준빌딩</LocationText>
         </LocationBox>
         <MapButton>지도 보기</MapButton>

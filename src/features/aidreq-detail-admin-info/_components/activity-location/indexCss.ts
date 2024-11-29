@@ -6,12 +6,11 @@ export const LocationBox = styled.div`
   border-bottom: 1px solid #d1d1d1;
   justify-content: center;
   align-items: center;
-  padding: 32px 138px 32px 128px;
+  padding: 32px 127px 32px 117px;
 `;
 
 export const LocationIcon = styled.img`
-  width: 33px;
-  height: 34px;
+  margin: 0 18px;
 `;
 
 export const LocationText = styled.p`
