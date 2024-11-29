@@ -1,1 +1,4 @@
-// 컴포넌트 완성
+import OtherButton from './other-button';
+import SubmitButton from './submit-button';
+
+export { OtherButton, SubmitButton };

@@ -1,5 +1,9 @@
-import { useState } from 'react';
-import PostCode from './PostCode';
+import MainBanner from '@/features/main-banner';
+import { RankAndCommu, Wrapper } from './MainpageCss';
+import WriteAidReqButtonComponent from '@/components/write-aidreq-button';
+import AidRqRecentList from './_components/aidrq-recent-list';
+import Ranking from './_components/ranking';
+import Community from './_components/community';
 
 export default function MainPage() {
   const [address, setAddress] = useState<string>('');
@@ -15,17 +19,8 @@ export default function MainPage() {
 
   return (
     <>
-      <div>
-        <div>
-          <span>
-            <strong>주소: </strong>
-            {address ? address : '주소를 입력하세요'}
-          </span>
-          <button onClick={handleAddressModal}>주소 입력</button>
-        </div>
-        {isModalOpen && <PostCode onSaveAddress={handleSaveAddress} />}
-      </div>
-      <div>해당 주소가 반영된 지도가 들어갈 자리</div>
+      메인페이지입니다.
+      <Button label="버튼이다" />
     </>
   );
 }
