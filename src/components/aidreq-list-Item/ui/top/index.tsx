@@ -2,19 +2,23 @@ import AidRqCategoryLabel from '@/components/label/AidRqCategoryLabel';
 import { Wrapper, LabelContainer, Title, Text, Center } from './indexCss';
 import AidRqCertifiedLabel from '@/components/label/AidRqCertifiedLabel';
 
-const Top = () => {
+interface TopProps {
+  title: string;
+  content: string;
+  center: {
+    name: string;
+  };
+}
+const Top = ({ title, content, center }: TopProps) => {
   return (
     <Wrapper>
       <LabelContainer>
         <AidRqCategoryLabel text="도서관"></AidRqCategoryLabel>
         <AidRqCertifiedLabel></AidRqCertifiedLabel>
       </LabelContainer>
-      <Title>서울도서관 사서도우미 모집 서울도서관 사서도우미 모집</Title>
-      <Text>
-        사서도우미 3명 모집사서도우미 3명 모집사서도우미 3명 모집 사서도우미 3명 모집사서도우미 3명 모집사서도우미 3명
-        모집사서도우미 3명 모집사서도우미 3명 모집 사서도우미 3명 모집사서도우미 3명 모집
-      </Text>
-      <Center>서울도서관</Center>
+      <Title>{title}</Title>
+      <Text>{content}</Text>
+      <Center>{center.name}</Center>
     </Wrapper>
   );
 };
