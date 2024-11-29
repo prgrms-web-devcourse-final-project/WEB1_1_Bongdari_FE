@@ -3,7 +3,7 @@ import RegisterGoods from '@/features/register-goods';
 import { PageWrapper } from './indexCss';
 import ManageCenterPostSet from '@/features/manage-center-post-set';
 
-const CenterPage = () => {
+const CenterMyPage = () => {
   return (
     <PageWrapper>
       <EditCenterProfile />
@@ -13,4 +13,4 @@ const CenterPage = () => {
   );
 };
 
-export default CenterPage;
+export default CenterMyPage;

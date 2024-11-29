@@ -1,6 +1,8 @@
+import { useNavigate } from 'react-router-dom';
 import { IconBox, IntroBox, IntroSubTitle, IntroTitle, SectionBox, WritingButton } from './indexCss';
 
 const WriteAidReqButtonComponent = () => {
+  const navigate = useNavigate();
   return (
     <SectionBox>
       <IconBox>
@@ -10,7 +12,7 @@ const WriteAidReqButtonComponent = () => {
         <IntroTitle>봉사활동 지원자를 찾고 있으신가요?</IntroTitle>
         <IntroSubTitle>새로운 지원자 모집글을 작성해보세요.</IntroSubTitle>
       </IntroBox>
-      <WritingButton>작성하기</WritingButton>
+      <WritingButton onClick={() => navigate(`/centermypage/adminaidreqcreate`)}>작성하기</WritingButton>
     </SectionBox>
   );
 };
