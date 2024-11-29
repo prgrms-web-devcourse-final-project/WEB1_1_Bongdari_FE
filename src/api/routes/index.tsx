@@ -11,6 +11,7 @@ import PersonalProfilePage from '@/pages/personal-profile-page/PersonalProfilePa
 import AdminAidRqListPage from '@/pages/admin-aidrq-list-page';
 import PersonalMyPage from '@/pages/personal-my-page/PersonalMyPage';
 import AidRqDetailAdminPage from '@/pages/aidrq-detail-admin-page';
+import AidRqApplicantListPage from '@/pages/aidrq-applicant-list-page';
 
 const routes: RouteObject[] = [
   {
@@ -44,6 +45,10 @@ const routes: RouteObject[] = [
       {
         path: '/center/adminaidreqlist/:id',
         element: <AidRqDetailAdminPage />
+      },
+      {
+        path: '/center/adminaidreqlist/:id/applicants',
+        element: <AidRqApplicantListPage />
       },
       {
         path: '/login',

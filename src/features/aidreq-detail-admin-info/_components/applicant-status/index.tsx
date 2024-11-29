@@ -1,7 +1,10 @@
+import { useNavigate, useParams } from 'react-router-dom';
 import { EmptyButton, SectionBox3, Title } from '../../indexCss';
 import { UserBox, UserIcon, VolunteerSubTitle, VolunteerTitle, VolunteerTitleBox } from './indexCss';
 
 const ApplicantStatus = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
   return (
     <div>
       <Title>지원자 현황</Title>
@@ -13,7 +16,7 @@ const ApplicantStatus = () => {
           <VolunteerTitle>지원자 현황 리스트</VolunteerTitle>
           <VolunteerSubTitle>지원자 리스트를 확인해보세요</VolunteerSubTitle>
         </VolunteerTitleBox>
-        <EmptyButton>바로가기</EmptyButton>
+        <EmptyButton onClick={() => navigate(`/center/adminaidreqlist/${id}/applicants`)}>바로가기</EmptyButton>
       </SectionBox3>
     </div>
   );
