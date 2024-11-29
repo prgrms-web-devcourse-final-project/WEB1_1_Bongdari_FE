@@ -1,5 +1,5 @@
 import FilterSearchBar from '@/components/search-bar/filter-search';
-import WriteAidReqButtonComponent from './_components/writeAidReqButtonComponent';
+import WriteAidReqButtonComponent from '@/components/write-aidreq-button';
 import { PageWrapper, Title } from './indexCss';
 import TabButtonGroup from '@/components/tab-button';
 import AidRqAdminListWrapper from './_components/aidrqlistadmin-wrapper';

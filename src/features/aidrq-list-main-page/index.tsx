@@ -3,12 +3,12 @@ import { Wrapper } from './indexCss';
 import { useAidRequestStore } from '@/store/stores/aid-request/aidRequestItemStore';
 import { useEffect } from 'react';
 
-const AidRqList = () => {
+const AidRqListShort = () => {
   const { aidRequests, setAidRequests } = useAidRequestStore();
 
   // test용 더미 데이터 - 삭제 예정 ----------------------------------
   useEffect(() => {
-    const dummyData = Array.from({ length: 9 }, (_, index) => ({
+    const dummyData = Array.from({ length: 3 }, (_, index) => ({
       id: index + 1,
       title: `서울도서관 사서도우미 모집 ${index}`,
       content:
@@ -46,4 +46,4 @@ const AidRqList = () => {
   );
 };
 
-export default AidRqList;
+export default AidRqListShort;
