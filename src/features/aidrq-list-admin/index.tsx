@@ -34,7 +34,7 @@ const AidRqListAdmin = () => {
   // ----------------------------------------------------------------
 
   const handleAidListItem = (id: string | number) => {
-    navigate(`/center/adminaidreqlist/${id}`);
+    navigate(`/centermypage/adminaidreqlist/${id}`);
     console.log('클릭');
   };
 

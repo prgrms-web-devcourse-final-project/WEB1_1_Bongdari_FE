@@ -6,12 +6,14 @@ import TestPage from '@/pages/test-page';
 import LoginPage from '@/pages/login-page/LoginPage';
 import AidRqListPage from '@/pages/aidrq-list-page';
 import AidRqDetailPage from '@/pages/aidrq-detail-page';
-import CenterPage from '@/pages/center-page';
+import CenterMyPage from '@/pages/center-my-page';
 import PersonalProfilePage from '@/pages/personal-profile-page/PersonalProfilePage';
 import AdminAidRqListPage from '@/pages/admin-aidrq-list-page';
 import PersonalMyPage from '@/pages/personal-my-page/PersonalMyPage';
 import AidRqDetailAdminPage from '@/pages/aidrq-detail-admin-page';
 import AidRqApplicantListPage from '@/pages/aidrq-applicant-list-page';
+import AidRqCreatePage from '@/pages/aidrq-create-page';
+import AidRqModifyPage from '@/pages/aidrq-modify-page';
 
 const routes: RouteObject[] = [
   {
@@ -35,19 +37,27 @@ const routes: RouteObject[] = [
         element: <AidRqDetailPage />
       },
       {
-        path: '/center',
-        element: <CenterPage />
+        path: '/centermypage',
+        element: <CenterMyPage />
       },
       {
-        path: '/center/adminaidreqlist',
+        path: '/centermypage/adminaidreqlist',
         element: <AdminAidRqListPage />
       },
       {
-        path: '/center/adminaidreqlist/:id',
+        path: '/centermypage/adminaidreqcreate',
+        element: <AidRqCreatePage />
+      },
+      {
+        path: '/centermypage/adminaidreqmodify',
+        element: <AidRqModifyPage />
+      },
+      {
+        path: '/centermypage/adminaidreqlist/:id',
         element: <AidRqDetailAdminPage />
       },
       {
-        path: '/center/adminaidreqlist/:id/applicants',
+        path: '/centermypage/adminaidreqlist/:id/applicants',
         element: <AidRqApplicantListPage />
       },
       {
@@ -59,7 +69,7 @@ const routes: RouteObject[] = [
         element: <PersonalProfilePage />
       },
       {
-        path: '/mypage',
+        path: '/personalmypage',
         element: <PersonalMyPage />
       },
       // "/test" 경로는 아래에 둘 수 있도록 해주세요 (이 위로 라우팅 설정 해달라는 뜻입니다)

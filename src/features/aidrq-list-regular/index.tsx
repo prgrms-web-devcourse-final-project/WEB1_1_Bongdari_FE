@@ -2,9 +2,11 @@ import AidReqListItem from '@/components/aidreq-list-Item';
 import { Wrapper } from './indexCss';
 import { useAidRequestStore } from '@/store/stores/aid-request/aidRequestItemStore';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AidRqList = () => {
   const { aidRequests, setAidRequests } = useAidRequestStore();
+  const navigate = useNavigate();
 
   // test용 더미 데이터 - 삭제 예정 ----------------------------------
   useEffect(() => {
@@ -38,7 +40,7 @@ const AidRqList = () => {
           key={request.id}
           width="calc((100% - 20px) / 3)"
           onClick={() => {
-            console.log();
+            navigate(`/aidrqdetail`);
           }}
           request={request}></AidReqListItem>
       ))}
