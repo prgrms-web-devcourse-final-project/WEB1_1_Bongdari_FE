@@ -28,7 +28,7 @@ const FilterSearchBar: React.FC<FilterSearchBarProps> = ({ searchAidRequests }) 
         }}
         width="100%"
         height="57px"
-        borderradius="8px"
+        borderRadius="8px"
         colortype={0}
         placeholder="검색어를 입력해주세요."></InputBox>
       <FilterBox setSearchState={setSearchState} searchAidRequests={searchAidRequests}></FilterBox>

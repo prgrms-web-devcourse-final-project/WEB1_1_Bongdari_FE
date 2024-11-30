@@ -21,7 +21,7 @@ interface ApplicantDetailModalProps {
   handleOpenDetailProfileModal: () => void;
   volunteerId: number;
 }
-const ApplicantDetailModal: React.FC<ApplicantDetailModalProps> = ({ handleOpenDetailProfileModal, volunteerId }) => {
+const ApplicantDetailModal: React.FC<ApplicantDetailModalProps> = ({ handleOpenDetailProfileModal }) => {
   // TODO: 타인 상세 프로필 조회 api 붙여 작업
   return (
     <Modal isOpen onClose={handleOpenDetailProfileModal} variant="small">
