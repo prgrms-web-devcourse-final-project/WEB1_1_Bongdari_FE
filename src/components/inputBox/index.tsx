@@ -11,6 +11,7 @@ interface InputCompProps {
   placeholder?: string; // input의 placeholder
   isDisabled?: boolean;
   setFunc?: (inputText: string) => void; // 상위의 set함수
+  borderRadius?: string;
 }
 
 const InputBox: React.FC<InputCompProps> = ({
