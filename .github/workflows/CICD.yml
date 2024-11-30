@@ -1,0 +1,32 @@
+name: 
+
+on:                                  
+  push:
+    branches:
+      - main                        
+
+jobs:                                
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code   
+        uses: actions/checkout@v4
+      
+      - name: Node.js 설정
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'yarn'
+    
+      - name: 의존성 설치
+        run: yarn install --frozen-lockfile
+
+      - name: 빌드   
+        run: yarn build
+      
+      - name: 배포              
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          aws s3 cp --recursive --region ap-northeast-2 dist s3://${{ secrets.BUCKET_NAME }}
