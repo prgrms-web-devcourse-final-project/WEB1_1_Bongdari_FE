@@ -31,7 +31,7 @@ const InputBox: React.FC<InputCompProps> = ({
     <InputBoxCss
       width={width}
       height={height}
-      colortype={colortype}
+      $colortype={colortype}
       type={textType}
       value={inputText}
       placeholder={placeholder}

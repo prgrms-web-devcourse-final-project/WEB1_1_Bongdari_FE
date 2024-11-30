@@ -14,8 +14,8 @@ const Select: React.FC<SelectProps> = ({ text, width = '325px', height = '56px',
   };
 
   return (
-    <Box width={width} height={height} onChange={handleChange}>
-      <OptionPlaceholder value="" disabled selected>
+    <Box $width={width} $height={height} onChange={handleChange} defaultValue="">
+      <OptionPlaceholder value="" disabled>
         {text}
       </OptionPlaceholder>
       {data.map((item, index) => (
