@@ -1,5 +1,5 @@
 // routes.ts
-import { createBrowserRouter, Navigate, RouteObject } from 'react-router-dom';
+import { createBrowserRouter, RouteObject } from 'react-router-dom';
 import Layout from '@/layout/Layout';
 import MainPage from '@/pages/main-page/MainPage';
 import TestPage from '@/pages/test-page';
@@ -22,10 +22,6 @@ const routes: RouteObject[] = [
     children: [
       {
         path: '/',
-        element: <Navigate to="/main" replace />
-      },
-      {
-        path: '/main',
         element: <MainPage />
       },
       {
