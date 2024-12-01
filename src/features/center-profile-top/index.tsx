@@ -27,6 +27,10 @@ const CenterProfileTop = ({
       {
         prefer_item_id: 2,
         item_name: '간식'
+      },
+      {
+        prefer_item_id: 3,
+        item_name: '복숭아'
       }
     ]
   };
@@ -41,7 +45,7 @@ const CenterProfileTop = ({
       <ProfileImgBox type="center" {...tmpdata} setIsModalOpen={setIsModalOpen} />
       <div className="rightWrap">
         <ProfileInfoBox type="center" {...tmpdata} />
-        <ProfilePreferItemBox />
+        <ProfilePreferItemBox preferItems={tmpdata.prefer_item ?? []} />
       </div>
     </CenterProfileTopCss>
   );
