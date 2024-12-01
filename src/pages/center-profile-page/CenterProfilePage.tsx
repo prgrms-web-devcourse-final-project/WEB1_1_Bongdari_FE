@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { Wrapper } from './CenterProfilePageCss';
-import ProfileMailModal from '@/features/profile-page-mail-modal';
+import MessageCreateModal from '@/features/message-create-modal';
 import ReviewSet from '@/features/manage-center-post-set/_components/review-set';
 import CenterProfileTop from '@/features/center-profile-top';
 
@@ -14,7 +14,7 @@ const CenterProfilePage = () => {
       <div className="innerWrap">
         <CenterProfileTop center_id={Number(userId) || 0} setIsModalOpen={setIsModalOpen} />
         <ReviewSet />
-        <ProfileMailModal user_id={userId || ''} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+        <MessageCreateModal user_id={userId || ''} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       </div>
     </Wrapper>
   );
