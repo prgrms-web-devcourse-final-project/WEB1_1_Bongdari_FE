@@ -1,6 +1,6 @@
 import { OtherButton } from '@/components/button';
 import ImageUploader from './_components/image-uploader';
-import EditProfileForm from './_components/profile-edit-form/input';
+import EditProfileForm from './_components/profile-edit-form/index';
 import {
   CenterProfileEditContainer,
   CenterProfileTitle,
@@ -27,11 +27,15 @@ const EditCenterProfile = () => {
     validPhone
   } = useEditCenterProfile();
 
-  const { displayName, isSubmitting, handleEditProfile } = useSubmitCenterProfile();
+  const { displayName, isSubmitting, handleEditProfile, isLoading } = useSubmitCenterProfile();
 
   const handleEditButton = () => {
     handleEditProfile(centerName, centerPhone, centerURL, centerIntroduction, preview, validURL, validPhone);
   };
+
+  if (isLoading) {
+    return <CenterProfileTitle>로딩 중...</CenterProfileTitle>;
+  }
 
   return (
     <CenterProfileEditContainer>

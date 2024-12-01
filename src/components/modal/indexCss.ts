@@ -13,7 +13,7 @@ export const ModalWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 50;
+  z-index: 99999;
 `;
 
 export const ModalContainer = styled.div<{ variant: ModalVariant; width?: string; padding?: string }>`
@@ -25,6 +25,7 @@ export const ModalContainer = styled.div<{ variant: ModalVariant; width?: string
   height: ${({ variant }) => (variant === 'big' ? theme.modal.variants.big.height : theme.modal.variants.small.height)};
   position: relative;
   flex-direction: column;
+  z-index: 100;
 `;
 
 export const CloseButton = styled.button`

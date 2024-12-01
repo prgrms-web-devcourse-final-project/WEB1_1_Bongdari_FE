@@ -13,7 +13,7 @@ interface SearchState {
   setRegion: (region: string) => void;
   setAdmitted: (admitted: string) => void;
   setSort: (sort: string) => void;
-  setStatus: (sstatusrt: string) => void;
+  setStatus: (status: string) => void;
   // 전체 상태를 한번에 업데이트하는 함수
   setSearchState: (
     state: Partial<

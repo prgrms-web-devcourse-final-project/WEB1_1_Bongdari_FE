@@ -21,6 +21,7 @@ export const CenterProfileTitle = styled.h1`
   font-size: ${theme.fontSize.secondSize};
   font-weight: 600;
   width: 100%;
+  cursor: default;
 `;
 
 export const ProfileEditWrapper = styled.div`

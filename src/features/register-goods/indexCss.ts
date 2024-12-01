@@ -13,6 +13,7 @@ export const SectionBox = styled.div`
 export const ResisterTitle = styled.p`
   font-size: ${theme.fontSize.sixthSize};
   font-weight: 600;
+  cursor: default;
 `;
 
 export const RegisterTitleSection = styled.h1`

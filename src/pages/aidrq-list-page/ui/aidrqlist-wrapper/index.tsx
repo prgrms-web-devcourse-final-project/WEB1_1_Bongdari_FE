@@ -21,7 +21,7 @@ const AidRqListWrapper = () => {
 
   return (
     <Wrapper>
-      <AidRqList data={data}></AidRqList>
+      <AidRqList></AidRqList>
       <Observer ref={ref}></Observer>
     </Wrapper>
   );
