@@ -5,10 +5,10 @@ export const Wrapper = styled.div`
   justify-content: center;
 
   .innerWrap {
-    display: grid;
-    grid-template-columns: 460px 720px;
-    grid-template-columns: 1fr 2fr;
-    gap: 20px;
+    display: flex;
+    gap: 15px;
+
+    margin-bottom: 20px;
 
     max-width: 1200px;
     margin-top: 250px;
@@ -16,7 +16,7 @@ export const Wrapper = styled.div`
   }
 
   .innerWrap > * {
-    margin: 0 auto;
+    margin: 0 auto auto;
   }
 
   @media (max-width: 1024px) {
