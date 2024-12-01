@@ -68,6 +68,10 @@ const routes: RouteObject[] = [
         path: '/personalmypage',
         element: <PersonalMyPage />
       },
+      {
+        path: '/login',
+        element: <LoginPage />
+      },
       // "/test" 경로는 아래에 둘 수 있도록 해주세요 (이 위로 라우팅 설정 해달라는 뜻입니다)
       {
         path: '/test',
