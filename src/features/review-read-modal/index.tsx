@@ -17,12 +17,15 @@ import {
 } from './indexCss';
 import { OtherButton } from '@/components/button';
 import theme from '@/styles/theme';
+import { useNavigate } from 'react-router-dom';
 
 interface ReviewModalProps {
   handleReviewModal: () => void;
 }
 
 const ReviewReadModal: React.FC<ReviewModalProps> = ({ handleReviewModal }) => {
+  const navigate = useNavigate();
+
   return (
     <Modal variant="big" isOpen onClose={handleReviewModal}>
       <ModalContentWrapper>
@@ -73,6 +76,9 @@ const ReviewReadModal: React.FC<ReviewModalProps> = ({ handleReviewModal }) => {
               height="53px"
               fontSize={theme.fontSize.eighthSize}
               fontWeight="600"
+              onClick={() => {
+                navigate(`/profile/1`);
+              }}
             />
           </ProfileBox>
         </ScrollSection>

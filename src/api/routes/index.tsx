@@ -1,14 +1,20 @@
 // routes.ts
-import { createBrowserRouter, Navigate, RouteObject } from 'react-router-dom';
+import { createBrowserRouter, RouteObject } from 'react-router-dom';
 import Layout from '@/layout/Layout';
 import MainPage from '@/pages/main-page/MainPage';
 import TestPage from '@/pages/test-page';
 import LoginPage from '@/pages/login-page/LoginPage';
 import AidRqListPage from '@/pages/aidrq-list-page';
 import AidRqDetailPage from '@/pages/aidrq-detail-page';
-import CenterPage from '@/pages/center-page';
+import CenterMyPage from '@/pages/center-my-page';
 import PersonalProfilePage from '@/pages/personal-profile-page/PersonalProfilePage';
 import CenterProfilePage from '@/pages/center-profile-page/CenterProfilePage';
+import PersonalMyPage from '@/pages/personal-my-page/PersonalMyPage';
+import AdminAidRqListPage from '@/pages/admin-aidrq-list-page';
+import AidRqDetailAdminPage from '@/pages/aidrq-detail-admin-page';
+import AidRqApplicantListPage from '@/pages/aidrq-applicant-list-page';
+import AidRqCreatePage from '@/pages/aidrq-create-page';
+import AidRqModifyPage from '@/pages/aidrq-modify-page';
 
 const routes: RouteObject[] = [
   {
@@ -17,10 +23,6 @@ const routes: RouteObject[] = [
     children: [
       {
         path: '/',
-        element: <Navigate to="/main" replace />
-      },
-      {
-        path: '/main',
         element: <MainPage />
       },
       {
@@ -32,8 +34,28 @@ const routes: RouteObject[] = [
         element: <AidRqDetailPage />
       },
       {
-        path: '/center',
-        element: <CenterPage />
+        path: '/centermypage',
+        element: <CenterMyPage />
+      },
+      {
+        path: '/centermypage/adminaidreqlist',
+        element: <AdminAidRqListPage />
+      },
+      {
+        path: '/centermypage/adminaidreqcreate',
+        element: <AidRqCreatePage />
+      },
+      {
+        path: '/centermypage/adminaidreqmodify',
+        element: <AidRqModifyPage />
+      },
+      {
+        path: '/centermypage/adminaidreqlist/:id',
+        element: <AidRqDetailAdminPage />
+      },
+      {
+        path: '/centermypage/adminaidreqlist/:id/applicants',
+        element: <AidRqApplicantListPage />
       },
       {
         path: '/login',
@@ -42,6 +64,10 @@ const routes: RouteObject[] = [
       {
         path: '/profile/:userId',
         element: <PersonalProfilePage />
+      },
+      {
+        path: '/personalmypage',
+        element: <PersonalMyPage />
       },
       {
         path: '/centerprofile/:userId',
