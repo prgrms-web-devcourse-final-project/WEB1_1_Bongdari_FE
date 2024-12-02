@@ -4,17 +4,6 @@ interface Location {
   longitude: number;
 }
 
-// 봉사활동 센터 정보 타입
-interface Center {
-  id: number;
-  name: string;
-  introduce: string;
-  prefer_items: string[];
-  homepage_link: string;
-  img_url: string;
-  is_interested: boolean;
-}
-
 // 봉사활동 타입 (enum)
 enum VolunteerType {
   LIVING_SUPPORT = 'LIVING_SUPPORT'
@@ -37,5 +26,4 @@ export interface AidRqDetailType {
   admitted: boolean;
   img_url: string;
   location: Location;
-  center: Center;
 }
