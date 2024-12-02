@@ -15,6 +15,7 @@ import AidRqDetailAdminPage from '@/pages/aidrq-detail-admin-page';
 import AidRqApplicantListPage from '@/pages/aidrq-applicant-list-page';
 import AidRqCreatePage from '@/pages/aidrq-create-page';
 import AidRqModifyPage from '@/pages/aidrq-modify-page';
+import FindNearByActivityPage from '@/pages/find-nearby-activitiy-page';
 
 const routes: RouteObject[] = [
   {
@@ -76,6 +77,10 @@ const routes: RouteObject[] = [
       {
         path: '/login',
         element: <LoginPage />
+      },
+      {
+        path: '/findnearmyactivity',
+        element: <FindNearByActivityPage />
       },
       // "/test" 경로는 아래에 둘 수 있도록 해주세요 (이 위로 라우팅 설정 해달라는 뜻입니다)
       {

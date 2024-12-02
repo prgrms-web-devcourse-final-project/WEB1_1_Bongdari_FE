@@ -12,7 +12,7 @@ export default function Header() {
           <Link to="/aidrqlist" className="link">
             <li>활동구인</li>
           </Link>
-          <Link to="/" className="link">
+          <Link to="/findnearmyactivity" className="link">
             <li>주변활동찾기</li>
           </Link>
           <Link to="/" className="link">
