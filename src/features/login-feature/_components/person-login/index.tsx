@@ -2,7 +2,7 @@ import { PersonLoginCss } from './indexCss';
 
 const PersonLogin = () => {
   const onClickNaver = () => {
-    console.log('네이버로그인으로 리디렉트');
+    window.location.href = 'http://54.180.201.20:8080/oauth2/authorization/naver';
   };
 
   return (
