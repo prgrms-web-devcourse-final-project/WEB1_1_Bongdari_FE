@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { HalfListCss } from './indexCss';
-import LongListItem from '@/components/longListItem';
+import LongListItem from '@/components/long-list-item';
 import SectionTitle from '../section-title';
 
 interface HalfListProps {

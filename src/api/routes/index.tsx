@@ -15,7 +15,7 @@ import AidRqDetailAdminPage from '@/pages/aidrq-detail-admin-page';
 import AidRqApplicantListPage from '@/pages/aidrq-applicant-list-page';
 import AidRqCreatePage from '@/pages/aidrq-create-page';
 import AidRqModifyPage from '@/pages/aidrq-modify-page';
-import FindNearByActivityPage from '@/pages/find-nearby-activitiy-page';
+import CommunityListPage from '@/pages/community-list-page';
 
 const routes: RouteObject[] = [
   {
@@ -69,6 +69,10 @@ const routes: RouteObject[] = [
       {
         path: '/personalmypage',
         element: <PersonalMyPage />
+      },
+      {
+        path: '/community',
+        element: <CommunityListPage />
       },
       {
         path: '/centerprofile/:userId',
