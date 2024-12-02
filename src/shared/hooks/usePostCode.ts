@@ -1,5 +1,5 @@
 import { useDaumPostcodePopup } from 'react-daum-postcode';
-import type { KakaoAddress, PostcodeData, Location } from '../types/location-type/activityLocation';
+import type { KakaoAddress, PostcodeData, Location } from '../types/location/activityLocation';
 
 interface UsePostCodeProps {
   onSaveAddress: (location: Location) => void;

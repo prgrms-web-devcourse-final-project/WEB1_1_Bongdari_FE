@@ -1,8 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import axiosInstance from '@/api/apis';
-import { GetActivitiesParams, type Coordinates } from '@/shared/types/location-type/nearbyLocation';
-import { useAidRequestStore } from '@/store/stores/aid-request/aidRequestItemStore';
-import { useEffect } from 'react';
+import { GetActivitiesParams, type Coordinates } from '@/shared/types/location/nearbyLocation';
 
 const getNearbyActivities = async ({ latitude, longitude, radius = 5, page = 0, size = 10 }: GetActivitiesParams) => {
   const response = await axiosInstance.get(`/api/recruit-boards/nearby`, {
@@ -20,8 +18,7 @@ const getNearbyActivities = async ({ latitude, longitude, radius = 5, page = 0, 
 };
 
 export const useNearbyActivities = (center: Coordinates) => {
-  const { setAidRequests } = useAidRequestStore();
-  const query = useQuery({
+  useQuery({
     queryKey: ['nearbyActivities', center],
     queryFn: () =>
       getNearbyActivities({
@@ -30,12 +27,4 @@ export const useNearbyActivities = (center: Coordinates) => {
       }),
     staleTime: 1000 * 60 // 데이터 썩는 시간: 1분
   });
-
-  useEffect(() => {
-    if (query.data) {
-      setAidRequests(query.data);
-    }
-  }, [query.data, setAidRequests]);
-
-  return query;
 };
