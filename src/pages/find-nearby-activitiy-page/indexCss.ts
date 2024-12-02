@@ -1,12 +1,17 @@
 import styled from 'styled-components';
 
 export const PageWrapper = styled.div`
-  max-width: 1200px;
-  width: 90%;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  padding: 250px 0;
+  padding-top: 65px;
   gap: 56px;
   align-items: center;
+`;
+
+export const MapWrapper = styled.div`
+  display: flex;
+  width: 100%;
 `;

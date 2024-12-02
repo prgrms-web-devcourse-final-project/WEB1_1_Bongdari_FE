@@ -1,21 +1,14 @@
-import { Map } from 'react-kakao-maps-sdk';
-import { PageWrapper } from './indexCss';
+import { MapWrapper, PageWrapper } from './indexCss';
+import FindNearByActivityMap from '@/features/find-nearby-activity-map';
+import FindNearByActivitySearch from '@/features/find-nearby-activity-search';
 
 const FindNearByActivityPage = () => {
   return (
     <PageWrapper>
-      <Map
-        id="map"
-        center={{
-          lat: 33.450701,
-          lng: 126.570667
-        }}
-        style={{
-          width: '100%',
-          height: '350px'
-        }}
-        level={3}
-      />
+      <MapWrapper>
+        <FindNearByActivitySearch />
+        <FindNearByActivityMap />
+      </MapWrapper>
     </PageWrapper>
   );
 };
