@@ -1,4 +1,4 @@
-import useDateFormat from '@/shared/hooks/useDateFormat';
+// import useDateFormat from '@/shared/hooks/useDateFormat';
 import { AidTime, RegisterDate, StartDate, Wrapper } from './indexCss';
 
 interface BottomProps {
@@ -8,21 +8,24 @@ interface BottomProps {
 }
 
 const Bottom = ({ created_at, volunteer_start_date_time, volunteer_time }: BottomProps) => {
-  const { formatDate, formatTime } = useDateFormat();
+  // const { formatDate, formatTime } = useDateFormat();
   return (
     <Wrapper>
       <RegisterDate>
         <p>등록 일자</p>
-        <p>{formatDate(created_at)}</p>
+        {/* <p>{formatDate(created_at)}</p> */}
+        <p>{created_at}</p>
       </RegisterDate>
       <StartDate>
         <p>활동 시작 일자</p>
-        <p>{formatDate(volunteer_start_date_time)}</p>
+        {/* <p>{formatDate(volunteer_start_date_time)}</p> */}
+        <p>{volunteer_start_date_time}</p>
       </StartDate>
       <AidTime>
         <p>활동 시간</p>
         {/* 분? 단위로 보내주는지 */}
-        <p>{formatTime(volunteer_time)}</p>
+        {/* <p>{volunteer_time && formatTime(volunteer_time)}</p> */}
+        <p>{volunteer_time}</p>
       </AidTime>
     </Wrapper>
   );
