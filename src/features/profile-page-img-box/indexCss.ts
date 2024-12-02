@@ -35,6 +35,13 @@ export const ProfileImgBoxCss = styled.div`
     font-weight: 600;
     margin: 0 12px;
   }
+  & > p > i:nth-of-type(2) {
+    font-size: ${theme.fontSize.seventhSize};
+    font-weight: 400;
+    margin-top: 12px;
+    color: #828282;
+    display: block;
+  }
   .mitten {
     width: ${theme.fontSize.fourthSize};
     height: ${theme.fontSize.fourthSize};

@@ -8,8 +8,9 @@ import AidRqListPage from '@/pages/aidrq-list-page';
 import AidRqDetailPage from '@/pages/aidrq-detail-page';
 import CenterMyPage from '@/pages/center-my-page';
 import PersonalProfilePage from '@/pages/personal-profile-page/PersonalProfilePage';
-import AdminAidRqListPage from '@/pages/admin-aidrq-list-page';
+import CenterProfilePage from '@/pages/center-profile-page/CenterProfilePage';
 import PersonalMyPage from '@/pages/personal-my-page/PersonalMyPage';
+import AdminAidRqListPage from '@/pages/admin-aidrq-list-page';
 import AidRqDetailAdminPage from '@/pages/aidrq-detail-admin-page';
 import AidRqApplicantListPage from '@/pages/aidrq-applicant-list-page';
 import AidRqCreatePage from '@/pages/aidrq-create-page';
@@ -72,6 +73,14 @@ const routes: RouteObject[] = [
       {
         path: '/community',
         element: <CommunityListPage />
+      },
+      {
+        path: '/centerprofile/:userId',
+        element: <CenterProfilePage />
+      },
+      {
+        path: '/login',
+        element: <LoginPage />
       },
       // "/test" 경로는 아래에 둘 수 있도록 해주세요 (이 위로 라우팅 설정 해달라는 뜻입니다)
       {

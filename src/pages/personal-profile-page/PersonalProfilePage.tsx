@@ -14,6 +14,7 @@ const PersonalProfilePage = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   // const navigate = useNavigate();
   const tmpdata: personProfileType = {
+    id: '??',
     nickname: 'jooyoung',
     imgUrl: circleCat,
     introduce:
@@ -26,8 +27,8 @@ const PersonalProfilePage = () => {
   return (
     <Wrapper>
       <div className="innerWrap">
-        <ProfileImgBox user_id={userId || ''} {...tmpdata} setIsModalOpen={setIsModalOpen} />
-        <ProfileInfoBox user_id={userId || ''} {...tmpdata} />
+        <ProfileImgBox type="person" {...tmpdata} setIsModalOpen={setIsModalOpen} />
+        <ProfileInfoBox type="person" {...tmpdata} />
         <MessageCreateModal user_id={userId || ''} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       </div>
     </Wrapper>

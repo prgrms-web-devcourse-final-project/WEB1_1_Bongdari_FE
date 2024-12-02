@@ -1,5 +1,6 @@
 // 타인의 개인프로필 페이지 api type
 export interface personProfileType {
+  id: string;
   nickname: string;
   imgUrl?: string;
   introduce?: string;
