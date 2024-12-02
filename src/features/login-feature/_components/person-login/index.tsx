@@ -1,8 +1,20 @@
+import axios from 'axios';
 import { PersonLoginCss } from './indexCss';
 
 const PersonLogin = () => {
-  const onClickNaver = () => {
-    console.log('네이버로그인으로 리디렉트');
+  const onClickNaver = async () => {
+    try {
+      await axios.post(
+        'http://54.180.201.20:8080/api/volunteer/sign-in/oauth/naver',
+        {},
+        {
+          withCredentials: true // 쿠키를 주고받을 수 있도록 설정
+        }
+      );
+      window.location.href = '/';
+    } catch (error) {
+      console.error('네이버 로그인 요청 실패:', error);
+    }
   };
 
   return (
