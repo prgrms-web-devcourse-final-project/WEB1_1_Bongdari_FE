@@ -10,13 +10,16 @@ interface AidReqListItem {
 }
 
 const AidReqListItem: React.FC<AidReqListItem> = ({ width, onClick, request }) => {
+  if (!request) return null;
+
   return (
     <Wrapper width={width} onClick={onClick}>
-      <Top title={request.title} content={request.content} center={request.center}></Top>
+      <Top title={request?.title} content={request?.content} center={request?.center} />
       <Bottom
-        created_at={request.created_at}
-        volunteer_start_date_time={request.volunteer_start_date_time}
-        volunteer_time={request.volunteer_time}></Bottom>
+        created_at={request?.created_at}
+        volunteer_start_date_time={request?.volunteer_start_date_time}
+        volunteer_time={request?.volunteer_time}
+      />
     </Wrapper>
   );
 };
