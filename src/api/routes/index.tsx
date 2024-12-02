@@ -15,6 +15,7 @@ import AidRqDetailAdminPage from '@/pages/aidrq-detail-admin-page';
 import AidRqApplicantListPage from '@/pages/aidrq-applicant-list-page';
 import AidRqCreatePage from '@/pages/aidrq-create-page';
 import AidRqModifyPage from '@/pages/aidrq-modify-page';
+import CommunityDetailPage from '@/pages/community-detail-page';
 
 const routes: RouteObject[] = [
   {
@@ -70,12 +71,12 @@ const routes: RouteObject[] = [
         element: <PersonalMyPage />
       },
       {
-        path: '/centerprofile/:userId',
-        element: <CenterProfilePage />
+        path: '/community/:content_id',
+        element: <CommunityDetailPage />
       },
       {
-        path: '/login',
-        element: <LoginPage />
+        path: '/centerprofile/:userId',
+        element: <CenterProfilePage />
       },
       // "/test" 경로는 아래에 둘 수 있도록 해주세요 (이 위로 라우팅 설정 해달라는 뜻입니다)
       {
