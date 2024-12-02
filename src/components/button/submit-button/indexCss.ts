@@ -33,7 +33,11 @@ const SubmitButtonComponent = styled.button<{
         : submitButton.variants.enabledTwo.backgroundColor};
 
   color: ${({ variant }) =>
-    variant === 'disabled' ? submitButton.variants.disabled.color : submitButton.variants.enabledOne.color};
+    variant === 'disabled'
+      ? submitButton.variants.disabled.color
+      : variant === 'enabledOne'
+        ? submitButton.variants.enabledOne.color
+        : submitButton.variants.enabledTwo.color};
 
   border: ${({ variant }) => (variant === 'enabledTwo' ? submitButton.variants.enabledTwo.border : 'none')};
 

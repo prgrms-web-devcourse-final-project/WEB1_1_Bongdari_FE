@@ -7,10 +7,12 @@ import { router } from './api/routes/index.tsx';
 import ErrorBoundary from './shared/hooks/ErrorBoundary.tsx';
 import { GlobalStyle } from './styles/global.ts';
 import theme from './styles/theme.ts';
+import useKakaoLoader from './components/aidrq-create-location/useKakaoLoader.tsx';
 
 const queryClient = new QueryClient();
 
 function App() {
+  useKakaoLoader();
   return (
     <>
       <ErrorBoundary>

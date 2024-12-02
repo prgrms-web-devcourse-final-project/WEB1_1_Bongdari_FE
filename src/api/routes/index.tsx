@@ -16,6 +16,7 @@ import AidRqApplicantListPage from '@/pages/aidrq-applicant-list-page';
 import AidRqCreatePage from '@/pages/aidrq-create-page';
 import AidRqModifyPage from '@/pages/aidrq-modify-page';
 import CommunityDetailPage from '@/pages/community-detail-page';
+import CommunityListPage from '@/pages/community-list-page';
 
 const routes: RouteObject[] = [
   {
@@ -69,6 +70,10 @@ const routes: RouteObject[] = [
       {
         path: '/personalmypage',
         element: <PersonalMyPage />
+      },
+      {
+        path: '/community',
+        element: <CommunityListPage />
       },
       {
         path: '/community/:content_id',
