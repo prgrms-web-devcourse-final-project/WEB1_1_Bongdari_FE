@@ -8,7 +8,7 @@ const CommunityDetailPage = () => {
   return (
     <Wrapper>
       <CommunityDetailContentBox content_id={Number(content_id)} />
-      <CommunityDetailCommentBox />
+      <CommunityDetailCommentBox content_id={Number(content_id)} />
     </Wrapper>
   );
 };
