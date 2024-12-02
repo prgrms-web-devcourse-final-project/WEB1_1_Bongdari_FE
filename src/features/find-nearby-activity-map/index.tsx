@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react';
-import { Map, MapMarker } from 'react-kakao-maps-sdk';
-import { MyLocationButton } from './indexCss';
 import { debounce } from 'lodash';
+import { Map, MapMarker } from 'react-kakao-maps-sdk';
+
+import { MyLocationButton } from './indexCss';
 import { useNearbyActivities } from '@/store/queries/recruit-boards/useGetNearbyActivities';
 import type { Activity, Coordinates } from '@/shared/types/location-type/nearbyLocation';
 
@@ -11,6 +12,8 @@ const FindNearByActivityMap = () => {
     lng: 126.95401691
   });
   const [position, setPosition] = useState<Coordinates | null>(null);
+  // 지도를 축소/확대해도 "현재 내 위치" 버튼을 클릭한다면 level 3으로 확대 -> 축소, 축소 -> 확대 되어 확대 레벨을 유지할 수 있게 상태 관리로 넣었습니다!
+  const [mapLevel, setMapLevel] = useState(3);
 
   const { data: activities = [], isLoading } = useNearbyActivities(center);
 
@@ -24,6 +27,7 @@ const FindNearByActivityMap = () => {
       };
       setCenter(newPosition);
       setPosition(newPosition);
+      setMapLevel(3);
     });
   };
 
@@ -34,6 +38,7 @@ const FindNearByActivityMap = () => {
           lat: map.getCenter().getLat(),
           lng: map.getCenter().getLng()
         });
+        setMapLevel(map.getLevel());
       }, 500),
     []
   );
@@ -43,13 +48,14 @@ const FindNearByActivityMap = () => {
       <Map
         id="map"
         center={center}
-        level={4}
+        level={mapLevel}
         style={{
           width: '100%',
           height: '100vh',
           position: 'relative'
         }}
-        onCenterChanged={updateCenterWhenMapMoved}>
+        onCenterChanged={updateCenterWhenMapMoved}
+        onZoomChanged={(map) => setMapLevel(map.getLevel())}>
         {/* 현재 위치 마커 */}
         {position && (
           <MapMarker
