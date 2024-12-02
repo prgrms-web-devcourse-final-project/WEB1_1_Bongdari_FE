@@ -9,9 +9,9 @@ interface ApiResponse {
   data: AidRqDetailType;
 }
 
-export const fetchData = async (setData: Dispatch<SetStateAction<ApiResponse | null>>) => {
+export const fetchAidRqDetail = async (setData: Dispatch<SetStateAction<ApiResponse | null>>) => {
   try {
-    const response = await axios.get('./dummyData.json');
+    const response = await axios.get('http://54.180.201.20:8080/api/recruit-board/1');
     setData(response.data);
   } catch (error) {
     console.error('Error:', error);

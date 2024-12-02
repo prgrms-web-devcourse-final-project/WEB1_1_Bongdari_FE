@@ -1,19 +1,19 @@
+import { centerProfileType } from '@/shared/types/center-profile/centerProfile';
 import ButtonContainer from './_components/button-container';
 import InfoContainer from './_components/info-container';
 import PictureContainer from './_components/picture-container';
 import { Wrapper } from './indexCss';
-import { AidRqDetailType } from '@/shared/types/aidrq-detail/aidrqDetailType';
 
 interface AidRqDetailCenterProfileProps {
-  data: AidRqDetailType;
+  data: centerProfileType;
 }
 
 const AidRqDetailCenterProfile: React.FC<AidRqDetailCenterProfileProps> = ({ data }) => {
   return (
     <Wrapper>
-      <PictureContainer centerProfile={data.center}></PictureContainer>
-      <InfoContainer centerProfile={data.center}></InfoContainer>
-      <ButtonContainer centerProfile={data.center}></ButtonContainer>
+      <PictureContainer centerProfile={data}></PictureContainer>
+      <InfoContainer centerProfile={data}></InfoContainer>
+      <ButtonContainer centerProfile={data}></ButtonContainer>
     </Wrapper>
   );
 };

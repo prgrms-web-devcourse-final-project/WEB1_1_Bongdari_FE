@@ -6,8 +6,10 @@ import Title from './ui/title';
 import TextContent from './ui/text-content';
 import AidRqDetailInfo from '@/features/aidreq-detail-info';
 import { AidRqDetailType } from '@/shared/types/aidrq-detail/aidrqDetailType';
-import { fetchData } from './logic/fetchData';
+import { centerProfileType } from '@/shared/types/center-profile/centerProfile';
 import ReviewCreateModal from '@/features/review-create-modal';
+import { fetchAidRqDetail } from './logic/fetchAidRqDetail';
+import { fetchCenterProfile } from './logic/fetchCenterProfile';
 
 interface ApiResponse {
   code: number;
@@ -15,18 +17,26 @@ interface ApiResponse {
   data: AidRqDetailType;
 }
 
+interface CenterResponse {
+  code: number;
+  message: string;
+  data: centerProfileType;
+}
+
 const AidRqDetailPage = () => {
   const [data, setData] = useState<ApiResponse | null>(null);
+  const [centerData, setCenterData] = useState<CenterResponse | null>(null);
   const [reviewModalState, SetReviewModalState] = useState(false);
 
   useEffect(() => {
-    fetchData(setData);
+    fetchAidRqDetail(setData);
+    fetchCenterProfile(setCenterData);
   }, []);
 
   return (
     <Wrapper>
       {data && <Title data={data.data}></Title>}
-      {data && <AidRqDetailCenterProfile data={data.data}></AidRqDetailCenterProfile>}
+      {centerData && <AidRqDetailCenterProfile data={centerData.data}></AidRqDetailCenterProfile>}
       {data && <TextContent data={data.data}></TextContent>}
       {data && <AidRqDetailInfo data={data.data}></AidRqDetailInfo>}
       {data && (
