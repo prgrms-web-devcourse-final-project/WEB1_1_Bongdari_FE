@@ -1,11 +1,11 @@
 import { OtherButton } from '@/components/button';
 import { MailButton, Wrapper } from './indexCss';
 import theme from '@/styles/theme';
-import { aidRqCenterProfileType } from '@/shared/types/aidrq-detail-center/aidRqCenterProfileType';
 import { useNavigate } from 'react-router-dom';
+import { centerProfileType } from '@/shared/types/center-profile/centerProfile';
 
 interface ButtonContainerProps {
-  centerProfile: aidRqCenterProfileType;
+  centerProfile: centerProfileType;
 }
 
 const ButtonContainer: React.FC<ButtonContainerProps> = ({ centerProfile }) => {
@@ -15,7 +15,7 @@ const ButtonContainer: React.FC<ButtonContainerProps> = ({ centerProfile }) => {
     <Wrapper>
       <OtherButton
         onClick={() => {
-          console.log(centerProfile.id);
+          console.log(centerProfile.center_id);
           navigate(`/aidrqdetail`);
         }}
         label="프로필 보러가기"
@@ -30,7 +30,7 @@ const ButtonContainer: React.FC<ButtonContainerProps> = ({ centerProfile }) => {
         disabled={false}></OtherButton>
       <MailButton
         onClick={() => {
-          console.log(centerProfile.id);
+          console.log(centerProfile.center_id);
         }}>
         쪽지 전달하기
       </MailButton>
