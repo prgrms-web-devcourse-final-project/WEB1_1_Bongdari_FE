@@ -1,4 +1,4 @@
-import LongListItem from '@/components/longListItem';
+import LongListItem from '@/components/long-list-item';
 import { Bottom, Title, Top, Wrapper } from './indexCss';
 
 const dummyData = [
