@@ -15,6 +15,7 @@ import AidRqDetailAdminPage from '@/pages/aidrq-detail-admin-page';
 import AidRqApplicantListPage from '@/pages/aidrq-applicant-list-page';
 import AidRqCreatePage from '@/pages/aidrq-create-page';
 import AidRqModifyPage from '@/pages/aidrq-modify-page';
+import CommunityDetailPage from '@/pages/community-detail-page';
 import CommunityListPage from '@/pages/community-list-page';
 import FindNearByActivityPage from '@/pages/find-nearby-activitiy-page';
 
@@ -76,12 +77,12 @@ const routes: RouteObject[] = [
         element: <CommunityListPage />
       },
       {
-        path: '/centerprofile/:userId',
-        element: <CenterProfilePage />
+        path: '/community/:content_id',
+        element: <CommunityDetailPage />
       },
       {
-        path: '/login',
-        element: <LoginPage />
+        path: '/centerprofile/:userId',
+        element: <CenterProfilePage />
       },
       {
         path: '/findnearmyactivity',
