@@ -17,8 +17,6 @@ export const ProfileImgBoxCss = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  cursor: pointer;
-
   & > img {
     background-color: #b3b3b3;
     object-fit: cover;

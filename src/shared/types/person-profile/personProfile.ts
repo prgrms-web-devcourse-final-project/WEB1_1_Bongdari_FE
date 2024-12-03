@@ -1,28 +1,22 @@
-// 타인의 개인프로필 페이지 api type
+// 타인의 개인프로필/마이 페이지 api type
+
 export interface personProfileType {
-  id: string;
+  volunteer_id: string;
   nickname: string;
-  imgUrl?: string;
+  img_url?: string;
   introduce?: string;
   tier: 'none' | 'white' | 'red' | 'orange' | 'yellow' | 'green' | 'blue' | 'navy' | 'purple';
-  totalVolunteerHours?: number;
-  totalVolunteerCount?: number;
+  total_volunteer_hours?: number;
+  total_volunteer_count?: number;
+  detail: personProfileDetailType;
 }
 
-export interface myProfileType {
-  nickname: string;
-  imgUrl: string;
-  introduce: string;
-  tier: 'none' | 'white' | 'red' | 'orange' | 'yellow' | 'green' | 'blue' | 'navy' | 'purple';
-  totalVolunteerHours: number;
-  totalVolunteerCount: number;
-  details: {
-    name: string;
-    email: string;
-    gender: 'male' | 'female';
-    birthDate: string;
-    contactNumber: string;
-  };
+interface personProfileDetailType {
+  name: string;
+  email: string;
+  gender: 'male' | 'female';
+  birthDate: string;
+  contactNumber: string;
 }
 
 export interface heartedOrgType {

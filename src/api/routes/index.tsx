@@ -7,7 +7,7 @@ import LoginPage from '@/pages/login-page/LoginPage';
 import AidRqListPage from '@/pages/aidrq-list-page';
 import AidRqDetailPage from '@/pages/aidrq-detail-page';
 import CenterMyPage from '@/pages/center-my-page';
-import PersonalProfilePage from '@/pages/personal-profile-page/PersonalProfilePage';
+import PersonalProfilePage from '@/pages/personal-profile-page';
 import CenterProfilePage from '@/pages/center-profile-page/CenterProfilePage';
 import PersonalMyPage from '@/pages/personal-my-page/PersonalMyPage';
 import AdminAidRqListPage from '@/pages/admin-aidrq-list-page';
@@ -64,6 +64,10 @@ const routes: RouteObject[] = [
       {
         path: '/login',
         element: <LoginPage />
+      },
+      {
+        path: '/profile',
+        element: <PersonalProfilePage />
       },
       {
         path: '/profile/:userId',
