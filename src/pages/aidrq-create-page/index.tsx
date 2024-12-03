@@ -17,7 +17,7 @@ const AidRqCreatePage = () => {
     recruitment_count: 0,
     volunteer_start_date_time: '',
     volunteer_end_date_time: '',
-    volunteer_type: '',
+    volunteer_category: '',
     admitted: false,
     location: {
       address: '',

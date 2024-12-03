@@ -9,5 +9,4 @@ export const Wrapper = styled.div`
 export const Observer = styled.div`
   width: 100%;
   height: 50px;
-  background-color: black;
 `;

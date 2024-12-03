@@ -2,14 +2,14 @@ import { create } from 'zustand';
 
 interface SearchState {
   keyword: string;
-  type: string;
+  category: string;
   region: string;
   admitted: string;
   sort: string;
   status: string;
   // 상태 업데이트 함수들
   setKeyword: (keyword: string) => void;
-  setType: (type: string) => void;
+  setCategory: (category: string) => void;
   setRegion: (region: string) => void;
   setAdmitted: (admitted: string) => void;
   setSort: (sort: string) => void;
@@ -21,7 +21,7 @@ interface SearchState {
         SearchState,
         | 'setSearchState'
         | 'setKeyword'
-        | 'setType'
+        | 'setCategory'
         | 'setRegion'
         | 'setAdmitted'
         | 'setSort'
@@ -36,7 +36,7 @@ interface SearchState {
 
 const initialState = {
   keyword: '',
-  type: '',
+  category: '',
   region: '',
   admitted: '',
   sort: '',
@@ -47,7 +47,7 @@ const useSearchStore = create<SearchState>((set) => ({
   ...initialState,
 
   setKeyword: (keyword) => set({ keyword }),
-  setType: (type) => set({ type }),
+  setCategory: (category) => set({ category }),
   setRegion: (region) => set({ region }),
   setAdmitted: (admitted) => set({ admitted }),
   setSort: (sort) => set({ sort }),
