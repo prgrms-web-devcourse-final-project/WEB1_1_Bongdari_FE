@@ -1,7 +1,7 @@
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
-
 import { LocationButtonBox, MyLocationButton, NearbyButton } from './indexCss';
 import type { Activity, Coordinates } from '@/shared/types/location/nearbyLocation';
+import { useRef } from 'react';
 
 interface FindNearByActivityMapProps {
   center: Coordinates;
@@ -28,6 +28,17 @@ const FindNearByActivityMap = ({
   onActivityClick,
   onNearbyClick
 }: FindNearByActivityMapProps) => {
+  const mapRef = useRef<kakao.maps.Map>();
+
+  // "현재 내 위치" 버튼을 클릭하고 지도를 움직여 해당 위치를 벗어나도 버튼을 누르면 위치를 복귀시키는 핸들러
+  const handleMyLocationClick = () => {
+    onMyLocationClick();
+    if (position && mapRef.current) {
+      const moveLatLon = new kakao.maps.LatLng(position.lat, position.lng);
+      mapRef.current.panTo(moveLatLon);
+    }
+  };
+
   return (
     <>
       <Map
@@ -38,6 +49,9 @@ const FindNearByActivityMap = ({
           width: '100%',
           height: '100vh',
           position: 'relative'
+        }}
+        onCreate={(map) => {
+          mapRef.current = map;
         }}
         onCenterChanged={onCenterChanged}
         onZoomChanged={onZoomChanged}>
@@ -71,7 +85,7 @@ const FindNearByActivityMap = ({
 
         <LocationButtonBox>
           <NearbyButton onClick={onNearbyClick}>이 주변 봉사활동</NearbyButton>
-          <MyLocationButton onClick={onMyLocationClick}>현재 내 위치</MyLocationButton>
+          <MyLocationButton onClick={handleMyLocationClick}>현재 내 위치</MyLocationButton>
         </LocationButtonBox>
       </Map>
     </>
