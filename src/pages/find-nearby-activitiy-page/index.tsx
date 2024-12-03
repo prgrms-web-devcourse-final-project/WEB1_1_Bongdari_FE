@@ -5,11 +5,14 @@ import type { Activity, Coordinates } from '@/shared/types/location/nearbyLocati
 import { useNearbyActivities } from '@/store/queries/recruit-boards/useGetNearbyActivities';
 import { useMemo, useState } from 'react';
 import { debounce } from 'lodash';
+import { useNavigate } from 'react-router-dom';
 
 const FindNearByActivityPage = () => {
+  const navigate = useNavigate();
+
   const [center, setCenter] = useState<Coordinates>({
-    lat: 37.54912276,
-    lng: 126.95401691
+    lat: 37.26577519,
+    lng: 127.0368817
   });
 
   const [position, setPosition] = useState<Coordinates | null>(null);
@@ -47,34 +50,21 @@ const FindNearByActivityPage = () => {
 
   const handleActivityClick = (activity: Activity) => {
     console.log('선택한 봉사활동:', activity);
-    // 필요한 처리 추가
+    // TODO: 지도에서 활동 마커를 클릭했을 때 실행되는 함수 -> 어떤 정보를 띄울지 고민해봐야 함
+    navigate(`/centermypage/adminaidreqlist/${activity.id}`);
   };
 
   const handleSearch = (searchText: string) => {
     setSearchQuery(searchText);
-    // 필요한 경우 여기서 검색 관련 로직 추가
-  };
+    console.log('검색눌렀따?');
 
-  const handleActivitySelect = (id: string | number) => {
-    const selectedActivity = activities.find((activity) => activity.id === id);
-    if (selectedActivity) {
-      setCenter({
-        lat: selectedActivity.location.latitude,
-        lng: selectedActivity.location.longitude
-      });
-      setMapLevel(3);
-    }
+    // TODO: 서버에 검색 요청 보내기
   };
 
   return (
     <PageWrapper>
       <MapWrapper>
-        <FindNearByActivitySearch
-          activities={activities}
-          isLoading={isLoading}
-          onSearch={handleSearch}
-          onActivitySelect={handleActivitySelect}
-        />
+        <FindNearByActivitySearch activities={activities} isLoading={isLoading} onSearch={handleSearch} />
         <FindNearByActivityMap
           center={center}
           position={position}

@@ -1,6 +1,6 @@
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 
-import { MyLocationButton } from './indexCss';
+import { LocationButtonBox, MyLocationButton, NearbyButton } from './indexCss';
 import type { Activity, Coordinates } from '@/shared/types/location/nearbyLocation';
 
 interface FindNearByActivityMapProps {
@@ -67,7 +67,10 @@ const FindNearByActivityMap = ({
             />
           ))}
 
-        <MyLocationButton onClick={onMyLocationClick}>현재 내 위치</MyLocationButton>
+        <LocationButtonBox>
+          <NearbyButton onClick={onMyLocationClick}>이 주변 봉사활동</NearbyButton>
+          <MyLocationButton onClick={onMyLocationClick}>현재 내 위치</MyLocationButton>
+        </LocationButtonBox>
       </Map>
     </>
   );

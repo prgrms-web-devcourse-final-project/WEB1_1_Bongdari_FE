@@ -18,7 +18,7 @@ const getNearbyActivities = async ({ latitude, longitude, radius = 5, page = 0, 
 };
 
 export const useNearbyActivities = (center: Coordinates) => {
-  useQuery({
+  return useQuery({
     queryKey: ['nearbyActivities', center],
     queryFn: () =>
       getNearbyActivities({

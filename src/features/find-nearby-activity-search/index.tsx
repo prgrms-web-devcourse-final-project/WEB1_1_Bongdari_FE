@@ -10,15 +10,9 @@ interface FindNearByActivitySearchProps {
   activities: Activity[];
   isLoading: boolean;
   onSearch: (searchText: string) => void;
-  onActivitySelect: (id: string | number) => void;
 }
 
-const FindNearByActivitySearch = ({
-  activities,
-  isLoading,
-  onSearch,
-  onActivitySelect
-}: FindNearByActivitySearchProps) => {
+const FindNearByActivitySearch = ({ activities, isLoading, onSearch }: FindNearByActivitySearchProps) => {
   const navigate = useNavigate();
 
   const handleSearch = (searchText: string) => {
@@ -26,7 +20,6 @@ const FindNearByActivitySearch = ({
   };
 
   const handleActivityClick = (id: string | number) => {
-    onActivitySelect(id);
     navigate(`/centermypage/adminaidreqlist/${id}`);
   };
 
