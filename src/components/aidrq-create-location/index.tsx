@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import usePostCode, { type Location } from '@/shared/hooks/usePostCode';
-
 import { LocationInfo, Wrapper } from './indexCss';
+import usePostCode from '@/shared/hooks/usePostCode';
+import { Location } from '@/shared/types/location/activityLocation';
+
 const AidRqCreateLocation = () => {
   const [location, setLocation] = useState<Location | undefined>();
 
