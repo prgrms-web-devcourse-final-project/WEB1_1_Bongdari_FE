@@ -14,7 +14,13 @@ const AidReqListItem: React.FC<AidReqListItem> = ({ width, onClick, request }) =
 
   return (
     <Wrapper width={width} onClick={onClick}>
-      <Top title={request?.title} content={request?.content} center={request?.center} />
+      <Top
+        title={request?.title}
+        content={request?.content}
+        center={request?.center}
+        category={request?.volunteer_category}
+        admitted={request?.admitted}
+      />
       <Bottom
         created_at={request?.created_at}
         volunteer_start_date_time={request?.volunteer_start_date_time}

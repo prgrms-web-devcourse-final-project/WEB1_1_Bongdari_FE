@@ -21,7 +21,7 @@ export interface AidRqDetailType {
   volunteer_end_date_time: string; // ISO 8601 format
   created_at: string; // ISO 8601 format
   updated_at: string; // ISO 8601 format
-  volunteer_type: VolunteerType;
+  volunteer_category: VolunteerType;
   volunteer_time: string; // ISO 8601 duration format
   admitted: boolean;
   img_url: string;

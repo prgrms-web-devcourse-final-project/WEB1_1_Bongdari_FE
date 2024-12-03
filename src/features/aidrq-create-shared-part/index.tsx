@@ -21,7 +21,7 @@ const AidRqCreateShared: React.FC<AidRqCreateSharedProps> = ({ getTitleAndFilter
       />
       <SelectContainer
         getSelectedType={(text) => {
-          getTitleAndFilter('volunteer_type', text);
+          getTitleAndFilter('volunteer_category', text);
         }}
         getSelectedRegion={(text) => {
           getTitleAndFilter('region', text);

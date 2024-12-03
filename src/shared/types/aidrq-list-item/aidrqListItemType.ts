@@ -12,7 +12,7 @@ export interface AidRequest {
   volunteer_end_date_time: string;
   created_at: string;
   updated_at: string;
-  volunteer_type: string;
+  volunteer_category: string;
   volunteer_time: string;
   admitted: boolean;
   center: Center;

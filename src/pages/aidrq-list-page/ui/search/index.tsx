@@ -4,9 +4,9 @@ import { useInfiniteAidRq } from '@/shared/hooks/useInfiniteAidRq';
 import useSearchStore from '@/store/stores/search/searchStore';
 
 const Search = () => {
-  const { keyword, type, region, admitted, sort, status } = useSearchStore();
+  const { keyword, category, region, admitted, sort, status } = useSearchStore();
 
-  const { searchAidRequests } = useInfiniteAidRq(keyword, type, region, admitted, sort, status);
+  const { searchAidRequests } = useInfiniteAidRq(keyword, category, region, admitted, sort, status);
   return (
     <Wrapper>
       <FilterSearchBar searchAidRequests={searchAidRequests}></FilterSearchBar>
