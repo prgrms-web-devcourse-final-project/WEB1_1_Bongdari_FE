@@ -17,6 +17,7 @@ import AidRqCreatePage from '@/pages/aidrq-create-page';
 import AidRqModifyPage from '@/pages/aidrq-modify-page';
 import CommunityDetailPage from '@/pages/community-detail-page';
 import CommunityListPage from '@/pages/community-list-page';
+import CommunityCreatePage from '@/pages/community-create-page';
 
 const routes: RouteObject[] = [
   {
@@ -78,6 +79,14 @@ const routes: RouteObject[] = [
       {
         path: '/community/:content_id',
         element: <CommunityDetailPage />
+      },
+      {
+        path: '/communitycreate',
+        element: <CommunityCreatePage />
+      },
+      {
+        path: '/communitycreate/:content_id',
+        element: <CommunityCreatePage />
       },
       {
         path: '/centerprofile/:userId',
