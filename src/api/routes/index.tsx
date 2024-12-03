@@ -65,6 +65,10 @@ const routes: RouteObject[] = [
         element: <LoginPage />
       },
       {
+        path: '/profile',
+        element: <PersonalProfilePage />
+      },
+      {
         path: '/profile/:userId',
         element: <PersonalProfilePage />
       },

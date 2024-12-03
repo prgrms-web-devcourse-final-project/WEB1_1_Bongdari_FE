@@ -3,16 +3,13 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
+  padding: 250px 0;
 
   .innerWrap {
     display: flex;
     gap: 15px;
-
-    margin-bottom: 20px;
-
-    max-width: 1200px;
-    margin-top: 250px;
     width: 90%;
+    max-width: 1200px;
   }
 
   .innerWrap > * {

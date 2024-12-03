@@ -1,37 +1,29 @@
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
-// import { useNavigate, useParams } from 'react-router-dom';
-
 import { Wrapper } from './PersonalProfilePageCss';
-import { personProfileType } from '@/shared/types/person-profile/personProfile';
+import { usePersonProfile } from './logic/usePersonProfile';
 import ProfileImgBox from '@/features/profile-page-img-box';
 import ProfileInfoBox from '@/features/profile-page-info-box';
 import MessageCreateModal from '@/features/message-create-modal';
-import circleCat from './circleCat.jpg';
 
 const PersonalProfilePage = () => {
-  const { userId } = useParams();
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  // const navigate = useNavigate();
-  const tmpdata: personProfileType = {
-    id: '??',
-    nickname: 'jooyoung',
-    imgUrl: circleCat,
-    introduce:
-      '안녕 잘지내니 나는 잘지내 그래 너도 잘지내라 그래 나도 잘지낼게 안녕 잘지내니 나는 잘지내 그래 너도 잘지내라 그래 나도 잘지낼게 안녕 잘지내니 나는 잘지내 그래 너도 잘지내라 그래 나도 잘지낼게 ',
-    tier: 'white',
-    totalVolunteerHours: 30,
-    totalVolunteerCount: 9
-  };
+  const { userId, profileData, isModalOpen, setIsModalOpenWhenLogin } = usePersonProfile();
 
-  return (
-    <Wrapper>
-      <div className="innerWrap">
-        <ProfileImgBox type="person" {...tmpdata} setIsModalOpen={setIsModalOpen} />
-        <ProfileInfoBox type="person" {...tmpdata} />
-        <MessageCreateModal user_id={userId || ''} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
-      </div>
-    </Wrapper>
-  );
+  if (!profileData) {
+    // 해당 profile이 없을 경우
+    return <Wrapper>No Profile Found</Wrapper>;
+  } else {
+    return (
+      <Wrapper>
+        <div className="innerWrap">
+          <ProfileImgBox type="person" {...profileData} setIsModalOpen={setIsModalOpenWhenLogin} />
+          <ProfileInfoBox type="person" {...profileData} />
+          <MessageCreateModal
+            user_id={userId || ''}
+            isModalOpen={isModalOpen}
+            setIsModalOpen={setIsModalOpenWhenLogin}
+          />
+        </div>
+      </Wrapper>
+    );
+  }
 };
 export default PersonalProfilePage;
