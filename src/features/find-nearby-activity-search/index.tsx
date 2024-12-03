@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MapPageTitle, ScrollSection, SearchBarComponent, SearchBox, Wrapper } from './indexCss';
 import AidReqListItem from '@/components/aidreq-list-Item';
@@ -14,8 +15,13 @@ interface FindNearByActivitySearchProps {
 
 const FindNearByActivitySearch = ({ activities, isLoading, onSearch }: FindNearByActivitySearchProps) => {
   const navigate = useNavigate();
+  const [searchText, setSearchText] = useState('');
 
-  const handleSearch = (searchText: string) => {
+  const handleInputChange = (inputText: string) => {
+    setSearchText(inputText);
+  };
+
+  const handleSearch = () => {
     onSearch(searchText);
   };
 
@@ -28,8 +34,17 @@ const FindNearByActivitySearch = ({ activities, isLoading, onSearch }: FindNearB
       <ScrollSection>
         <MapPageTitle>주변 활동 찾기</MapPageTitle>
         <SearchBarComponent>
-          <InputBox colortype={0} width="80%" getInputText={handleSearch} />
-          <OtherButton label="검색" width="80px" height="47px" fontSize={theme.fontSize.seventhSize} fontWeight="600" />
+          {/* 검색입력 이벤트 */}
+          <InputBox colortype={0} width="80%" getInputText={handleInputChange} />
+          {/* 검색버튼 */}
+          <OtherButton
+            label="검색"
+            width="80px"
+            height="47px"
+            fontSize={theme.fontSize.seventhSize}
+            fontWeight="600"
+            onClick={handleSearch}
+          />
         </SearchBarComponent>
         <Wrapper>
           {!isLoading &&

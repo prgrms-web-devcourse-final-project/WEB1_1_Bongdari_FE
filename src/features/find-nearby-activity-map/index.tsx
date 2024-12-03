@@ -13,6 +13,7 @@ interface FindNearByActivityMapProps {
   onZoomChanged: (map: kakao.maps.Map) => void;
   onMyLocationClick: () => void;
   onActivityClick: (activity: Activity) => void;
+  onNearbyClick: () => void;
 }
 
 const FindNearByActivityMap = ({
@@ -24,7 +25,8 @@ const FindNearByActivityMap = ({
   onCenterChanged,
   onZoomChanged,
   onMyLocationClick,
-  onActivityClick
+  onActivityClick,
+  onNearbyClick
 }: FindNearByActivityMapProps) => {
   return (
     <>
@@ -68,7 +70,7 @@ const FindNearByActivityMap = ({
           ))}
 
         <LocationButtonBox>
-          <NearbyButton onClick={onMyLocationClick}>이 주변 봉사활동</NearbyButton>
+          <NearbyButton onClick={onNearbyClick}>이 주변 봉사활동</NearbyButton>
           <MyLocationButton onClick={onMyLocationClick}>현재 내 위치</MyLocationButton>
         </LocationButtonBox>
       </Map>

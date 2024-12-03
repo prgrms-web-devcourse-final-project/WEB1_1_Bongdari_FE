@@ -14,32 +14,34 @@ const FindNearByActivityPage = () => {
     lat: 37.26577519,
     lng: 127.0368817
   });
-
+  // 지도 이동 후에 갱신될 위치값 -> 버튼을 클릭했을 때만 갱신될 수 있도록 구현
+  const [updateCenter, setUpdateCenter] = useState<Coordinates | null>(null);
   const [position, setPosition] = useState<Coordinates | null>(null);
   // 지도를 축소/확대해도 "현재 내 위치" 버튼을 클릭한다면 level 3으로 확대 -> 축소, 축소 -> 확대 되어 확대 레벨을 유지할 수 있게 상태 관리로 넣었습니다!
-  const [mapLevel, setMapLevel] = useState(3);
+  const [mapLevel, setMapLevel] = useState(5);
+
   const [searchQuery, setSearchQuery] = useState('');
 
-  const { data: activities = [], isLoading, refetch } = useNearbyActivities(center);
+  const { data: activities = [], isLoading, refetch } = useNearbyActivities(center, searchQuery);
 
   // "현재 내 위치" 버튼을 클릭해야만 내 현재 위치를 보여줄 수 있게 설정해놨습니다.
-  // 지금은 테스트를 위해 서울신용보증재단빌딩으로 초기 위치를 설정했습니다.
+  // 지금은 테스트를 위해 "경기도 수원시 팔달구 인계로 178 (인계동) 7층"으로 초기 위치를 설정했습니다.
   const setCenterToMyPosition = () => {
     navigator.geolocation.getCurrentPosition((pos) => {
       const newPosition = {
         lat: pos.coords.latitude,
         lng: pos.coords.longitude
       };
-      setCenter(newPosition);
+      setUpdateCenter(newPosition);
       setPosition(newPosition);
-      setMapLevel(3);
+      setMapLevel(5);
     });
   };
 
   const updateCenterWhenMapMoved = useMemo(
     () =>
       debounce((map: kakao.maps.Map) => {
-        setCenter({
+        setUpdateCenter({
           lat: map.getCenter().getLat(),
           lng: map.getCenter().getLng()
         });
@@ -47,6 +49,14 @@ const FindNearByActivityPage = () => {
       }, 500),
     []
   );
+
+  // 클릭했을 때 이동된 지도의 중심값을 API 호출에 사용하는 핸들러
+  const handleNearbyActivitiesClick = () => {
+    if (updateCenter) {
+      setCenter(updateCenter);
+      refetch();
+    }
+  };
 
   const handleActivityClick = (activity: Activity) => {
     console.log('선택한 봉사활동:', activity);
@@ -56,9 +66,8 @@ const FindNearByActivityPage = () => {
 
   const handleSearch = (searchText: string) => {
     setSearchQuery(searchText);
-    console.log('검색눌렀따?');
-
-    // TODO: 서버에 검색 요청 보내기
+    refetch();
+    console.log('검색 버튼 눌렀다. 입력된 값: ', searchText);
   };
 
   return (
@@ -75,6 +84,7 @@ const FindNearByActivityPage = () => {
           onZoomChanged={(map) => setMapLevel(map.getLevel())}
           onMyLocationClick={setCenterToMyPosition}
           onActivityClick={handleActivityClick}
+          onNearbyClick={handleNearbyActivitiesClick}
         />
       </MapWrapper>
     </PageWrapper>
