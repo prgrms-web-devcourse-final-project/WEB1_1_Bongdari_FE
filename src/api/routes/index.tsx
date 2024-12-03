@@ -18,6 +18,7 @@ import AidRqModifyPage from '@/pages/aidrq-modify-page';
 import CommunityDetailPage from '@/pages/community-detail-page';
 import CommunityListPage from '@/pages/community-list-page';
 import CommunityCreatePage from '@/pages/community-create-page';
+import FindNearByActivityPage from '@/pages/find-nearby-activitiy-page';
 
 const routes: RouteObject[] = [
   {
@@ -95,6 +96,10 @@ const routes: RouteObject[] = [
       {
         path: '/centerprofile/:userId',
         element: <CenterProfilePage />
+      },
+      {
+        path: '/findnearmyactivity',
+        element: <FindNearByActivityPage />
       },
       // "/test" 경로는 아래에 둘 수 있도록 해주세요 (이 위로 라우팅 설정 해달라는 뜻입니다)
       {

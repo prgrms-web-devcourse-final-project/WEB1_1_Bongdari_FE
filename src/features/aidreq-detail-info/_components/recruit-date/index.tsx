@@ -1,3 +1,4 @@
+import useDateFormat from '@/shared/hooks/useDateFormat';
 import { Container, Wrapper } from './indexCss';
 import { AidRqDetailType } from '@/shared/types/aidrq-detail/aidrqDetailType';
 
@@ -6,6 +7,7 @@ interface AidRqDetailCenterProfileProps {
 }
 
 const RecruitDate: React.FC<AidRqDetailCenterProfileProps> = ({ data }) => {
+  const { formatDateTime } = useDateFormat();
   return (
     <Wrapper>
       <h2>접수기간</h2>
@@ -13,11 +15,11 @@ const RecruitDate: React.FC<AidRqDetailCenterProfileProps> = ({ data }) => {
         <div>
           <p>
             <span>모집시작일</span>
-            {data.updated_at}
+            {formatDateTime(data.updated_at)}
           </p>
           <p>
             <span>봉사시작일</span>
-            {data.volunteer_start_date_time}
+            {formatDateTime(data.volunteer_start_date_time)}
           </p>
         </div>
         <div>

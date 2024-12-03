@@ -11,7 +11,7 @@ export interface VolunteerType {
   recruitment_count: number;
   volunteer_start_date_time: string;
   volunteer_end_date_time: string;
-  volunteer_type: string;
+  volunteer_category: string;
   admitted: boolean;
   location: Location;
 }

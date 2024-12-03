@@ -20,7 +20,7 @@ const AidRqListAdmin = () => {
       volunteer_end_date_time: '2024-12-01T13:00',
       created_at: '2024-12-01T09:00',
       updated_at: '2024-12-01T09:00',
-      volunteer_type: 'LIVING_SUPPORT',
+      volunteer_category: 'LIVING_SUPPORT',
       volunteer_time: 'T04:00',
       admitted: true,
       center: {
