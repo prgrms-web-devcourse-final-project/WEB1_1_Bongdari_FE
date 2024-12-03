@@ -6,11 +6,11 @@ import { useEffect } from 'react';
 import useSearchStore from '@/store/stores/search/searchStore';
 
 const AidRqListWrapper = () => {
-  const { keyword, type, region, admitted, sort, status } = useSearchStore();
+  const { keyword, category, region, admitted, sort, status } = useSearchStore();
 
   const { data, fetchNextPage, hasNextPage, searchAidRequests, isLoading } = useInfiniteAidRq(
     keyword,
-    type,
+    category,
     region,
     admitted,
     sort,
@@ -21,7 +21,7 @@ const AidRqListWrapper = () => {
 
   useEffect(() => {
     searchAidRequests();
-  }, []);
+  }, [status]);
 
   useEffect(() => {
     if (inView && hasNextPage) {

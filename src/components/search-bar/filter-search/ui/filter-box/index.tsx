@@ -2,11 +2,12 @@ import { Wrapper, SelectWrapper } from './indexCss';
 import { OtherButton } from '@/components/button';
 import Select from '@/components/select';
 import theme from '@/styles/theme';
+import aidrqCategoryMapping from '@/shared/mapping/aidrq-category-mapping';
 
 interface FilterBoxProps {
   setSearchState: (state: {
     keyword?: string;
-    type?: string;
+    category?: string;
     region?: string;
     admitted?: string;
     sort?: string;
@@ -21,10 +22,25 @@ const FilterBox: React.FC<FilterBoxProps> = ({ setSearchState, searchAidRequests
         <Select
           text="활동 유형을 입력해주세요."
           width="100%"
-          data={['도서관', '양로원', '농촌봉사']}
+          data={[
+            '생활편의지원',
+            '주거환경',
+            '상담',
+            '교육',
+            '보건의료',
+            '농어촌봉사',
+            '문화행사',
+            '환경보호',
+            '행정보조',
+            '안전예방',
+            '공익인권',
+            '재해재난',
+            '멘토링',
+            '기타'
+          ]}
           getSelectedOption={(option: string) => {
             setSearchState({
-              type: option
+              category: aidrqCategoryMapping[option]
             });
           }}></Select>
         <Select

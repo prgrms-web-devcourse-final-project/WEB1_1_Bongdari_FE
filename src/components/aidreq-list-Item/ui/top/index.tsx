@@ -8,13 +8,15 @@ interface TopProps {
   center: {
     name: string;
   };
+  category: string;
+  admitted: boolean;
 }
-const Top = ({ title, content, center }: TopProps) => {
+const Top = ({ title, content, center, category, admitted }: TopProps) => {
   return (
     <Wrapper>
       <LabelContainer>
-        <AidRqCategoryLabel text="도서관"></AidRqCategoryLabel>
-        <AidRqCertifiedLabel></AidRqCertifiedLabel>
+        <AidRqCategoryLabel text={category}></AidRqCategoryLabel>
+        {admitted && <AidRqCertifiedLabel></AidRqCertifiedLabel>}
       </LabelContainer>
       <Title>{title}</Title>
       <Text>{content}</Text>

@@ -17,8 +17,13 @@ const Tab = () => {
     <Wrapper>
       <TabButtonGroup
         onTabChange={(tab) => {
+          const statusMapping: { [key: string]: string } = {
+            모집중: 'RECRUITING',
+            모집완료: 'CLOSED',
+            모집종료: 'COMPLETED'
+          };
           setSearchState({
-            status: tab
+            status: statusMapping[tab]
           });
         }}
         tabs={[{ label: '모집중' }, { label: '모집완료' }, { label: '모집종료' }]}></TabButtonGroup>

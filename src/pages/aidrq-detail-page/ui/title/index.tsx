@@ -12,7 +12,7 @@ const Title: React.FC<AidRqDetailCenterProfileProps> = ({ data }) => {
   return (
     <Wrapper>
       <LabelBox>
-        <AidRqCategoryLabel text={data.volunteer_type}></AidRqCategoryLabel>
+        <AidRqCategoryLabel text={data.volunteer_category}></AidRqCategoryLabel>
         {data.admitted && <AidRqCertifiedLabel></AidRqCertifiedLabel>}
       </LabelBox>
       <TitleBox>
