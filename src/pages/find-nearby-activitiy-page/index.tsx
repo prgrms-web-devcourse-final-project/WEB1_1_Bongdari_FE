@@ -32,7 +32,7 @@ const FindNearByActivityPage = () => {
         lat: pos.coords.latitude,
         lng: pos.coords.longitude
       };
-      setUpdateCenter(newPosition);
+      setCenter(newPosition);
       setPosition(newPosition);
       setMapLevel(5);
     });

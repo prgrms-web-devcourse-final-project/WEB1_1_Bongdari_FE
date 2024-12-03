@@ -34,9 +34,7 @@ const FindNearByActivitySearch = ({ activities, isLoading, onSearch }: FindNearB
       <ScrollSection>
         <MapPageTitle>주변 활동 찾기</MapPageTitle>
         <SearchBarComponent>
-          {/* 검색입력 이벤트 */}
           <InputBox colortype={0} width="80%" getInputText={handleInputChange} />
-          {/* 검색버튼 */}
           <OtherButton
             label="검색"
             width="80px"
