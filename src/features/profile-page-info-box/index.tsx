@@ -12,10 +12,10 @@ const ProfileInfoBox: React.FC<ProfileInfoBoxProps> = (props) => {
   };
 
   if (isPersonProfile(props)) {
-    const { id, nickname, introduce, tier, totalVolunteerHours, totalVolunteerCount } = props;
+    const { volunteer_id, nickname, introduce, tier, total_volunteer_hours, total_volunteer_count } = props;
 
     return (
-      <ProfileInfoBoxCss id={id}>
+      <ProfileInfoBoxCss id={volunteer_id}>
         <p className="blueTitle">상세정보</p>
         <p className="info">
           <i className="label">닉네임</i>
@@ -23,7 +23,7 @@ const ProfileInfoBox: React.FC<ProfileInfoBoxProps> = (props) => {
         </p>
         <p className="info">
           <i className="label rightLabel">총 봉사 시간</i>
-          <i className="data">{totalVolunteerHours}시간</i>
+          <i className="data">{total_volunteer_hours}시간</i>
         </p>
         <p className="info">
           <i className="label">등급</i>
@@ -31,7 +31,7 @@ const ProfileInfoBox: React.FC<ProfileInfoBoxProps> = (props) => {
         </p>
         <p className="info">
           <i className="label rightLabel">총 봉사 횟수</i>
-          <i className="data">{totalVolunteerCount}회</i>
+          <i className="data">{total_volunteer_count}회</i>
         </p>
         <p className="info wide">
           <i className="label ">설명</i>

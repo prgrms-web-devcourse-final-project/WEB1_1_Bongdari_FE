@@ -21,11 +21,11 @@ const ProfileImgBox: React.FC<ProfileImgBoxProps> = (props) => {
 
   // 조건부 렌더링 및 타입 좁히기
   if (isPersonProfile(props)) {
-    const { id, nickname, imgUrl, tier } = props;
+    const { volunteer_id, nickname, img_url, tier } = props;
 
     return (
-      <ProfileImgBoxCss id={id}>
-        <img src={imgUrl} alt="" />
+      <ProfileImgBoxCss id={volunteer_id}>
+        <img src={img_url} alt="" />
         <p>
           <i>{nickname}</i>
           <img className="mitten" src={`/assets/imgs/mitten-${tier}.svg`} />
