@@ -1,4 +1,4 @@
-import { Wrapper } from './PersonalProfilePageCss';
+import { Wrapper } from './indexCss';
 import { usePersonProfile } from './logic/usePersonProfile';
 import ProfileImgBox from '@/features/profile-page-img-box';
 import ProfileInfoBox from '@/features/profile-page-info-box';
