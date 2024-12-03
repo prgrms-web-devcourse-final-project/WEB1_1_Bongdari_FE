@@ -33,7 +33,19 @@ const useDateFormat = () => {
     return timeString;
   };
 
-  return { formatDate, formatTime };
+  // 날짜와 시간 모두 포함한 문자열일 경우 -> 모집글 상세 페이지에서는 날짜와 시간이 같이 나옴
+  const formatDateTime = (dateTimeString: string): string => {
+    const date = new Date(dateTimeString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+
+    return `${year}. ${month}. ${day} ${hours}:${minutes}`;
+  };
+
+  return { formatDate, formatTime, formatDateTime };
 };
 
 export default useDateFormat;
