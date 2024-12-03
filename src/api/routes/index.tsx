@@ -18,6 +18,7 @@ import AidRqModifyPage from '@/pages/aidrq-modify-page';
 import CommunityDetailPage from '@/pages/community-detail-page';
 import CommunityListPage from '@/pages/community-list-page';
 import CommunityCreatePage from '@/pages/community-create-page';
+import FindNearByActivityPage from '@/pages/find-nearby-activitiy-page';
 
 const routes: RouteObject[] = [
   {
