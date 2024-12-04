@@ -2,6 +2,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 interface AidRequestParams {
+  centerId: string;
   page: number;
   keyword?: string;
   category?: string;
@@ -11,10 +12,20 @@ interface AidRequestParams {
   status?: string;
 }
 
-const fetchAidRequests = async ({ page, keyword, category, region, admitted, sort, status }: AidRequestParams) => {
-  const response = await axios.get('http://54.180.201.20:8080/api/recruit-boards/search?size=9', {
+const fetchCenterBoards = async ({
+  centerId,
+  page,
+  keyword,
+  category,
+  region,
+  admitted,
+  sort,
+  status
+}: AidRequestParams) => {
+  const response = await axios.get(`http://54.180.201.20:8080/api/recruit-boards/center/${centerId}`, {
     params: {
       page,
+      size: 6,
       keyword,
       category,
       region,
@@ -31,7 +42,8 @@ const fetchAidRequests = async ({ page, keyword, category, region, admitted, sor
   };
 };
 
-export const useInfiniteAidRq = (
+export const useInfiniteCenterBoards = (
+  centerId: string,
   keyword: string,
   category: string,
   region: string,
@@ -40,9 +52,10 @@ export const useInfiniteAidRq = (
   status: string
 ) => {
   const { data, fetchNextPage, hasNextPage, refetch, isLoading, isError, error } = useInfiniteQuery({
-    queryKey: ['aidRequests'],
+    queryKey: ['aidRequests', centerId],
     queryFn: ({ pageParam = 1 }) =>
-      fetchAidRequests({
+      fetchCenterBoards({
+        centerId,
         page: pageParam,
         keyword,
         category,

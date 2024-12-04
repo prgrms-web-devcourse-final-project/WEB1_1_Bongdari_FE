@@ -3,13 +3,15 @@ import { OtherButton } from '@/components/button';
 import Select from '@/components/select';
 import theme from '@/styles/theme';
 import aidrqCategoryMapping from '@/shared/mapping/aidrq-category-mapping';
+import regionMapping from '@/shared/mapping/aid-region-mapping';
+import admittedMapping from '@/shared/mapping/aid-admitted-mapping';
 
 interface FilterBoxProps {
   setSearchState: (state: {
     keyword?: string;
     category?: string;
-    region?: string;
-    admitted?: string;
+    region?: null | string;
+    admitted?: null | boolean;
     sort?: string;
   }) => void;
   searchAidRequests: () => void;
@@ -23,6 +25,7 @@ const FilterBox: React.FC<FilterBoxProps> = ({ setSearchState, searchAidRequests
           text="활동 유형을 입력해주세요."
           width="100%"
           data={[
+            '전체',
             '생활편의지원',
             '주거환경',
             '상담',
@@ -46,19 +49,19 @@ const FilterBox: React.FC<FilterBoxProps> = ({ setSearchState, searchAidRequests
         <Select
           text="지역을 입력해주세요."
           width="100%"
-          data={['서울특별시', '경기도', '강원도']}
+          data={['전체', '서울특별시', '경기도', '강원도']}
           getSelectedOption={(option: string) => {
             setSearchState({
-              region: option
+              region: regionMapping[option]
             });
           }}></Select>
         <Select
           text="시간 인증 여부를 입력해주세요."
           width="100%"
-          data={['시간 인증', '시간 미인증']}
+          data={['전체', '시간 인증', '시간 미인증']}
           getSelectedOption={(option: string) => {
             setSearchState({
-              admitted: option
+              admitted: admittedMapping[option]
             });
           }}></Select>
       </SelectWrapper>
