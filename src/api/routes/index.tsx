@@ -9,7 +9,7 @@ import AidRqDetailPage from '@/pages/aidrq-detail-page';
 import CenterMyPage from '@/pages/center-my-page';
 import PersonalProfilePage from '@/pages/personal-profile-page';
 import CenterProfilePage from '@/pages/center-profile-page/CenterProfilePage';
-import PersonalMyPage from '@/pages/personal-my-page/PersonalMyPage';
+import PersonalMyPage from '@/pages/personal-my-page';
 import AdminAidRqListPage from '@/pages/admin-aidrq-list-page';
 import AidRqDetailAdminPage from '@/pages/aidrq-detail-admin-page';
 import AidRqApplicantListPage from '@/pages/aidrq-applicant-list-page';
