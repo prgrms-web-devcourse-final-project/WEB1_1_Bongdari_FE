@@ -3,14 +3,14 @@ import { create } from 'zustand';
 interface SearchState {
   keyword: string;
   category: string;
-  region: string;
+  region: string | null;
   admitted: null | boolean;
   sort: string;
   status: string;
   // 상태 업데이트 함수들
   setKeyword: (keyword: string) => void;
   setCategory: (category: string) => void;
-  setRegion: (region: string) => void;
+  setRegion: (region: string | null) => void;
   setAdmitted: (admitted: null | boolean) => void;
   setSort: (sort: string) => void;
   setStatus: (status: string) => void;
@@ -37,7 +37,7 @@ interface SearchState {
 const initialState = {
   keyword: '',
   category: '',
-  region: '',
+  region: null,
   admitted: null,
   sort: '',
   status: ''

@@ -6,7 +6,7 @@ interface AidRequestParams {
   page: number;
   keyword?: string;
   category?: string;
-  region?: string;
+  region?: string | null;
   admitted?: null | boolean;
   sort?: string;
   status?: string;
@@ -46,7 +46,7 @@ export const useInfiniteCenterBoards = (
   centerId: string,
   keyword: string,
   category: string,
-  region: string,
+  region: string | null,
   admitted: null | boolean,
   sort: string,
   status: string

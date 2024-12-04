@@ -38,6 +38,10 @@ export const Wrapper = styled.div`
       border-radius: 20px;
       background-color: white;
       outline: none;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 `;
