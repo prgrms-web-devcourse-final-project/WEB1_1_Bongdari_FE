@@ -16,6 +16,7 @@ const EditCenterProfile = () => {
     preview,
     handleImageUpload,
     centerName,
+    originalName,
     centerPhone,
     centerURL,
     centerIntroduction,
@@ -24,10 +25,12 @@ const EditCenterProfile = () => {
     handleURLChange,
     handleIntroductionChange,
     validURL,
-    validPhone
+    validPhone,
+    isLoading,
+    error
   } = useEditCenterProfile();
 
-  const { displayName, isSubmitting, handleEditProfile, isLoading } = useSubmitCenterProfile();
+  const { isSubmitting, handleEditProfile } = useSubmitCenterProfile();
 
   const handleEditButton = () => {
     handleEditProfile(centerName, centerPhone, centerURL, centerIntroduction, preview, validURL, validPhone);
@@ -36,13 +39,16 @@ const EditCenterProfile = () => {
   if (isLoading) {
     return <CenterProfileTitle>로딩 중...</CenterProfileTitle>;
   }
+  if (error) {
+    return <CenterProfileTitle>에러가 발생했습니다: {error.message}</CenterProfileTitle>;
+  }
 
   return (
     <CenterProfileEditContainer>
-      {displayName === '' ? (
+      {originalName === '' ? (
         <CenterProfileTitle>프로필을 완성해보세요!!</CenterProfileTitle>
       ) : (
-        <CenterProfileTitle>안녕하세요, {displayName}님!</CenterProfileTitle>
+        <CenterProfileTitle>안녕하세요, {originalName}님!</CenterProfileTitle>
       )}
       <SectionBox>
         <ProfileEditWrapper>

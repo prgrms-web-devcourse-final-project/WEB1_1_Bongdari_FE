@@ -1,26 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axiosInstance from '@/api/apis';
 
 const useCenterProfile = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [displayName, setDisplayName] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
 
   // TODO: 리액트 쿼리로 분리할 것 -> api 호출 하나로 통합할 수 있도록
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const response = await axiosInstance.get('/api/center/profile/1');
-        setDisplayName(response.data.name || '');
-      } catch (error) {
-        console.error('프로필 로드 실패:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchProfile = async () => {
+  //     try {
+  //       const response = await axiosInstance.get('/api/center/profile/1');
+  //       setDisplayName(response.data.name || '');
+  //     } catch (error) {
+  //       console.error('프로필 로드 실패:', error);
+  //     }
+  //   };
 
-    fetchProfile();
-  }, []);
+  //   fetchProfile();
+  // }, []);
 
   const handleEditProfile = async (
     centerName: string,
@@ -78,8 +75,7 @@ const useCenterProfile = () => {
   return {
     isSubmitting,
     displayName,
-    handleEditProfile,
-    isLoading
+    handleEditProfile
   };
 };
 

@@ -1,3 +1,4 @@
+import { usePreferItem } from '@/store/queries/center-mypage/usePreferItems';
 import { useState } from 'react';
 
 interface GoodsItem {
@@ -8,6 +9,7 @@ interface GoodsItem {
 const useHandleItem = () => {
   const [currentInput, setCurrentInput] = useState(''); // 입력된 값
   const [goodsList, setGoodsList] = useState<GoodsItem[]>([]); // 이미 등록된 값 리스트
+  const { addItem, isLoading } = usePreferItem();
 
   const handleAddGoods = () => {
     if (!currentInput.trim()) {
@@ -24,8 +26,17 @@ const useHandleItem = () => {
       itemName: currentInput
     };
 
-    setGoodsList((prev) => [...prev, newItem]);
-    setCurrentInput('');
+    addItem(newItem.itemName, {
+      onSuccess: (response) => {
+        console.log('물품등록성공?', response);
+        setGoodsList((prev) => [...prev, newItem]);
+        setCurrentInput('');
+      },
+      onError: (error) => {
+        console.error('실패', error);
+        alert('물품 등록 중 오류가 발생했음');
+      }
+    });
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -44,7 +55,8 @@ const useHandleItem = () => {
     setCurrentInput,
     handleAddGoods,
     handleKeyPress,
-    handleDeleteGoods
+    handleDeleteGoods,
+    isLoading
   };
 };
 
