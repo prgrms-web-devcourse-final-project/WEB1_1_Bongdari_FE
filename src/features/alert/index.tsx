@@ -1,12 +1,30 @@
+import { useEffect, useState } from 'react';
+
 import AlertItem from '@/components/alert-item';
 import { Container, Top, Wrapper } from './indexCss';
 import { AlertType } from '@/shared/types/alert-type/AlertType';
+import { sigleRead } from './logic/single-read';
 
-interface AlertProps {
-  notifications: AlertType[];
-}
+const Alert = () => {
+  const [notifications, setNotifications] = useState<AlertType[]>([]);
 
-const Alert: React.FC<AlertProps> = ({ notifications }) => {
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_APP_BASE_URL}/api/notifications/unread`, {
+          credentials: 'include'
+        });
+        const data = await response.json();
+        setNotifications(data); // data형식 보고 이부분 수정해야함
+        console.log(notifications); // cicd오류 없애기용 - set되기전에 돌아가서 의미없음
+      } catch (error) {
+        console.error('알림을 가져오는데 실패했습니다:', error);
+      }
+    };
+
+    fetchNotifications();
+  }, []);
+
   const data = [
     {
       id: 123,
@@ -50,10 +68,10 @@ const Alert: React.FC<AlertProps> = ({ notifications }) => {
       <Container>
         <Top>
           <p>알림</p>
-          <span>전체 읽음처리 하기</span>
+          <span>전체 삭제하기</span>
         </Top>
         {data.map((item) => (
-          <AlertItem item={item}></AlertItem>
+          <AlertItem key={item.id} item={item} sigleRead={sigleRead}></AlertItem>
         ))}
       </Container>
     </Wrapper>
