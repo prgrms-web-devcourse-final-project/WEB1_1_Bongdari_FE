@@ -7,4 +7,8 @@ export const ReviewListCss = styled.div`
     flex-direction: column;
     gap: 10px;
   }
+  .noData {
+    width: 100%;
+    text-align: center;
+  }
 `;

@@ -1,7 +1,7 @@
 import { EditProfileCss } from './indexCss';
 import { SubmitButton } from '@/components/button';
-import InputWithLabel from './input-with-label/InputWithLabel';
-import EditProfileImg from './edit-profile-img/EditProfileImg';
+import InputWithLabel from '@/features/input-with-label/InputWithLabel';
+import EditProfileImg from './_component/EditProfileImg';
 
 interface EditProfileProps {
   profileImg?: string;

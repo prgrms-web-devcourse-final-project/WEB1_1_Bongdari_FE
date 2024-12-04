@@ -1,7 +1,7 @@
 import Theme from '@/styles/theme';
 import styled from 'styled-components';
 
-export const SectionTitleCss = styled.div`
+export const TitleWithPagenationCss = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;

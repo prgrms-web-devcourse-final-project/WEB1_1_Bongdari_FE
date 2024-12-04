@@ -12,7 +12,7 @@ interface AidRequestParams {
 }
 
 const fetchAidRequests = async ({ page, keyword, category, region, admitted, sort, status }: AidRequestParams) => {
-  const response = await axios.get('http://54.180.201.20:8080/api/recruit-boards/search?size=9', {
+  const response = await axios.get(`${import.meta.env.VITE_APP_BASE_URL}/api/recruit-boards/search?size=9`, {
     params: {
       page,
       keyword,

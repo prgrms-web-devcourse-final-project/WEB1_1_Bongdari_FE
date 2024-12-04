@@ -1,13 +1,13 @@
-import { SectionTitleCss } from './indexCss';
+import { TitleWithPagenationCss } from './indexCss';
 
-interface SectionTitleProps {
+interface TitleWithPagenationProps {
   title: string;
   totPage: number;
   currPage: number;
   setCurrPage: (page: number) => void;
 }
 
-const SectionTitle: React.FC<SectionTitleProps> = ({ title, totPage, currPage, setCurrPage }) => {
+const TitleWithPagenation: React.FC<TitleWithPagenationProps> = ({ title, totPage, currPage, setCurrPage }) => {
   const onClickPrevPage = () => {
     if (currPage === 1) return;
     setCurrPage(currPage - 1);
@@ -18,7 +18,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({ title, totPage, currPage, s
     setCurrPage(currPage + 1);
   };
   return (
-    <SectionTitleCss>
+    <TitleWithPagenationCss>
       <i className="title">{title}</i>
       <div className="pagenationWrap">
         <i className={`pageBtn ${currPage === 1 ? 'disabled' : ''}`} onClick={onClickPrevPage}>
@@ -31,7 +31,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({ title, totPage, currPage, s
           {'>'}
         </i>
       </div>
-    </SectionTitleCss>
+    </TitleWithPagenationCss>
   );
 };
-export default SectionTitle;
+export default TitleWithPagenation;
