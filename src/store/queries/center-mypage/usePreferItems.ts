@@ -2,9 +2,7 @@ import axiosInstance from '@/api/apis';
 import { useMutation } from '@tanstack/react-query';
 import type { AxiosResponse } from 'axios';
 
-interface PreferItemResponse {
-  code: number;
-  message: string;
+export interface PreferItemResponse {
   data: {
     id: number;
     center_id: string;

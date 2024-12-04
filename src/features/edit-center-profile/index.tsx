@@ -10,8 +10,13 @@ import {
 } from './indexCss';
 import useEditCenterProfile from './logic/useEditCenterProfile';
 import useSubmitCenterProfile from './logic/useSubmitCenterProfile';
+import type { centerProfileType } from '@/shared/types/center-profile/centerProfile';
 
-const EditCenterProfile = () => {
+interface UseEditCenterProfileProps {
+  profileData: centerProfileType;
+}
+
+const EditCenterProfile = ({ profileData }: UseEditCenterProfileProps) => {
   const {
     preview,
     handleImageUpload,
@@ -25,23 +30,14 @@ const EditCenterProfile = () => {
     handleURLChange,
     handleIntroductionChange,
     validURL,
-    validPhone,
-    isLoading,
-    error
-  } = useEditCenterProfile();
+    validPhone
+  } = useEditCenterProfile({ profileData });
 
   const { isSubmitting, handleEditProfile } = useSubmitCenterProfile();
 
   const handleEditButton = () => {
     handleEditProfile(centerName, centerPhone, centerURL, centerIntroduction, preview, validURL, validPhone);
   };
-
-  if (isLoading) {
-    return <CenterProfileTitle>로딩 중...</CenterProfileTitle>;
-  }
-  if (error) {
-    return <CenterProfileTitle>에러가 발생했습니다: {error.message}</CenterProfileTitle>;
-  }
 
   return (
     <CenterProfileEditContainer>

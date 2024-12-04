@@ -1,9 +1,13 @@
 import { useImageUpload } from '@/shared/hooks/useImageUpload';
 import { useState, useEffect } from 'react';
 import { validatePhone, validateURL } from './validation';
-import { useGetCenterProfile } from '@/store/queries/center-mypage/useCenterProfile';
+import type { centerProfileType } from '@/shared/types/center-profile/centerProfile';
 
-const useEditCenterProfile = () => {
+interface UseEditCenterProfileProps {
+  profileData: centerProfileType;
+}
+
+const useEditCenterProfile = ({ profileData }: UseEditCenterProfileProps) => {
   const { preview, setPreview, handleImageUpload } = useImageUpload();
 
   // 수정중인 데이터 모아놓는 상태
@@ -18,26 +22,23 @@ const useEditCenterProfile = () => {
   const [validURL, setValidURL] = useState(true);
   const [validPhone, setValidPhone] = useState(true);
 
-  const centerId = 'B84733D0-AE17-11EF-AA15-0A855994FB4B';
-  const { data, isLoading, error } = useGetCenterProfile(centerId);
-
   useEffect(() => {
-    if (data) {
-      setCenterName(data.name);
-      setCenterPhone(data.contact_number);
-      setCenterURL(data.homepage_link);
-      setCenterIntroduction(data.introduce);
+    if (profileData) {
+      setCenterName(profileData.name);
+      setCenterPhone(profileData.contact_number);
+      setCenterURL(profileData.homepage_link);
+      setCenterIntroduction(profileData.introduce);
 
-      setOriginalName(data.name);
+      setOriginalName(profileData.name);
 
-      if (data.img_url) {
-        setPreview(data.img_url);
+      if (profileData.img_url) {
+        setPreview(profileData.img_url);
       }
 
-      setValidPhone(validatePhone(data.contact_number));
-      setValidURL(validateURL(data.homepage_link));
+      setValidPhone(validatePhone(profileData.contact_number));
+      setValidURL(validateURL(profileData.homepage_link));
     }
-  }, [data, setPreview]);
+  }, [profileData, setPreview]);
 
   // 상태 업데이트 핸들러
   const handleNameChange = (name: string) => setCenterName(name);
@@ -67,9 +68,7 @@ const useEditCenterProfile = () => {
     handleURLChange,
     handleIntroductionChange,
     validURL,
-    validPhone,
-    isLoading,
-    error
+    validPhone
   };
 };
 
