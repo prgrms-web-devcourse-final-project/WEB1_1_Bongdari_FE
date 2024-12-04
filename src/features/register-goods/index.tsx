@@ -12,8 +12,8 @@ const RegisterGoods = () => {
   return (
     <SectionBox>
       <RegisterTitleSection>
-        <ResisterTitle>필요품 등록</ResisterTitle>
-        <Tooltip title={`기관에 필요한 물품을 직접 입력해 등록해보세요(예: 어린이 동화 10권)`} arrow>
+        <ResisterTitle>기관 선호물품 등록</ResisterTitle>
+        <Tooltip title={`기관에 필요한 물품을 직접 입력해 등록해보세요 (예: 어린이 동화 10권 or 옷 5벌)`} arrow>
           <Button style={{ paddingLeft: 0 }}>
             <TooltipBorder>
               <i className="fa-solid fa-exclamation"></i>
