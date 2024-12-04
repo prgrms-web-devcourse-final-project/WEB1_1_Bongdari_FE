@@ -8,16 +8,13 @@ export const Wrapper = styled.div`
   padding: 250px 0;
 
   .innerWrap {
-    margin-top: 20%;
     max-width: 460px;
     width: 90%;
-    min-height: 100vh;
     margin: 0 auto;
   }
 
   .tabWrap {
     width: 200px;
-    padding: 10px;
   }
 
   .title {
