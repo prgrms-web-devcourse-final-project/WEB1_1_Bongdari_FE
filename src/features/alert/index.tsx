@@ -1,7 +1,12 @@
 import AlertItem from '@/components/alert-item';
 import { Container, Top, Wrapper } from './indexCss';
+import { AlertType } from '@/shared/types/alert-type/AlertType';
 
-const Alert = () => {
+interface AlertProps {
+  notifications: AlertType[];
+}
+
+const Alert: React.FC<AlertProps> = ({ notifications }) => {
   const data = [
     {
       id: 123,
