@@ -1,17 +1,26 @@
 import { create } from 'zustand';
 
+const initialState = {
+  keyword: '',
+  category: '',
+  region: null,
+  admitted: null,
+  sort: '',
+  status: ''
+};
+
 interface SearchState {
   keyword: string;
-  type: string;
-  region: string;
-  admitted: string;
+  category: string;
+  region: string | null;
+  admitted: null | boolean;
   sort: string;
   status: string;
   // 상태 업데이트 함수들
   setKeyword: (keyword: string) => void;
-  setType: (type: string) => void;
-  setRegion: (region: string) => void;
-  setAdmitted: (admitted: string) => void;
+  setCategory: (type: string) => void;
+  setRegion: (region: string | null) => void;
+  setAdmitted: (admitted: boolean) => void;
   setSort: (sort: string) => void;
   setStatus: (status: string) => void;
   // 전체 상태를 한번에 업데이트하는 함수
@@ -21,7 +30,7 @@ interface SearchState {
         SearchState,
         | 'setSearchState'
         | 'setKeyword'
-        | 'setType'
+        | 'setCategory'
         | 'setRegion'
         | 'setAdmitted'
         | 'setSort'
@@ -34,20 +43,11 @@ interface SearchState {
   resetSearch: () => void;
 }
 
-const initialState = {
-  keyword: '',
-  type: '',
-  region: '',
-  admitted: '',
-  sort: '',
-  status: ''
-};
-
 const useAdminSearchStore = create<SearchState>((set) => ({
   ...initialState,
 
   setKeyword: (keyword) => set({ keyword }),
-  setType: (type) => set({ type }),
+  setCategory: (category) => set({ category }),
   setRegion: (region) => set({ region }),
   setAdmitted: (admitted) => set({ admitted }),
   setSort: (sort) => set({ sort }),

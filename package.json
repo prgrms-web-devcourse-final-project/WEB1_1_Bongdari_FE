@@ -25,6 +25,7 @@
     "react-intersection-observer": "^9.13.1",
     "react-kakao-maps-sdk": "^1.1.27",
     "react-router-dom": "^6.28.0",
+    "react-toastify": "^10.0.6",
     "styled-components": "^6.1.13",
     "styled-reset": "^4.5.2",
     "zustand": "^5.0.1"

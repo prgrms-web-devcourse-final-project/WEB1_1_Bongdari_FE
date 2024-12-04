@@ -3,15 +3,15 @@ import { create } from 'zustand';
 interface SearchState {
   keyword: string;
   category: string;
-  region: string;
-  admitted: string;
+  region: string | null;
+  admitted: null | boolean;
   sort: string;
   status: string;
   // 상태 업데이트 함수들
   setKeyword: (keyword: string) => void;
   setCategory: (category: string) => void;
-  setRegion: (region: string) => void;
-  setAdmitted: (admitted: string) => void;
+  setRegion: (region: string | null) => void;
+  setAdmitted: (admitted: null | boolean) => void;
   setSort: (sort: string) => void;
   setStatus: (status: string) => void;
   // 전체 상태를 한번에 업데이트하는 함수
@@ -37,8 +37,8 @@ interface SearchState {
 const initialState = {
   keyword: '',
   category: '',
-  region: '',
-  admitted: '',
+  region: null,
+  admitted: null,
   sort: '',
   status: ''
 };
