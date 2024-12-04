@@ -19,7 +19,7 @@ interface personProfileDetailType {
   contactNumber: string;
 }
 
-export interface heartedOrgType {
+export interface interestCenterType {
   id: string;
   name: string;
   imgUrl?: string;
