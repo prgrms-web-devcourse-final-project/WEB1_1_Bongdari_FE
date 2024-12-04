@@ -1,9 +1,15 @@
 import { http, HttpResponse } from 'msw';
 
+// post 요청 body 타입 정의
+interface PreferItemRequest {
+  item_name: string;
+}
+
 export const centerHandlers = [
   http.get('https://somemore.site/api/center/profile/:centerId', ({ params }) => {
     const { centerId } = params;
 
+    // 기관 프로필 get
     return HttpResponse.json({
       code: 200,
       message: '조회 성공',
@@ -27,6 +33,21 @@ export const centerHandlers = [
             itemName: '옷 10벌'
           }
         ]
+      }
+    });
+  }),
+
+  // 기관 마이페이지 선호물품 post
+  http.post('https://somemore.site/api/preferItem', async ({ request }) => {
+    const requestData = (await request.json()) as PreferItemRequest;
+
+    return HttpResponse.json({
+      code: 200,
+      message: '요청 성공',
+      data: {
+        id: 111,
+        center_id: 'B84733D0-AE17-11EF-AA15-0A855994FB4B',
+        item_name: requestData.item_name
       }
     });
   })

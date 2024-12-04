@@ -1,20 +1,17 @@
 import axiosInstance from '@/api/apis';
 import { useMutation } from '@tanstack/react-query';
-import type { AxiosResponse } from 'axios';
 
 export interface PreferItemResponse {
-  data: {
-    id: number;
-    center_id: string;
-    item_name: string;
-  };
+  id: number;
+  center_id: string;
+  item_name: string;
 }
 
 // TODO: GET fetch 함수 구현
 
 // 물품 POST fetch 함수
-const addPreferItem = async (itemName: string): Promise<AxiosResponse<PreferItemResponse>> => {
-  const response = await axiosInstance.post('/api/preferItem', {
+const addPreferItem = async (itemName: string): Promise<PreferItemResponse> => {
+  const response = await axiosInstance.post<PreferItemResponse>('/api/preferItem', {
     item_name: itemName
   });
 

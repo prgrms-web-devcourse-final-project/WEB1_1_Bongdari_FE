@@ -1,9 +1,13 @@
 import type { centerPreferItemType } from '@/shared/types/center-profile/centerProfile';
+import { usePreferItem } from '@/store/queries/center-mypage/usePreferItems';
 import { useState } from 'react';
 
 const useHandleItem = (preferData: centerPreferItemType[]) => {
   const [currentInput, setCurrentInput] = useState(''); // 입력된 값
   const [goodsList, setGoodsList] = useState<centerPreferItemType[]>(preferData); // 이미 등록된 값 리스트
+
+  // api 훅 불러오기
+  const { addItem, isLoading } = usePreferItem();
 
   const handleAddGoods = () => {
     if (!currentInput.trim()) {
@@ -15,7 +19,22 @@ const useHandleItem = (preferData: centerPreferItemType[]) => {
       return;
     }
 
-    setCurrentInput('');
+    // 물품 등록
+    addItem(currentInput, {
+      onSuccess: (response) => {
+        const newItem: centerPreferItemType = {
+          id: response.id,
+          centerId: response.center_id,
+          itemName: response.item_name
+        };
+        setGoodsList((prev) => [...prev, newItem]);
+        setCurrentInput('');
+      },
+      onError: (error) => {
+        console.error('물픔 등록 실패...............', error);
+        alert('물품 등록 중 오류가 발생했습니다. 다시 시도해주세요.');
+      }
+    });
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -34,7 +53,8 @@ const useHandleItem = (preferData: centerPreferItemType[]) => {
     setCurrentInput,
     handleAddGoods,
     handleKeyPress,
-    handleDeleteGoods
+    handleDeleteGoods,
+    isLoading
   };
 };
 
