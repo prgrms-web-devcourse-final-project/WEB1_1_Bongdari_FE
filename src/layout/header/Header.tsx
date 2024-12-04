@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { AlertBox, AlertPositioning, Contents, Logo, Menu, Wrapper } from './HeaderCss';
 import Alert from '@/features/alert';
@@ -8,22 +9,23 @@ import { AlertType } from '@/shared/types/alert-type/AlertType';
 
 export default function Header() {
   const [alertState, setAlertState] = useState(false);
-  const [notifications, setNotifications] = useState<AlertType[]>([]);
   const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
 
   useEffect(() => {
     let eventSource: EventSource;
 
     const connectSSE = () => {
-      // SSE 연결 설정
       eventSource = new EventSource(`${import.meta.env.VITE_APP_BASE_URL}/api/sse/subscribe`, {
-        withCredentials: true // 쿠키를 포함 요청
+        withCredentials: true
       });
 
-      // 알림 메시지 수신 시 처리
       eventSource.onmessage = (event) => {
-        const newNotification = JSON.parse(event.data);
-        setNotifications((prev) => [...prev, newNotification]);
+        const newNotification: AlertType = JSON.parse(event.data);
+        // 새 알림이 오면 토스트 메시지 표시
+        toast.info(newNotification.title, {
+          position: 'top-right',
+          autoClose: 5000
+        });
       };
 
       // 연결 에러 처리
@@ -54,7 +56,7 @@ export default function Header() {
           <Logo>SOMEMORE</Logo>
         </Link>
         <Menu>
-          <AlertPositioning>{alertState && <Alert notifications={notifications}></Alert>}</AlertPositioning>
+          <AlertPositioning>{alertState && <Alert></Alert>}</AlertPositioning>
           <AlertBox
             onClick={() => {
               setAlertState((prev) => !prev);
