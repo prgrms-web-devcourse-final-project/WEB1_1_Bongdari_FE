@@ -4,14 +4,14 @@ interface SearchState {
   keyword: string;
   category: string;
   region: string;
-  admitted: string;
+  admitted: null | boolean;
   sort: string;
   status: string;
   // 상태 업데이트 함수들
   setKeyword: (keyword: string) => void;
   setCategory: (category: string) => void;
   setRegion: (region: string) => void;
-  setAdmitted: (admitted: string) => void;
+  setAdmitted: (admitted: null | boolean) => void;
   setSort: (sort: string) => void;
   setStatus: (status: string) => void;
   // 전체 상태를 한번에 업데이트하는 함수
@@ -38,7 +38,7 @@ const initialState = {
   keyword: '',
   category: '',
   region: '',
-  admitted: '',
+  admitted: null,
   sort: '',
   status: ''
 };

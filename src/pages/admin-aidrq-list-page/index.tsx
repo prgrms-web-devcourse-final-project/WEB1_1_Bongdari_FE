@@ -3,48 +3,27 @@ import WriteAidReqButtonComponent from '@/components/write-aidreq-button';
 import { PageWrapper, Title } from './indexCss';
 import TabButtonGroup from '@/components/tab-button';
 import AidRqAdminListWrapper from './_components/aidrqlistadmin-wrapper';
-import { useLocation } from 'react-router-dom';
-import useSearchStore from '@/store/stores/search/searchStore';
 import useAdminSearchStore from '@/store/stores/admin-search/searchStore';
-import { useEffect } from 'react';
+import useChangeStatusTab from '@/shared/hooks/useChangeStatusTab';
+import { useInfiniteCenterBoards } from '@/shared/hooks/useCenterInfiniteAidRq';
 
 const AdminAidRqListPage = () => {
-  const tabs = [{ label: '모집중' }, { label: '모집완료' }, { label: '종료' }];
+  const centerId = 'B8473384-AE17-11EF-AA15-0A855994FB4B'; // TODO: centerId를 동적으로 받아오도록 수정 필요
+  const { handleTabChange } = useChangeStatusTab();
+  const { keyword, category, region, admitted, sort, status } = useAdminSearchStore();
 
-  const handleTabChange = () => {
-    console.log('TODO: 실행함수 넣기');
-  };
-
-  const handleSearchAidRequests = () => {
-    // api 호출 로직 와야 함
-    console.log('요청 검색 실행');
-  };
-
-  // store 확인용 - 삭제 예정 ----------------------------------------
-  const location = useLocation();
-
-  const searchState = useSearchStore((state) => state);
-  const adminSearchState = useAdminSearchStore((state) => state);
-
-  useEffect(() => {
-    console.log('Search Store State:', searchState.keyword);
-    console.log('Admin Search Store State:', adminSearchState.keyword);
-  }, [searchState, adminSearchState]);
-
-  console.log('현재 경로', location.pathname);
-  console.log(
-    '사용하고 있는 store 확인:',
-    location.pathname === '/aidrqlist' ? 'AidRqList Store' : 'AdminAidRqList Store'
-  );
-  // -----------------------------------------------------------------
+  const { searchAidRequests } = useInfiniteCenterBoards(centerId, keyword, category, region, admitted, sort, status);
 
   return (
     <PageWrapper>
       <Title>내가 등록한 도움요청 글</Title>
       <WriteAidReqButtonComponent />
-      <FilterSearchBar searchAidRequests={handleSearchAidRequests} />
-      <TabButtonGroup tabs={tabs} onTabChange={handleTabChange} />
-      <AidRqAdminListWrapper />
+      <FilterSearchBar searchAidRequests={searchAidRequests} />
+      <TabButtonGroup
+        onTabChange={handleTabChange}
+        tabs={[{ label: '모집중' }, { label: '모집완료' }, { label: '모집종료' }]}
+      />
+      <AidRqAdminListWrapper centerId={centerId} />
     </PageWrapper>
   );
 };

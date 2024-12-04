@@ -5,8 +5,8 @@ import AidRqCertifiedLabel from '@/components/label/AidRqCertifiedLabel';
 interface TopProps {
   title: string;
   content: string;
-  center: {
-    name: string;
+  center?: {
+    name?: string;
   };
   category: string;
   admitted: boolean;
@@ -20,7 +20,7 @@ const Top = ({ title, content, center, category, admitted }: TopProps) => {
       </LabelContainer>
       <Title>{title}</Title>
       <Text>{content}</Text>
-      <Center>{center.name}</Center>
+      <Center>{center?.name}</Center>
     </Wrapper>
   );
 };

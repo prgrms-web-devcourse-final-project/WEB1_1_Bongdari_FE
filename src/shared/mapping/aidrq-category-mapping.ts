@@ -16,3 +16,12 @@ const aidrqCategoryMapping: { [key: string]: string } = {
 };
 
 export default aidrqCategoryMapping;
+
+// 역방향 매칭 생성 -> 프론트엔드에서 표시만 하는 기능이므로 백엔드와 통신할 때는 그대로 영문 코드로 통신
+export const categoryToKorean: { [key: string]: string } = Object.entries(aidrqCategoryMapping).reduce(
+  (acc, [korean, english]) => ({
+    ...acc,
+    [english]: korean
+  }),
+  {}
+);
