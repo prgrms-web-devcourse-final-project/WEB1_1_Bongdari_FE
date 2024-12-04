@@ -1,16 +1,21 @@
 import LongListItem from '@/components/long-list-item';
 import { Bottom, Title, Top, Wrapper } from './indexCss';
-
-const dummyData = [
-  ['1', '서울도서관봉사활동', '김민준', '2024.11.29'],
-  ['1', '서울도서관봉사활동', '김민준', '2024.11.29'],
-  ['1', '서울도서관봉사활동', '김민준', '2024.11.29'],
-  ['1', '서울도서관봉사활동', '김민준', '2024.11.29'],
-  ['1', '서울도서관봉사활동', '김민준', '2024.11.29'],
-  ['1', '서울도서관봉사활동', '김민준', '2024.11.29']
-];
+import { useMainCommunity } from './logic/fetchMainCommunity';
+import { communityListType } from '@/shared/types/community-type/CommuntiyTypes';
+import { useEffect } from 'react';
 
 const Community = () => {
+  const { data, isLoading, error } = useMainCommunity();
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
+  if (isLoading) return <div>로딩 중...</div>;
+  if (error) return <div>에러 발생!</div>;
+
+  const mainCommunity: communityListType[] = data?.content.slice(0, 6) || [];
+
   return (
     <Wrapper>
       <Top>
@@ -18,13 +23,13 @@ const Community = () => {
         <button>더보기</button>
       </Top>
       <Bottom>
-        {dummyData.map((item) => (
+        {mainCommunity.map((item, index) => (
           <LongListItem
-            key={item[0]}
-            content_id={item[0]}
-            mainText={item[1]}
-            mailWriter={item[2]}
-            modifiedDate={item[3]}
+            key={index}
+            content_id={item.id.toString()}
+            mainText={item.title}
+            mailWriter={item.write_nickname}
+            modifiedDate={item.created_at.toString()}
             getContentId={(id) => {
               console.log(id);
             }}></LongListItem>
