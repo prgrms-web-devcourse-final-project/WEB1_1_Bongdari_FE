@@ -11,7 +11,7 @@ interface CenterResponse {
 export const fetchCenterProfile = async (setCenterData: Dispatch<SetStateAction<CenterResponse | null>>) => {
   try {
     const response = await axios.get(
-      'http://54.180.201.20:8080/api/center/profile/B8472AE7-AE17-11EF-AA15-0A855994FB4B'
+      `${import.meta.env.VITE_APP_BASE_URL}/api/center/profile/B8472AE7-AE17-11EF-AA15-0A855994FB4B`
     );
     setCenterData(response.data);
   } catch (error) {

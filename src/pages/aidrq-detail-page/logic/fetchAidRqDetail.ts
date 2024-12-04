@@ -11,7 +11,7 @@ interface ApiResponse {
 
 export const fetchAidRqDetail = async (setData: Dispatch<SetStateAction<ApiResponse | null>>) => {
   try {
-    const response = await axios.get('http://54.180.201.20:8080/api/recruit-board/1');
+    const response = await axios.get(`${import.meta.env.VITE_APP_BASE_URL}/api/recruit-board/1`);
     setData(response.data);
   } catch (error) {
     console.error('Error:', error);
