@@ -59,3 +59,24 @@ export const Menu = styled.ul`
     }
   }
 `;
+
+export const AlertBox = styled.li`
+  width: 50px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & > img {
+    width: 18px;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const AlertPositioning = styled.div`
+  position: relative;
+  height: 100%;
+`;
