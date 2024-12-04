@@ -1,6 +1,7 @@
+import { useNavigate } from 'react-router-dom';
+
 import AidRqListShort from '@/features/aidrq-list-main-page';
 import { Bottom, Title, Top, Wrapper } from './indexCss';
-import { useNavigate } from 'react-router-dom';
 
 const AidRqRecentList = () => {
   const navigate = useNavigate();
