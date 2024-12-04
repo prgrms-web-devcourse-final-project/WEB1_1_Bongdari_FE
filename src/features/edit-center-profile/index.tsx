@@ -12,11 +12,11 @@ import useEditCenterProfile from './logic/useEditCenterProfile';
 import useSubmitCenterProfile from './logic/useSubmitCenterProfile';
 import type { centerProfileType } from '@/shared/types/center-profile/centerProfile';
 
-interface UseEditCenterProfileProps {
+interface EditCenterProfileProps {
   profileData: centerProfileType;
 }
 
-const EditCenterProfile = ({ profileData }: UseEditCenterProfileProps) => {
+const EditCenterProfile = ({ profileData }: EditCenterProfileProps) => {
   const {
     preview,
     handleImageUpload,
@@ -33,9 +33,13 @@ const EditCenterProfile = ({ profileData }: UseEditCenterProfileProps) => {
     validPhone
   } = useEditCenterProfile({ profileData });
 
-  const { isSubmitting, handleEditProfile } = useSubmitCenterProfile();
+  const { handleEditProfile, isSubmitting } = useSubmitCenterProfile();
 
   const handleEditButton = () => {
+    if (!centerName.trim()) {
+      alert('기관명을 입력해주세요.');
+      return;
+    }
     handleEditProfile(centerName, centerPhone, centerURL, centerIntroduction, preview, validURL, validPhone);
   };
 
@@ -63,7 +67,12 @@ const EditCenterProfile = ({ profileData }: UseEditCenterProfileProps) => {
           />
         </ProfileEditWrapper>
         <EditButtonContainer>
-          <OtherButton label="수정하기" width="220px" onClick={handleEditButton} disabled={isSubmitting} />
+          <OtherButton
+            label="수정하기"
+            width="220px"
+            onClick={handleEditButton}
+            disabled={isSubmitting || !validURL || !validPhone || !centerName.trim()}
+          />
         </EditButtonContainer>
       </SectionBox>
     </CenterProfileEditContainer>
