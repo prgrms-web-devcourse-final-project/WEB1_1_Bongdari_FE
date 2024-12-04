@@ -5,7 +5,7 @@ interface AidRequestParams {
   page: number;
   keyword?: string;
   category?: string;
-  region?: string;
+  region?: string | null;
   admitted?: null | boolean;
   sort?: string;
   status?: string;
@@ -34,7 +34,7 @@ const fetchAidRequests = async ({ page, keyword, category, region, admitted, sor
 export const useInfiniteAidRq = (
   keyword: string,
   category: string,
-  region: string,
+  region: string | null,
   admitted: null | boolean,
   sort: string,
   status: string
