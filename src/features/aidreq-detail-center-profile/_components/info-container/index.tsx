@@ -13,7 +13,7 @@ const InfoContainer: React.FC<InfoContainerProps> = ({ centerProfile }) => {
     <Wrapper>
       <InterestHeartBtn
         center_id={centerProfile.center_id}
-        firstState={centerProfile.interest}
+        firstState={centerProfile.interest ?? false}
         top={'0px'}
         right={'100px'}
       />

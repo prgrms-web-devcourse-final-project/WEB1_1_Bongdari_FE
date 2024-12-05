@@ -43,7 +43,7 @@ const ProfileImgBox: React.FC<ProfileImgBoxProps> = (props) => {
 
     return (
       <ProfileImgBoxCss id={center_id}>
-        <InterestHeartBtn center_id={center_id} firstState={interest} top={'15px'} right={'15px'} />
+        <InterestHeartBtn center_id={center_id} firstState={interest ?? false} top={'15px'} right={'15px'} />
         <img src={img_url} alt="" />
         <p>
           <i>{name}</i>
