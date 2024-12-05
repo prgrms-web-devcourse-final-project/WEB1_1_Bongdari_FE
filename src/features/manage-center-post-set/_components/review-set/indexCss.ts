@@ -22,7 +22,7 @@ export const ReviewSetTitle = styled.p`
   cursor: default;
 `;
 
-export const ReviewList = styled.ul`
+export const ReviewListCss = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -49,7 +49,7 @@ export const Author = styled.p`
   color: #a4a4a4;
 `;
 
-export const CustomPagination = styled(Pagination)`
+export const CustomPaginationCss = styled(Pagination)`
   .MuiPaginationItem-root.Mui-selected {
     background-color: ${theme.pointColor.Regular};
     color: #ffffff;

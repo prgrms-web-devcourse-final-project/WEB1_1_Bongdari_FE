@@ -8,11 +8,12 @@ interface CenterResponse {
   data: centerProfileType;
 }
 
-export const fetchCenterProfile = async (setCenterData: Dispatch<SetStateAction<CenterResponse | null>>) => {
+export const fetchCenterProfile = async (
+  setCenterData: Dispatch<SetStateAction<CenterResponse | null>>,
+  centerId: string
+) => {
   try {
-    const response = await axios.get(
-      `${import.meta.env.VITE_APP_BASE_URL}/api/center/profile/B8472AE7-AE17-11EF-AA15-0A855994FB4B`
-    );
+    const response = await axios.get(`${import.meta.env.VITE_APP_BASE_URL}/api/center/profile/${centerId}`);
     setCenterData(response.data);
   } catch (error) {
     console.error('Error:', error);

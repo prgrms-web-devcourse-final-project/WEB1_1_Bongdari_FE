@@ -3,11 +3,10 @@ import Stack from '@mui/material/Stack';
 import Select from '@/components/select';
 import {
   Author,
-  CustomPagination,
+  CustomPaginationCss,
   ItemTitle,
   ListItem,
-  NoReview,
-  ReviewList,
+  ReviewListCss,
   ReviewSetTitle,
   TitleContainer,
   Wrapper
@@ -57,16 +56,33 @@ const ReviewSet = ({ centerId }: ReviewSetProps) => {
           <Select text="활동 유형" data={categoryOptions} getSelectedOption={handleSelectedOption} />
         </TitleContainer>
         <ReviewList>
-          {data?.reviews.map((review) => (
-            <ListItem key={review.id}>
-              <ItemTitle onClick={() => handleReviewModal(review)}>{review.title}</ItemTitle>
-              <Author>{review.volunteer_nickname}</Author>
-            </ListItem>
-          ))}
-          {(!data?.reviews || data.reviews.length === 0) && <NoReview>등록된 리뷰가 없습니다.</NoReview>}
+          <ListItem>
+            <ItemTitle onClick={handleReviewModal}>서울도서관은 아주 유명한 도서관임</ItemTitle>
+            <Author>글쓴이</Author>
+          </ListItem>
+          <ListItem>
+            <ItemTitle onClick={handleReviewModal}>서울도서관은 아주 유명한 도서관임</ItemTitle>
+            <Author>글쓴이</Author>
+          </ListItem>
+          <ListItem>
+            <ItemTitle onClick={handleReviewModal}>서울도서관은 아주 유명한 도서관임</ItemTitle>
+            <Author>글쓴이</Author>
+          </ListItem>
+          <ListItem>
+            <ItemTitle onClick={handleReviewModal}>서울도서관은 아주 유명한 도서관임</ItemTitle>
+            <Author>글쓴이</Author>
+          </ListItem>
+          <ListItem>
+            <ItemTitle onClick={handleReviewModal}>서울도서관은 아주 유명한 도서관임</ItemTitle>
+            <Author>글쓴이</Author>
+          </ListItem>
+          <ListItem>
+            <ItemTitle onClick={handleReviewModal}>서울도서관은 아주 유명한 도서관임</ItemTitle>
+            <Author>글쓴이</Author>
+          </ListItem>
         </ReviewList>
         <Stack spacing={2} sx={{ margin: 'auto' }}>
-          <CustomPagination count={data?.pagination.totalPages || 1} page={displayPage} onChange={handlePageChange} />
+          <CustomPagination count={5} />
         </Stack>
       </Wrapper>
       {openReviewModal && <ReviewReadModal handleReviewModal={handleReviewModal} review={selectedReview} />}

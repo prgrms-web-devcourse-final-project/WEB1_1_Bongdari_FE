@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { CommuntiyListCss } from './indexCss';
 import LongListItem from '@/components/long-list-item';
-import { CustomPagination } from '../manage-center-post-set/_components/review-set/indexCss';
 import { SubmitButton } from '@/components/button';
+import CustomPagination from '@/features/custom-pagnation';
 
 const CommuntiyList = () => {
   const tmpdata = [

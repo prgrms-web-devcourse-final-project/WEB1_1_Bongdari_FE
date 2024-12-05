@@ -20,7 +20,9 @@ const AidRqList: React.FC<AidRqListProps> = ({ finalData }) => {
             key={request.id}
             width="calc((100% - 20px) / 3)"
             onClick={() => {
-              navigate(`/aidrqdetail`);
+              navigate(`/aidrqdetail/${request.id}`, {
+                state: { centerId: request.center.id } //센터id는 state로 전달
+              });
             }}
             request={request}
           />
