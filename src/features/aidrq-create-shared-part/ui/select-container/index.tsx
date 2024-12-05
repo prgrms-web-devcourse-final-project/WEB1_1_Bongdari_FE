@@ -20,7 +20,23 @@ const SelectContainer: React.FC<SelectContainerProps> = ({
           text="활동유형을 선택해주세요."
           width="100%"
           height="50px"
-          data={['도서관', '양로원', '농촌봉사']}
+          data={[
+            '전체',
+            '생활편의지원',
+            '주거환경',
+            '상담',
+            '교육',
+            '보건의료',
+            '농어촌봉사',
+            '문화행사',
+            '환경보호',
+            '행정보조',
+            '안전예방',
+            '공익인권',
+            '재해재난',
+            '멘토링',
+            '기타'
+          ]}
           getSelectedOption={(text) => {
             getSelectedType(text);
           }}></Select>

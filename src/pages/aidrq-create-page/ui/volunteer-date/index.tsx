@@ -2,7 +2,7 @@ import AidRqCreateDate from '@/components/aidrq-create-date';
 import { Wrapper } from './indexCss';
 
 interface VolunteerDataProps {
-  getDate: (date: Date | null) => void;
+  getDate: (date: string | null) => void;
   label: string;
 }
 
