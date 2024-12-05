@@ -31,8 +31,8 @@ export const ButtonBox = styled.div<{ presentstate: PresentResponse | null }>`
     transition: 0.2s;
 
     &:hover {
-      cursor: ${(props) => (props.presentstate?.attended ? 'pointer' : '')};
-      background-color: ${(props) => (props.presentstate?.attended ? '#e2efff' : '#E2E2E2')};
+      cursor: ${(props) => (props.presentstate?.attended === true ? 'pointer' : '')};
+      background-color: ${(props) => (props.presentstate?.attended === true ? '#e2efff' : '#E2E2E2')};
     }
   }
 
