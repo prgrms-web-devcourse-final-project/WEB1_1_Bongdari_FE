@@ -75,3 +75,10 @@ export const CustomPaginationCss = styled(Pagination)`
     }
   }
 `;
+
+export const NoReview = styled.div`
+  padding: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;

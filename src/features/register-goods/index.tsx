@@ -4,16 +4,21 @@ import { GoodsContainer, RegisterTitleSection, ResisterTitle, SectionBox, Toolti
 import GoodsItem from './_components/goods-item-box';
 import RegisterBar from './_components/register-bar';
 import useHandleItem from './logic/useAddItem';
+import type { centerPreferItemType } from '@/shared/types/center-profile/centerProfile';
 
-const RegisterGoods = () => {
+interface RegisterGoodsProps {
+  preferData: centerPreferItemType[];
+}
+
+const RegisterGoods = ({ preferData }: RegisterGoodsProps) => {
   const { goodsList, currentInput, setCurrentInput, handleAddGoods, handleKeyPress, handleDeleteGoods } =
-    useHandleItem();
+    useHandleItem(preferData);
 
   return (
     <SectionBox>
       <RegisterTitleSection>
-        <ResisterTitle>필요품 등록</ResisterTitle>
-        <Tooltip title={`기관에 필요한 물품을 직접 입력해 등록해보세요(예: 어린이 동화 10권)`} arrow>
+        <ResisterTitle>기관 선호물품 등록</ResisterTitle>
+        <Tooltip title={`기관에 필요한 물품을 직접 입력해 등록해보세요 (예: 어린이 동화 10권 or 옷 5벌)`} arrow>
           <Button style={{ paddingLeft: 0 }}>
             <TooltipBorder>
               <i className="fa-solid fa-exclamation"></i>
@@ -23,7 +28,7 @@ const RegisterGoods = () => {
       </RegisterTitleSection>
       <GoodsContainer>
         {goodsList.map((item) => (
-          <GoodsItem key={item.id} id={item.id} itemName={item.itemName} onDelete={handleDeleteGoods} />
+          <GoodsItem key={item.id} prefer_item_id={item.id} item_name={item.itemName} onDelete={handleDeleteGoods} />
         ))}
       </GoodsContainer>
       <RegisterBar
