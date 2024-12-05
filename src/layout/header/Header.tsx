@@ -69,7 +69,7 @@ export default function Header() {
           <Link to="/findnearmyactivity" className="link">
             <li>주변활동찾기</li>
           </Link>
-          <Link to="/" className="link">
+          <Link to="/community" className="link">
             <li>커뮤니티</li>
           </Link>
           <Link to="/centermypage" className="link">
