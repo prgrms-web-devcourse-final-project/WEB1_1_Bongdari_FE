@@ -13,8 +13,8 @@ const UseMapLocation = ({ initialCenter, initialLevel }: UseMapLocationProps) =>
   // 지도 이동 후에 갱신될 위치값 -> 버튼을 클릭했을 때만 갱신될 수 있도록 구현
   const [updateCenter, setUpdateCenter] = useState<Coordinates | null>(null);
   const [position, setPosition] = useState<Coordinates | null>(null);
-  // 지도를 축소/확대해도 "현재 내 위치" 버튼을 클릭한다면 level 3으로 확대 -> 축소, 축소 -> 확대 되어 확대 레벨을 유지할 수 있게 상태 관리로 넣었습니다!
-  const [mapLevel, setMapLevel] = useState(5);
+  // 지도를 축소/확대해도 "현재 내 위치" 버튼을 클릭한다면 level 6으로 확대 -> 축소, 축소 -> 확대 되어 확대 레벨을 유지할 수 있게 상태 관리로 넣었습니다!
+  const [mapLevel, setMapLevel] = useState(6);
 
   const setCenterToMyPosition = () => {
     const options = {

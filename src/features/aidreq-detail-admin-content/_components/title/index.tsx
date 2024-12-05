@@ -2,19 +2,30 @@ import AidRqCategoryLabel from '@/components/label/AidRqCategoryLabel';
 import AidRqCertifiedLabel from '@/components/label/AidRqCertifiedLabel';
 import AidRqStateLabel from '@/components/label/AidRqStateLabel';
 import { ContentTitle, CurrentEdit, LabelContainer, TitleContainer } from './indexCss';
+import useDateFormat from '@/shared/hooks/useDateFormat';
+import { statusToKorean, type RecruitAPIState } from '@/shared/mapping/aid-recruit-status-mapping';
 
-const Title = () => {
+interface TitleProps {
+  title: string;
+  updateAt: string;
+  category: string;
+  status: RecruitAPIState;
+  admitted: boolean;
+}
+
+const Title = ({ title, updateAt, category, status, admitted }: TitleProps) => {
+  const { formatDate } = useDateFormat();
   return (
     <div>
       <LabelContainer>
-        <AidRqCategoryLabel text="도서관" />
-        <AidRqCertifiedLabel />
+        <AidRqCategoryLabel text={category} />
+        {admitted && <AidRqCertifiedLabel />}
       </LabelContainer>
       <TitleContainer>
-        <ContentTitle>서울 도서관 사서 도우미 모집</ContentTitle>
-        <AidRqStateLabel state="모집중" />
+        <ContentTitle>{title}</ContentTitle>
+        <AidRqStateLabel state={statusToKorean[status]} />
       </TitleContainer>
-      <CurrentEdit>최근수정일</CurrentEdit>
+      <CurrentEdit>최근 수정일: {formatDate(updateAt)}</CurrentEdit>
     </div>
   );
 };

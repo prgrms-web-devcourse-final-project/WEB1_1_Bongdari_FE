@@ -4,12 +4,37 @@ import ApplicantStatus from './_components/applicant-status';
 import ApplicationPeriod from './_components/application-period';
 import { Wrapper } from './indexCss';
 
-const AidReqDetailAdminInfo = () => {
+interface AidReqDetailAdminInfoProps {
+  recruitDetailData: {
+    created_at: string;
+    volunteer_start_date_time: string;
+    volunteer_end_date_time: string;
+    volunteer_time: string;
+    location: {
+      address: string;
+      latitude: number;
+      longitude: number;
+    };
+  };
+}
+const AidReqDetailAdminInfo = ({ recruitDetailData }: AidReqDetailAdminInfoProps) => {
   return (
     <Wrapper>
-      <ApplicationPeriod />
-      <ActivityTime />
-      <ActivityLocation />
+      <ApplicationPeriod
+        createdAt={recruitDetailData.created_at}
+        startDateTime={recruitDetailData.volunteer_start_date_time}
+        endDateTime={recruitDetailData.volunteer_end_date_time}
+      />
+      <ActivityTime
+        startDateTime={recruitDetailData.volunteer_start_date_time}
+        endDateTime={recruitDetailData.volunteer_end_date_time}
+        volunteerTime={recruitDetailData.volunteer_time}
+      />
+      <ActivityLocation
+        address={recruitDetailData.location.address}
+        latitude={recruitDetailData.location.latitude}
+        longitude={recruitDetailData.location.longitude}
+      />
       <ApplicantStatus />
     </Wrapper>
   );

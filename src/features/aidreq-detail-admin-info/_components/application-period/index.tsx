@@ -1,7 +1,19 @@
+import useDateFormat from '@/shared/hooks/useDateFormat';
 import { DateInfo, DateInfoWrap, DateTag, SectionBox2, TimeInfo, Title } from '../../indexCss';
 import { DueDate, InfoSubTitle, TitleBox } from './indexCss';
+import useCalculateDeadline from '@/shared/hooks/useRemainingDays';
 
-const ApplicationPeriod = () => {
+interface ApplicationPeriodProps {
+  createdAt: string;
+  startDateTime: string;
+  endDateTime: string;
+}
+
+const ApplicationPeriod = ({ createdAt, startDateTime, endDateTime }: ApplicationPeriodProps) => {
+  const { formatDateDot } = useDateFormat();
+  const { calculateRemainingDays } = useCalculateDeadline();
+
+  const remainingDays = calculateRemainingDays(endDateTime);
   return (
     <div>
       <TitleBox>
@@ -11,14 +23,14 @@ const ApplicationPeriod = () => {
       <SectionBox2>
         <DateInfoWrap>
           <DateInfo>
-            <DateTag>모집 시작일</DateTag> <TimeInfo>2024. 11. 18 15:00</TimeInfo>
+            <DateTag>모집 시작일</DateTag> <TimeInfo>{formatDateDot(createdAt)}</TimeInfo>
           </DateInfo>
           <DateInfo>
-            <DateTag>봉사 시작일</DateTag> <TimeInfo>2024. 11. 20 11:00</TimeInfo>
+            <DateTag>봉사 시작일</DateTag> <TimeInfo>{formatDateDot(startDateTime)}</TimeInfo>
           </DateInfo>
         </DateInfoWrap>
         <TimeInfo>
-          접수 마감 &nbsp;<DueDate>1</DueDate>&nbsp;일 남았습니다.
+          접수 마감 &nbsp;<DueDate>{remainingDays > 0 ? remainingDays : '마감'}</DueDate>&nbsp;일 남았습니다.
         </TimeInfo>
       </SectionBox2>
     </div>

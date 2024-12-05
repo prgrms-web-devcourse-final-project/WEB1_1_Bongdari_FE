@@ -22,7 +22,7 @@ const Bottom = ({ created_at, volunteer_start_date_time, volunteer_time }: Botto
       <AidTime>
         <p>활동 시간</p>
         {/* 분? 단위로 보내주는지 */}
-        <p>{volunteer_time && formatTime(volunteer_time)}</p>
+        <p>{volunteer_time && formatTime(volunteer_time)}시간</p>
       </AidTime>
     </Wrapper>
   );

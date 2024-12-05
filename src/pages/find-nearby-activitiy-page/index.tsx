@@ -15,7 +15,7 @@ const FindNearByActivityPage = () => {
         lat: 37.26577519,
         lng: 127.0368817
       },
-      initialLevel: 5
+      initialLevel: 6
     });
   const { activities, isLoading, handleSearch, refetch } = useNearbySearch(center);
   const { updateCenterMapMoved } = useMapControl({

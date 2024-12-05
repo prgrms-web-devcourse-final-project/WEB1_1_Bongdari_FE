@@ -4,10 +4,15 @@ import { PageWrapper } from './indexCss';
 import ManageCenterPostSet from '@/features/manage-center-post-set';
 import { useGetCenterProfile } from '@/store/queries/center-mypage/useCenterProfile';
 import type { centerProfileType } from '@/shared/types/center-profile/centerProfile';
+import { useLoginStore } from '@/store/stores/login/loginStore';
 
 const CenterMyPage = () => {
-  const centerId = 'B84733D0-AE17-11EF-AA15-0A855994FB4B';
-  const { data, isLoading, error } = useGetCenterProfile(centerId);
+  const centerId = useLoginStore((state) => state.myLoginId);
+  const { data, isLoading, error } = useGetCenterProfile(centerId || '');
+
+  if (!centerId) {
+    return <div>로그인이 필요한 서비스입니다.</div>;
+  }
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>에러 발생: ${error.message}</div>;
@@ -17,7 +22,7 @@ const CenterMyPage = () => {
 
   // API 응답 데이터를 centerProfileType 형식으로 변환
   const profileData: centerProfileType = {
-    center_id: data.centerId,
+    center_id: data.center_id,
     name: data.name,
     contact_number: data.contact_number,
     homepage_link: data.homepage_link,
