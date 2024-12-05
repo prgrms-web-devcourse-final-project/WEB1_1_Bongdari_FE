@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 export const testLoginCenter = async () => {
   try {
     const response = await axios.get(
-      `${import.meta.env.VITE_APP_BASE_URL}/api/develop/token/center/B8473384-AE17-11EF-AA15-0A855994FB4B`
+      `${import.meta.env.VITE_APP_BASE_URL}/api/develop/token/center/919027e3-0d51-4ad3-a80b-e3585179697b`
     );
     const token = response.data.message;
     console.log(token);
