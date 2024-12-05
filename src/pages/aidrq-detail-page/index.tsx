@@ -12,6 +12,7 @@ import ReviewCreateModal from '@/features/review-create-modal';
 import { fetchAidRqDetail } from './logic/fetchAidRqDetail';
 import { fetchCenterProfile } from './logic/fetchCenterProfile';
 import { applyAidRq } from './logic/applyAidRq';
+import { myPresentStatus } from './logic/myPresentStatus';
 
 interface ApiResponse {
   code: number;
@@ -36,6 +37,7 @@ const AidRqDetailPage = () => {
   useEffect(() => {
     fetchAidRqDetail(setData, id);
     fetchCenterProfile(setCenterData, centerId);
+    myPresentStatus();
   }, []);
 
   return (

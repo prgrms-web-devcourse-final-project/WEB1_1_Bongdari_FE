@@ -11,7 +11,7 @@ const PersonLogin = () => {
     //테스트용 함수
     try {
       await testLoginPerson();
-      setLoginInfo('1', 'person');
+      setLoginInfo('9a524bd3-2542-47f1-987f-8141704a6590', 'person');
     } catch (error) {
       console.error('Login failed:', error);
     }
