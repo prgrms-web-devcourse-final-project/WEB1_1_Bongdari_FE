@@ -37,7 +37,7 @@ const AidRqDetailPage = () => {
   const [centerData, setCenterData] = useState<CenterResponse | null>(null);
   const [reviewModalState, SetReviewModalState] = useState(false);
   const [presentState, setPresentState] = useState<PresentResponse | null>(null);
-  const myLoginId = useLoginStore((state) => state.myLoginId);
+  const myLoginState = useLoginStore((state) => state);
   const { id } = useParams();
   const location = useLocation();
   const centerId = location.state?.centerId;
@@ -45,7 +45,7 @@ const AidRqDetailPage = () => {
   useEffect(() => {
     fetchAidRqDetail(setData, id);
     fetchCenterProfile(setCenterData, centerId);
-    myPresentStatus(setPresentState, myLoginId, id);
+    myPresentStatus(setPresentState, myLoginState.myLoginId, id);
   }, []);
 
   useEffect(() => {
@@ -58,7 +58,7 @@ const AidRqDetailPage = () => {
       {centerData && <AidRqDetailCenterProfile data={centerData.data}></AidRqDetailCenterProfile>}
       {data && <TextContent data={data.data}></TextContent>}
       {data && <AidRqDetailInfo data={data.data}></AidRqDetailInfo>}
-      {data && (
+      {data && myLoginState.loginType === 'person' && (
         <ButtonBox presentstate={presentState}>
           <button
             onClick={() => {
