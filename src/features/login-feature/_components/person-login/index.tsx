@@ -2,7 +2,7 @@ import { PersonLoginCss } from './indexCss';
 
 const PersonLogin = () => {
   const onClickNaver = () => {
-    window.location.href = 'http://54.180.201.20:8080/oauth2/authorization/naver';
+    window.location.href = `${import.meta.env.VITE_APP_BASE_URL}/oauth2/authorization/naver`;
   };
 
   return (

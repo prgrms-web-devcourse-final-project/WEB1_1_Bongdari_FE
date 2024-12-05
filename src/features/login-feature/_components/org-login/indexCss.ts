@@ -13,8 +13,8 @@ export const OrgLoginCss = styled.div`
   }
   .inputWrap .label {
     display: inline-block;
-    padding: 10px;
-
+    padding-left: 10px;
+    padding-bottom: 10px;
     font-size: ${Theme.fontSize.ninthSize};
     font-weight: 500;
     color: #6f6f6f;
@@ -32,7 +32,7 @@ export const OrgLoginCss = styled.div`
   .btnWrap {
     width: 100%;
 
-    margin: 50px 0 30px;
+    margin: 20px 0 30px;
     display: flex;
     justify-content: space-between;
   }
