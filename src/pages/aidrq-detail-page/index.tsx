@@ -13,6 +13,7 @@ import { fetchAidRqDetail } from './logic/fetchAidRqDetail';
 import { fetchCenterProfile } from './logic/fetchCenterProfile';
 import { applyAidRq } from './logic/applyAidRq';
 import { myPresentStatus } from './logic/myPresentStatus';
+import { useLoginStore } from '@/store/stores/login/loginStore';
 
 interface ApiResponse {
   code: number;
@@ -26,10 +27,17 @@ interface CenterResponse {
   data: centerProfileType;
 }
 
+interface PresentResponse {
+  status: string;
+  attended: boolean;
+}
+
 const AidRqDetailPage = () => {
   const [data, setData] = useState<ApiResponse | null>(null);
   const [centerData, setCenterData] = useState<CenterResponse | null>(null);
   const [reviewModalState, SetReviewModalState] = useState(false);
+  const [presentState, setPresentState] = useState<PresentResponse | null>(null);
+  const myLoginId = useLoginStore((state) => state.myLoginId);
   const { id } = useParams();
   const location = useLocation();
   const centerId = location.state?.centerId;
@@ -37,8 +45,12 @@ const AidRqDetailPage = () => {
   useEffect(() => {
     fetchAidRqDetail(setData, id);
     fetchCenterProfile(setCenterData, centerId);
-    myPresentStatus();
+    myPresentStatus(setPresentState, myLoginId, id);
   }, []);
+
+  useEffect(() => {
+    console.log(presentState);
+  }, [presentState]);
 
   return (
     <Wrapper>
@@ -47,7 +59,7 @@ const AidRqDetailPage = () => {
       {data && <TextContent data={data.data}></TextContent>}
       {data && <AidRqDetailInfo data={data.data}></AidRqDetailInfo>}
       {data && (
-        <ButtonBox>
+        <ButtonBox presentstate={presentState}>
           <button
             onClick={() => {
               SetReviewModalState(true);
@@ -56,7 +68,7 @@ const AidRqDetailPage = () => {
           </button>
           <button
             onClick={() => {
-              applyAidRq(id);
+              if (!presentState) applyAidRq(id);
             }}>
             지원하기
           </button>
