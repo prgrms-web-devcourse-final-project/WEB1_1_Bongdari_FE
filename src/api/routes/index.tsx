@@ -19,6 +19,7 @@ import CommunityDetailPage from '@/pages/community-detail-page';
 import CommunityListPage from '@/pages/community-list-page';
 import CommunityCreatePage from '@/pages/community-create-page';
 import FindNearByActivityPage from '@/pages/find-nearby-activitiy-page';
+import LandingPage from '@/pages/landing-page';
 
 const routes: RouteObject[] = [
   {
@@ -28,6 +29,10 @@ const routes: RouteObject[] = [
       {
         path: '/',
         element: <MainPage />
+      },
+      {
+        path: '/landing',
+        element: <LandingPage />
       },
       {
         path: '/aidrqlist',
