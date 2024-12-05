@@ -35,7 +35,7 @@ const CenterMyPage = () => {
     <PageWrapper>
       <EditCenterProfile profileData={profileData} />
       <RegisterGoods preferData={profileData.prefer_item || []} />
-      <ManageCenterPostSet />
+      <ManageCenterPostSet centerId={centerId} />
     </PageWrapper>
   );
 };

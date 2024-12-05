@@ -18,56 +18,41 @@ import {
 import { OtherButton } from '@/components/button';
 import theme from '@/styles/theme';
 import { useNavigate } from 'react-router-dom';
+import type { Review } from '@/store/queries/center-mypage/useReview';
+import useDateFormat from '@/shared/hooks/useDateFormat';
 
 interface ReviewModalProps {
   handleReviewModal: () => void;
+  review: Review | null;
 }
 
-const ReviewReadModal: React.FC<ReviewModalProps> = ({ handleReviewModal }) => {
+const ReviewReadModal: React.FC<ReviewModalProps> = ({ handleReviewModal, review }) => {
   const navigate = useNavigate();
+  const { formatDate } = useDateFormat();
+  if (!review) return null;
 
   return (
     <Modal variant="big" isOpen onClose={handleReviewModal}>
       <ModalContentWrapper>
         <ScrollSection>
           <ReviewTitleBox>
-            <ReviewTitle>리뷰 제목</ReviewTitle>
-            <CreatedAt>24.11.27</CreatedAt>
+            <ReviewTitle>{review.title}</ReviewTitle>
+            <CreatedAt>{formatDate(review.created_at)}</CreatedAt>
           </ReviewTitleBox>
           <ReviewImgBox>
-            <ReviewImg
-              src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcQL6Ep6EVRL41xNfUA0RONFqk9ghKvHVKyWJRGucLFACYTLXcOaZRodWPuCfnq0UKFRJLE3Thl0532w0TvBijTPxef4dd23o33TYvM38w"
-              alt="reviewImg"
-            />
+            {review.img_url && (
+              <ReviewImgBox>
+                <ReviewImg src={review.img_url} alt="reviewImg" />
+              </ReviewImgBox>
+            )}
           </ReviewImgBox>
-          <ReviewContent>
-            서울도서관은 아주 유명한 Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, consequuntur animi.
-            Architecto pariatur sapiente excepturi dolore ad natus, deleniti obcaecati quos. Aspernatur, delectus animi!
-            Minima ullam sit molestias ipsam harum.Lorem ipsum dolor sit amet, consectetur adipisicing elit. At,
-            consequuntur animi. Architecto pariatur sapiente excepturi dolore ad natus, deleniti obcaecati quos.
-            Aspernatur, delectus animi! Minima ullam sit molestias ipsam harum.Lorem ipsum dolor sit amet, consectetur
-            adipisicing elit. At, consequuntur animi. Architecto pariatur sapiente excepturi dolore ad natus, deleniti
-            obcaecati quos. Aspernatur, delectus animi! Minima ullam sit molestias ipsam harum.Lorem ipsum dolor sit
-            amet, consectetur adipisicing elit. At, consequuntur animi. Architecto pariatur sapiente excepturi dolore ad
-            natus, deleniti obcaecati quos. Aspernatur, delectus animi! Minima ullam sit molestias ipsam harum.Lorem
-            ipsum dolor sit amet, consectetur adipisicing elit. At, consequuntur animi. Architecto pariatur sapiente
-            excepturi dolore ad natus, deleniti obcaecati quos. Aspernatur, delectus animi! Minima ullam sit molestias
-            ipsam harum.Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, consequuntur animi. Architecto
-            pariatur sapiente excepturi dolore ad natus, deleniti obcaecati quos. Aspernatur, delectus animi! Minima
-            ullam sit molestias ipsam harum.Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, consequuntur
-            animi. Architecto pariatur sapiente excepturi dolore ad natus, deleniti obcaecati quos. Aspernatur, delectus
-            animi! Minima ullam sit molestias ipsam harum.Lorem ipsum dolor sit amet, consectetur adipisicing elit. At,
-            consequuntur animi. Architecto pariatur sapiente excepturi dolore ad natus, deleniti obcaecati quos.
-            Aspernatur, delectus animi! Minima ullam sit molestias ipsam harum.Lorem ipsum dolor sit amet, consectetur
-            adipisicing elit. At, consequuntur animi. Architecto pariatur sapiente excepturi dolore ad natus, deleniti
-            obcaecati quos. Aspernatur, delectus animi! Minima ullam sit molestias ipsam harum.
-          </ReviewContent>
+          <ReviewContent>{review.content}</ReviewContent>
           <ProfileBox>
             <ProfileInfo>
               <ImgWrapper>
                 <ProfileImg src="/public/assets/imgs/naver-logo.svg" alt="profileImg" />
               </ImgWrapper>
-              <NickName>710minjoon</NickName>
+              <NickName>{review.volunteer_nickname}</NickName>
               <GloveImg src="/public/assets/imgs/interest-button.svg" alt="tierGlove" />
             </ProfileInfo>
             <OtherButton
@@ -77,7 +62,7 @@ const ReviewReadModal: React.FC<ReviewModalProps> = ({ handleReviewModal }) => {
               fontSize={theme.fontSize.eighthSize}
               fontWeight="600"
               onClick={() => {
-                navigate(`/profile/1`);
+                navigate(`/profile/${review.volunteer_id}`);
               }}
             />
           </ProfileBox>

@@ -5,7 +5,11 @@ import GoAidReqSet from './_components/go-aidreq-set';
 import MessageSet from './_components/message-set';
 import ReviewSet from './_components/review-set';
 
-const ManageCenterPostSet = () => {
+interface ManageCenterPostSetProps {
+  centerId: string;
+}
+
+const ManageCenterPostSet = ({ centerId }: ManageCenterPostSetProps) => {
   const [selectedMenuItem, setSelectedMenuItem] = useState<number>(0);
   const [readStates, setReadStates] = useState<boolean[]>(Array(6).fill(false));
 
@@ -18,7 +22,7 @@ const ManageCenterPostSet = () => {
         ) : selectedMenuItem === 1 ? (
           <MessageSet readStates={readStates} setReadStates={setReadStates} />
         ) : (
-          <ReviewSet />
+          <ReviewSet centerId={centerId} />
         )}
       </SectionBox>
     </SectionWrapper>
