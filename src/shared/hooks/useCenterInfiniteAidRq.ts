@@ -22,7 +22,7 @@ const fetchCenterBoards = async ({
   sort,
   status
 }: AidRequestParams) => {
-  const response = await axios.get(`https://somemore.site/api/recruit-boards/center/${centerId}`, {
+  const response = await axios.get(`https://api.somemore.site/api/recruit-boards/center/${centerId}`, {
     params: {
       page,
       size: 6,
