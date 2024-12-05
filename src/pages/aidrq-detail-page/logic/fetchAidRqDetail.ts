@@ -9,10 +9,14 @@ interface ApiResponse {
   data: AidRqDetailType;
 }
 
-export const fetchAidRqDetail = async (setData: Dispatch<SetStateAction<ApiResponse | null>>) => {
+export const fetchAidRqDetail = async (
+  setData: Dispatch<SetStateAction<ApiResponse | null>>,
+  id: string | undefined
+) => {
   try {
-    const response = await axios.get(`${import.meta.env.VITE_APP_BASE_URL}/api/recruit-board/1`);
+    const response = await axios.get(`${import.meta.env.VITE_APP_BASE_URL}/api/recruit-board/${id}`);
     setData(response.data);
+    return response;
   } catch (error) {
     console.error('Error:', error);
   }

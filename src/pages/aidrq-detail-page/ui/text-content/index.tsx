@@ -11,7 +11,7 @@ const TextContent: React.FC<AidRqDetailCenterProfileProps> = ({ data }) => {
       <div>
         <Text>{data.content}</Text>
       </div>
-      <RecruitCount>예상 모집 인원 : {data.current_recruitment_count}명</RecruitCount>
+      <RecruitCount>예상 모집 인원 : {data.recruitment_count}명</RecruitCount>
     </Wrapper>
   );
 };
