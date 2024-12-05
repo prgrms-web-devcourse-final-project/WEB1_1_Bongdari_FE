@@ -1,5 +1,5 @@
 export interface centerProfileType {
-  center_id: number;
+  center_id: string;
   name: string;
   contact_number: string;
   homepage_link: string;
