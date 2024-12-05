@@ -2,7 +2,7 @@ import axiosInstance from '@/api/apis';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 
 export interface Review {
-  id: string;
+  id: number;
   volunteer_id: string;
   volunteer_nickname: string;
   title: string;
@@ -31,6 +31,12 @@ interface ReviewParams {
   category?: string;
 }
 
+interface ApiResponse {
+  code: number;
+  message: string;
+  data: Review;
+}
+
 const fetchCenterReviews = async ({ centerId, page, size, category }: ReviewParams): Promise<ReviewResponse> => {
   const params = new URLSearchParams({
     page: page.toString(),
@@ -43,6 +49,11 @@ const fetchCenterReviews = async ({ centerId, page, size, category }: ReviewPara
   }
 
   const response = await axiosInstance.get(`/api/reviews/center/${centerId}?${params}`);
+  return response.data;
+};
+
+const fetchReviewById = async (reviewId: number): Promise<ApiResponse> => {
+  const response = await axiosInstance.get<ApiResponse>(`/api/review/${reviewId}`);
   return response.data;
 };
 
@@ -61,5 +72,14 @@ export const useGetCenterReviews = ({ centerId, page = 0, size = 10, category }:
         isLast: data.data.last
       }
     })
+  });
+};
+
+//  단일 리뷰 get
+export const useGetReviewById = (reviewId: number | null) => {
+  return useQuery({
+    queryKey: ['review', reviewId],
+    queryFn: () => fetchReviewById(reviewId as number),
+    enabled: !!reviewId
   });
 };

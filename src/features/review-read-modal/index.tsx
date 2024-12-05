@@ -18,18 +18,30 @@ import {
 import { OtherButton } from '@/components/button';
 import theme from '@/styles/theme';
 import { useNavigate } from 'react-router-dom';
-import type { Review } from '@/store/queries/center-mypage/useReview';
 import useDateFormat from '@/shared/hooks/useDateFormat';
+import { useGetReviewById } from '@/store/queries/center-mypage/useReview';
+import { useGetOtherVolunteerProfile } from '@/store/queries/volunteer-profile/useVolunteerProfile';
 
 interface ReviewModalProps {
   handleReviewModal: () => void;
-  review: Review | null;
+  reviewId: number | null;
 }
 
-const ReviewReadModal: React.FC<ReviewModalProps> = ({ handleReviewModal, review }) => {
+const ReviewReadModal: React.FC<ReviewModalProps> = ({ handleReviewModal, reviewId }) => {
   const navigate = useNavigate();
   const { formatDate } = useDateFormat();
-  if (!review) return null;
+  const { data: reviewData, isLoading: isReviewLoading } = useGetReviewById(reviewId);
+  const { data: volunteerData, isLoading: isVolunteerLoading } = useGetOtherVolunteerProfile(
+    reviewData?.data?.volunteer_id ?? null
+  );
+
+  if (isReviewLoading || isVolunteerLoading) return <div>로딩중...</div>;
+  if (!reviewData?.data || !volunteerData?.data) return null;
+
+  const review = reviewData.data;
+  const volunteer = volunteerData.data;
+
+  // TODO: user defualt 이미지 들어오면 바꿔야 함
 
   return (
     <Modal variant="big" isOpen onClose={handleReviewModal}>
@@ -50,10 +62,10 @@ const ReviewReadModal: React.FC<ReviewModalProps> = ({ handleReviewModal, review
           <ProfileBox>
             <ProfileInfo>
               <ImgWrapper>
-                <ProfileImg src="/public/assets/imgs/naver-logo.svg" alt="profileImg" />
+                <ProfileImg src={volunteer.img_url || '/assets/imgs/user-icon.svg'} alt="profileImg" />
               </ImgWrapper>
-              <NickName>{review.volunteer_nickname}</NickName>
-              <GloveImg src="/public/assets/imgs/interest-button.svg" alt="tierGlove" />
+              <NickName>{volunteer.nickname}</NickName>
+              <GloveImg src={`/assets/imgs/tier-${volunteer.tier.toLowerCase()}.svg`} alt="tierGlove" />
             </ProfileInfo>
             <OtherButton
               label="프로필 확인하기"
@@ -62,7 +74,7 @@ const ReviewReadModal: React.FC<ReviewModalProps> = ({ handleReviewModal, review
               fontSize={theme.fontSize.eighthSize}
               fontWeight="600"
               onClick={() => {
-                navigate(`/profile/${review.volunteer_id}`);
+                navigate(`/profile/${volunteer.volunteer_id}`);
               }}
             />
           </ProfileBox>

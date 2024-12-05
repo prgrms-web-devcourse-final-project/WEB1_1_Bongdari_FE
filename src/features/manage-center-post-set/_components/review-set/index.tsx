@@ -28,7 +28,7 @@ const ReviewSet = ({ centerId }: ReviewSetProps) => {
   const { page, displayPage, handlePageChange, resetPage } = usePagination();
   const [category, setCategory] = useState('');
   const [openReviewModal, setOpenReviewModal] = useState(false);
-  const [selectedReview, setSelectedReview] = useState<Review | null>(null);
+  const [selectedReviewId, setSelectedReviewId] = useState<number | null>(null);
 
   const { data, isLoading } = useGetCenterReviews({
     centerId,
@@ -44,7 +44,7 @@ const ReviewSet = ({ centerId }: ReviewSetProps) => {
 
   const handleReviewModal = (review?: Review) => {
     if (review) {
-      setSelectedReview(review);
+      setSelectedReviewId(review.id);
     }
     setOpenReviewModal(!openReviewModal);
   };
@@ -73,7 +73,7 @@ const ReviewSet = ({ centerId }: ReviewSetProps) => {
           />
         </Stack>
       </Wrapper>
-      {openReviewModal && <ReviewReadModal handleReviewModal={handleReviewModal} review={selectedReview} />}
+      {openReviewModal && <ReviewReadModal handleReviewModal={handleReviewModal} reviewId={selectedReviewId} />}
       {isLoading && <div>로딩중...</div>}
     </>
   );
