@@ -1,8 +1,21 @@
+import { useLoginStore } from '@/store/stores/login/loginStore';
 import { PersonLoginCss } from './indexCss';
+import { testLoginPerson } from './logic/testLoginPerson';
 
 const PersonLogin = () => {
-  const onClickNaver = () => {
-    window.location.href = `${import.meta.env.VITE_APP_BASE_URL}/oauth2/authorization/naver`;
+  const setLoginInfo = useLoginStore((state) => state.setLoginInfo);
+
+  const onClickNaver = async () => {
+    // window.location.href = `${import.meta.env.VITE_APP_BASE_URL}/oauth2/authorization/naver`;
+
+    //테스트용 함수
+    try {
+      await testLoginPerson();
+      setLoginInfo('1', 'person');
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
+    //테스트용 함수
   };
 
   return (

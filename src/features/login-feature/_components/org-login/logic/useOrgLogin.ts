@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { testLoginCenter } from './testLoginCenter';
+import { useLoginStore } from '@/store/stores/login/loginStore';
 
 interface useOrgLoginReturn {
   idErr: string;
@@ -11,6 +13,8 @@ interface useOrgLoginReturn {
 }
 
 export const useOrgLogin = (): useOrgLoginReturn => {
+  const setLoginInfo = useLoginStore((state) => state.setLoginInfo);
+
   const [id, setId] = useState<string>('');
   const [pwd, setPwd] = useState<string>('');
   const [idErr, setIdErr] = useState<string>('');
@@ -35,9 +39,20 @@ export const useOrgLogin = (): useOrgLoginReturn => {
   const onClickFindAcount = () => {
     console.log('계정찾기 페이지로 이동');
   };
-  const onClickLogin = () => {
+  const onClickLogin = async () => {
     if (idErr !== '' || pwdErr !== '') console.log('id와 pwd 형식을 확인해주세요.');
-    else console.log(id, pwd, '로그인시도');
+    else {
+      console.log(id, pwd, '로그인시도');
+
+      //테스트용 함수
+      try {
+        await testLoginCenter();
+        setLoginInfo('B8473384-AE17-11EF-AA15-0A855994FB4B', 'center');
+      } catch (error) {
+        console.error('Login failed:', error);
+      }
+      //테스트용 함수
+    }
   };
   const onClickFirstVisit = () => {
     console.log('기업 첫 방문 페이지로 이동');

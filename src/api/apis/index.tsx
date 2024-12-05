@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_URL,
@@ -10,19 +11,27 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    // 요청 보내기 전에 수행 로직
+    // 쿠키에서 토큰 가져오기
+    const token = Cookies.get('personToken') || Cookies.get('centerToken');
+
+    // 토큰이 있다면 헤더에 추가
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    console.log('Request headers:', {
+      Authorization: config.headers.Authorization
+    });
+
     return config;
   },
   (error) => {
-    // 요청 에러 시 수행 로직
     return Promise.reject(error);
   }
 );
 
-// 응답 인터셉터
+// 응답 인터셉터는 그대로 유지
 axiosInstance.interceptors.response.use(
   (response) => {
-    // 응답에 대한 로직
     const res = response.data;
     return res;
   },
