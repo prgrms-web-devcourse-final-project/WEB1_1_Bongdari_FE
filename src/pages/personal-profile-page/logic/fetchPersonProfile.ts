@@ -3,7 +3,8 @@ import circleCat from '../circleCat.jpg';
 
 export const fetchPersonProfile = async (userId: string) => {
   try {
-    const res = await axios.get(`http://54.180.201.20:8080/api/volunteer/profile/${userId}`);
+    const res = await axios.get(import.meta.env.VITE_APP_BASE_URL + `/api/volunteer/profile/${userId}`);
+    console.log('testest', res);
 
     if (res.status === 200) return res.data;
     else if (res.status === 400)

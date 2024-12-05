@@ -3,10 +3,10 @@ import Stack from '@mui/material/Stack';
 import Select from '@/components/select';
 import {
   Author,
-  CustomPagination,
+  CustomPaginationCss,
   ItemTitle,
   ListItem,
-  ReviewList,
+  ReviewListCss,
   ReviewSetTitle,
   TitleContainer,
   Wrapper
@@ -37,7 +37,7 @@ const ReviewSet = () => {
           <ReviewSetTitle>내 기관 리뷰 보기</ReviewSetTitle>
           <Select text="활동 유형" data={dataOption} getSelectedOption={handleSelectedOption} />
         </TitleContainer>
-        <ReviewList>
+        <ReviewListCss>
           <ListItem>
             <ItemTitle onClick={handleReviewModal}>서울도서관은 아주 유명한 도서관임</ItemTitle>
             <Author>글쓴이</Author>
@@ -62,9 +62,9 @@ const ReviewSet = () => {
             <ItemTitle onClick={handleReviewModal}>서울도서관은 아주 유명한 도서관임</ItemTitle>
             <Author>글쓴이</Author>
           </ListItem>
-        </ReviewList>
+        </ReviewListCss>
         <Stack spacing={2} sx={{ margin: 'auto' }}>
-          <CustomPagination count={5} />
+          <CustomPaginationCss count={5} />
         </Stack>
       </Wrapper>
       {openReviewModal && <ReviewReadModal handleReviewModal={handleReviewModal} />}

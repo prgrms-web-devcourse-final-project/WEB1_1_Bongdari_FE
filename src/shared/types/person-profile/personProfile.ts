@@ -29,4 +29,5 @@ export interface reviewType {
   id: string;
   title: string;
   createdTime: string;
+  writer?: string;
 }

@@ -8,7 +8,7 @@ import AidRqListPage from '@/pages/aidrq-list-page';
 import AidRqDetailPage from '@/pages/aidrq-detail-page';
 import CenterMyPage from '@/pages/center-my-page';
 import PersonalProfilePage from '@/pages/personal-profile-page';
-import CenterProfilePage from '@/pages/center-profile-page/CenterProfilePage';
+import CenterProfilePage from '@/pages/center-profile-page';
 import PersonalMyPage from '@/pages/personal-my-page';
 import AdminAidRqListPage from '@/pages/admin-aidrq-list-page';
 import AidRqDetailAdminPage from '@/pages/aidrq-detail-admin-page';
@@ -94,7 +94,7 @@ const routes: RouteObject[] = [
         element: <CommunityCreatePage />
       },
       {
-        path: '/centerprofile/:userId',
+        path: '/centerprofile/:center_id',
         element: <CenterProfilePage />
       },
       {

@@ -42,7 +42,7 @@ const ProfileImgBox: React.FC<ProfileImgBoxProps> = (props) => {
     console.log(center_id, interest);
 
     return (
-      <ProfileImgBoxCss id={name}>
+      <ProfileImgBoxCss id={center_id}>
         <img src={img_url} alt="" />
         <p>
           <i>{name}</i>
