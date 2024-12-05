@@ -76,7 +76,7 @@ export const useGetCenterReviews = ({ centerId, page = 0, size = 10, category }:
 };
 
 //  단일 리뷰 get
-export const useGetReviewById = (reviewId: number | null) => {
+export const useGetReviewById = (reviewId?: number | null) => {
   return useQuery({
     queryKey: ['review', reviewId],
     queryFn: () => fetchReviewById(reviewId as number),
