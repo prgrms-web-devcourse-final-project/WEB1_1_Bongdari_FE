@@ -6,6 +6,7 @@ interface ImageUploadProps {
   onImageUpload: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
+// TODO: 주영님이 이미지 올려주시면 preview === ''일 때, 기관 이미지 넣기
 const ImageUploader = ({ preview, onImageUpload }: ImageUploadProps) => {
   return (
     <UploadContainer>

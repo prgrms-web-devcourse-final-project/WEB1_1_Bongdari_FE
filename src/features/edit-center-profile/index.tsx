@@ -10,12 +10,18 @@ import {
 } from './indexCss';
 import useEditCenterProfile from './logic/useEditCenterProfile';
 import useSubmitCenterProfile from './logic/useSubmitCenterProfile';
+import type { centerProfileType } from '@/shared/types/center-profile/centerProfile';
 
-const EditCenterProfile = () => {
+interface EditCenterProfileProps {
+  profileData: centerProfileType;
+}
+
+const EditCenterProfile = ({ profileData }: EditCenterProfileProps) => {
   const {
     preview,
     handleImageUpload,
     centerName,
+    originalName,
     centerPhone,
     centerURL,
     centerIntroduction,
@@ -25,24 +31,24 @@ const EditCenterProfile = () => {
     handleIntroductionChange,
     validURL,
     validPhone
-  } = useEditCenterProfile();
+  } = useEditCenterProfile({ profileData });
 
-  const { displayName, isSubmitting, handleEditProfile, isLoading } = useSubmitCenterProfile();
+  const { handleEditProfile, isSubmitting } = useSubmitCenterProfile();
 
   const handleEditButton = () => {
+    if (!centerName.trim()) {
+      alert('기관명을 입력해주세요.');
+      return;
+    }
     handleEditProfile(centerName, centerPhone, centerURL, centerIntroduction, preview, validURL, validPhone);
   };
 
-  if (isLoading) {
-    return <CenterProfileTitle>로딩 중...</CenterProfileTitle>;
-  }
-
   return (
     <CenterProfileEditContainer>
-      {displayName === '' ? (
+      {originalName === '' ? (
         <CenterProfileTitle>프로필을 완성해보세요!!</CenterProfileTitle>
       ) : (
-        <CenterProfileTitle>안녕하세요, {displayName}님!</CenterProfileTitle>
+        <CenterProfileTitle>안녕하세요, {originalName}님!</CenterProfileTitle>
       )}
       <SectionBox>
         <ProfileEditWrapper>
@@ -61,7 +67,12 @@ const EditCenterProfile = () => {
           />
         </ProfileEditWrapper>
         <EditButtonContainer>
-          <OtherButton label="수정하기" width="220px" onClick={handleEditButton} disabled={isSubmitting} />
+          <OtherButton
+            label="수정하기"
+            width="220px"
+            onClick={handleEditButton}
+            disabled={isSubmitting || !validURL || !validPhone || !centerName.trim()}
+          />
         </EditButtonContainer>
       </SectionBox>
     </CenterProfileEditContainer>

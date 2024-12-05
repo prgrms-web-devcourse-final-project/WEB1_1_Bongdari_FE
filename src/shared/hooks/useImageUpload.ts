@@ -22,6 +22,7 @@ export const useImageUpload = () => {
 
   return {
     preview,
+    setPreview,
     handleImageUpload
   };
 };

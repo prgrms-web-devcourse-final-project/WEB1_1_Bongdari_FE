@@ -1,26 +1,16 @@
-import { useEffect, useState } from 'react';
-import axiosInstance from '@/api/apis';
+import { useEditCenterProfile } from '@/store/queries/center-mypage/useCenterProfile';
+import { useQueryClient } from '@tanstack/react-query';
+
+interface EditProfileRequest {
+  name: string;
+  contact_number: string;
+  homepage_link: string;
+  introduce: string;
+}
 
 const useCenterProfile = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [displayName, setDisplayName] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
-
-  // TODO: 리액트 쿼리로 분리할 것 -> api 호출 하나로 통합할 수 있도록
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const response = await axiosInstance.get('/api/center/profile/1');
-        setDisplayName(response.data.name || '');
-      } catch (error) {
-        console.error('프로필 로드 실패:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchProfile();
-  }, []);
+  const { mutate, isPending } = useEditCenterProfile();
+  const queryClient = useQueryClient();
 
   const handleEditProfile = async (
     centerName: string,
@@ -31,55 +21,44 @@ const useCenterProfile = () => {
     validURL: boolean,
     validPhone: boolean
   ) => {
-    if (isSubmitting) return;
-
     if (!centerName || !validPhone || !validURL) {
-      alert('모든 필드를 올바르게 입력해주세요.'); // TODO: 토스트 UI로 바꿀 예정
+      alert('모든 필드를 올바르게 입력해주세요.');
       return;
     }
 
-    try {
-      setIsSubmitting(true);
+    const formData = new FormData();
 
-      const formData = new FormData();
-      if (preview) {
-        formData.append('file', preview);
-      }
+    const jsonProfileData: EditProfileRequest = {
+      name: centerName,
+      contact_number: centerPhone,
+      homepage_link: centerURL,
+      introduce: centerIntroduction
+      // img_file: preview instanceof File ? preview : undefined
+    };
 
-      const centerData = {
-        center_id: 1,
-        name: centerName,
-        contact_number: centerPhone,
-        introduce: centerIntroduction,
-        homepage_link: centerURL,
-        account_id: 'admin',
-        account_pw: 'password123'
-      };
+    formData.append('data', JSON.stringify(jsonProfileData));
 
-      formData.append('centerData', JSON.stringify(centerData));
-
-      const response = axiosInstance.put('/api/center/profile/1', formData, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-
-      setDisplayName(centerName);
-      alert('프로필이 성공적으로 수정되었습니다.');
-
-      return response;
-    } catch (err) {
-      console.log('프로필 수정 중 오류가 발생했습니다.', err);
-    } finally {
-      setIsSubmitting(false);
+    // 이미지 파일이 있는 경우에만 추가
+    if (preview instanceof File) {
+      formData.append('img_file', preview);
     }
+
+    mutate(jsonProfileData, {
+      onSuccess: (data) => {
+        console.log('프로필이 성공적으로 수정되었습니다.', data);
+        queryClient.invalidateQueries({ queryKey: ['centerProfile'] }); // 캐시에 저장된 프로필 데이터 무효화 -> 새로 서버에서 데이터 가져옴 (자동 새로고침)
+        alert('프로필이 성공적으로 수정되었습니다.');
+      },
+      onError: (error) => {
+        console.error('프로필 수정 중 오류가 발생했습니다.', error);
+        alert('프로필 수정 중 오류가 발생했습니다.');
+      }
+    });
   };
 
   return {
-    isSubmitting,
-    displayName,
-    handleEditProfile,
-    isLoading
+    isSubmitting: isPending,
+    handleEditProfile
   };
 };
 
