@@ -2,6 +2,7 @@ import InputBox from '@/components/inputBox';
 import { Wrapper } from './indexCss';
 import SelectContainer from './ui/select-container';
 import { VolunteerType } from '@/shared/types/aidrq-create-type/AidRqCreateType';
+import aidrqCategoryMapping from '@/shared/mapping/aidrq-category-mapping';
 
 interface AidRqCreateSharedProps {
   getTitleAndFilter: (key: keyof VolunteerType, value: string | number | boolean) => void;
@@ -21,7 +22,7 @@ const AidRqCreateShared: React.FC<AidRqCreateSharedProps> = ({ getTitleAndFilter
       />
       <SelectContainer
         getSelectedType={(text) => {
-          getTitleAndFilter('volunteer_category', text);
+          getTitleAndFilter('volunteer_category', aidrqCategoryMapping[text]);
         }}
         getSelectedRegion={(text) => {
           getTitleAndFilter('region', text);
