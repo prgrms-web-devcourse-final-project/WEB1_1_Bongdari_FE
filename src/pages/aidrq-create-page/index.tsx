@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react';
 import AidRqCreateShared from '@/features/aidrq-create-shared-part';
 import { ButtonContainer, FourthLine, ThirdLine, Title, Wrapper } from './indexCss';
 import RecruitPopulation from './ui/recruit-population';
-import Location from './ui/location';
+import LocationBox from './ui/location';
 import VolunteerDate from './ui/volunteer-date';
 import Explanation from './ui/explanation';
-import { VolunteerType } from '@/shared/types/aidrq-create-type/AidRqCreateType';
+import { VolunteerType, Location } from '@/shared/types/aidrq-create-type/AidRqCreateType';
 import { postAidRq } from './logic/postAidRq';
 
 const AidRqCreatePage = () => {
@@ -29,7 +29,7 @@ const AidRqCreatePage = () => {
     console.log(volunteerData);
   }, [volunteerData]);
 
-  const getTitleAndFilter = (key: keyof VolunteerType, value: string | number | boolean) => {
+  const getTitleAndFilter = (key: keyof VolunteerType, value: Location | string | number | boolean) => {
     setVolunteerData((prev) => ({
       ...prev,
       [key]: value
@@ -42,7 +42,7 @@ const AidRqCreatePage = () => {
       <AidRqCreateShared getTitleAndFilter={getTitleAndFilter}></AidRqCreateShared>
       <ThirdLine>
         <RecruitPopulation getTitleAndFilter={getTitleAndFilter}></RecruitPopulation>
-        <Location></Location>
+        <LocationBox getTitleAndFilter={getTitleAndFilter}></LocationBox>
       </ThirdLine>
       <FourthLine>
         <VolunteerDate
