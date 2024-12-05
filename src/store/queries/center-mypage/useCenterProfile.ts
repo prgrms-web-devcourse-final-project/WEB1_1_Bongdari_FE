@@ -28,6 +28,13 @@ interface EditProfileData {
   img_file?: File;
 }
 
+// 응답 타입
+interface ApiResponse {
+  code: number;
+  message: string;
+  data: string;
+}
+
 // 기관 프로필 get 해오는 fetch 함수
 const fetchCenterProfile = async (centerId: string): Promise<CenterProfile> => {
   const response = await axiosInstance.get(`/api/center/profile/${centerId}`);
@@ -38,7 +45,7 @@ const fetchCenterProfile = async (centerId: string): Promise<CenterProfile> => {
 };
 
 // 기관 프로필 수정 put
-const EditCenterProfile = async (data: EditProfileData): Promise<CenterProfile> => {
+const EditCenterProfile = async (data: EditProfileData): Promise<ApiResponse> => {
   const formData = new FormData();
 
   const jsonProfileData = {
@@ -53,7 +60,7 @@ const EditCenterProfile = async (data: EditProfileData): Promise<CenterProfile> 
     formData.append('img_file', data.img_file);
   }
 
-  const response = await axiosInstance.put('/api/center/profile', formData, {
+  const response = await axiosInstance.put<ApiResponse>('/api/center/profile', formData, {
     headers: {
       'Content-Type': 'multipart/form-data'
     }

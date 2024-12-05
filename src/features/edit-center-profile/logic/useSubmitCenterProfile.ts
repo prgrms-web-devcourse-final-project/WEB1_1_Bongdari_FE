@@ -1,6 +1,13 @@
 import { useEditCenterProfile } from '@/store/queries/center-mypage/useCenterProfile';
 import { useQueryClient } from '@tanstack/react-query';
 
+interface EditProfileRequest {
+  name: string;
+  contact_number: string;
+  homepage_link: string;
+  introduce: string;
+}
+
 const useCenterProfile = () => {
   const { mutate, isPending } = useEditCenterProfile();
   const queryClient = useQueryClient();
@@ -19,13 +26,22 @@ const useCenterProfile = () => {
       return;
     }
 
-    const jsonProfileData = {
+    const formData = new FormData();
+
+    const jsonProfileData: EditProfileRequest = {
       name: centerName,
       contact_number: centerPhone,
       homepage_link: centerURL,
-      introduce: centerIntroduction,
-      img_file: preview instanceof File ? preview : undefined
+      introduce: centerIntroduction
+      // img_file: preview instanceof File ? preview : undefined
     };
+
+    formData.append('data', JSON.stringify(jsonProfileData));
+
+    // 이미지 파일이 있는 경우에만 추가
+    if (preview instanceof File) {
+      formData.append('img_file', preview);
+    }
 
     mutate(jsonProfileData, {
       onSuccess: (data) => {
