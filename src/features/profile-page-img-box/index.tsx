@@ -3,6 +3,7 @@ import { ProfileImgBoxCss } from './indexCss';
 import { personProfileType } from '@/shared/types/person-profile/personProfile';
 import { centerProfileType } from '@/shared/types/center-profile/centerProfile';
 import { useLoginStore } from '@/store/stores/login/loginStore';
+import InterestHeartBtn from '@/components/interest-heart';
 
 type personOrCenter = ({ type: 'person' } & personProfileType) | ({ type: 'center' } & centerProfileType);
 
@@ -39,10 +40,10 @@ const ProfileImgBox: React.FC<ProfileImgBoxProps> = (props) => {
     );
   } else {
     const { center_id, name, homepage_link, img_url, interest } = props;
-    console.log(center_id, interest);
 
     return (
       <ProfileImgBoxCss id={center_id}>
+        <InterestHeartBtn center_id={center_id} firstState={interest ?? false} top={'15px'} right={'15px'} />
         <img src={img_url} alt="" />
         <p>
           <i>{name}</i>
