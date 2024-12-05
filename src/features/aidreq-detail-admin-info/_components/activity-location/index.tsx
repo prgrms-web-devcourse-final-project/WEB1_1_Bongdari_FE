@@ -1,16 +1,26 @@
 import { SectionBox, Title } from '../../indexCss';
 import { LocationBox, LocationIcon, LocationText, MapButton } from './indexCss';
 
-const ActivityLocation = () => {
+interface ActivityLocationProps {
+  address: string;
+  latitude: number;
+  longitude: number;
+}
+const ActivityLocation = ({ address, latitude, longitude }: ActivityLocationProps) => {
+  const handleMap = () => {
+    const kakaoMapUrl = `https://map.kakao.com/link/map/${encodeURIComponent(address)},${latitude},${longitude}`;
+    window.open(kakaoMapUrl, '_blank');
+  };
+
   return (
     <div>
       <Title>활동 위치</Title>
       <SectionBox>
         <LocationBox>
           <LocationIcon src="/assets/imgs/icon-location.svg" alt="위치아이콘" />
-          <LocationText>(07933) 서울시 영등포구 신풍로77, 민준빌딩</LocationText>
+          <LocationText>{address}</LocationText>
         </LocationBox>
-        <MapButton>지도 보기</MapButton>
+        <MapButton onClick={handleMap}>지도 보기</MapButton>
       </SectionBox>
     </div>
   );

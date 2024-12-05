@@ -1,5 +1,5 @@
 import axiosInstance from '@/api/apis';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export type RecruitStatus = 'RECRUITING' | 'CLOSED' | 'COMPLETED';
 
@@ -18,13 +18,16 @@ const updateRecruitStatus = async ({ id, status }: updateRecruitStatusProps): Pr
   const response = await axiosInstance.patch<ApiResponse<string>>(`/api/recruit-board/${id}`, {
     status
   });
+
   return response.data;
 };
 
 export const useUpdateRecruitStatus = () => {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: updateRecruitStatus,
     onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ['recruitDetail'] });
       console.log('모집 상태가 성공적으로 변경됐습니다.', data);
     },
     onError: (error) => {

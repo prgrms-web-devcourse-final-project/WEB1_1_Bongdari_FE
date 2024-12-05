@@ -22,7 +22,7 @@ const CenterMyPage = () => {
 
   // API 응답 데이터를 centerProfileType 형식으로 변환
   const profileData: centerProfileType = {
-    center_id: data.centerId,
+    center_id: data.center_id,
     name: data.name,
     contact_number: data.contact_number,
     homepage_link: data.homepage_link,

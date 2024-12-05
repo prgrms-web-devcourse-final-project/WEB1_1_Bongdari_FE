@@ -17,23 +17,37 @@ import recruitStatusMapping, {
   type RecruitAPIState,
   statusToKorean
 } from '@/shared/mapping/aid-recruit-status-mapping';
+import { useUpdateRecruitStatus } from '@/store/queries/aidreq-detail-center/useRecruitBoard';
 
 interface AdminReqDetailAdminRecruitStateProps {
   currentStatus: RecruitAPIState;
-  handleStatusUpdate: (status: RecruitAPIState) => void;
-  isUpdating: boolean;
+  id: number;
+  applicantCount?: number;
 }
 
 const AdminReqDetailAdminRecruitState = ({
   currentStatus,
-  handleStatusUpdate,
-  isUpdating
+  id,
+  applicantCount
 }: AdminReqDetailAdminRecruitStateProps) => {
   const [activeState, setActiveState] = useState<RecruitUIState>(statusToKorean[currentStatus]);
+  const { mutate: updateStatus, isPending: isUpdating } = useUpdateRecruitStatus();
 
-  const updateStatus = () => {
-    handleStatusUpdate(recruitStatusMapping[activeState]);
+  const handleStatusUpdate = () => {
+    if (!id || isNaN(id)) return;
+
+    if (currentStatus === 'COMPLETED' && recruitStatusMapping[activeState] !== 'COMPLETED') {
+      alert('종료된 모집은 상태를 변경할 수 없습니다.');
+      return;
+    }
+
+    updateStatus({ id, status: recruitStatusMapping[activeState] });
   };
+
+  console.log('액티브스테이드', activeState);
+  console.log(currentStatus);
+
+  console.log('mappedStatus:', recruitStatusMapping[activeState]);
 
   return (
     <Wrapper>
@@ -59,14 +73,14 @@ const AdminReqDetailAdminRecruitState = ({
             <img src="/assets/imgs/recruit-completed.svg" alt="종료"></img>
           </FinishedButton>
           <StateText>
-            현재 <NumberOfPeople> 15 </NumberOfPeople>명이 지원했습니다.
+            현재 <NumberOfPeople> {applicantCount} </NumberOfPeople>명이 지원했습니다.
           </StateText>
         </RecruitStateButtonContainer>
       </StateContainer>
       <ButtonBox>
         <OtherButton
           label="상태 변경 적용"
-          onClick={updateStatus}
+          onClick={handleStatusUpdate}
           disabled={isUpdating || recruitStatusMapping[activeState] === currentStatus}
         />
       </ButtonBox>

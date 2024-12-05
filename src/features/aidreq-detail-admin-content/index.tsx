@@ -1,3 +1,4 @@
+import type { RecruitAPIState } from '@/shared/mapping/aid-recruit-status-mapping';
 import TextContent from './_components/text-content';
 import Title from './_components/title';
 
@@ -8,6 +9,8 @@ interface AidRqDetailAdminContentProps {
     updated_at: string;
     volunteer_category: string;
     recruit_status: string;
+    recruitment_count: number;
+    admitted: boolean;
   };
 }
 const AidRqDetailAdminContent = ({ recruitDetailData }: AidRqDetailAdminContentProps) => {
@@ -17,9 +20,10 @@ const AidRqDetailAdminContent = ({ recruitDetailData }: AidRqDetailAdminContentP
         title={recruitDetailData.title}
         updateAt={recruitDetailData.updated_at}
         category={recruitDetailData.volunteer_category}
-        status={recruitDetailData.recruit_status}
+        status={recruitDetailData.recruit_status as RecruitAPIState}
+        admitted={recruitDetailData.admitted}
       />
-      <TextContent content={recruitDetailData.content} />
+      <TextContent content={recruitDetailData.content} recruitmentCount={recruitDetailData.recruitment_count} />
     </>
   );
 };

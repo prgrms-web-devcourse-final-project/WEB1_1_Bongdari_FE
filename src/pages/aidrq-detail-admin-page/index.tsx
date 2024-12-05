@@ -6,21 +6,18 @@ import { PageWrapper } from './indexCss';
 import ButtonGroup from './ui/button-group';
 import { useState } from 'react';
 import AdjustmentModal from '@/features/adjustment-modal';
-import { useUpdateRecruitStatus, type RecruitStatus } from '@/store/queries/aidreq-detail-center/useRecruitBoard';
 import { useGetRecruitDetail } from '@/store/queries/aidreq-detail-center/useAidRqDetail';
+import type { RecruitAPIState } from '@/shared/mapping/aid-recruit-status-mapping';
 
 const AidRqDetailAdminPage = () => {
   const { id } = useParams();
   const parsedId = id ? parseInt(id, 10) : 0;
   const [openAdjustmentModal, setOpenAdjustmentModal] = useState(false);
 
-  // 봉사모집글 상세조회 API
-  const { mutate: updateStatus, isPending: isUpdating } = useUpdateRecruitStatus();
+  // 봉사 활동 모집글 상세 조회 API
+  const { data: recruitDetailData, isLoading, error } = useGetRecruitDetail(parsedId);
 
-  // 봉사 활동 모집글 상태 수정 API
-  const { data: recruitDetailData, isLoading: isRecruitDetailDataLoading, error } = useGetRecruitDetail(parsedId);
-
-  if (isRecruitDetailDataLoading) return <div>로딩 중...</div>;
+  if (isLoading) return <div>로딩 중...</div>;
   if (error) return <div>에러가 발생했습니다.</div>;
   if (!recruitDetailData) return null;
 
@@ -29,23 +26,16 @@ const AidRqDetailAdminPage = () => {
     setOpenAdjustmentModal(!openAdjustmentModal);
   };
 
-  // 상태 변경 적용 핸들러
-  const handleStatusUpdate = (status: RecruitStatus) => {
-    if (!id) return;
-    if (isNaN(parsedId)) return;
-    updateStatus({ id: parsedId, status });
-  };
-
   return (
     <>
       <PageWrapper>
         <AidRqDetailAdminContent recruitDetailData={recruitDetailData} />
         <AdminReqDetailAdminRecruitState
-          currentStatus="RECRUITING"
-          handleStatusUpdate={handleStatusUpdate}
-          isUpdating={isUpdating}
+          currentStatus={recruitDetailData.recruit_status as RecruitAPIState}
+          id={parsedId}
+          applicantCount={recruitDetailData.recruitment_count}
         />
-        <AidReqDetailAdminInfo />
+        <AidReqDetailAdminInfo recruitDetailData={recruitDetailData} />
         <ButtonGroup handleAdjustmentButton={handleAdjustmentButton} />
       </PageWrapper>
       {openAdjustmentModal && <AdjustmentModal setOpenAdjustmentModal={setOpenAdjustmentModal} />}
