@@ -47,7 +47,7 @@ export const useOrgLogin = (): useOrgLoginReturn => {
       //테스트용 함수
       try {
         await testLoginCenter();
-        setLoginInfo('B8473384-AE17-11EF-AA15-0A855994FB4B', 'center');
+        setLoginInfo('919027e3-0d51-4ad3-a80b-e3585179697b', 'center');
       } catch (error) {
         console.error('Login failed:', error);
       }

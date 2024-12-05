@@ -15,8 +15,7 @@ const ButtonContainer: React.FC<ButtonContainerProps> = ({ centerProfile }) => {
     <Wrapper>
       <OtherButton
         onClick={() => {
-          console.log(centerProfile.center_id);
-          navigate(`/aidrqdetail`);
+          navigate(`/centerprofile/${centerProfile.center_id}`);
         }}
         label="프로필 보러가기"
         width="220px"
