@@ -24,7 +24,7 @@ import { useGetOtherVolunteerProfile } from '@/store/queries/volunteer-profile/u
 
 interface ReviewModalProps {
   handleReviewModal: () => void;
-  reviewId: number | null;
+  reviewId?: number | null;
 }
 
 const ReviewReadModal: React.FC<ReviewModalProps> = ({ handleReviewModal, reviewId }) => {

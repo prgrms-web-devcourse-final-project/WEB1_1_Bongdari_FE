@@ -11,6 +11,6 @@ export interface centerProfileType {
 
 export interface centerPreferItemType {
   id: number;
-  centerId: string;
+  centerId?: string;
   itemName: string;
 }

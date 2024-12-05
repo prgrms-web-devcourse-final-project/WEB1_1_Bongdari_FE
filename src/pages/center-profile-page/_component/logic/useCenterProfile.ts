@@ -27,16 +27,16 @@ export const useCenterProfile = (): useCenterProfileReturn => {
             interest: true,
             prefer_item: [
               {
-                prefer_item_id: 1,
-                item_name: '어린이 도서'
+                id: 1,
+                itemName: '어린이 도서'
               },
               {
-                prefer_item_id: 2,
-                item_name: '간식'
+                id: 2,
+                itemName: '간식'
               },
               {
-                prefer_item_id: 3,
-                item_name: '복숭아'
+                id: 3,
+                itemName: '복숭아'
               }
             ]
           });

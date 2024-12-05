@@ -8,7 +8,7 @@ const ProfilePreferItemBox = ({ preferItems }: { preferItems: centerPreferItemTy
       <div className="preferItemWrap">
         {preferItems.map((v, i) => (
           <div key={i} className="preferItem">
-            {v.item_name}
+            {v.itemName}
           </div>
         ))}
       </div>
