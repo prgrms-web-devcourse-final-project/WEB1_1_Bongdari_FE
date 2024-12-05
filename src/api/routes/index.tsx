@@ -39,7 +39,7 @@ const routes: RouteObject[] = [
         element: <AidRqListPage />
       },
       {
-        path: '/aidrqdetail',
+        path: '/aidrqdetail/:id',
         element: <AidRqDetailPage />
       },
       {

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
 
 import AidRqDetailCenterProfile from '@/features/aidreq-detail-center-profile';
 import { ButtonBox, Wrapper } from './indexCss';
@@ -10,6 +11,7 @@ import { centerProfileType } from '@/shared/types/center-profile/centerProfile';
 import ReviewCreateModal from '@/features/review-create-modal';
 import { fetchAidRqDetail } from './logic/fetchAidRqDetail';
 import { fetchCenterProfile } from './logic/fetchCenterProfile';
+import { applyAidRq } from './logic/applyAidRq';
 
 interface ApiResponse {
   code: number;
@@ -27,10 +29,13 @@ const AidRqDetailPage = () => {
   const [data, setData] = useState<ApiResponse | null>(null);
   const [centerData, setCenterData] = useState<CenterResponse | null>(null);
   const [reviewModalState, SetReviewModalState] = useState(false);
+  const { id } = useParams();
+  const location = useLocation();
+  const centerId = location.state?.centerId;
 
   useEffect(() => {
-    fetchAidRqDetail(setData);
-    fetchCenterProfile(setCenterData);
+    fetchAidRqDetail(setData, id);
+    fetchCenterProfile(setCenterData, centerId);
   }, []);
 
   return (
@@ -47,7 +52,12 @@ const AidRqDetailPage = () => {
             }}>
             리뷰쓰기
           </button>
-          <button>지원하기</button>
+          <button
+            onClick={() => {
+              applyAidRq(id);
+            }}>
+            지원하기
+          </button>
         </ButtonBox>
       )}
       <ReviewCreateModal
