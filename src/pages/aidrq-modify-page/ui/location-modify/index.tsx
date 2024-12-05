@@ -3,10 +3,10 @@ import { AidRqCreateLocationWrapper, Contents, Wrapper } from './indexCss';
 import { VolunteerType, Location } from '@/shared/types/aidrq-create-type/AidRqCreateType';
 
 interface LocationModifyProps {
-  getTitleAndFilter: (key: keyof VolunteerType, value: Location) => void;
+  getTitleAndFilter: (key: keyof VolunteerType, value: Location | string | number | boolean) => void;
 }
 
-const LocationModify:React.FC<LocationModifyProps> = ({ getTitleAndFilter }) => {
+const LocationModify: React.FC<LocationModifyProps> = ({ getTitleAndFilter }) => {
   return (
     <Wrapper>
       <Contents>
