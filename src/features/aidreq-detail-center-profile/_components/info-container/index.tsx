@@ -1,7 +1,8 @@
 import { centerProfileType } from '@/shared/types/center-profile/centerProfile';
 import { Explain, PreferItemContainer, Site, Title, Wrapper } from './indexCss';
-import InterestButton from './ui/interest-center';
+// import InterestButton from './ui/interest-center';
 import PreferItem from './ui/prefer-items';
+import InterestHeartBtn from '@/components/interest-heart';
 
 interface InfoContainerProps {
   centerProfile: centerProfileType;
@@ -10,7 +11,12 @@ interface InfoContainerProps {
 const InfoContainer: React.FC<InfoContainerProps> = ({ centerProfile }) => {
   return (
     <Wrapper>
-      <InterestButton></InterestButton>
+      <InterestHeartBtn
+        center_id={centerProfile.center_id}
+        firstState={centerProfile.interest}
+        top={'0px'}
+        right={'100px'}
+      />
       <Title>{centerProfile.name}</Title>
       <Site>{centerProfile.homepage_link}</Site>
       <Explain>{centerProfile.introduce}</Explain>
