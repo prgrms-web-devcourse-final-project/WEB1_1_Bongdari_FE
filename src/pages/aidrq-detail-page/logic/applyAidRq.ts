@@ -1,19 +1,29 @@
+import axiosInstance from '@/api/apis/index';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 export const applyAidRq = async (id: string | undefined) => {
-  try {
-    const response = await axios.post(
-      'https://api.somemore.site/api/volunteer-apply',
-      {
-        recruit_board_id: id
-      }
-      // 헤더에 자동으로 토큰 포함함
-    );
-    console.log(response);
+  if (!id) {
+    throw new Error('모집글 ID가 필요합니다');
+  }
 
-    return response.data;
+  try {
+    console.log('Sending request with:', {
+      url: '/api/volunteer-apply',
+      data: { recruit_board_id: id },
+      token: Cookies.get('personToken') || Cookies.get('centerToken')
+    });
+
+    const response = await axiosInstance.post('/api/volunteer-apply', {
+      recruit_board_id: id
+    });
+
+    console.log('Response:', response);
+    return response;
   } catch (error) {
+    console.log('Full error:', error);
     if (axios.isAxiosError(error)) {
+      console.log('Error response:', error.response);
       throw new Error(error.response?.data.message || '지원 중 오류가 발생했습니다');
     }
     throw error;
