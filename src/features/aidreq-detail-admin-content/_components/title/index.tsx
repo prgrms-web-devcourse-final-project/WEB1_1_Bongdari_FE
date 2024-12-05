@@ -2,19 +2,28 @@ import AidRqCategoryLabel from '@/components/label/AidRqCategoryLabel';
 import AidRqCertifiedLabel from '@/components/label/AidRqCertifiedLabel';
 import AidRqStateLabel from '@/components/label/AidRqStateLabel';
 import { ContentTitle, CurrentEdit, LabelContainer, TitleContainer } from './indexCss';
+import useDateFormat from '@/shared/hooks/useDateFormat';
 
-const Title = () => {
+interface TitleProps {
+  title: string;
+  updateAt: string;
+  category: string;
+  status: string;
+}
+
+const Title = ({ title, updateAt, category, status }: TitleProps) => {
+  const { formatDate } = useDateFormat();
   return (
     <div>
       <LabelContainer>
-        <AidRqCategoryLabel text="도서관" />
+        <AidRqCategoryLabel text={category} />
         <AidRqCertifiedLabel />
       </LabelContainer>
       <TitleContainer>
-        <ContentTitle>서울 도서관 사서 도우미 모집</ContentTitle>
-        <AidRqStateLabel state="모집중" />
+        <ContentTitle>{title}</ContentTitle>
+        <AidRqStateLabel state={status} />
       </TitleContainer>
-      <CurrentEdit>최근수정일</CurrentEdit>
+      <CurrentEdit>{formatDate(updateAt)}</CurrentEdit>
     </div>
   );
 };

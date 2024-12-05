@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axiosInstance from '@/api/apis';
+import Cookies from 'js-cookie';
 
 // 물품등록 관련 인터페이스
 export interface PreferItem {
@@ -62,7 +63,8 @@ const EditCenterProfile = async (data: EditProfileData): Promise<ApiResponse> =>
 
   const response = await axiosInstance.put<ApiResponse>('/api/center/profile', formData, {
     headers: {
-      'Content-Type': 'multipart/form-data'
+      'Content-Type': 'multipart/form-data',
+      Authorization: `Bearer ${Cookies.get('centerToken')}`
     }
   });
 
