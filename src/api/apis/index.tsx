@@ -12,7 +12,7 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   (config) => {
     // 쿠키에서 토큰 가져오기
-    const token = Cookies.get('personToken') || Cookies.get('centerToken');
+    const token = Cookies.get('ACCESS');
 
     // 토큰이 있다면 헤더에 추가
     if (token) {
