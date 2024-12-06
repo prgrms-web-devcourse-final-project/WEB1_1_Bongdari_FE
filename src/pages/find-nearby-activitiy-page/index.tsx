@@ -12,8 +12,9 @@ const FindNearByActivityPage = () => {
   const { center, setCenter, updateCenter, setUpdateCenter, position, mapLevel, setMapLevel, setCenterToMyPosition } =
     UseMapLocation({
       initialCenter: {
-        lat: 37.26577519,
-        lng: 127.0368817
+        // 서울 특별 시청
+        lat: 37.5662,
+        lng: 126.978
       },
       initialLevel: 6
     });
@@ -34,7 +35,7 @@ const FindNearByActivityPage = () => {
   const handleActivityClick = (activity: Activity) => {
     console.log('선택한 봉사활동:', activity);
     // TODO: 지도에서 활동 마커를 클릭했을 때 실행되는 함수 -> 어떤 정보를 띄울지 고민해봐야 함
-    navigate(`/centermypage/adminaidreqlist/${activity.id}`);
+    navigate(`/aidrqdetail/${activity.id}`);
   };
 
   return (
