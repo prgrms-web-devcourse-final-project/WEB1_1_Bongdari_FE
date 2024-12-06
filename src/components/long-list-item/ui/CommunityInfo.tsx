@@ -8,8 +8,8 @@ interface CommunityInfoProps {
 const CommunityInfo: React.FC<CommunityInfoProps> = ({ writer, modifiedDate }) => {
   return (
     <CommunityInfoCss>
-      {writer ? <p className="writer">{writer}</p> : ''}
-      {modifiedDate ? <p className="modifiedDate">{modifiedDate}</p> : ''}
+      <p className="writer">{writer}</p>
+      <p className="modifiedDate">{modifiedDate}</p>
     </CommunityInfoCss>
   );
 };

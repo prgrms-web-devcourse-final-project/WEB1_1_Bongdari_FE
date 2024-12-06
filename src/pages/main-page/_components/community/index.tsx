@@ -3,6 +3,7 @@ import { Bottom, Title, Top, Wrapper } from './indexCss';
 import { useMainCommunity } from './logic/fetchMainCommunity';
 import { communityListType } from '@/shared/types/community-type/CommuntiyTypes';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const Community = () => {
   const { data, isLoading, error } = useMainCommunity();
@@ -20,7 +21,9 @@ const Community = () => {
     <Wrapper>
       <Top>
         <Title>커뮤니티</Title>
-        <button>더보기</button>
+        <Link to="/community">
+          <button>더보기</button>
+        </Link>
       </Top>
       <Bottom>
         {mainCommunity.map((item, index) => (
@@ -28,8 +31,8 @@ const Community = () => {
             key={index}
             content_id={item.id.toString()}
             mainText={item.title}
-            mailWriter={item.write_nickname}
-            modifiedDate={item.created_at.toString()}
+            writer={item.writer_nickname}
+            modifiedDate={item.created_at}
             getContentId={(id) => {
               console.log(id);
             }}></LongListItem>

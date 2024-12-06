@@ -3,11 +3,12 @@ import styled from 'styled-components';
 const CommunityInfoCss = styled.div`
   display: flex;
   justify-content: center;
-  width: 22%;
+  min-width: 22%;
+  max-width: 40%;
 
   .writer,
   .modifiedDate {
-    margin: 0 10px;
+    margin: 0 15px;
     text-align: center;
     color: #808080;
     font-weight: 300;
@@ -16,10 +17,10 @@ const CommunityInfoCss = styled.div`
   }
   .writer {
     color: #a4a4a4;
+    cursor: pointer;
 
     /* 길어지면 말줄임표 */
     white-space: nowrap;
-    overflow: hidden;
     text-overflow: ellipsis;
   }
 `;

@@ -10,7 +10,7 @@ interface UseInputReturn {
   inputText: string;
   onChangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onEnter: (e: React.KeyboardEvent<HTMLInputElement>) => void; // 검색시 상위전달
-  onBlur: () => void; // 다른곳 클릭시 상위전달
+  // onBlur: () => void; // 다른곳 클릭시 상위전달
 }
 
 export const useInput = ({ getInputText, initialVal, setFunc }: UseInputProps): UseInputReturn => {
@@ -26,20 +26,20 @@ export const useInput = ({ getInputText, initialVal, setFunc }: UseInputProps): 
   const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       const tmp = (e.target as HTMLInputElement).value;
-      console.log('"', tmp, '" Enter가 눌렸습니다');
+      // console.log('"', tmp, '" Enter가 눌렸습니다');
       getInputText(tmp);
     }
   };
 
   // input 내부 외 다른 곳 클릭시 inputText 상위로 전달
-  const onBlur = () => {
-    getInputText(inputText);
-  };
+  // const onBlur = () => {
+  //   getInputText(inputText);
+  // };
 
   return {
     inputText,
     onChangeInput,
-    onEnter,
-    onBlur
+    onEnter
+    // onBlur
   };
 };

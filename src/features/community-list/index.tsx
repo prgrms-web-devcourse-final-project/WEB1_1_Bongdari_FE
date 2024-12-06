@@ -1,106 +1,41 @@
-import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { CommuntiyListCss } from './indexCss';
-import LongListItem from '@/components/long-list-item';
+import { useCommunityList } from './logic/useCommunityList';
 import { SubmitButton } from '@/components/button';
+import LongListItem from '@/components/long-list-item';
 import CustomPagination from '@/features/custom-pagnation';
+import { useLoginStore } from '@/store/stores/login/loginStore';
 
-const CommuntiyList = () => {
-  const tmpdata = [
-    {
-      id: 1,
-      title: '손모아 사이트 어떤가요?',
-      write_nickname: 'jooyoug',
-      created_at: '2024.11.18'
-    },
-    {
-      id: 2,
-      title: '손모아 사이트 어떤가요?',
-      write_nickname: 'jooyoug',
-      created_at: '2024.11.18'
-    },
-    {
-      id: 3,
-      title: '손모아 사이트 어떤가요?',
-      write_nickname: 'jooyoug',
-      created_at: '2024.11.18'
-    },
-    {
-      id: 4,
-      title: '손모아 사이트 어떤가요?',
-      write_nickname: 'jooyoug',
-      created_at: '2024.11.18'
-    },
-    {
-      id: 5,
-      title: '손모아 사이트 어떤가요?',
-      write_nickname: 'jooyoug',
-      created_at: '2024.11.18'
-    },
-    {
-      id: 6,
-      title: '손모아 사이트 어떤가요?',
-      write_nickname: 'jooyoug',
-      created_at: '2024.11.18'
-    },
-    {
-      id: 7,
-      title: '손모아 사이트 어떤가요?',
-      write_nickname: 'jooyoug',
-      created_at: '2024.11.18'
-    },
-    {
-      id: 8,
-      title: '손모아 사이트 어떤가요?',
-      write_nickname: 'jooyoug',
-      created_at: '2024.11.18'
-    },
-    {
-      id: 9,
-      title: '손모아 사이트 어떤가요?',
-      write_nickname: 'jooyoug',
-      created_at: '2024.11.18'
-    },
-    {
-      id: 10,
-      title: '손모아 사이트 어떤가요?',
-      write_nickname: 'jooyoug',
-      created_at: '2024.11.18'
-    }
-  ];
-
-  const onClickContent = (id: string) => {
-    // TODO: id 커뮤니티 페이지로 이동
-    console.log(id, '커뮤니티로 이동');
-  };
-
-  useEffect(() => {
-    // TODO: api/community-boards 데이터 fetch
-    console.log('TODO: api/community-boards 데이터 fetch');
-  });
-
+const CommuntiyList = ({ searchWord }: { searchWord: string }) => {
+  const { listData, totPage, currPage, setCurrPage } = useCommunityList({ searchWord });
+  const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
   return (
     <CommuntiyListCss>
       <div className="listHeader">
         <i>번호</i>
         <i>제목</i>
-        <i>작성자</i>
-        <i>등록날짜</i>
+        <div>
+          <i>작성자</i>
+          <i>등록날짜</i>
+        </div>
       </div>
       <div className="listWrap">
-        {tmpdata.map((v) => (
-          <LongListItem
-            content_id={`${v.id}`}
-            indexNum={v.id}
-            mainText={v.title}
-            writer={v.write_nickname}
-            modifiedDate={v.created_at}
-            getContentId={onClickContent}
-          />
+        {listData?.map((v, i) => (
+          <Link to={`/community/${v.id}`}>
+            <LongListItem
+              key={i}
+              content_id={`${v.id}`}
+              indexNum={v.id}
+              mainText={v.title}
+              writer={v.writer_nickname}
+              modifiedDate={v.created_at}
+            />
+          </Link>
         ))}
       </div>
-      <CustomPagination />
+      <CustomPagination totPage={totPage} currPage={currPage} setCurrPage={setCurrPage} />
       <div className="btnWrap">
-        <SubmitButton label="작성하기" variant="enabledTwo" />
+        <SubmitButton label="작성하기" variant={isLoggedIn ? 'enabledTwo' : 'disabled'} />
       </div>
     </CommuntiyListCss>
   );

@@ -1,24 +1,33 @@
-import InputBox from '@/components/inputBox';
+import theme from '@/styles/theme';
 import { InputBoxContainer, Wrapper } from './indexCss';
 import { OtherButton } from '@/components/button';
+import InputBox from '@/components/inputBox';
 import testFunc from './logic/testFunc';
-import theme from '@/styles/theme';
+import { useState } from 'react';
 
 interface NonFilterSearchBar {
   type: boolean;
+  getInput?: (text: string) => void;
 }
 
-const NonFilterSearchBar: React.FC<NonFilterSearchBar> = ({ type }) => {
+const NonFilterSearchBar: React.FC<NonFilterSearchBar> = ({ type, getInput }) => {
+  const [word, setWord] = useState<string>('');
+  const onClickGetInput = () => {
+    if (getInput) getInput(word);
+  };
+
   return (
     <Wrapper>
       <InputBoxContainer>
         <InputBox
-          getInputText={testFunc}
+          getInputText={getInput ?? testFunc}
           width="100%"
           height={type ? '57px' : '47px'}
           borderRadius="8px"
           colortype={0}
-          placeholder="검색어를 입력해주세요."></InputBox>
+          placeholder="검색어를 입력해주세요."
+          setFunc={setWord}
+        />
       </InputBoxContainer>
       <OtherButton
         label="검색하기"
@@ -29,7 +38,9 @@ const NonFilterSearchBar: React.FC<NonFilterSearchBar> = ({ type }) => {
         color="white"
         fontSize="14px"
         fontWeight="700"
-        disabled={false}></OtherButton>
+        disabled={false}
+        onClick={onClickGetInput}
+      />
     </Wrapper>
   );
 };
