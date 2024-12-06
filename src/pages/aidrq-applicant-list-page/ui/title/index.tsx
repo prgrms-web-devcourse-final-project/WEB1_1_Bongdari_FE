@@ -1,9 +1,12 @@
 import { Title } from './indexCss';
 
-const ApplicantStatusTitle = () => {
+interface ApplicantStatusTitleProps {
+  title: string;
+}
+const ApplicantStatusTitle = ({ title }: ApplicantStatusTitleProps) => {
   return (
     <>
-      <Title>'서울 도서관 사서도우미 모집'의 지원자 현황</Title>
+      <Title>'{title}'의 지원자 현황</Title>
     </>
   );
 };

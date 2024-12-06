@@ -6,6 +6,7 @@ import { Wrapper } from './indexCss';
 
 interface AidReqDetailAdminInfoProps {
   recruitDetailData: {
+    title: string;
     created_at: string;
     volunteer_start_date_time: string;
     volunteer_end_date_time: string;
@@ -35,7 +36,7 @@ const AidReqDetailAdminInfo = ({ recruitDetailData }: AidReqDetailAdminInfoProps
         latitude={recruitDetailData.location.latitude}
         longitude={recruitDetailData.location.longitude}
       />
-      <ApplicantStatus />
+      <ApplicantStatus title={recruitDetailData.title} />
     </Wrapper>
   );
 };
