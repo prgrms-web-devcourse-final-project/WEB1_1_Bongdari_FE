@@ -20,7 +20,7 @@ export const useInterest = ({ center_id, firstState }: useInterestProps): useInt
   const loginType = useLoginStore((state) => state.loginType);
 
   useEffect(() => {
-    if (!loginType || loginType === 'center') setIsDisabled(true);
+    if (!loginType || loginType === 'ROLE_CENTER') setIsDisabled(true);
   }, [loginType]);
 
   const onClickToggleInterest = async () => {

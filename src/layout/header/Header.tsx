@@ -87,11 +87,11 @@ export default function Header() {
           </button>
           <button
             onClick={async () => {
-              if (loginType === 'center') {
+              if (loginType === 'ROLE_CENTER') {
                 clearLoginInfo();
                 const response = await centerLogout();
                 console.log(response);
-              } else if (loginType === 'person') {
+              } else if (loginType === 'ROLE_VOLUNTEER') {
                 clearLoginInfo();
                 const response = await personLogout();
                 console.log(response);
