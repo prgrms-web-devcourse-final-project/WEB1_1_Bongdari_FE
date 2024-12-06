@@ -20,10 +20,13 @@ export const useCommunityDetailContent = (content_id: number): useCommunityDetai
 
   // 첫 데이터 불러오기
   useEffect(() => {
-    const fetchContentData = async () => {
+    const fetchData = async () => {
       const data = await fetchCommunityDetailContent(content_id);
-      if (data) setDetailData(data.data);
-      else
+      if (data) {
+        setDetailData(data.data);
+        const data2 = await fetchPersonProfile(data.data.writer_id);
+        if (data2) setWriterData(data2.data);
+      } else {
         setDetailData({
           id: content_id,
           writer_id: 'jooyoung123',
@@ -38,32 +41,13 @@ export const useCommunityDetailContent = (content_id: number): useCommunityDetai
           created_at: '2024-12-05T20:31:55',
           updated_at: '2024-12-05T20:31:56'
         });
-    };
-
-    const fetchProfileData = async () => {
-      if (detailData) {
-        const data = await fetchPersonProfile(detailData.writer_id);
-        if (data) setWriterData(data.data);
-        else {
-          setWriterData({
-            volunteer_id: '??',
-            nickname: 'tmpProfile',
-            img_url: '',
-            introduce:
-              '안녕 잘지내니 나는 잘지내 그래 너도 잘지내라 그래 나도 잘지낼게 안녕 잘지내니 나는 잘지내 그래 너도 잘지내라 그래 나도 잘지낼게 안녕 잘지내니 나는 잘지내 그래 너도 잘지내라 그래 나도 잘지낼게 ',
-            tier: 'WHITE',
-            total_volunteer_hours: 30,
-            total_volunteer_count: 9,
-            detail: null
-          });
-        }
       }
+
+      if (loginType === 'person' && detailData?.writer_id === myLoginId) setIsMyContent(true);
     };
 
-    fetchContentData().then(() => fetchProfileData());
-
-    if (loginType === 'person' && detailData?.writer_id === myLoginId) setIsMyContent(true);
-  }, [content_id]);
+    fetchData();
+  }, [content_id, myLoginId, loginType]);
 
   return { detailData, writerData, isMyContent };
 };
