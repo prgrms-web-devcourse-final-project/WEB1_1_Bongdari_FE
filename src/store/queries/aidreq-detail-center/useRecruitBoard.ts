@@ -1,5 +1,6 @@
 import axiosInstance from '@/api/apis';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import Cookies from 'js-cookie';
 
 export type RecruitStatus = 'RECRUITING' | 'CLOSED' | 'COMPLETED';
 
@@ -15,9 +16,15 @@ interface updateRecruitStatusProps {
 }
 
 const updateRecruitStatus = async ({ id, status }: updateRecruitStatusProps): Promise<ApiResponse<string>> => {
-  const response = await axiosInstance.patch<ApiResponse<string>>(`/api/recruit-board/${id}`, {
-    status
-  });
+  const response = await axiosInstance.patch<ApiResponse<string>>(
+    `/api/recruit-board/${id}`,
+    { status },
+    {
+      headers: {
+        Authorization: `Bearer ${Cookies.get('centerToken')}`
+      }
+    }
+  );
 
   return response.data;
 };
