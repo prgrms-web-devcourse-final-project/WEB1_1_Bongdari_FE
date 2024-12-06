@@ -18,6 +18,7 @@ export default function MainPage() {
   //     const base64Payload = token.split('.')[1];
   //     const payload = JSON.parse(atob(base64Payload));
 
+
   //     return {
   //       id: payload.id,
   //       // ROLE_CENTER -> center, ROLE_PERSON -> person 으로 변환
@@ -43,6 +44,12 @@ export default function MainPage() {
     };
 
     getLoginInfo();
+
+//   useEffect(() => {
+//     const token = Cookies.get('ACCESS');
+//     console.log('token:', token);
+//     if (token) setLoginInfo(parseJWT(token)?.id, parseJWT(token)?.role);
+
   }, []);
 
   return (
