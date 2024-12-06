@@ -10,18 +10,13 @@ import {
 } from './indexCss';
 import useEditCenterProfile from './logic/useEditCenterProfile';
 import useSubmitCenterProfile from './logic/useSubmitCenterProfile';
+import type { centerProfileType } from '@/shared/types/center-profile/centerProfile';
 
 interface EditCenterProfileProps {
-  data: {
-    name: string;
-    contact_number: string;
-    homepage_link: string;
-    introduce: string;
-  };
-  img_file: File | null;
+  data: centerProfileType;
 }
 
-const EditCenterProfile = ({ data, img_file }: EditCenterProfileProps) => {
+const EditCenterProfile = ({ data }: EditCenterProfileProps) => {
   const {
     preview,
     handleImageUpload,
@@ -38,7 +33,7 @@ const EditCenterProfile = ({ data, img_file }: EditCenterProfileProps) => {
     validPhone
   } = useEditCenterProfile({ data });
 
-  const { handleEditProfile, isSubmitting } = useSubmitCenterProfile(img_file);
+  const { handleEditProfile, isSubmitting } = useSubmitCenterProfile();
 
   const handleEditButton = () => {
     if (!centerName.trim()) {

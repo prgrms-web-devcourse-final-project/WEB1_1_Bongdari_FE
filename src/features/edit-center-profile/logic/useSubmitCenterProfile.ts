@@ -1,10 +1,7 @@
 import { useUpdateCenterProfile } from '@/store/queries/center-mypage/useCenterProfile';
 import { useQueryClient } from '@tanstack/react-query';
 
-interface useSubmitCenterProfileProps {
-  imageFile: File | null;
-}
-const useSubmitCenterProfile = ({ imageFile }: useSubmitCenterProfileProps) => {
+const useSubmitCenterProfile = () => {
   const { mutate, isPending } = useUpdateCenterProfile();
   const queryClient = useQueryClient();
 
@@ -13,9 +10,9 @@ const useSubmitCenterProfile = ({ imageFile }: useSubmitCenterProfileProps) => {
     centerPhone: string,
     centerURL: string,
     centerIntroduction: string,
+    preview: string,
     validURL: boolean,
-    validPhone: boolean,
-    img_file?: File
+    validPhone: boolean
   ) => {
     if (!centerName || !validPhone || !validURL) {
       alert('모든 필드를 올바르게 입력해주세요.');
@@ -30,7 +27,7 @@ const useSubmitCenterProfile = ({ imageFile }: useSubmitCenterProfileProps) => {
         homepage_link: centerURL,
         introduce: centerIntroduction
       },
-      imageFile: img_file
+      imageFile: preview
     };
 
     mutate(profileData, {
