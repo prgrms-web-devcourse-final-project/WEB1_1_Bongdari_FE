@@ -3,6 +3,7 @@ import { Title, Wrapper } from './indexCss';
 import InfoModify from './ui/info-modify';
 import LocationModify from './ui/location-modify';
 import { VolunteerType, Location } from '@/shared/types/aidrq-create-type/AidRqCreateType';
+import { fetchAidRqDefault } from './logic/fetchAidRqDefault';
 
 const AidRqModifyPage = () => {
   const [volunteerData, setVolunteerData] = useState<VolunteerType>({
@@ -20,6 +21,15 @@ const AidRqModifyPage = () => {
       longitude: 0
     }
   });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetchAidRqDefault('11');
+      setVolunteerData(data.data);
+    };
+    fetchData();
+  }, []);
+
   useEffect(() => {
     console.log(volunteerData);
   }, [volunteerData]);
@@ -34,7 +44,7 @@ const AidRqModifyPage = () => {
   return (
     <Wrapper>
       <Title>도움요청 글 수정</Title>
-      <LocationModify getTitleAndFilter={getTitleAndFilter}></LocationModify>
+      <LocationModify getTitleAndFilter={getTitleAndFilter} volunteerData={volunteerData}></LocationModify>
       <InfoModify></InfoModify>
     </Wrapper>
   );
