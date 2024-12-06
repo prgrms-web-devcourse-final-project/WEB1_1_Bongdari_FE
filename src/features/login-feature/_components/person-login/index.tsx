@@ -1,20 +1,20 @@
 import { useLoginStore } from '@/store/stores/login/loginStore';
 import { PersonLoginCss } from './indexCss';
-import { testLoginPerson } from './logic/testLoginPerson';
+// import { testLoginPerson } from './logic/testLoginPerson';
 
 const PersonLogin = () => {
   const setLoginInfo = useLoginStore((state) => state.setLoginInfo);
 
   const onClickNaver = async () => {
-    // window.location.href = `${import.meta.env.VITE_APP_BASE_URL}/oauth2/authorization/naver`;
-
+    window.location.href = `${import.meta.env.VITE_APP_BASE_URL}/oauth2/authorization/naver`;
+    setLoginInfo('', 'person');
     //테스트용 함수
-    try {
-      await testLoginPerson();
-      setLoginInfo('9a524bd3-2542-47f1-987f-8141704a6590', 'person');
-    } catch (error) {
-      console.error('Login failed:', error);
-    }
+    // try {
+    //   await testLoginPerson();
+    //   setLoginInfo('9a524bd3-2542-47f1-987f-8141704a6590', 'person');
+    // } catch (error) {
+    //   console.error('Login failed:', error);
+    // }
     //테스트용 함수
   };
 

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
@@ -6,10 +6,15 @@ import { AlertBox, AlertPositioning, Contents, Logo, Menu, Wrapper } from './Hea
 import Alert from '@/features/alert';
 import { useLoginStore } from '@/store/stores/login/loginStore';
 import { AlertType } from '@/shared/types/alert-type/AlertType';
+import { centerLogout } from './logic/centerLogout';
+import { personLogout } from './logic/personLogout';
 
 export default function Header() {
   const [alertState, setAlertState] = useState(false);
   const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
+  const clearLoginInfo = useLoginStore((state) => state.clearLoginInfo);
+  const loginType = useLoginStore((state) => state.loginType);
+  const navigate = useNavigate();
 
   useEffect(() => {
     let eventSource: EventSource;
@@ -56,6 +61,26 @@ export default function Header() {
           <Logo>SOMEMORE</Logo>
         </Link>
         <Menu>
+          <button
+            onClick={() => {
+              navigate('/login');
+            }}>
+            로그인
+          </button>
+          <button
+            onClick={async () => {
+              if (loginType === 'center') {
+                clearLoginInfo();
+                const response = await centerLogout();
+                console.log(response);
+              } else if (loginType === 'person') {
+                clearLoginInfo();
+                const response = await personLogout();
+                console.log(response);
+              }
+            }}>
+            로그아웃
+          </button>
           <AlertPositioning>{alertState && <Alert></Alert>}</AlertPositioning>
           <AlertBox
             onClick={() => {
