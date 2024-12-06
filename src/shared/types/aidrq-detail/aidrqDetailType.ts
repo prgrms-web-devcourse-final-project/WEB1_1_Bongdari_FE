@@ -20,4 +20,5 @@ export interface AidRqDetailType {
   admitted: boolean;
   img_url: string;
   location: Location;
+  region: string;
 }
