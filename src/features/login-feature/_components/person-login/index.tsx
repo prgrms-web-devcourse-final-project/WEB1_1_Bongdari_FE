@@ -1,13 +1,14 @@
-import { useLoginStore } from '@/store/stores/login/loginStore';
+// import { useLoginStore } from '@/store/stores/login/loginStore';
 import { PersonLoginCss } from './indexCss';
 // import { testLoginPerson } from './logic/testLoginPerson';
 
 const PersonLogin = () => {
-  const setLoginInfo = useLoginStore((state) => state.setLoginInfo);
+  // const setLoginInfo = useLoginStore((state) => state.setLoginInfo);
 
   const onClickNaver = async () => {
     window.location.href = `${import.meta.env.VITE_APP_BASE_URL}/oauth2/authorization/naver`;
-    setLoginInfo('', 'person');
+    // setLoginInfo('persontestid', 'person');
+
     //테스트용 함수
     // try {
     //   await testLoginPerson();
