@@ -19,7 +19,21 @@ export default function Header() {
   useEffect(() => {
     let eventSource: EventSource;
 
+    //테스트용
+
+    // const setTestTokenCookie = () => {
+    //   const testToken =
+    //     'eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjM2NzZkMDI4LTc0NDgtNDhhYS1iYWQ4LTcxY2U2NTEzMjE0ZCIsInJvbGUiOiJST0xFX1ZPTFVOVEVFUiIsImp0aSI6IjI1YTQxOTViLTNiMjQtNDMwYy1iMmJlLTQ0MDg3MGQ1ZGJlNiIsImlhdCI6MTczMzQ4MjM0OCwiZXhwIjoxNzM0MDg3MTQ4fQ.XW9g4LYaHBA3eoZG0-pn5tr70s9Io-R1wTQzxlM98Qw';
+    //   document.cookie = `ACCESS="Bearer ${testToken}"; path=/`;
+    // };
+
+    //테스트용
+
     const connectSSE = () => {
+      //테스트용
+      // setTestTokenCookie();
+      //테스트용
+
       eventSource = new EventSource(`${import.meta.env.VITE_APP_BASE_URL}/api/sse/subscribe`, {
         withCredentials: true
       });
@@ -40,6 +54,10 @@ export default function Header() {
         // 재연결 로직 할라면 여기에 추가
       };
     };
+
+    //테스트용
+    // connectSSE();
+    //테스트용
 
     // 로그인 상태일 때만 SSE 연결
     if (isLoggedIn) {

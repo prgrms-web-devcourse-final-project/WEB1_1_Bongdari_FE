@@ -29,9 +29,9 @@ export default function MainPage() {
     }
   };
 
-  const token = Cookies.get('ACCESS');
-
   useEffect(() => {
+    const token = Cookies.get('ACCESS');
+    console.log('token:', token);
     if (token) setLoginInfo(parseJWT(token)?.id, parseJWT(token)?.role);
   }, []);
 
