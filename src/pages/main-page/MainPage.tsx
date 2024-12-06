@@ -29,7 +29,7 @@ export default function MainPage() {
     }
   };
 
-  const token = Cookies.get('centerToken') || Cookies.get('personToken');
+  const token = Cookies.get('ACCESS');
 
   useEffect(() => {
     if (token) setLoginInfo(parseJWT(token)?.id, parseJWT(token)?.role);
