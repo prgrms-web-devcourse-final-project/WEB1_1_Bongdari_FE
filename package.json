@@ -34,6 +34,7 @@
   "devDependencies": {
     "@eslint/js": "^9.13.0",
     "@tanstack/eslint-plugin-query": "^5.60.1",
+    "@types/event-source-polyfill": "^1.0.5",
     "@types/js-cookie": "^3.0.6",
     "@types/lodash": "^4.17.13",
     "@types/react": "^18.3.12",
