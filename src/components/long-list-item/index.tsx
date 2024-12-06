@@ -1,6 +1,7 @@
 import LongListItemCss from './indexCss';
 import MailInfo from './ui/MailInfo';
 import CommunityInfo from './ui/CommunityInfo';
+import useDateFormat from '@/shared/hooks/useDateFormat';
 
 interface LongListItemProps {
   content_id: string;
@@ -11,7 +12,7 @@ interface LongListItemProps {
   mailWriter?: string;
   isRead?: boolean;
 
-  getContentId: (id: string) => void; // 클릭한 item의 content_id 반환
+  getContentId?: (id: string) => void; // 클릭한 item의 content_id 반환
 }
 
 const LongListItem: React.FC<LongListItemProps> = ({
@@ -24,15 +25,45 @@ const LongListItem: React.FC<LongListItemProps> = ({
   isRead,
   getContentId
 }) => {
-  return (
-    <LongListItemCss onClick={() => getContentId(content_id)}>
-      {indexNum ? <p className="numbering">{indexNum}</p> : ''}
-      <p className={`mainText ${isRead ? 'read' : ''}`}>{mainText}</p>
+  const { formatDate } = useDateFormat();
 
-      {modifiedDate && writer ? <CommunityInfo writer={writer} modifiedDate={modifiedDate} /> : ''}
+  if (modifiedDate && writer) {
+    // 커뮤니티 리스트 (메인페이지 & 커뮤니티리스트페이지)
+    return (
+      <LongListItemCss>
+        {indexNum ? <p className="numbering">{indexNum}</p> : ''}
+        <p
+          className={`mainText ${isRead ? 'read' : ''}`}
+          onClick={() => (getContentId ? getContentId(content_id) : '')}>
+          {mainText}
+        </p>
 
-      {mailWriter && isRead !== undefined ? <MailInfo isRead={isRead} mailWriter={mailWriter} /> : ''}
-    </LongListItemCss>
-  );
+        <CommunityInfo writer={writer} modifiedDate={formatDate(modifiedDate)} />
+      </LongListItemCss>
+    );
+  } else if (mailWriter && isRead !== undefined) {
+    // 쪽지 리스트 (개인마이페이지)
+    return (
+      <LongListItemCss>
+        <p
+          className={`mainText ${isRead ? 'read' : ''}`}
+          onClick={() => (getContentId ? getContentId(content_id) : '')}>
+          {mainText}
+        </p>
+        <MailInfo isRead={isRead} mailWriter={mailWriter} />
+      </LongListItemCss>
+    );
+  } else {
+    // 봉사 목록 (개인마이페이지)
+    return (
+      <LongListItemCss>
+        <p
+          className={`mainText ${isRead ? 'read' : ''}`}
+          onClick={() => (getContentId ? getContentId(content_id) : '')}>
+          {mainText}
+        </p>
+      </LongListItemCss>
+    );
+  }
 };
 export default LongListItem;

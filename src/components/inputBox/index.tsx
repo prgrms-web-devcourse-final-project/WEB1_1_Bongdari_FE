@@ -11,6 +11,7 @@ interface InputCompProps {
   placeholder?: string; // input의 placeholder
   isDisabled?: boolean;
   setFunc?: (inputText: string) => void; // 상위의 set함수
+  onEnter?: () => void;
   borderRadius?: string;
 }
 
@@ -25,7 +26,7 @@ const InputBox: React.FC<InputCompProps> = ({
   isDisabled = false,
   setFunc
 }: InputCompProps) => {
-  const { inputText, onChangeInput, onEnter, onBlur } = useInput({ initialVal, getInputText, setFunc });
+  const { inputText, onChangeInput, onEnter } = useInput({ initialVal, getInputText, setFunc });
 
   return (
     <InputBoxCss
@@ -37,7 +38,7 @@ const InputBox: React.FC<InputCompProps> = ({
       placeholder={placeholder}
       onChange={onChangeInput}
       onKeyDown={onEnter}
-      onBlur={onBlur}
+      // onBlur={onBlur}
       disabled={isDisabled}
     />
   );

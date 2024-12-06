@@ -12,27 +12,29 @@ const LongListItemCss = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  cursor: pointer;
+  cursor: default;
 
-  /* & * {
-    border: 1px solid gray;
-  } */
+  & * {
+    /* border: 1px solid gray; */
+
+    text-decoration-line: none;
+  }
 
   .numbering {
     padding-left: 5%;
     color: #808080;
     font-weight: 300;
     font-size: ${() => fontSize.eighthSize};
-    text-align: center;
   }
 
   .mainText {
-    margin: 0 60px 0 70px;
+    margin: 0 50px 0 50px;
     color: #000;
     font-weight: 500;
     font-size: 16px;
     text-align: left;
     width: 50%;
+    cursor: pointer;
 
     /* 길어지면 말줄임표 */
     white-space: nowrap;
