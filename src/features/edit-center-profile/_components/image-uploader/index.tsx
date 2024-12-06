@@ -2,7 +2,7 @@ import { type ChangeEvent } from 'react';
 import { HiddenInput, ImageCircle, PreviewImage, UploadButton, UploadContainer } from './indexCss';
 
 interface ImageUploadProps {
-  preview: string | null;
+  preview?: string;
   onImageUpload: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 

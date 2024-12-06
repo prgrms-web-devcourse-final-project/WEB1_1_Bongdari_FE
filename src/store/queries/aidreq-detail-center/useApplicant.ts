@@ -9,10 +9,10 @@ interface Volunteer {
   img_url: string;
 }
 
-interface VolunteerApply {
+export interface VolunteerApply {
   id: number;
   recruit_board_id: number;
-  status: string;
+  status: 'WAITING' | 'APPROVED' | 'REJECTED';
   attend: boolean;
   created_at: string;
   updated_at: string;

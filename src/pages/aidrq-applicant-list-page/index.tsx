@@ -15,11 +15,14 @@ const AidRqApplicantListPage = () => {
   const { data: applicantsData, isLoading } = useVolunteerApplies(parsedRecruitBoardId);
 
   if (isLoading) return <div>로딩 중...</div>;
+  if (!applicantsData?.data?.content) return <div>데이터가 없습니다.</div>;
+
+  console.log('데이터야 잘 있니?', applicantsData);
 
   return (
     <PageWrapper>
       <ApplicantStatusTitle title={title} />
-      <ApplicantList />
+      <ApplicantList applicants={applicantsData.data.content} />
       <Stack spacing={2} sx={{ margin: 'auto' }}>
         <CustomPagination count={5} />
       </Stack>

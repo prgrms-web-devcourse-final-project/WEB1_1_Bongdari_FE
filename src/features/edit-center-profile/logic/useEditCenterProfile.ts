@@ -1,13 +1,18 @@
 import { useImageUpload } from '@/shared/hooks/useImageUpload';
 import { useState, useEffect } from 'react';
 import { validatePhone, validateURL } from './validation';
-import type { centerProfileType } from '@/shared/types/center-profile/centerProfile';
 
 interface UseEditCenterProfileProps {
-  profileData: centerProfileType;
+  data: {
+    name: string;
+    contact_number: string;
+    homepage_link: string;
+    introduce: string;
+  };
+  // img_file?: File;
 }
 
-const useEditCenterProfile = ({ profileData }: UseEditCenterProfileProps) => {
+const useEditCenterProfile = ({ data }: UseEditCenterProfileProps) => {
   const { preview, setPreview, handleImageUpload } = useImageUpload();
 
   // 수정중인 데이터 모아놓는 상태
@@ -23,22 +28,22 @@ const useEditCenterProfile = ({ profileData }: UseEditCenterProfileProps) => {
   const [validPhone, setValidPhone] = useState(true);
 
   useEffect(() => {
-    if (profileData) {
-      setCenterName(profileData.name);
-      setCenterPhone(profileData.contact_number);
-      setCenterURL(profileData.homepage_link);
-      setCenterIntroduction(profileData.introduce);
+    if (data) {
+      setCenterName(data.name);
+      setCenterPhone(data.contact_number);
+      setCenterURL(data.homepage_link);
+      setCenterIntroduction(data.introduce);
 
-      setOriginalName(profileData.name);
+      setOriginalName(data.name);
 
-      if (profileData.img_url) {
-        setPreview(profileData.img_url);
+      if (preview) {
+        setPreview(preview);
       }
 
-      setValidPhone(validatePhone(profileData.contact_number));
-      setValidURL(validateURL(profileData.homepage_link));
+      setValidPhone(validatePhone(data.contact_number));
+      setValidURL(validateURL(data.homepage_link));
     }
-  }, [profileData, setPreview]);
+  }, [data, setPreview]);
 
   // 상태 업데이트 핸들러
   const handleNameChange = (name: string) => setCenterName(name);

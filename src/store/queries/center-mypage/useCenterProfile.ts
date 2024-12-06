@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import axiosInstance from '@/api/apis';
+import Cookies from 'js-cookie';
 // import Cookies from 'js-cookie';
 
 // 물품등록 관련 인터페이스
@@ -21,17 +22,20 @@ interface CenterProfile {
 }
 
 // 수정 인터페이스
-interface CenterProfileData {
-  name: string;
-  contact_number: string;
-  homepage_link: string;
-  introduce: string;
-}
+// interface CenterProfileData {
+//   data: {
+//     name: string;
+//     contact_number: string;
+//     homepage_link: string;
+//     introduce: string;
+//   };
+//   img_url?: File;
+// }
 
-interface CenterProfileUpdateRequest {
-  data: CenterProfileData;
-  img_file?: File;
-}
+// interface CenterProfileUpdateRequest {
+//   formData: CenterProfileData;
+//   img_file?: string;
+// }
 
 // 응답 타입
 // interface ApiResponse {
@@ -53,12 +57,12 @@ const fetchCenterProfile = async (centerId: string): Promise<CenterProfile> => {
 // const EditCenterProfile = async (formData: FormData): Promise<ApiResponse> => {
 //   // const formData = new FormData();
 
-//   // const jsonProfileData = {
-//   //   name: data.name,
-//   //   contact_number: data.contact_number,
-//   //   homepage_link: data.homepage_link,
-//   //   introduce: data.introduce
-//   // };
+// const jsonProfileData = {
+//   name: data.name,
+//   contact_number: data.contact_number,
+//   homepage_link: data.homepage_link,
+//   introduce: data.introduce
+// };
 //   // formData.append('data', JSON.stringify(jsonProfileData));
 
 //   // if (data.img_file) {
@@ -99,20 +103,28 @@ export const useGetCenterProfile = (centerId: string) => {
 //   });
 // };
 
+interface CenterProfileData {
+  name: string;
+  contact_number: string;
+  homepage_link: string;
+  introduce: string;
+}
+
+interface CenterProfileUpdateRequest {
+  data: CenterProfileData;
+  img_file?: File;
+}
+
 const updateCenterProfile = async ({ data, img_file }: CenterProfileUpdateRequest) => {
   const formData = new FormData();
-
-  // JSON 데이터를 FormData에 추가
   formData.append('data', JSON.stringify(data));
-
-  // 이미지 파일이 있는 경우에만 추가
   if (img_file) {
     formData.append('img_file', img_file);
   }
-
   const response = await axiosInstance.put('/api/center/profile', formData, {
     headers: {
-      'Content-Type': 'multipart/form-data'
+      'Content-Type': 'multipart/form-data',
+      Authorization: `Bearer ${Cookies.get('centerToken')}`
     }
   });
 
