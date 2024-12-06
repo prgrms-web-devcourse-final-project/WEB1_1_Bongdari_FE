@@ -7,10 +7,13 @@ interface LocationProps {
 }
 
 const LocationBox: React.FC<LocationProps> = ({ getTitleAndFilter }) => {
+  const defaultLocationData = { address: '장소를 설정해주세요', latitude: 0, longitude: 0 };
   return (
     <Wrapper>
       <p>활동 주소</p>
-      <AidRqCreateLocation getTitleAndFilter={getTitleAndFilter}></AidRqCreateLocation>
+      <AidRqCreateLocation
+        getTitleAndFilter={getTitleAndFilter}
+        locationData={defaultLocationData}></AidRqCreateLocation>
     </Wrapper>
   );
 };
