@@ -1,3 +1,4 @@
+import useGotoKakaoMap from '@/shared/hooks/useGoToKakaoMap';
 import { SectionBox, Title } from '../../indexCss';
 import { LocationBox, LocationIcon, LocationText, MapButton } from './indexCss';
 
@@ -7,11 +8,7 @@ interface ActivityLocationProps {
   longitude: number;
 }
 const ActivityLocation = ({ address, latitude, longitude }: ActivityLocationProps) => {
-  const handleMap = () => {
-    const kakaoMapUrl = `https://map.kakao.com/link/map/${encodeURIComponent(address)},${latitude},${longitude}`;
-    window.open(kakaoMapUrl, '_blank');
-  };
-
+  const { handleMap } = useGotoKakaoMap({ address, latitude, longitude });
   return (
     <div>
       <Title>활동 위치</Title>

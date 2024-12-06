@@ -26,7 +26,7 @@ const FindNearByActivitySearch = ({ activities, isLoading, onSearch }: FindNearB
   };
 
   const handleActivityClick = (id: string | number) => {
-    navigate(`/centermypage/adminaidreqlist/${id}`);
+    navigate(`/aidrqdetail/${id}`);
   };
 
   return (
