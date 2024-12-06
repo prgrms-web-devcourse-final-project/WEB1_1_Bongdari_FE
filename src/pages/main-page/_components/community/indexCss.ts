@@ -9,13 +9,14 @@ export const Top = styled.div`
   justify-content: space-between;
   padding-bottom: 30px;
 
-  & > button {
+  & button {
     font-size: 14px;
     padding: 6px 1rem;
     border: 1px solid #c7c7c7;
     border-radius: 20px;
     outline: none;
     background-color: transparent;
+    cursor: pointer;
   }
 `;
 

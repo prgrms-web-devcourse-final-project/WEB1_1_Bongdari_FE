@@ -8,12 +8,30 @@ export const CommuntiyListCss = styled.div`
   align-items: center;
 
   position: relative;
+  & * {
+    /* border: 1px solid gray; */
 
+    text-decoration-line: none;
+  }
   .listHeader {
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 6fr 1fr 1fr;
-    padding: 0 12px;
+    width: 100%;
+    padding: 0 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .listHeader > div {
+    display: flex;
+    justify-content: center;
+    min-width: 22%;
+    max-width: 40%;
+  }
+  .listHeader > div > i {
+    width: 100px;
+    text-align: center;
+    margin: 0 18px;
   }
   .listHeader i {
     font-size: ${theme.fontSize.seventhSize};
@@ -21,6 +39,9 @@ export const CommuntiyListCss = styled.div`
     color: #5a5a5a;
     text-align: center;
     padding-bottom: 20px;
+  }
+  .listHeader i:first-of-type {
+    padding-left: 4%;
   }
 
   .listWrap {
