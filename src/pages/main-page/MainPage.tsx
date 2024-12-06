@@ -18,7 +18,6 @@ export default function MainPage() {
   //     const base64Payload = token.split('.')[1];
   //     const payload = JSON.parse(atob(base64Payload));
 
-
   //     return {
   //       id: payload.id,
   //       // ROLE_CENTER -> center, ROLE_PERSON -> person 으로 변환
@@ -36,8 +35,9 @@ export default function MainPage() {
         const response = await axiosInstance.get('/api/token/userinfo');
 
         // 응답으로 받은 로그인 정보를 zustand에 저장
-        const { id, role } = response.data;
-        setLoginInfo(id, role);
+        console.log(response.data);
+        const { USER_ID, ROLE } = response.data.data;
+        setLoginInfo(USER_ID, ROLE);
       } catch (error) {
         console.error('로그인 정보 가져오기 실패:', error);
       }
@@ -45,11 +45,10 @@ export default function MainPage() {
 
     getLoginInfo();
 
-//   useEffect(() => {
-//     const token = Cookies.get('ACCESS');
-//     console.log('token:', token);
-//     if (token) setLoginInfo(parseJWT(token)?.id, parseJWT(token)?.role);
-
+    //   useEffect(() => {
+    //     const token = Cookies.get('ACCESS');
+    //     console.log('token:', token);
+    //     if (token) setLoginInfo(parseJWT(token)?.id, parseJWT(token)?.role);
   }, []);
 
   return (
