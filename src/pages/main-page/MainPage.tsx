@@ -36,7 +36,8 @@ export default function MainPage() {
 
         // 응답으로 받은 로그인 정보를 zustand에 저장
         console.log(response.data);
-        const { USER_ID, ROLE } = response.data.data;
+        const USER_ID = response.data.USER_ID;
+        const ROLE = response.data.ROLE;
         setLoginInfo(USER_ID, ROLE);
       } catch (error) {
         console.error('로그인 정보 가져오기 실패:', error);
