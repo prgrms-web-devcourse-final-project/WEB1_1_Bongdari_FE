@@ -1,16 +1,19 @@
 import axiosInstance from '@/api/apis';
 import { VolunteerType } from '@/shared/types/aidrq-create-type/AidRqCreateType';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 export const postAidRq = async (volunteerData: VolunteerType, imgFile?: File) => {
   try {
+    console.log(volunteerData);
     const formData = new FormData();
     formData.append('data', JSON.stringify(volunteerData));
     formData.append('img_file', imgFile || '');
 
     const response = await axiosInstance.post('/api/recruit-board', formData, {
       headers: {
-        'Content-Type': 'multipart/form-data'
+        'Content-Type': 'multipart/form-data',
+        Authorization: `${Cookies.get('ACCESS')}`
       }
     });
     return response;
