@@ -50,7 +50,7 @@ const getVolunteerApplies = async ({ recruitBoardId, page, size, attended, statu
     }
   });
 
-  return response.data;
+  return response.data.content;
 };
 
 // export const useVolunteerApplies = (recruitBoardId: number) => {
@@ -65,8 +65,8 @@ export const useVolunteerApplies = (
   recruitBoardId: number,
   page: number = 0,
   size: number = 9,
-  status?: 'WAITING',
-  attended?: false
+  status?: 'WAITING' | 'APPROVED' | 'REJECTED',
+  attended?: false | true
 ) => {
   return useQuery({
     queryKey: ['volunteerApplies', recruitBoardId, page, size, status, attended],

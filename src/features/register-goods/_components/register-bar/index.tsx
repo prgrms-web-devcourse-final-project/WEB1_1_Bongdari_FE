@@ -15,6 +15,12 @@ const RegisterBar: React.FC<RegisterBarProps> = ({
   handleKeyPress,
   disabled = false
 }) => {
+  // 로컬 상태로 input 값 관리
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setCurrentInput(value);
+  };
+
   return (
     <RegisterBarContainer>
       <RegisterInput
@@ -22,7 +28,7 @@ const RegisterBar: React.FC<RegisterBarProps> = ({
         type="text"
         value={currentInput}
         maxLength={15}
-        onChange={(e) => setCurrentInput(e.target.value)}
+        onChange={handleInputChange}
         onKeyUp={handleKeyPress}
         disabled={disabled}
       />

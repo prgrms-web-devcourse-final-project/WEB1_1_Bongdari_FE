@@ -1,5 +1,5 @@
 import axiosInstance from '@/api/apis';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import Cookies from 'js-cookie';
 
 export interface PreferItemResponse {
@@ -9,13 +9,18 @@ export interface PreferItemResponse {
 }
 
 // 물품 POST fetch 함수
-const addPreferItem = async (itemName: string): Promise<PreferItemResponse> => {
-  const response = await axiosInstance.post<PreferItemResponse>('/api/preferItem', {
-    item_name: itemName,
-    headers: {
-      Authorization: `Bearer ${Cookies.get('ACCESS')}`
+const addPreferItem = async (itemName: string) => {
+  const response = await axiosInstance.post<PreferItemResponse>(
+    '/api/preferItem',
+    {
+      item_name: itemName
+    },
+    {
+      headers: {
+        Authorization: `${Cookies.get('ACCESS')}`
+      }
     }
-  });
+  );
 
   console.log('물품등록 response', response.data);
 
@@ -25,10 +30,12 @@ const addPreferItem = async (itemName: string): Promise<PreferItemResponse> => {
 // TODO: DELETE fetch 함수 구현
 
 export const usePreferItem = () => {
+  const queryClient = useQueryClient();
   const { mutate: addItem, isPending } = useMutation({
     mutationFn: addPreferItem,
     onSuccess: (data) => {
       // 데이터 post 성공시
+      queryClient.invalidateQueries({ queryKey: ['preferItems'] });
       console.log('물품등록 완료!', data);
     },
     onError: (error) => {

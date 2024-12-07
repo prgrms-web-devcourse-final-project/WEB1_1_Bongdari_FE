@@ -14,7 +14,11 @@ const AidRqApplicantListPage = () => {
   const parsedRecruitBoardId = id ? parseInt(id) : 0;
 
   const { page, handlePageChange } = usePagination();
-  const { data: applicantsData, isLoading, isError } = useVolunteerApplies(parsedRecruitBoardId, page, 9, 'WAITING');
+  const {
+    data: applicantsData,
+    isLoading,
+    isError
+  } = useVolunteerApplies(parsedRecruitBoardId, page, 9, 'WAITING', false);
 
   if (isLoading) return <div style={{ paddingTop: '450px' }}>로딩 중...</div>;
   if (isError) return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;
@@ -22,7 +26,7 @@ const AidRqApplicantListPage = () => {
   return (
     <PageWrapper>
       <ApplicantStatusTitle title={title} />
-      {applicantsData.content.length === 0 ? (
+      {!applicantsData?.content ? (
         <EmptyStateText>
           아직 봉사활동에 신청한 지원자가 없습니다.
           <br />

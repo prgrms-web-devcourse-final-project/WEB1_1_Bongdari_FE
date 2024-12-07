@@ -55,3 +55,33 @@ export const useApproveApplyment = () => {
 };
 
 // 봉사활동 지원 승인 정산 api ---------------------------------------
+const settleApplyment = async (ids: number[]) => {
+  const response = await axiosInstance.post(
+    '/api/volunteer-applies/settle',
+    {
+      ids
+    },
+    {
+      headers: {
+        Authorization: `${Cookies.get('ACCESS')}`
+      }
+    }
+  );
+
+  return response.data;
+};
+
+export const useSettleApplyment = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: settleApplyment,
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ['settleApplyment'] });
+      console.log('정산 완료', data);
+    },
+    onError: (error) => {
+      console.log('정산 실패', error);
+    }
+  });
+};

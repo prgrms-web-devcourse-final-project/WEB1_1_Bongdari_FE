@@ -6,6 +6,7 @@ import RegisterBar from './_components/register-bar';
 import useHandleItem from './logic/useAddItem';
 import type { centerPreferItemType } from '@/shared/types/center-profile/centerProfile';
 import { usePreferItem } from '@/store/queries/center-mypage/usePreferItems';
+import { useQuery } from '@tanstack/react-query';
 
 interface RegisterGoodsProps {
   name: string;
@@ -14,14 +15,45 @@ interface RegisterGoodsProps {
 
 const RegisterGoods = ({ name, preferData }: RegisterGoodsProps) => {
   const { addItem, isLoading } = usePreferItem();
-  const { goodsList, currentInput, setCurrentInput, handleKeyPress, handleDeleteGoods } = useHandleItem(preferData);
+  const { data: preferItems } = useQuery({
+    queryKey: ['preferItems'],
+    // 초기 데이터로 props로 받은 preferData 사용
+    initialData: preferData,
+    staleTime: 1000 * 60 * 5,
+    refetchOnWindowFocus: false
+  });
+
+  // console.log('픺', preferItems);
+
+  const { goodsList, currentInput, setCurrentInput, handleKeyPress, handleDeleteGoods, addGoodsToList } =
+    useHandleItem(preferItems);
 
   const handleAdd = async (itemName: string) => {
-    try {
-      await addItem(itemName);
-    } catch (error) {
-      console.error('물품 추가 실패', error);
+    if (!itemName.trim()) {
+      alert('물품명을 입력해주세요.');
+      return;
     }
+    if (itemName.length > 15) {
+      alert('물품명은 15자 이내로 입력해주세요.');
+      return;
+    }
+
+    addItem(itemName, {
+      onSuccess: (response) => {
+        // 새 아이템을 로컬 상태에 추가
+        const newItem: centerPreferItemType = {
+          id: response.id,
+          centerId: response.center_id,
+          itemName: response.item_name
+        };
+        addGoodsToList(newItem);
+        setCurrentInput('');
+      },
+      onError: (error) => {
+        console.error('물품 추가 실패', error);
+        alert('물품 등록에 실패했습니다.');
+      }
+    });
   };
   return (
     <SectionBox>
@@ -44,7 +76,7 @@ const RegisterGoods = ({ name, preferData }: RegisterGoodsProps) => {
         currentInput={currentInput}
         setCurrentInput={setCurrentInput}
         handleAddGoods={handleAdd}
-        handleKeyPress={handleKeyPress}
+        handleKeyPress={(e) => handleKeyPress(e, handleAdd)}
         disabled={isLoading}
       />
     </SectionBox>
