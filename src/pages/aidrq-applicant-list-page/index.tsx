@@ -7,17 +7,23 @@ import { useLocation, useParams } from 'react-router-dom';
 import { useVolunteerApplies } from '@/store/queries/aidreq-detail-center/useApplicant';
 
 const AidRqApplicantListPage = () => {
-  const { recruitBoardId } = useParams();
+  const { id } = useParams();
   const location = useLocation();
   const title = location.state?.title;
-  const parsedRecruitBoardId = recruitBoardId ? parseInt(recruitBoardId) : 0;
+  const parsedRecruitBoardId = id ? parseInt(id) : 0;
 
-  const { data: applicantsData, isLoading } = useVolunteerApplies(parsedRecruitBoardId);
+  console.log('title이다', title);
 
-  if (isLoading) return <div>로딩 중...</div>;
-  if (!applicantsData?.data?.content) return <div>데이터가 없습니다.</div>;
-
+  const {
+    data: applicantsData,
+    isLoading,
+    isError
+  } = useVolunteerApplies(parsedRecruitBoardId, 0, 10, 'WAITING', true);
   console.log('데이터야 잘 있니?', applicantsData);
+
+  if (isLoading) return <div style={{ paddingTop: '450px' }}>로딩 중...</div>;
+  if (!applicantsData?.data?.content) return <div style={{ paddingTop: '450px' }}>데이터가 없습니다.</div>;
+  if (isError) return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;
 
   return (
     <PageWrapper>

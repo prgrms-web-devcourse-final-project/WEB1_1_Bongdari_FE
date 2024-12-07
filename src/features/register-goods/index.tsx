@@ -5,6 +5,7 @@ import GoodsItem from './_components/goods-item-box';
 import RegisterBar from './_components/register-bar';
 import useHandleItem from './logic/useAddItem';
 import type { centerPreferItemType } from '@/shared/types/center-profile/centerProfile';
+import { usePreferItem } from '@/store/queries/center-mypage/usePreferItems';
 
 interface RegisterGoodsProps {
   name: string;
@@ -12,9 +13,16 @@ interface RegisterGoodsProps {
 }
 
 const RegisterGoods = ({ name, preferData }: RegisterGoodsProps) => {
-  const { goodsList, currentInput, setCurrentInput, handleAddGoods, handleKeyPress, handleDeleteGoods } =
-    useHandleItem(preferData);
+  const { addItem, isLoading } = usePreferItem();
+  const { goodsList, currentInput, setCurrentInput, handleKeyPress, handleDeleteGoods } = useHandleItem(preferData);
 
+  const handleAdd = async (itemName: string) => {
+    try {
+      await addItem(itemName);
+    } catch (error) {
+      console.error('물품 추가 실패', error);
+    }
+  };
   return (
     <SectionBox>
       <RegisterTitleSection>
@@ -35,8 +43,9 @@ const RegisterGoods = ({ name, preferData }: RegisterGoodsProps) => {
       <RegisterBar
         currentInput={currentInput}
         setCurrentInput={setCurrentInput}
-        handleAddGoods={handleAddGoods}
+        handleAddGoods={handleAdd}
         handleKeyPress={handleKeyPress}
+        disabled={isLoading}
       />
     </SectionBox>
   );

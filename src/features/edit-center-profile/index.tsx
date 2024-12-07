@@ -43,7 +43,17 @@ const EditCenterProfile = ({ data }: EditCenterProfileProps) => {
       )}
       <SectionBox>
         <ProfileEditWrapper>
-          <ImageUploader preview={preview} initialImage={data.img_url} onImageUpload={handleImageUpload} />
+          {/* <ImageUploader
+            preview={preview}
+            initialImage={data.img_url || '/assets/imgs/no-img-person.svg'}
+            onImageUpload={handleImageUpload}
+          /> */}
+          <ImageUploader
+            preview={preview || null} // preview가 없으면 기본 이미지 사용
+            initialImage={preview ? URL.createObjectURL(preview) : data.img_url || '/assets/imgs/no-img-person.svg'}
+            onImageUpload={handleImageUpload}
+          />
+
           <EditProfileForm
             handleNameChange={handleNameChange}
             handlePhoneChange={handlePhoneChange}

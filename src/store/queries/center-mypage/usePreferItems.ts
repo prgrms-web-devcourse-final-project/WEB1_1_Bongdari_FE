@@ -1,5 +1,6 @@
 import axiosInstance from '@/api/apis';
 import { useMutation } from '@tanstack/react-query';
+import Cookies from 'js-cookie';
 
 export interface PreferItemResponse {
   id: number;
@@ -7,12 +8,13 @@ export interface PreferItemResponse {
   item_name: string;
 }
 
-// TODO: GET fetch 함수 구현
-
 // 물품 POST fetch 함수
 const addPreferItem = async (itemName: string): Promise<PreferItemResponse> => {
   const response = await axiosInstance.post<PreferItemResponse>('/api/preferItem', {
-    item_name: itemName
+    item_name: itemName,
+    headers: {
+      Authorization: `Bearer ${Cookies.get('ACCESS')}`
+    }
   });
 
   console.log('물품등록 response', response.data);

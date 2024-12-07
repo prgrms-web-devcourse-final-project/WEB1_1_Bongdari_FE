@@ -11,7 +11,7 @@ const useEditCenterProfile = ({ data }: UseEditCenterProfileProps) => {
   // 각 input 상태 관리
   const [preview, setPreview] = useState<File | null>(null);
   const [centerName, setCenterName] = useState(data.name);
-  const [originalName] = useState(data.name);
+  const [originalName, setOriginalName] = useState(data.name);
   const [centerPhone, setCenterPhone] = useState(data.contact_number);
   const [centerURL, setCenterURL] = useState(data.homepage_link);
   const [centerIntroduction, setCenterIntroduction] = useState(data.introduce);
@@ -49,25 +49,31 @@ const useEditCenterProfile = ({ data }: UseEditCenterProfileProps) => {
     };
 
     // 성공 시 처리 (TODO: 팝업으로 변경해서 UI/UX 개선하면 좋을 것 같습니당)
-    // try {
-    //   await updateProfile.mutate({
-    //     data: profileData,
-    //     img_file: preview || undefined
-    //   });
-
-    //   alert('프로필이 성공적으로 수정되었습니다.');
-    // } catch (error) {
-    //   console.error('오류 발생', error);
-    //   alert('프로필 수정 중 오류가 발생했습니다. 다시 시도해주세요.');
-    // }
-
-    // mutateAsync 사용으로 변경
     try {
-      await updateProfile.mutateAsync({
-        data: profileData,
-        img_file: preview || undefined
-      });
+      // const updateData = preview
+      //   ? { data: profileData, img_file: preview }
+      //   : { data: profileData, img_url: data.img_url };
 
+      const updateData = {
+        data: profileData,
+        ...(preview && { img_file: preview }), // 새 이미지가 있을 경우에만 추가
+        ...(data.img_url && !preview && { img_url: data.img_url }) // 기존 이미지를 유지
+      };
+
+      // const updateData =
+      //   preview && preview instanceof File ? { data: profileData, img_file: preview } : { data: profileData };
+
+      // console.log('요청 데이터:', updateData);
+      // if (preview) {
+      //   console.log('파일 정보:', {
+      //     name: preview.name,
+      //     size: preview.size,
+      //     type: preview.type
+      //   });
+      // }
+
+      await updateProfile.mutateAsync(updateData);
+      setOriginalName(centerName.trim());
       alert('프로필이 성공적으로 수정되었습니다.');
     } catch (error) {
       console.error('오류 발생:', error);

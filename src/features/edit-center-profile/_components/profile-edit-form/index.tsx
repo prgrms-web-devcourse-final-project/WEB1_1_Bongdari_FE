@@ -34,8 +34,6 @@ const EditProfileForm = ({
   handleURLChange,
   handleIntroductionChange
 }: EditProfileFormProps) => {
-  // 유효성 검사
-
   return (
     <EditFormWrapper>
       <EditItem>

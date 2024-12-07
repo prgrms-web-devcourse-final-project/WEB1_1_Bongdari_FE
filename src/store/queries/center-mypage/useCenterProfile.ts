@@ -16,7 +16,7 @@ export interface CenterProfile {
   name: string;
   contact_number: string;
   homepage_link: string;
-  img_url?: string;
+  img_url: string;
   introduce: string;
   prefer_items: PreferItem[];
 }
@@ -49,24 +49,24 @@ const updateCenterProfile = async ({ data, img_file }: CenterProfileUpdateReques
 
   formData.append('data', JSON.stringify(data));
 
-  if (img_file instanceof File) {
+  // 새로운 이미지가 있을 때만 img_file 필드 추가
+  if (img_file && img_file instanceof File) {
     formData.append('img_file', img_file);
+  }
+  // img_file이 없으면 기존 이미지 유지를 위해 필드 자체를 포함하지 않음
+
+  // 로깅
+  console.log('FormData entries:');
+  for (const [key, value] of formData.entries()) {
+    console.log(`${key}:`, value instanceof File ? 'File object' : value);
   }
 
   const response = await axiosInstance.put('/api/center/profile', formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
-      Authorization: `${Cookies.get('ACCESS')}`
+      Authorization: `Bearer ${Cookies.get('ACCESS')}`
     }
   });
-
-  // const response = await axios.put('https://api.somemore.site/api/center/profile', formData, {
-  //   headers: {
-  //     'Content-Type': 'multipart/form-data',
-  //     Authorization: `${Cookies.get('ACCESS')}`
-  //   }
-  // });
-
   return response.data;
 };
 
