@@ -14,16 +14,25 @@ export const CommentCss = styled.div`
   .mainCommentWrap {
     padding: 15px 0 10px;
   }
-  .replyCommentWrap {
+  /* .replyCommentWrap {
     display: flex;
     flex-direction: column-reverse;
+  } */
+
+  .replyInput {
+    background-color: #f9f9f9;
   }
+  .replyInput .content {
+    background-color: #f9f9f9;
+  }
+
   .writerId {
     font-size: ${theme.fontSize.eighthSize};
     font-weight: 700;
     line-height: 150%;
   }
   .content {
+    background-color: white;
     font-size: ${theme.fontSize.seventhSize};
     color: #808080;
     line-height: 150%;

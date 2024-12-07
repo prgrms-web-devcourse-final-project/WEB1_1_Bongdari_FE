@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
-import { AlertBox, AlertPositioning, Contents, Logo, Menu, Wrapper } from './HeaderCss';
+import { AlertBox, AlertPositioning, Contents, LoginBtn, Logo, LogoutBtn, Menu, Wrapper } from './HeaderCss';
 import Alert from '@/features/alert';
 import { useLoginStore } from '@/store/stores/login/loginStore';
 import { AlertType } from '@/shared/types/alert-type/AlertType';
@@ -19,24 +19,18 @@ export default function Header() {
   useEffect(() => {
     let eventSource: EventSource;
 
-    //테스트용
-
-    // const setTestTokenCookie = () => {
-    //   const testToken =
-    //     'eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjM2NzZkMDI4LTc0NDgtNDhhYS1iYWQ4LTcxY2U2NTEzMjE0ZCIsInJvbGUiOiJST0xFX1ZPTFVOVEVFUiIsImp0aSI6IjI1YTQxOTViLTNiMjQtNDMwYy1iMmJlLTQ0MDg3MGQ1ZGJlNiIsImlhdCI6MTczMzQ4MjM0OCwiZXhwIjoxNzM0MDg3MTQ4fQ.XW9g4LYaHBA3eoZG0-pn5tr70s9Io-R1wTQzxlM98Qw';
-    //   document.cookie = `ACCESS="Bearer ${testToken}"; path=/`;
-    // };
-
-    //테스트용
-
     const connectSSE = () => {
-      //테스트용
-      // setTestTokenCookie();
-      //테스트용
-
       eventSource = new EventSource(`${import.meta.env.VITE_APP_BASE_URL}/api/sse/subscribe`, {
         withCredentials: true
       });
+
+      // 연결 성공 시 호출되는 핸들러 추가
+      eventSource.onopen = () => {
+        toast.success('SSE가 연결되었습니다', {
+          position: 'top-right',
+          autoClose: 3000
+        });
+      };
 
       eventSource.onmessage = (event) => {
         const newNotification: AlertType = JSON.parse(event.data);
@@ -54,10 +48,6 @@ export default function Header() {
         // 재연결 로직 할라면 여기에 추가
       };
     };
-
-    //테스트용
-    // connectSSE();
-    //테스트용
 
     // 로그인 상태일 때만 SSE 연결
     if (isLoggedIn) {
@@ -79,26 +69,30 @@ export default function Header() {
           <Logo>SOMEMORE</Logo>
         </Link>
         <Menu>
-          <button
-            onClick={() => {
-              navigate('/login');
-            }}>
-            로그인
-          </button>
-          <button
-            onClick={async () => {
-              if (loginType === 'ROLE_CENTER') {
-                clearLoginInfo();
-                const response = await centerLogout();
-                console.log(response);
-              } else if (loginType === 'ROLE_VOLUNTEER') {
-                clearLoginInfo();
-                const response = await personLogout();
-                console.log(response);
-              }
-            }}>
-            로그아웃
-          </button>
+          {!isLoggedIn && (
+            <LoginBtn
+              onClick={() => {
+                navigate('/login');
+              }}>
+              로그인
+            </LoginBtn>
+          )}
+          {isLoggedIn && (
+            <LogoutBtn
+              onClick={async () => {
+                if (loginType === 'ROLE_CENTER') {
+                  clearLoginInfo();
+                  const response = await centerLogout();
+                  console.log(response);
+                } else if (loginType === 'ROLE_VOLUNTEER') {
+                  clearLoginInfo();
+                  const response = await personLogout();
+                  console.log(response);
+                }
+              }}>
+              로그아웃
+            </LogoutBtn>
+          )}
           <AlertPositioning>{alertState && <Alert></Alert>}</AlertPositioning>
           <AlertBox
             onClick={() => {
@@ -115,9 +109,11 @@ export default function Header() {
           <Link to="/community" className="link">
             <li>커뮤니티</li>
           </Link>
-          <Link to="/centermypage" className="link">
-            <li>마이페이지</li>
-          </Link>
+          {isLoggedIn && (
+            <Link to="/centermypage" className="link">
+              <li>마이페이지</li>
+            </Link>
+          )}
         </Menu>
       </Contents>
     </Wrapper>

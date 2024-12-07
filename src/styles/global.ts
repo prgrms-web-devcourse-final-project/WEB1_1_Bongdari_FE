@@ -27,4 +27,9 @@ export const GlobalStyle = createGlobalStyle`
   html, body {
     background-color: #f9f9f9;
   }
+
+  textarea {
+    font-family: "Pretendard" !important;
+    word-break: keep-all;
+}
 `;

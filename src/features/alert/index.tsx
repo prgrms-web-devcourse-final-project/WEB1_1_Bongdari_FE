@@ -4,6 +4,7 @@ import AlertItem from '@/components/alert-item';
 import { Container, Top, Wrapper } from './indexCss';
 import { AlertType } from '@/shared/types/alert-type/AlertType';
 import { sigleRead } from './logic/single-read';
+import axiosInstance from '@/api/apis';
 
 const Alert = () => {
   const [notifications, setNotifications] = useState<AlertType[]>([]);
@@ -11,12 +12,9 @@ const Alert = () => {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_APP_BASE_URL}/api/notifications/unread`, {
-          credentials: 'include'
-        });
-        const data = await response.json();
+        const response = await axiosInstance(`/api/notification/unread`);
+        const data = await response.data;
         setNotifications(data); // data형식 보고 이부분 수정해야함
-        console.log(notifications); // cicd오류 없애기용 - set되기전에 돌아가서 의미없음
       } catch (error) {
         console.error('알림을 가져오는데 실패했습니다:', error);
       }
@@ -24,6 +22,10 @@ const Alert = () => {
 
     fetchNotifications();
   }, []);
+
+  useEffect(() => {
+    console.log('notifications', notifications);
+  }, [notifications]);
 
   const data = [
     {
