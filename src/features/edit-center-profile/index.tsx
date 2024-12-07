@@ -9,11 +9,10 @@ import {
   SectionBox
 } from './indexCss';
 import useEditCenterProfile from './logic/useEditCenterProfile';
-import useSubmitCenterProfile from './logic/useSubmitCenterProfile';
-import type { centerProfileType } from '@/shared/types/center-profile/centerProfile';
+import type { CenterProfile } from '@/store/queries/center-mypage/useCenterProfile';
 
 interface EditCenterProfileProps {
-  data: centerProfileType;
+  data: CenterProfile;
 }
 
 const EditCenterProfile = ({ data }: EditCenterProfileProps) => {
@@ -30,18 +29,10 @@ const EditCenterProfile = ({ data }: EditCenterProfileProps) => {
     handleURLChange,
     handleIntroductionChange,
     validURL,
-    validPhone
+    validPhone,
+    handleEditProfile,
+    isSubmitting
   } = useEditCenterProfile({ data });
-
-  const { handleEditProfile, isSubmitting } = useSubmitCenterProfile();
-
-  const handleEditButton = () => {
-    if (!centerName.trim()) {
-      alert('기관명을 입력해주세요.');
-      return;
-    }
-    handleEditProfile(centerName, centerPhone, centerURL, centerIntroduction, preview, validURL, validPhone);
-  };
 
   return (
     <CenterProfileEditContainer>
@@ -52,7 +43,7 @@ const EditCenterProfile = ({ data }: EditCenterProfileProps) => {
       )}
       <SectionBox>
         <ProfileEditWrapper>
-          <ImageUploader preview={preview} onImageUpload={handleImageUpload} />
+          <ImageUploader preview={preview} initialImage={data.img_url} onImageUpload={handleImageUpload} />
           <EditProfileForm
             handleNameChange={handleNameChange}
             handlePhoneChange={handlePhoneChange}
@@ -70,7 +61,7 @@ const EditCenterProfile = ({ data }: EditCenterProfileProps) => {
           <OtherButton
             label="수정하기"
             width="220px"
-            onClick={handleEditButton}
+            onClick={handleEditProfile}
             disabled={isSubmitting || !validURL || !validPhone || !centerName.trim()}
           />
         </EditButtonContainer>

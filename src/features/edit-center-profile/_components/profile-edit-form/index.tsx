@@ -1,3 +1,4 @@
+import { validatePhone, validateURL } from '../../logic/validation';
 import {
   CenterIntroTextArea,
   EditFormWrapper,
@@ -15,10 +16,10 @@ interface EditProfileFormProps {
   validURL: boolean;
   validPhone: boolean;
   centerIntroduction: string;
-  handleNameChange: (newName: string) => void;
-  handlePhoneChange: (phone: string) => void;
-  handleURLChange: (URL: string) => void;
-  handleIntroductionChange: (introduction: string) => void;
+  handleNameChange: (value: string) => void;
+  handlePhoneChange: (value: string, isValid: boolean) => void;
+  handleURLChange: (value: string, isValid: boolean) => void;
+  handleIntroductionChange: (value: string) => void;
 }
 
 const EditProfileForm = ({
@@ -33,6 +34,8 @@ const EditProfileForm = ({
   handleURLChange,
   handleIntroductionChange
 }: EditProfileFormProps) => {
+  // 유효성 검사
+
   return (
     <EditFormWrapper>
       <EditItem>
@@ -55,11 +58,15 @@ const EditProfileForm = ({
             id="centerPhone"
             type="text"
             value={centerPhone}
-            onChange={(e) => handlePhoneChange(e.target.value)}
+            onChange={(e) => {
+              const value = e.target.value;
+              const isValid = validatePhone(value);
+              handlePhoneChange(value, isValid);
+            }}
             placeholder="연락처를 입력하세요."
           />
           {centerPhone && !validPhone && (
-            <ErrorMessage>⚠️ 연락처는 "oo-oooo-oooo" 또는 "ooo-oooo-oooo" 형식으로 입력해주세요.</ErrorMessage>
+            <ErrorMessage>⚠️ 연락처는 "oo-ooo(o)-oooo" 또는 "ooo-ooo(o)-oooo" 형식으로 입력해주세요.</ErrorMessage>
           )}
         </div>
       </EditItem>
@@ -70,7 +77,11 @@ const EditProfileForm = ({
             id="centerURL"
             type="text"
             value={centerURL}
-            onChange={(e) => handleURLChange(e.target.value)}
+            onChange={(e) => {
+              const value = e.target.value;
+              const isValid = validateURL(value);
+              handleURLChange(value, isValid);
+            }}
             placeholder="사이트 주소를 입력하세요."
           />
           {centerURL && !validURL && <ErrorMessage>⚠️ 올바른 URL 형식이 아닙니다.</ErrorMessage>}

@@ -7,17 +7,18 @@ import useHandleItem from './logic/useAddItem';
 import type { centerPreferItemType } from '@/shared/types/center-profile/centerProfile';
 
 interface RegisterGoodsProps {
+  name: string;
   preferData: centerPreferItemType[];
 }
 
-const RegisterGoods = ({ preferData }: RegisterGoodsProps) => {
+const RegisterGoods = ({ name, preferData }: RegisterGoodsProps) => {
   const { goodsList, currentInput, setCurrentInput, handleAddGoods, handleKeyPress, handleDeleteGoods } =
     useHandleItem(preferData);
 
   return (
     <SectionBox>
       <RegisterTitleSection>
-        <ResisterTitle>기관 선호물품 등록</ResisterTitle>
+        <ResisterTitle>{name}의 선호물품 등록</ResisterTitle>
         <Tooltip title={`기관에 필요한 물품을 직접 입력해 등록해보세요 (예: 어린이 동화 10권 or 옷 5벌)`} arrow>
           <Button style={{ paddingLeft: 0 }}>
             <TooltipBorder>

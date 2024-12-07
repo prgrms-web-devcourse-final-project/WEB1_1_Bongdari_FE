@@ -3,7 +3,6 @@ import RegisterGoods from '@/features/register-goods';
 import { PageWrapper } from './indexCss';
 import ManageCenterPostSet from '@/features/manage-center-post-set';
 import { useGetCenterProfile } from '@/store/queries/center-mypage/useCenterProfile';
-import type { centerProfileType } from '@/shared/types/center-profile/centerProfile';
 import { useLoginStore } from '@/store/stores/login/loginStore';
 
 const CenterMyPage = () => {
@@ -20,26 +19,10 @@ const CenterMyPage = () => {
 
   console.log('데이터다!', data);
 
-  // API 응답 데이터를 centerProfileType 형식으로 변환
-  const profileData: centerProfileType = {
-    center_id: data.center_id,
-    name: data.name,
-    contact_number: data.contact_number,
-    homepage_link: data.homepage_link,
-    introduce: data.introduce,
-    img_url: data.img_url,
-    interest: false,
-    prefer_item: data.prefer_items.map((item) => ({
-      id: item.id,
-      centerId: item.centerId,
-      itemName: item.itemName
-    }))
-  };
-
   return (
     <PageWrapper>
-      <EditCenterProfile profileData={profileData} />
-      <RegisterGoods preferData={profileData.prefer_item || []} />
+      <EditCenterProfile data={data} />
+      <RegisterGoods name={data.name} preferData={data.prefer_items || []} />
       <ManageCenterPostSet centerId={centerId} />
     </PageWrapper>
   );

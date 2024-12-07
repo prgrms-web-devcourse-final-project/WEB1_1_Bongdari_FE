@@ -10,7 +10,7 @@ const LocalTestBox = () => {
         const testLoginCenter = async () => {
           try {
             const response = await axios.get(
-              `${import.meta.env.VITE_APP_BASE_URL}/api/develop/token/center/B8473384-AE17-11EF-AA15-0A855994FB4B`
+              `${import.meta.env.VITE_APP_BASE_URL}/api/develop/token/center/e8a1d93b-4cdb-401a-9956-3859a70b9eff`
             );
             const token = response.data.message;
             console.log(token);
@@ -23,7 +23,7 @@ const LocalTestBox = () => {
               sameSite: 'none'
             });
 
-            setLoginInfo('B8473384-AE17-11EF-AA15-0A855994FB4B', 'ROLE_CENTER');
+            setLoginInfo('e8a1d93b-4cdb-401a-9956-3859a70b9eff', 'ROLE_CENTER');
 
             return response;
           } catch (error) {

@@ -1,79 +1,96 @@
-import { useImageUpload } from '@/shared/hooks/useImageUpload';
-import { useState, useEffect } from 'react';
-import { validatePhone, validateURL } from './validation';
+import { useState } from 'react';
+import { useUpdateCenterProfile, type CenterProfile } from '@/store/queries/center-mypage/useCenterProfile';
 
 interface UseEditCenterProfileProps {
-  data: {
-    name: string;
-    contact_number: string;
-    homepage_link: string;
-    introduce: string;
-  };
-  // img_file?: File;
+  data: CenterProfile;
 }
 
 const useEditCenterProfile = ({ data }: UseEditCenterProfileProps) => {
-  const { preview, setPreview, handleImageUpload } = useImageUpload();
+  const updateProfile = useUpdateCenterProfile();
 
-  // 수정중인 데이터 모아놓는 상태
-  const [centerName, setCenterName] = useState('');
-  const [centerPhone, setCenterPhone] = useState('');
-  const [centerURL, setCenterURL] = useState('');
-  const [centerIntroduction, setCenterIntroduction] = useState('');
-
-  // 원래 데이터 상태
-  const [originalName, setOriginalName] = useState('');
-
+  // 각 input 상태 관리
+  const [preview, setPreview] = useState<File | null>(null);
+  const [centerName, setCenterName] = useState(data.name);
+  const [originalName] = useState(data.name);
+  const [centerPhone, setCenterPhone] = useState(data.contact_number);
+  const [centerURL, setCenterURL] = useState(data.homepage_link);
+  const [centerIntroduction, setCenterIntroduction] = useState(data.introduce);
   const [validURL, setValidURL] = useState(true);
   const [validPhone, setValidPhone] = useState(true);
 
-  useEffect(() => {
-    if (data) {
-      setCenterName(data.name);
-      setCenterPhone(data.contact_number);
-      setCenterURL(data.homepage_link);
-      setCenterIntroduction(data.introduce);
+  // 이미지 업로드 핸들러
+  const handleImageUpload = (file: File) => {
+    setPreview(file);
+  };
 
-      setOriginalName(data.name);
-
-      if (preview) {
-        setPreview(preview);
-      }
-
-      setValidPhone(validatePhone(data.contact_number));
-      setValidURL(validateURL(data.homepage_link));
-    }
-  }, [data, setPreview]);
-
-  // 상태 업데이트 핸들러
+  // 입력 핸들러 모음
   const handleNameChange = (name: string) => setCenterName(name);
-
-  const handlePhoneChange = (phone: string) => {
+  const handlePhoneChange = (phone: string, isValid: boolean) => {
     setCenterPhone(phone);
-    setValidPhone(validatePhone(phone));
+    setValidPhone(isValid);
   };
-
-  const handleURLChange = (url: string) => {
+  const handleURLChange = (url: string, isValid: boolean) => {
     setCenterURL(url);
-    setValidURL(validateURL(url));
+    setValidURL(isValid);
   };
+  const handleIntroductionChange = (introduce: string) => setCenterIntroduction(introduce);
 
-  const handleIntroductionChange = (introduction: string) => setCenterIntroduction(introduction);
+  // 제출 핸들러
+  const handleEditProfile = async () => {
+    if (!validURL || !validPhone || !centerName.trim()) {
+      return;
+    }
+
+    const profileData = {
+      name: centerName.trim(),
+      contact_number: centerPhone,
+      homepage_link: centerURL,
+      introduce: centerIntroduction
+    };
+
+    // 성공 시 처리 (TODO: 팝업으로 변경해서 UI/UX 개선하면 좋을 것 같습니당)
+    // try {
+    //   await updateProfile.mutate({
+    //     data: profileData,
+    //     img_file: preview || undefined
+    //   });
+
+    //   alert('프로필이 성공적으로 수정되었습니다.');
+    // } catch (error) {
+    //   console.error('오류 발생', error);
+    //   alert('프로필 수정 중 오류가 발생했습니다. 다시 시도해주세요.');
+    // }
+
+    // mutateAsync 사용으로 변경
+    try {
+      await updateProfile.mutateAsync({
+        data: profileData,
+        img_file: preview || undefined
+      });
+
+      alert('프로필이 성공적으로 수정되었습니다.');
+    } catch (error) {
+      console.error('오류 발생:', error);
+      alert('프로필 수정 중 오류가 발생했습니다. 다시 시도해주세요.');
+    }
+  };
 
   return {
     preview,
+    handleImageUpload,
     centerName,
     originalName,
     centerPhone,
     centerURL,
     centerIntroduction,
-    handleImageUpload,
     handleNameChange,
     handlePhoneChange,
     handleURLChange,
     handleIntroductionChange,
     validURL,
-    validPhone
+    validPhone,
+    handleEditProfile,
+    isSubmitting: updateProfile.isPending
   };
 };
 
