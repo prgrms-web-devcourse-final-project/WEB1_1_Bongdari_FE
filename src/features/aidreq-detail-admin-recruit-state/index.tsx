@@ -42,11 +42,11 @@ const AdminReqDetailAdminRecruitState = ({
     }
 
     updateStatus({ id, status: recruitStatusMapping[activeState] });
+    alert('모집 상태가 성공적으로 변경되었습니다.');
   };
 
-  console.log('액티브스테이드', activeState);
-  console.log(currentStatus);
-
+  console.log('현재 active된 state', activeState);
+  console.log('지금 눌린 state', currentStatus);
   console.log('mappedStatus:', recruitStatusMapping[activeState]);
 
   return (

@@ -1,23 +1,22 @@
 import axios from 'axios';
-import Cookies from 'js-cookie';
 
-export const testLoginCenter = async () => {
+//기관로그인은 폼데이터로
+
+export const testLoginCenter = async (id: string, pwd: string) => {
   try {
-    const response = await axios.get(
-      `${import.meta.env.VITE_APP_BASE_URL}/api/develop/token/center/919027e3-0d51-4ad3-a80b-e3585179697b`
-    );
-    const token = response.data.message;
-    console.log(token);
+    // FormData 객체 생성
+    const formData = new FormData();
+    formData.append('account_id', id);
+    formData.append('account_password', pwd);
 
-    // 쿠키에 토큰 저장
-    Cookies.set('centerToken', token, {
-      expires: 7, // 7일 후 만료
-      path: '/', // 모든 경로에서 접근 가능
-      secure: true, // HTTPS에서만 쿠키 전송
-      sameSite: 'strict' // CSRF 방지
+    const response = await axios.post(`${import.meta.env.VITE_APP_BASE_URL}/api/center/sign-in`, formData, {
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
     });
 
-    return response;
+    return response.data;
   } catch (error) {
     console.error('Login failed:', error);
     throw error;

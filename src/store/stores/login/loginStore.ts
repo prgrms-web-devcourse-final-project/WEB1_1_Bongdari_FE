@@ -5,8 +5,8 @@ import { createJSONStorage, persist } from 'zustand/middleware';
 interface LoginStoreState {
   isLoggedIn: boolean;
   myLoginId: string | null;
-  loginType: 'center' | 'person' | null;
-  setLoginInfo: (id: string, type: 'center' | 'person') => void; // login
+  loginType: 'ROLE_CENTER' | 'ROLE_VOLUNTEER' | null;
+  setLoginInfo: (id: string, type: 'ROLE_CENTER' | 'ROLE_VOLUNTEER') => void; // login
   clearLoginInfo: () => void; // logout
 }
 
@@ -16,7 +16,7 @@ export const useLoginStore = create(
       isLoggedIn: false,
       myLoginId: null,
       loginType: null,
-      setLoginInfo: (id: string, type: 'center' | 'person') =>
+      setLoginInfo: (id: string, type: 'ROLE_CENTER' | 'ROLE_VOLUNTEER') =>
         set((state) => ({
           ...state,
           myLoginId: id,

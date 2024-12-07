@@ -5,15 +5,18 @@ import { ButtonWrapper, EmptyButton } from './indexCss';
 
 interface ButtonGroupProps {
   handleAdjustmentButton: () => void;
+  status: string;
 }
 
-const ButtonGroup = ({ handleAdjustmentButton }: ButtonGroupProps) => {
+const ButtonGroup = ({ handleAdjustmentButton, status }: ButtonGroupProps) => {
   const navigate = useNavigate();
+
+  console.log('statuss', status);
 
   return (
     <ButtonWrapper>
       <EmptyButton onClick={() => navigate('/centermypage/adminaidreqmodify')}>수정하기</EmptyButton>
-      <OtherButton label="정산하기" width="221px" onClick={handleAdjustmentButton} />
+      <OtherButton label="정산하기" width="221px" onClick={handleAdjustmentButton} disabled={status !== 'COMPLETED'} />
     </ButtonWrapper>
   );
 };

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { testLoginCenter } from './testLoginCenter';
-import { useLoginStore } from '@/store/stores/login/loginStore';
+// import { useLoginStore } from '@/store/stores/login/loginStore';
 
 interface useOrgLoginReturn {
   idErr: string;
@@ -13,7 +13,7 @@ interface useOrgLoginReturn {
 }
 
 export const useOrgLogin = (): useOrgLoginReturn => {
-  const setLoginInfo = useLoginStore((state) => state.setLoginInfo);
+  // const setLoginInfo = useLoginStore((state) => state.setLoginInfo);
 
   const [id, setId] = useState<string>('');
   const [pwd, setPwd] = useState<string>('');
@@ -44,14 +44,13 @@ export const useOrgLogin = (): useOrgLoginReturn => {
     else {
       console.log(id, pwd, '로그인시도');
 
-      //테스트용 함수
       try {
-        await testLoginCenter();
-        setLoginInfo('919027e3-0d51-4ad3-a80b-e3585179697b', 'center');
+        const response = await testLoginCenter(id, pwd);
+        console.log(response);
+        // setLoginInfo('centertestid', 'center');
       } catch (error) {
         console.error('Login failed:', error);
       }
-      //테스트용 함수
     }
   };
   const onClickFirstVisit = () => {

@@ -58,7 +58,7 @@ const AidRqDetailPage = () => {
       {centerData && <AidRqDetailCenterProfile data={centerData.data}></AidRqDetailCenterProfile>}
       {data && <TextContent data={data.data}></TextContent>}
       {data && <AidRqDetailInfo data={data.data}></AidRqDetailInfo>}
-      {data && myLoginState.loginType === 'person' && (
+      {data && myLoginState.loginType === 'ROLE_VOLUNTEER' && (
         <ButtonBox presentstate={presentState}>
           <button
             onClick={() => {
