@@ -62,9 +62,10 @@ const getVolunteerApplies = async ({
 
   const response = await axiosInstance.get(`/api/volunteer-applies/recruit-board/${recruitBoardId}?${params}`, {
     headers: {
-      Authorization: `Bearer ${Cookies.get('ACCESS')}`
+      Authorization: `${Cookies.get('ACCESS')}`
     }
   });
+
   return response.data;
 };
 
@@ -80,8 +81,8 @@ export const useVolunteerApplies = (
   recruitBoardId: number,
   page: number = 0,
   size: number = 10,
-  status?: 'WAITING' | 'APPROVED' | 'REJECTED',
-  attended?: boolean
+  status?: 'WAITING',
+  attended?: false
 ) => {
   return useQuery({
     queryKey: ['volunteerApplies', recruitBoardId, page, size, status, attended],

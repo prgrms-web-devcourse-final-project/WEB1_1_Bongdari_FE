@@ -12,13 +12,11 @@ const AidRqApplicantListPage = () => {
   const title = location.state?.title;
   const parsedRecruitBoardId = id ? parseInt(id) : 0;
 
+  console.log('아이디', parsedRecruitBoardId);
+
   console.log('title이다', title);
 
-  const {
-    data: applicantsData,
-    isLoading,
-    isError
-  } = useVolunteerApplies(parsedRecruitBoardId, 0, 10, 'WAITING', true);
+  const { data: applicantsData, isLoading, isError } = useVolunteerApplies(parsedRecruitBoardId, 0, 10);
   console.log('데이터야 잘 있니?', applicantsData);
 
   if (isLoading) return <div style={{ paddingTop: '450px' }}>로딩 중...</div>;

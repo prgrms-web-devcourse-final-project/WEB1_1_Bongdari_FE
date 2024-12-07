@@ -51,7 +51,7 @@ export const useInfiniteAidRq = (
         sort,
         status
       }),
-    initialPageParam: 0,
+    initialPageParam: 1,
     getNextPageParam: (lastPage) => (lastPage.items.data.data.last ? undefined : lastPage.items.data.data.number + 1),
     enabled: false, // 자동 실행 방지
     staleTime: 1000 * 60 * 5, // 5분간 캐시 유지
