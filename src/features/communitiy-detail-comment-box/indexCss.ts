@@ -10,9 +10,8 @@ export const CommunityDetailCommentBoxCss = styled.div`
     padding: 20px 0;
     display: block;
   }
-
-  .commentInput {
+  .commentWrap {
     display: flex;
-    gap: 20px;
+    flex-direction: column-reverse;
   }
 `;

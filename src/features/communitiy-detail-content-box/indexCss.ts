@@ -2,6 +2,11 @@ import theme from '@/styles/theme';
 import styled from 'styled-components';
 
 export const CommunityDetailContentBoxCss = styled.div`
+  .noData {
+    width: 100%;
+    text-align: center;
+  }
+
   .title {
     font-size: ${theme.fontSize.firstSize};
     font-weight: 700;

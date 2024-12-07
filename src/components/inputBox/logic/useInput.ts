@@ -4,6 +4,7 @@ interface UseInputProps {
   getInputText: (inputText: string) => void;
   initialVal: string;
   setFunc?: (inputText: string) => void;
+  onEnterFunc?: () => void;
 }
 
 interface UseInputReturn {
@@ -13,7 +14,7 @@ interface UseInputReturn {
   onBlur: () => void; // 다른곳 클릭시 상위전달
 }
 
-export const useInput = ({ getInputText, initialVal, setFunc }: UseInputProps): UseInputReturn => {
+export const useInput = ({ getInputText, initialVal, setFunc, onEnterFunc }: UseInputProps): UseInputReturn => {
   const [inputText, setInputText] = useState(initialVal);
 
   // inputText 내부적으로 저장
@@ -28,6 +29,7 @@ export const useInput = ({ getInputText, initialVal, setFunc }: UseInputProps): 
       const tmp = (e.target as HTMLInputElement).value;
       // console.log('"', tmp, '" Enter가 눌렸습니다');
       getInputText(tmp);
+      if (onEnterFunc) onEnterFunc();
     }
   };
 
