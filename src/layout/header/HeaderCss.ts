@@ -80,3 +80,29 @@ export const AlertPositioning = styled.div`
   position: relative;
   height: 100%;
 `;
+
+export const LoginBtn = styled.button`
+  padding: 5px 20px;
+  border: 1px solid #62a6ff;
+  border-radius: 30px;
+  background-color: white;
+  color: #2382ff;
+
+  &:hover {
+    border: 1px solid #2382ff;
+    cursor: pointer;
+  }
+`;
+
+export const LogoutBtn = styled.button`
+  padding: 5px 20px;
+  border: 1px solid #62a6ff;
+  border-radius: 30px;
+  background-color: white;
+  color: #2382ff;
+
+  &:hover {
+    border: 1px solid #2382ff;
+    cursor: pointer;
+  }
+`;
