@@ -43,3 +43,11 @@ export interface communityDetailType {
   created_at: string;
   updated_at: string;
 }
+
+export interface commentType {
+  id: number;
+  content: string;
+  writer_nickname: string;
+  updated_at: string;
+  replies: commentType[];
+}

@@ -7,9 +7,16 @@ export const CommentCss = styled.div`
   border-radius: ${theme.box.section.borderRadius};
   padding: 20px 40px;
   margin-top: 16px;
+  & * {
+    /* border: 1px solid red; */
+  }
 
   .mainCommentWrap {
-    padding: 15px 0;
+    padding: 15px 0 10px;
+  }
+  .replyCommentWrap {
+    display: flex;
+    flex-direction: column-reverse;
   }
   .writerId {
     font-size: ${theme.fontSize.eighthSize};
@@ -20,21 +27,31 @@ export const CommentCss = styled.div`
     font-size: ${theme.fontSize.seventhSize};
     color: #808080;
     line-height: 150%;
+
+    width: 100%;
+    min-height: ${theme.fontSize.seventhSize};
+    text-overflow: wrap;
+    overflow: hidden;
+    resize: none;
+    border: none;
   }
 
   .commentInnerWrap {
     font-size: ${theme.fontSize.eighthSize};
     font-weight: 300;
     line-height: 150%;
-    padding: 10px 0;
+    /* padding: 10px 0; */
   }
-  .commentInnerWrap > * {
-    padding-right: 15px;
+  .commentInnerWrap .createdDate {
+    display: inline-block;
+    margin-right: 25px;
   }
   .commentInnerWrap .editBtn,
-  .commentInnerWrap .deleteBtn {
+  .commentInnerWrap .deleteBtn,
+  .commentInnerWrap .replyBtn {
     color: #7d7d7d;
     cursor: pointer;
+    margin-right: 10px;
   }
 
   .addComment {
