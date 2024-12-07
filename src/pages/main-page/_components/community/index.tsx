@@ -27,15 +27,16 @@ const Community = () => {
       </Top>
       <Bottom>
         {mainCommunity.map((item, index) => (
-          <LongListItem
-            key={index}
-            content_id={item.id.toString()}
-            mainText={item.title}
-            writer={item.writer_nickname}
-            modifiedDate={item.created_at}
-            getContentId={(id) => {
-              console.log(id);
-            }}></LongListItem>
+          <Link key={index} to={`/community/${item.id.toString()}`}>
+            <LongListItem
+              content_id={item.id.toString()}
+              mainText={item.title}
+              writer={item.writer_nickname}
+              modifiedDate={item.created_at}
+              getContentId={(id) => {
+                console.log(id);
+              }}></LongListItem>
+          </Link>
         ))}
       </Bottom>
     </Wrapper>

@@ -18,7 +18,7 @@ export const useCommunityList = ({ searchWord }: { searchWord: string }): useCom
   useEffect(() => {
     console.log('searching', searchWord);
     const fetchData = async () => {
-      const data = await fetchCommunityList(searchWord, currPage);
+      const data = await fetchCommunityList(searchWord, currPage - 1);
       if (data) {
         setListData(data.data.content);
         // console.log('listData', listData);
