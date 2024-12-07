@@ -6,7 +6,7 @@ const WriteAidReqButtonComponent = () => {
   return (
     <SectionBox>
       <IconBox>
-        <img src="/public/assets/imgs/find-volunteer-icon.svg" alt="recruit-volunteer-icon" />
+        <img src="/assets/imgs/find-volunteer-icon.svg" alt="recruit-volunteer-icon" />
       </IconBox>
       <IntroBox>
         <IntroTitle>봉사활동 지원자를 찾고 있으신가요?</IntroTitle>
