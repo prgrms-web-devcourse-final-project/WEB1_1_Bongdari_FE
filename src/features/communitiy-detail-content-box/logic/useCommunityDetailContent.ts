@@ -43,7 +43,7 @@ export const useCommunityDetailContent = (content_id: number): useCommunityDetai
         });
       }
 
-      if (loginType === 'person' && detailData?.writer_id === myLoginId) setIsMyContent(true);
+      if (loginType === 'ROLE_VOLUNTEER' && detailData?.writer_id === myLoginId) setIsMyContent(true);
     };
 
     fetchData();

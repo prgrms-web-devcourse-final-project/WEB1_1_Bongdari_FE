@@ -21,7 +21,7 @@ export const useMyProfileData = (): useMyProfileDataReturn => {
           img_url: '',
           introduce:
             '나의 소개입니다! 나의 소개입니다! 나의 소개입니다! 나의 소개입니다! 나의 소개입니다! 나의 소개입니다! 나의 소개입니다!',
-          tier: 'red',
+          tier: 'RED',
           total_volunteer_hours: 120,
           total_volunteer_count: 9,
           detail: {

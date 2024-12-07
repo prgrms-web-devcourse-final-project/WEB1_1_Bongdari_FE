@@ -15,7 +15,7 @@ const PMPGTop = () => {
   } else {
     return (
       <PMPGTopCss>
-        <i className="sayHi">안녕하세요, {profileData.detail.name}님!</i>
+        <i className="sayHi">안녕하세요, {profileData.detail?.name}님!</i>
         <EditProfile
           profileImg={profileData.img_url}
           profileNickname={profileData.nickname}
