@@ -1,8 +1,13 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 export const fetchMyProfile = async () => {
   try {
-    const res = await axios.get(import.meta.env.VITE_APP_BASE_URL + `/api/volunteer/profile/me`);
+    const res = await axios.get(import.meta.env.VITE_APP_BASE_URL + `/api/volunteer/profile/me`, {
+      headers: {
+        Authorization: `${Cookies.get('ACCESS')}`
+      }
+    });
     console.log('fetchMyProfile data', res.data);
     if (res.status === 200) return res.data;
     else if (res.status === 400) console.log('fetchMyProfile res 400');

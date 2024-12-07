@@ -40,8 +40,7 @@ export const useComment = ({
 
   // 내가 쓴 댓글인지 확인
   useEffect(() => {
-    console.log('댓쓴이 writer_nickname', writer_nickname);
-    console.log('나 login_name', login_name);
+    console.log('[댓글 writer_nickname:', writer_nickname, '], [login_name:', login_name, ']');
     setIsMyComment(writer_nickname === login_name);
   }, [login_name]);
 

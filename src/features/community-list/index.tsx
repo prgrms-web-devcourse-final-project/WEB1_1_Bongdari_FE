@@ -21,9 +21,8 @@ const CommuntiyList = ({ searchWord }: { searchWord: string }) => {
       </div>
       <div className="listWrap">
         {listData?.map((v, i) => (
-          <Link to={`/community/${v.id}`}>
+          <Link key={i} to={`/community/${v.id}`}>
             <LongListItem
-              key={i}
               content_id={`${v.id}`}
               indexNum={v.id}
               mainText={v.title}

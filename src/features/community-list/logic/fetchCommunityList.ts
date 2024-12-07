@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const fetchCommunityList = async (searchWord: string, page: number = 1) => {
+export const fetchCommunityList = async (searchWord: string, page: number = 0) => {
   try {
     const res = await axios.get(
       import.meta.env.VITE_APP_BASE_URL + `/api/community-boards?keyword=${searchWord}&page=${page}`

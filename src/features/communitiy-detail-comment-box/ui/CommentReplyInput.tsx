@@ -23,7 +23,7 @@ const CommentReplyInput = ({
     updateComments
   });
   return (
-    <CommentCss>
+    <CommentCss className="replyInput">
       <textarea
         className="content"
         ref={textareaRef}
