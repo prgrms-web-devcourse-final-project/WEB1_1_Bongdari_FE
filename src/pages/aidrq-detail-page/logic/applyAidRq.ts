@@ -1,6 +1,5 @@
 import axiosInstance from '@/api/apis/index';
 import axios from 'axios';
-import Cookies from 'js-cookie';
 
 export const applyAidRq = async (id: string | undefined) => {
   if (!id) {
@@ -10,19 +9,10 @@ export const applyAidRq = async (id: string | undefined) => {
   try {
     console.log('Sending request with:', {
       url: '/api/volunteer-apply',
-      data: { recruit_board_id: id },
-      token: Cookies.get('ACCESS')
+      data: { recruit_board_id: id }
     });
 
-    const response = await axiosInstance.post(
-      '/api/volunteer-apply',
-      { recruit_board_id: id },
-      {
-        headers: {
-          Authorization: `${Cookies.get('ACCESS')}`
-        }
-      }
-    );
+    const response = await axiosInstance.post('/api/volunteer-apply', { recruit_board_id: id });
 
     console.log('Response:', response);
     return response;
