@@ -14,9 +14,15 @@ export const applyAidRq = async (id: string | undefined) => {
       token: Cookies.get('ACCESS')
     });
 
-    const response = await axiosInstance.post('/api/volunteer-apply', {
-      recruit_board_id: id
-    });
+    const response = await axiosInstance.post(
+      '/api/volunteer-apply',
+      { recruit_board_id: id },
+      {
+        headers: {
+          Authorization: `${Cookies.get('ACCESS')}`
+        }
+      }
+    );
 
     console.log('Response:', response);
     return response;
