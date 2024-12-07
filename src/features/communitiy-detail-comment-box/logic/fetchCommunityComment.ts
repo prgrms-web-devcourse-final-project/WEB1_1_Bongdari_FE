@@ -20,7 +20,7 @@ export const fetchCommunityComment = async (content_id: number) => {
 
 export const postCommunityComment = async (content_id: number, content: string, parent_id?: number) => {
   try {
-    const res: resType = await axiosInstance.post(
+    const res: resType<number> = await axiosInstance.post(
       `/api/community-board/${content_id}/comment`,
       {
         // POST 요청의 body
@@ -46,7 +46,7 @@ export const postCommunityComment = async (content_id: number, content: string, 
 
 export const putCommunityComment = async (content_id: number, comment_id: number, content: string) => {
   try {
-    const res: resType = await axiosInstance.put(`/api/community-board/${content_id}/comment/${comment_id}`, {
+    const res: resType<number> = await axiosInstance.put(`/api/community-board/${content_id}/comment/${comment_id}`, {
       content: content
     });
     console.log('putCommunityComment data', res);
@@ -60,7 +60,7 @@ export const putCommunityComment = async (content_id: number, comment_id: number
 
 export const deleteCommunityComment = async (content_id: number, comment_id: number) => {
   try {
-    const res: resType = await axiosInstance.delete(`/api/community-board/${content_id}/comment/${comment_id}`);
+    const res: resType<string> = await axiosInstance.delete(`/api/community-board/${content_id}/comment/${comment_id}`);
     console.log('deleteCommunityComment data', res);
 
     if (res.code >= 200 && res.code < 300) return res.data;
