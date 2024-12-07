@@ -19,7 +19,7 @@ const LocalTestBox = () => {
             Cookies.set('ACCESS', token, {
               expires: 7, // 7일 후 만료
               path: '/', // 모든 경로에서 접근 가능
-              secure: false,
+              secure: true,
               sameSite: 'none'
             });
 
