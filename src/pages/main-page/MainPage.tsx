@@ -27,7 +27,7 @@ export default function MainPage() {
         console.log(response.data);
         const USER_ID = response.data.USER_ID;
         const ROLE = response.data.ROLE;
-        setLoginInfo(USER_ID, ROLE);
+        if (ROLE === 'ROLE_CENTER' || ROLE === 'ROLE_VOLUNTEER') setLoginInfo(USER_ID, ROLE);
       } catch (error) {
         console.error('로그인 정보 가져오기 실패:', error);
       }
