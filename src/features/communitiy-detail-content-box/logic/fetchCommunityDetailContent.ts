@@ -1,13 +1,14 @@
-import axios from 'axios';
+import axiosInstance from '@/api/apis';
+import { communityDetailType } from '@/shared/types/community-type/CommuntiyTypes';
+import { resType } from '@/shared/types/resType';
 
 export const fetchCommunityDetailContent = async (content_id: number) => {
   try {
-    const res = await axios.get(import.meta.env.VITE_APP_BASE_URL + `/api/community-board/${content_id}`);
-    console.log('fetchCommunityDetailContent data', res.data);
+    const res: resType<communityDetailType> = await axiosInstance.get(`/api/community-board/${content_id}`);
+    console.log('fetchCommunityDetailContent data', res);
 
-    if (res.status === 200) return res.data;
-    else if (res.status === 400) console.log('fetchCommunityDetailContent res 400');
-    else if (res.status === 500) console.log('fetchCommunityDetailContent res 500');
+    if (res.code >= 200 || res.code < 300) return res.data;
+    else console.log(`fetchCommunityDetailContent res ${res.code}`);
   } catch (e) {
     console.error(e);
   }
