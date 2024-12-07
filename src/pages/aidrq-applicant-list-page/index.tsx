@@ -20,13 +20,13 @@ const AidRqApplicantListPage = () => {
   console.log('데이터야 잘 있니?', applicantsData);
 
   if (isLoading) return <div style={{ paddingTop: '450px' }}>로딩 중...</div>;
-  if (!applicantsData?.data?.content) return <div style={{ paddingTop: '450px' }}>데이터가 없습니다.</div>;
   if (isError) return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;
+  if (!applicantsData?.content) return <div style={{ paddingTop: '450px' }}>데이터가 없습니다.</div>;
 
   return (
     <PageWrapper>
       <ApplicantStatusTitle title={title} />
-      <ApplicantList applicants={applicantsData.data.content} />
+      <ApplicantList applicants={applicantsData.content} />
       <Stack spacing={2} sx={{ margin: 'auto' }}>
         <CustomPagination count={5} />
       </Stack>

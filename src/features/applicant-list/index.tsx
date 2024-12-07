@@ -11,7 +11,7 @@ const ApplicantList = ({ applicants }: ApplicantListProps) => {
   return (
     <ApplicantListWrapper>
       {applicants.map((applicant) => (
-        <ApplicantListItem key={applicant.id} />
+        <ApplicantListItem key={applicant.id} applicant={applicant} />
       ))}
     </ApplicantListWrapper>
   );

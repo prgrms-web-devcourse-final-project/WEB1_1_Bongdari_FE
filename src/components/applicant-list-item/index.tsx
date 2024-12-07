@@ -17,25 +17,13 @@ import {
 } from './indexCss';
 import { useState } from 'react';
 import ApplicantDetailModal from '@/features/applicant-detail-modal';
+import type { VolunteerApply } from '@/store/queries/aidreq-detail-center/useApplicant';
 
 interface ApplicantListItemProps {
-  volunteerId: number;
-  name: string;
-  nickName: string;
-  email: string;
-  img_url: string;
-  status: string;
-  created_at: string;
+  applicant: VolunteerApply;
 }
 
-const ApplicantListItem: React.FC<ApplicantListItemProps> = ({
-  volunteerId,
-  name,
-  nickName,
-  email,
-  status,
-  img_url
-}) => {
+const ApplicantListItem = ({ applicant }: ApplicantListItemProps) => {
   const [isOpenDetailModal, setIsOpenDetailModal] = useState(false);
 
   // 모달 open, close 함수
@@ -51,16 +39,19 @@ const ApplicantListItem: React.FC<ApplicantListItemProps> = ({
         <ProfileWrapper>
           <ProfileBox>
             <ProfileImgWrapper>
-              <ProfileImg src={img_url} alt="프로필이미지들어갈자리" />
+              <ProfileImg
+                src={applicant.volunteer.img_url || '/assets/imgs/no-img-person.svg'}
+                alt="프로필이미지들어갈자리"
+              />
             </ProfileImgWrapper>
             <ProfileInfoWrapper>
               <SimpleProfile>
                 <Name>
-                  {name} ({nickName})
+                  {applicant.volunteer.name} ({applicant.volunteer.nickname})
                 </Name>
-                <Email>{email}</Email>
+                <Email>{applicant.volunteer.email}</Email>
               </SimpleProfile>
-              <Status>{status}</Status>
+              <Status>{applicant.status}</Status>
             </ProfileInfoWrapper>
           </ProfileBox>
 
@@ -79,7 +70,10 @@ const ApplicantListItem: React.FC<ApplicantListItemProps> = ({
         </ButtonGroup>
       </ApplicantListItemWrapper>
       {isOpenDetailModal && (
-        <ApplicantDetailModal handleOpenDetailProfileModal={handleOpenDetailProfileModal} volunteerId={volunteerId} />
+        <ApplicantDetailModal
+          handleOpenDetailProfileModal={handleOpenDetailProfileModal}
+          applicantId={applicant.volunteer.id}
+        />
       )}
     </>
   );

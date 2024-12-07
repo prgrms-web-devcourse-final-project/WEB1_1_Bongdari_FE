@@ -20,18 +20,6 @@ export interface VolunteerApply {
   volunteer: Volunteer;
 }
 
-interface VolunteerApplyResponse {
-  code: number;
-  message: string;
-  data: {
-    totalElements: number;
-    totalPages: number;
-    first: boolean;
-    last: boolean;
-    content: VolunteerApply[];
-  };
-}
-
 interface VolunteerApplyParams {
   recruitBoardId: number;
   page: number;
@@ -40,13 +28,7 @@ interface VolunteerApplyParams {
   attended?: boolean;
 }
 
-const getVolunteerApplies = async ({
-  recruitBoardId,
-  page,
-  size,
-  attended,
-  status
-}: VolunteerApplyParams): Promise<VolunteerApplyResponse> => {
+const getVolunteerApplies = async ({ recruitBoardId, page, size, attended, status }: VolunteerApplyParams) => {
   const params = new URLSearchParams({
     page: page.toString(),
     size: size.toString(),
