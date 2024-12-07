@@ -24,6 +24,14 @@ export default function Header() {
         withCredentials: true
       });
 
+      // 연결 성공 시 호출되는 핸들러 추가
+      eventSource.onopen = () => {
+        toast.success('SSE가 연결되었습니다', {
+          position: 'top-right',
+          autoClose: 3000
+        });
+      };
+
       eventSource.onmessage = (event) => {
         const newNotification: AlertType = JSON.parse(event.data);
         // 새 알림이 오면 토스트 메시지 표시

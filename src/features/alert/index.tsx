@@ -12,10 +12,9 @@ const Alert = () => {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const response = await axiosInstance(`/api/notifications/unread`);
+        const response = await axiosInstance(`/api/notification/unread`);
         const data = await response.data;
         setNotifications(data); // data형식 보고 이부분 수정해야함
-        console.log(notifications); // cicd오류 없애기용 - set되기전에 돌아가서 의미없음
       } catch (error) {
         console.error('알림을 가져오는데 실패했습니다:', error);
       }
@@ -23,6 +22,10 @@ const Alert = () => {
 
     fetchNotifications();
   }, []);
+
+  useEffect(() => {
+    console.log('notifications', notifications);
+  }, [notifications]);
 
   const data = [
     {
