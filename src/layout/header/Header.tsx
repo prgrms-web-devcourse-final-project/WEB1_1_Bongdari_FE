@@ -17,9 +17,12 @@ export default function Header() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log('isLoggedIn 상태:', isLoggedIn); // isLoggedIn 상태 확인
+
     let eventSource: EventSource;
 
     const connectSSE = () => {
+      console.log('SSE 연결 시도'); // 연결 시도 확인
       eventSource = new EventSource(`${import.meta.env.VITE_APP_BASE_URL}/api/sse/subscribe`, {
         withCredentials: true
       });
