@@ -62,7 +62,7 @@ const getVolunteerApplies = async ({ recruitBoardId, page, size, attended, statu
 export const useVolunteerApplies = (
   recruitBoardId: number,
   page: number = 0,
-  size: number = 10,
+  size: number = 9,
   status?: 'WAITING',
   attended?: false
 ) => {
