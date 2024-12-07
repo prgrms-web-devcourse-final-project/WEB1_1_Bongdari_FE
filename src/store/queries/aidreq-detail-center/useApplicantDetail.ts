@@ -2,6 +2,7 @@ import axiosInstance from '@/api/apis';
 import { useQuery } from '@tanstack/react-query';
 import Cookies from 'js-cookie';
 
+// 지원자 리스트 상세 모달 api
 interface ApplicantDetailInfo {
   volunteer_id: string;
   nickname: string;

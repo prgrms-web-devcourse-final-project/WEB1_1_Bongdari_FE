@@ -2,6 +2,8 @@ import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import axiosInstance from '@/api/apis';
 import Cookies from 'js-cookie';
 
+// 지원자 리스트 api
+
 export interface Volunteer {
   id: string;
   name: string;

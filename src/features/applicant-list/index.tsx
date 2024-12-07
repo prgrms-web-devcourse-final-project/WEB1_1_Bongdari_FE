@@ -6,8 +6,6 @@ export interface ApplicantListProps {
   applicants: VolunteerApply[];
 }
 const ApplicantList = ({ applicants }: ApplicantListProps) => {
-  console.log('applicants다.', applicants);
-
   return (
     <ApplicantListWrapper>
       {applicants.map((applicant) => (

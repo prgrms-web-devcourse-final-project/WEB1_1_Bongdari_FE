@@ -1,6 +1,7 @@
 import axiosInstance from '@/api/apis';
 import { useQuery } from '@tanstack/react-query';
 
+// 모집글 상세 관리 페이지 api
 interface RecruitDetail {
   id: number;
   center_id: string;

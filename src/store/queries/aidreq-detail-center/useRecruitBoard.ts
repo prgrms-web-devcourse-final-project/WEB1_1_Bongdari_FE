@@ -2,6 +2,8 @@ import axiosInstance from '@/api/apis';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import Cookies from 'js-cookie';
 
+// 봉사 모집글 모집 상태 변경 api
+
 export type RecruitStatus = 'RECRUITING' | 'CLOSED' | 'COMPLETED';
 
 interface ApiResponse<T> {
@@ -21,7 +23,7 @@ const updateRecruitStatus = async ({ id, status }: updateRecruitStatusProps): Pr
     { status },
     {
       headers: {
-        Authorization: `Bearer ${Cookies.get('centerToken')}`
+        Authorization: `Bearer ${Cookies.get('ACCESS')}`
       }
     }
   );

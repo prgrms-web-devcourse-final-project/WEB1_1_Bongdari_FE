@@ -18,6 +18,7 @@ import {
 import { useState } from 'react';
 import ApplicantDetailModal from '@/features/applicant-detail-modal';
 import type { VolunteerApply } from '@/store/queries/aidreq-detail-center/useApplicant';
+import { useApproveApplyment, useRejectApplyment } from '@/store/queries/aidreq-detail-center/useManageApplyment';
 
 interface ApplicantListItemProps {
   applicant: VolunteerApply;
@@ -26,12 +27,23 @@ interface ApplicantListItemProps {
 const ApplicantListItem = ({ applicant }: ApplicantListItemProps) => {
   const [isOpenDetailModal, setIsOpenDetailModal] = useState(false);
 
-  // 모달 open, close 함수
+  console.log('applicant', applicant);
+  const applymentId = applicant.id;
+
+  const { mutate: approve } = useApproveApplyment();
+  const { mutate: reject } = useRejectApplyment();
+
   const handleOpenDetailProfileModal = () => {
     setIsOpenDetailModal(!isOpenDetailModal);
   };
 
-  // TODO: 수락/반려 버튼 클릭 핸들러 함수 구현 -> 수락/반려 api fetching할 때 volunteerId 사용
+  const handleRejectApplyment = () => {
+    reject(applymentId);
+  };
+
+  const handleApproveApplyment = () => {
+    approve(applymentId);
+  };
 
   return (
     <>
@@ -59,13 +71,14 @@ const ApplicantListItem = ({ applicant }: ApplicantListItemProps) => {
         </ProfileWrapper>
 
         <ButtonGroup>
-          <RejectButton>반려하기</RejectButton>
+          <RejectButton onClick={handleRejectApplyment}>반려하기</RejectButton>
           <OtherButton
             label="수락하기"
             width="163px"
             height="48px"
             fontSize={theme.fontSize.eighthSize}
             fontWeight="600"
+            onClick={handleApproveApplyment}
           />
         </ButtonGroup>
       </ApplicantListItemWrapper>
