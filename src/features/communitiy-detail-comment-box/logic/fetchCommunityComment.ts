@@ -1,12 +1,7 @@
 import axiosInstance from '@/api/apis';
+import { resType } from '@/shared/types/resType';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-
-interface resType {
-  code: number;
-  data: number;
-  message: string;
-}
 
 export const fetchCommunityComment = async (content_id: number) => {
   try {
