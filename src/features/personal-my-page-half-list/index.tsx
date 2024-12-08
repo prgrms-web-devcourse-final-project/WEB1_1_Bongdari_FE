@@ -1,50 +1,69 @@
+import { myMessageType, myVolunteerType } from '@/shared/types/person-profile/personProfile';
 import { HalfListCss } from './indexCss';
-import { onClickMyMessage, onClickMyVolunteer } from './logic/onClickHalfList';
 import { useHalfList } from './logic/useHalfList';
 import LongListItem from '@/components/long-list-item';
 import TitleWithPagenation from '@/features/personal-my-page-title-with-pagenation';
 
 interface HalfListProps {
   listType: 'myVolunteer' | 'myMessage';
-  data: { content_id: string; title: string; isRead?: boolean; mailWriter?: string }[] | undefined;
+  // data: { content_id: string; title: string; isRead?: boolean; mailWriter?: string }[] | undefined;
 }
-const HalfList: React.FC<HalfListProps> = ({ listType, data }) => {
-  const { totPage, currPage, setCurrPage } = useHalfList({ dataLength: data?.length || 1 });
-  return (
-    <HalfListCss>
-      <TitleWithPagenation
-        title={listType === 'myVolunteer' ? '내 봉사 목록' : '내 쪽지 목록'}
-        totPage={totPage}
-        currPage={currPage}
-        setCurrPage={setCurrPage}
-      />
-      {!data || data.length === 0 ? (
-        listType === 'myVolunteer' ? (
+const HalfList: React.FC<HalfListProps> = ({ listType }) => {
+  const { data, totPage, currPage, setCurrPage, onClickMyVolunteer, onClickMyMessage } = useHalfList({ listType });
+
+  // 타입 가드: myVolunteerType 확인
+  const isMyVolunteerType = (data: myVolunteerType[] | myMessageType[]): data is myVolunteerType[] => {
+    return (data as myVolunteerType[])[0]?.recruit_board !== undefined;
+  };
+
+  if (listType === 'myVolunteer') {
+    return (
+      <HalfListCss>
+        <TitleWithPagenation title="내 봉사 목록" totPage={totPage} currPage={currPage} setCurrPage={setCurrPage} />
+        {!data || data.length === 0 ? (
           <div className="noData">내 봉사 데이터가 없습니다</div>
         ) : (
+          <div className="listWrap">
+            {isMyVolunteerType(data) &&
+              data.map((v, i) => {
+                return (
+                  <LongListItem
+                    key={i}
+                    content_id={v.id.toString()}
+                    mainText={v.recruit_board.title}
+                    getContentId={() => onClickMyVolunteer(v.id.toString())}
+                  />
+                );
+              })}
+          </div>
+        )}
+      </HalfListCss>
+    );
+  } else if (listType === 'myMessage') {
+    return (
+      <HalfListCss>
+        <TitleWithPagenation title="내 쪽지 목록" totPage={totPage} currPage={currPage} setCurrPage={setCurrPage} />
+        {!data || data.length === 0 ? (
           <div className="noData">내 쪽지가 없습니다</div>
-        )
-      ) : (
-        <div className="listWrap">
-          {data.map((v, i) => {
-            const isMyVolunteer = listType === 'myVolunteer';
-
-            return (
-              <LongListItem
-                key={i}
-                content_id={v.content_id}
-                mainText={v.title}
-                getContentId={
-                  isMyVolunteer ? () => onClickMyVolunteer(v.content_id) : () => onClickMyMessage(v.content_id)
-                }
-                isRead={!isMyVolunteer ? v.isRead : undefined}
-                mailWriter={!isMyVolunteer ? v.mailWriter : undefined}
-              />
-            );
-          })}
-        </div>
-      )}
-    </HalfListCss>
-  );
+        ) : (
+          <div className="listWrap">
+            {!isMyVolunteerType(data) &&
+              data.map((v, i) => {
+                return (
+                  <LongListItem
+                    key={i}
+                    content_id={v.id.toString()}
+                    mainText={v.title}
+                    getContentId={() => onClickMyMessage(v.id.toString())}
+                    isRead={v.is_read}
+                    mailWriter={v.sender_name}
+                  />
+                );
+              })}
+          </div>
+        )}
+      </HalfListCss>
+    );
+  }
 };
 export default HalfList;

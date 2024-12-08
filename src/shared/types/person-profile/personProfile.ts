@@ -21,6 +21,37 @@ interface personProfileDetailType {
   contactNumber: string;
 }
 
+export interface myVolunteerType {
+  id: number;
+  volunteer_id: string;
+  status: 'WAITING' | 'APPROVED' | 'REJECTED';
+  attend: boolean;
+  created_at: string;
+  updated_at: string;
+  recruit_board: {
+    id: number;
+    title: string;
+  };
+}
+
+export interface myMessageType {
+  id: number;
+  title: string;
+  sender_id: string;
+  sender_name: string;
+  is_read: boolean;
+}
+
+export interface myMessageDetailType {
+  note_id: number;
+  title: string;
+  content: string;
+  sender_id: string;
+  sender_name: string;
+  sender_profile_img_link: string;
+  created_at: string;
+}
+
 export interface interestCenterType {
   id: string;
   name: string;
