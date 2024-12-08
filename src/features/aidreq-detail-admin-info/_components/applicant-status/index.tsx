@@ -4,8 +4,9 @@ import { UserBox, UserIcon, VolunteerSubTitle, VolunteerTitle, VolunteerTitleBox
 
 interface ApplicantStatusProps {
   title: string;
+  recruitStatus: string;
 }
-const ApplicantStatus = ({ title }: ApplicantStatusProps) => {
+const ApplicantStatus = ({ title, recruitStatus }: ApplicantStatusProps) => {
   const { id } = useParams();
   const navigate = useNavigate();
   return (
@@ -22,7 +23,7 @@ const ApplicantStatus = ({ title }: ApplicantStatusProps) => {
         <EmptyButton
           onClick={() =>
             navigate(`/centermypage/adminaidreqlist/${id}/applicantList`, {
-              state: { title }
+              state: { title, recruitStatus }
             })
           }>
           바로가기

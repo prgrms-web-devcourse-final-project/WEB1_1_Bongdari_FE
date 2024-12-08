@@ -11,6 +11,7 @@ interface AidReqDetailAdminInfoProps {
     volunteer_start_date_time: string;
     volunteer_end_date_time: string;
     volunteer_time: string;
+    recruit_status: string;
     location: {
       address: string;
       latitude: number;
@@ -36,7 +37,7 @@ const AidReqDetailAdminInfo = ({ recruitDetailData }: AidReqDetailAdminInfoProps
         latitude={recruitDetailData.location.latitude}
         longitude={recruitDetailData.location.longitude}
       />
-      <ApplicantStatus title={recruitDetailData.title} />
+      <ApplicantStatus title={recruitDetailData.title} recruitStatus={recruitDetailData.recruit_status} />
     </Wrapper>
   );
 };

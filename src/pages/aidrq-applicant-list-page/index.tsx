@@ -11,14 +11,13 @@ const AidRqApplicantListPage = () => {
   const { id } = useParams();
   const location = useLocation();
   const title = location.state?.title;
+  const recruitStatus = location.state?.recruitStatus;
   const parsedRecruitBoardId = id ? parseInt(id) : 0;
 
   const { page, handlePageChange } = usePagination();
-  const {
-    data: applicantsData,
-    isLoading,
-    isError
-  } = useVolunteerApplies(parsedRecruitBoardId, page, 9, 'WAITING', false);
+  const { data: applicantsData, isLoading, isError } = useVolunteerApplies(parsedRecruitBoardId, page, 9);
+
+  console.log('모집글 상태', recruitStatus);
 
   if (isLoading) return <div style={{ paddingTop: '450px' }}>로딩 중...</div>;
   if (isError) return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;
@@ -26,14 +25,10 @@ const AidRqApplicantListPage = () => {
   return (
     <PageWrapper>
       <ApplicantStatusTitle title={title} />
-      {!applicantsData?.content ? (
-        <EmptyStateText>
-          아직 봉사활동에 신청한 지원자가 없습니다.
-          <br />
-          조금만 더 기다려주세요!
-        </EmptyStateText>
+      {applicantsData.length === 0 ? (
+        <EmptyStateText>봉사활동에 신청한 지원자가 없습니다.</EmptyStateText>
       ) : (
-        <ApplicantList applicants={applicantsData.content} />
+        <ApplicantList applicants={applicantsData} recruitStatus={recruitStatus} />
       )}
       <Stack spacing={2} sx={{ margin: 'auto' }}>
         <CustomPagination count={applicantsData.totalPages} onChange={handlePageChange} page={page + 1} />

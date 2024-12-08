@@ -36,6 +36,12 @@ const OtherButtonComponent = styled.button<{
   &:active {
     background-color: ${({ disabled, bgColor }) => (disabled ? bgColor : theme.pointColor.clicked)}; // clicked 상태
   }
+
+  &:disabled {
+    border: none;
+    color: #adadad;
+    background-color: #e2e2e2;
+  }
 `;
 
 export default OtherButtonComponent;

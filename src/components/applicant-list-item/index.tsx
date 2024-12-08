@@ -22,12 +22,13 @@ import { useApproveApplyment, useRejectApplyment } from '@/store/queries/aidreq-
 
 interface ApplicantListItemProps {
   applicant: VolunteerApply;
+  recruitStatus: string;
 }
 
-const ApplicantListItem = ({ applicant }: ApplicantListItemProps) => {
+const ApplicantListItem = ({ applicant, recruitStatus }: ApplicantListItemProps) => {
   const [isOpenDetailModal, setIsOpenDetailModal] = useState(false);
 
-  console.log('applicant', applicant);
+  console.log('applicant(얜 아이템)', applicant);
   const applymentId = applicant.id;
 
   const { mutate: approve } = useApproveApplyment();
@@ -71,7 +72,9 @@ const ApplicantListItem = ({ applicant }: ApplicantListItemProps) => {
         </ProfileWrapper>
 
         <ButtonGroup>
-          <RejectButton onClick={handleRejectApplyment}>반려하기</RejectButton>
+          <RejectButton onClick={handleRejectApplyment} disabled={recruitStatus === 'COMPLETED'}>
+            반려하기
+          </RejectButton>
           <OtherButton
             label="수락하기"
             width="163px"
@@ -79,6 +82,7 @@ const ApplicantListItem = ({ applicant }: ApplicantListItemProps) => {
             fontSize={theme.fontSize.eighthSize}
             fontWeight="600"
             onClick={handleApproveApplyment}
+            disabled={recruitStatus === 'COMPLETED'}
           />
         </ButtonGroup>
       </ApplicantListItemWrapper>

@@ -4,12 +4,15 @@ import type { VolunteerApply } from '@/store/queries/aidreq-detail-center/useApp
 
 export interface ApplicantListProps {
   applicants: VolunteerApply[];
+  recruitStatus: string;
 }
-const ApplicantList = ({ applicants }: ApplicantListProps) => {
+const ApplicantList = ({ applicants, recruitStatus }: ApplicantListProps) => {
+  console.log('머읖리칸트(얜 배열)', applicants);
+
   return (
     <ApplicantListWrapper>
       {applicants.map((applicant) => (
-        <ApplicantListItem key={applicant.id} applicant={applicant} />
+        <ApplicantListItem key={applicant.id} applicant={applicant} recruitStatus={recruitStatus} />
       ))}
     </ApplicantListWrapper>
   );
