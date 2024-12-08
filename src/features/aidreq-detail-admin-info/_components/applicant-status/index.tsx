@@ -22,7 +22,7 @@ const ApplicantStatus = ({ title, recruitStatus }: ApplicantStatusProps) => {
         </VolunteerTitleBox>
         <EmptyButton
           onClick={() =>
-            navigate(`/centermypage/adminaidreqlist/${id}/applicantList`, {
+            navigate(`/mypage/adminaidreqlist/${id}/applicantList`, {
               state: { title, recruitStatus }
             })
           }>

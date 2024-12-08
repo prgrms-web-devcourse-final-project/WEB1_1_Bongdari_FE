@@ -13,7 +13,7 @@ const ButtonGroup = ({ handleAdjustmentButton, status }: ButtonGroupProps) => {
 
   return (
     <ButtonWrapper>
-      <EmptyButton onClick={() => navigate('/centermypage/adminaidreqmodify')}>수정하기</EmptyButton>
+      <EmptyButton onClick={() => navigate('/mypage/adminaidreqmodify')}>수정하기</EmptyButton>
       <OtherButton label="정산하기" width="221px" onClick={handleAdjustmentButton} disabled={status !== 'COMPLETED'} />
     </ButtonWrapper>
   );
