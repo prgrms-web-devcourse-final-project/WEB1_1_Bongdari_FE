@@ -16,41 +16,54 @@ import {
 import { OtherButton } from '@/components/button';
 import theme from '@/styles/theme';
 import { useNavigate } from 'react-router-dom';
+import { useApplicantDetail, useMessageDetail } from '@/store/queries/center-mypage/useMessage';
+import useDateFormat from '@/shared/hooks/useDateFormat';
 
 interface NoteModalProps {
   handleModalClose: () => void;
+  noteId: number;
 }
 
-const MessageReadModal: React.FC<NoteModalProps> = ({ handleModalClose }) => {
+const MessageReadModal: React.FC<NoteModalProps> = ({ handleModalClose, noteId }) => {
   const navigate = useNavigate();
+  const { formatDateTime } = useDateFormat();
+  const { data: messageDetail, isLoading: isMessageLoading } = useMessageDetail(noteId);
+  const { data: profileDetail, isLoading: isProfileLoading } = useApplicantDetail(messageDetail?.sender_id);
+
+  if (isMessageLoading || isProfileLoading) {
+    return <div>로딩 중...</div>;
+  }
+
+  if (!messageDetail) {
+    return null;
+  }
+
+  console.log('noteId:', noteId);
+  console.log('messageDetail:', messageDetail);
+  console.log('profileDetail:', profileDetail);
 
   return (
     <Modal variant="small" isOpen onClose={handleModalClose}>
       <ModalContentWrapper>
         <ScrollSection>
-          {' '}
           <MessageTitleBox>
-            <MessageTitle>쪽지 제목</MessageTitle>
-            <CreatedAt>24.11.27</CreatedAt>
+            <MessageTitle>{messageDetail.title}</MessageTitle>
+            <CreatedAt>{formatDateTime(messageDetail.created_at)}</CreatedAt>
           </MessageTitleBox>
-          <MessageContent>
-            본문내용Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque unde doloribus, praesentium eius
-            numquam, iusto iste laborum porro cumque repudiandae optio nisi earum repellat neque sint placeat molestias
-            excepturi tempora. Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque unde doloribus,
-            praesentium eius numquam, iusto iste laborum porro cumque repudiandae optio nisi earum repellat neque sint
-            placeat molestias excepturi tempora. Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque unde
-            doloribus, praesentium eius numquam, iusto iste laborum porro cumque repudiandae optio nisi earum repellat
-            neque sint placeat molestias excepturi tempora. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Atque unde doloribus, praesentium eius numquam, iusto iste laborum porro cumque repudiandae optio nisi earum
-            repellat neque sint placeat molestias excepturi tempora.
-          </MessageContent>
+          <MessageContent>{messageDetail.content}</MessageContent>
           <ProfileBox>
             <ProfileInfo>
               <ImgWrapper>
-                <ProfileImg src="/public/assets/imgs/naver-logo.svg" alt="profileImg" />
+                <ProfileImg
+                  src={messageDetail.sender_profile_img_link || '/assets/imgs/no-img-person.svg'}
+                  alt="profileImg"
+                />
               </ImgWrapper>
-              <NickName>710minjoon</NickName>
-              <GloveImg src="/public/assets/imgs/interest-button.svg" alt="tierGlove" />
+              <NickName>{profileDetail?.data?.nickname || messageDetail.sender_name}</NickName>
+              <GloveImg
+                src={`/assets/imgs/mitten-${profileDetail?.data?.tier?.toLowerCase() || 'red'}.svg`}
+                alt="tierGlove"
+              />
             </ProfileInfo>
             <OtherButton
               label="프로필 확인하기"
@@ -59,7 +72,7 @@ const MessageReadModal: React.FC<NoteModalProps> = ({ handleModalClose }) => {
               fontSize={theme.fontSize.eighthSize}
               fontWeight="600"
               onClick={() => {
-                navigate(`/profile/1`);
+                navigate(`/profile/${messageDetail.sender_id}`);
               }}
             />
           </ProfileBox>

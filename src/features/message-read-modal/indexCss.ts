@@ -98,5 +98,6 @@ export const NickName = styled.p`
 `;
 
 export const GloveImg = styled.img`
-  /* 추가 예정 */
+  width: 24px;
+  height: 24px;
 `;

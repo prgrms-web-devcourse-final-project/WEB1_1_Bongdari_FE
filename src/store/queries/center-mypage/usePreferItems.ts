@@ -2,6 +2,7 @@ import axiosInstance from '@/api/apis';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 // import Cookies from 'js-cookie';
 
+// 기관 물품 등록 api ------------------------------------------------------
 export interface PreferItemResponse {
   id: number;
   center_id: string;
@@ -31,8 +32,6 @@ const addPreferItem = async (itemName: string) => {
   return response.data;
 };
 
-// TODO: DELETE fetch 함수 구현
-
 export const usePreferItem = () => {
   const queryClient = useQueryClient();
   const { mutate: addItem, isPending } = useMutation({
@@ -52,4 +51,32 @@ export const usePreferItem = () => {
     addItem,
     isLoading: isPending
   };
+};
+
+// 기관 물품 삭제 api ------------------------------------------------------
+const deletePreferItem = async (preferItemId: number) => {
+  // const response = await axiosInstance.delete(`/api/preferItem/${preferItemId}`, {
+  //   headers: {
+  //     Authorization: `Bearer ${Cookies.get('ACCESS')}`
+  //   }
+  // });
+
+  const response = await axiosInstance.delete(`/api/preferItem/${preferItemId}`);
+  return response.data;
+};
+
+export const useDeletePreferItem = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: deletePreferItem,
+    onSuccess: () => {
+      // 삭제 성공시 물품 리스트 갱신
+      queryClient.invalidateQueries({ queryKey: ['preferItems'] });
+      console.log('물품삭제가 완료되었습니다.');
+    },
+    onError: (error) => {
+      console.error('물품삭제 실패...', error);
+    }
+  });
 };

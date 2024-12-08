@@ -6,7 +6,7 @@ const initialState = {
   region: null,
   admitted: null,
   sort: '',
-  status: ''
+  status: 'RECRUITING'
 };
 
 interface SearchState {
