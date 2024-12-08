@@ -41,7 +41,7 @@ const EditProfileImg = ({ profileImg, setImg }: { profileImg?: string; setImg: (
 
   return (
     <EditProfileImgCss>
-      <img src={imgUrl} alt="" />
+      <img src={imgUrl || '/assets/imgs/no-img-person.svg'} />
       <label htmlFor="file" className="changeImgBtn">
         +
       </label>

@@ -2,15 +2,10 @@ import axiosInstance from '@/api/apis';
 import { personProfileType } from '@/shared/types/person-profile/personProfile';
 import { resType } from '@/shared/types/resType';
 import axios from 'axios';
-import Cookies from 'js-cookie';
 
 export const fetchMyProfile = async () => {
   try {
-    const res: resType<personProfileType> = await axiosInstance.get(`/api/volunteer/profile/me`, {
-      headers: {
-        Authorization: `${Cookies.get('ACCESS')}`
-      }
-    });
+    const res: resType<personProfileType> = await axiosInstance.get(`api/volunteer/profile/me`);
     console.log('fetchMyProfile data', res.data);
     if (res.code >= 200 && res.code < 300) return res.data;
     else console.log(`fetchMyProfile res ${res.code}`);

@@ -26,13 +26,17 @@ export const useEditMyProfile = ({
         introduce: descripton
       };
 
-      // FormData 생성
+      // data 필드에 JSON 추가
       const formData = new FormData();
-      formData.append('data', JSON.stringify(jsonPayload)); // data 필드에 JSON 추가
+      formData.append('data', JSON.stringify(jsonPayload));
 
-      // img_file에 선택한 파일 추가
-      if (img) {
+      if (img && img instanceof File) {
         formData.append('img_file', img);
+      }
+
+      // formData 콘솔에 찍기
+      for (const [key, value] of formData.entries()) {
+        console.log(`${key}:`, value instanceof File ? 'File object' : value);
       }
 
       // 게시글 수정
