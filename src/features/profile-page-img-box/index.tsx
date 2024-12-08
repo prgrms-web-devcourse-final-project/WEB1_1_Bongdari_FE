@@ -14,6 +14,7 @@ type ProfileImgBoxProps = {
 const ProfileImgBox: React.FC<ProfileImgBoxProps> = (props) => {
   const { setIsModalOpen } = props;
   const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
+  const loginType = useLoginStore((state) => state.loginType);
 
   // 타입 가드 함수 생성
   const isPersonProfile = (props: personOrCenter): props is { type: 'person' } & personProfileType => {
@@ -26,15 +27,16 @@ const ProfileImgBox: React.FC<ProfileImgBoxProps> = (props) => {
 
     return (
       <ProfileImgBoxCss id={volunteer_id}>
-        <img src={img_url} alt="" />
+        <img src={img_url || '/assets/imgs/no-img-person.svg'} />
         <p>
           <i>{nickname}</i>
           <img className="mitten" src={`/assets/imgs/mitten-${tier}.svg`} />
         </p>
+        {/* 봉사자는 봉사자에게 쪽지 보낼 수 없음 */}
         <SubmitButton
           label="쪽지 전달하기"
           onClick={() => setIsModalOpen(true)}
-          variant={isLoggedIn ? 'enabledOne' : 'disabled'}
+          variant={isLoggedIn && loginType === 'ROLE_CENTER' ? 'enabledOne' : 'disabled'}
         />
       </ProfileImgBoxCss>
     );
@@ -49,10 +51,11 @@ const ProfileImgBox: React.FC<ProfileImgBoxProps> = (props) => {
           <i>{name}</i>
           <i>{homepage_link}</i>
         </p>
+        {/* 센터는 센터에게 쪽지 보낼 수 없음 */}
         <SubmitButton
           label="쪽지 전달하기"
           onClick={() => setIsModalOpen(true)}
-          variant={isLoggedIn ? 'enabledOne' : 'disabled'}
+          variant={isLoggedIn && loginType === 'ROLE_VOLUNTEER' ? 'enabledOne' : 'disabled'}
         />
       </ProfileImgBoxCss>
     );

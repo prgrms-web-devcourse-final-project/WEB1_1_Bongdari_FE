@@ -1,7 +1,6 @@
 import axiosInstance from '@/api/apis';
 import { resType } from '@/shared/types/resType';
 import axios from 'axios';
-import Cookies from 'js-cookie';
 
 export const fetchCommunityComment = async (content_id: number) => {
   try {
@@ -20,21 +19,11 @@ export const fetchCommunityComment = async (content_id: number) => {
 
 export const postCommunityComment = async (content_id: number, content: string, parent_id?: number) => {
   try {
-    const res: resType<number> = await axiosInstance.post(
-      `/api/community-board/${content_id}/comment`,
-      {
-        // POST 요청의 body
-        content: content,
-        parent_comment_id: parent_id // 선택적으로 전달
-      },
-      {
-        // 요청 헤더
-        headers: {
-          'Content-Type': 'application/json', // JSON 형식 명시
-          Authorization: `${Cookies.get('ACCESS')}` // 인증 토큰
-        }
-      }
-    );
+    const res: resType<number> = await axiosInstance.post(`/api/community-board/${content_id}/comment`, {
+      // POST 요청의 body
+      content: content,
+      parent_comment_id: parent_id // 선택적으로 전달
+    });
     console.log('postCommunityComment data', res);
 
     if (res.code >= 200 && res.code < 300) return res.data;
