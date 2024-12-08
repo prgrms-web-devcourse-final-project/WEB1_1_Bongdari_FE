@@ -38,7 +38,11 @@ const AidRqDetailAdminPage = () => {
           applicantCount={recruitDetailData.recruitment_count}
         />
         <AidReqDetailAdminInfo recruitDetailData={recruitDetailData} />
-        <ButtonGroup handleAdjustmentButton={handleAdjustmentButton} status={recruitDetailData.recruit_status} />
+        <ButtonGroup
+          id={id}
+          handleAdjustmentButton={handleAdjustmentButton}
+          status={recruitDetailData.recruit_status}
+        />
       </PageWrapper>
       {openAdjustmentModal && <AdjustmentModal setOpenAdjustmentModal={setOpenAdjustmentModal} />}
     </>

@@ -8,6 +8,11 @@ export const Wrapper = styled.div`
   border-radius: 12px;
   padding: 15px;
   margin-bottom: 10px;
+  transition: 0.2s;
+
+  &:hover {
+    border: 1px solid rgba(0, 0, 0, 0.8);
+  }
 
   & > p:nth-of-type(1) {
     font-size: 14px;

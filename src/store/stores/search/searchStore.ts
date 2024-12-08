@@ -40,7 +40,7 @@ const initialState = {
   region: null,
   admitted: null,
   sort: '',
-  status: ''
+  status: 'RECRUITING'
 };
 
 const useSearchStore = create<SearchState>((set) => ({

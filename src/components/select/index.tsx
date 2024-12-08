@@ -5,21 +5,31 @@ interface SelectProps {
   width?: string;
   height?: string;
   data: string[];
+  initialValue?: string;
   getSelectedOption: (selected: string) => void;
 }
 
-const Select: React.FC<SelectProps> = ({ text, width = '325px', height = '56px', data, getSelectedOption }) => {
+const Select: React.FC<SelectProps> = ({
+  text,
+  width = '325px',
+  height = '56px',
+  data,
+  initialValue,
+  getSelectedOption
+}) => {
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     getSelectedOption(e.target.value);
   };
 
   return (
     <Box width={width} height={height} onChange={handleChange}>
-      <OptionPlaceholder value="" disabled selected>
+      <OptionPlaceholder value="" disabled selected={!initialValue}>
         {text}
       </OptionPlaceholder>
       {data.map((item, index) => (
-        <option key={index}>{item}</option>
+        <option key={index} selected={!!initialValue && item === initialValue}>
+          {item}
+        </option>
       ))}
     </Box>
   );

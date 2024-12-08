@@ -17,13 +17,11 @@ const RegisterGoods = ({ name, preferData }: RegisterGoodsProps) => {
   const { addItem, isLoading } = usePreferItem();
   const { data: preferItems } = useQuery({
     queryKey: ['preferItems'],
-    // 초기 데이터로 props로 받은 preferData 사용
     initialData: preferData,
     staleTime: 1000 * 60 * 5,
     refetchOnWindowFocus: false
+    // refetchOnMount: true
   });
-
-  // console.log('픺', preferItems);
 
   const { goodsList, currentInput, setCurrentInput, handleKeyPress, handleDeleteGoods, addGoodsToList } =
     useHandleItem(preferItems);
@@ -40,7 +38,7 @@ const RegisterGoods = ({ name, preferData }: RegisterGoodsProps) => {
 
     addItem(itemName, {
       onSuccess: (response) => {
-        // 새 아이템을 로컬 상태에 추가
+        // 새 아이템을 로컬 상태에 추가 -> 즉시 ui에 반영하기 위해
         const newItem: centerPreferItemType = {
           id: response.id,
           centerId: response.center_id,
@@ -55,6 +53,7 @@ const RegisterGoods = ({ name, preferData }: RegisterGoodsProps) => {
       }
     });
   };
+
   return (
     <SectionBox>
       <RegisterTitleSection>

@@ -76,7 +76,8 @@ const AidRqDetailPage = () => {
       )}
       <ReviewCreateModal
         reviewModalState={reviewModalState}
-        SetReviewModalState={SetReviewModalState}></ReviewCreateModal>
+        SetReviewModalState={SetReviewModalState}
+        recruitBoardId={Number(id)}></ReviewCreateModal>
       {!data && <p>요청하신 글에 접근이 불가합니다.</p>}
     </Wrapper>
   );

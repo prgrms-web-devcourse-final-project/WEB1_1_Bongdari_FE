@@ -36,6 +36,7 @@ export const ListItem = styled.li`
   justify-content: space-between;
   align-items: center;
   padding: 30px 20px;
+  cursor: pointer;
 `;
 
 export const ItemTitle = styled.p`

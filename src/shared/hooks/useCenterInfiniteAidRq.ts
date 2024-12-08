@@ -53,7 +53,7 @@ export const useInfiniteCenterBoards = (
 ) => {
   const { data, fetchNextPage, hasNextPage, refetch, isLoading, isError, error } = useInfiniteQuery({
     queryKey: ['aidRequests', centerId],
-    queryFn: ({ pageParam = 1 }) =>
+    queryFn: ({ pageParam = 0 }) =>
       fetchCenterBoards({
         centerId,
         page: pageParam,

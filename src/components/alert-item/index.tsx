@@ -1,21 +1,27 @@
+import { useNavigate } from 'react-router-dom';
 import { Wrapper } from './indexCss';
 import { AlertType } from '@/shared/types/alert-type/AlertType';
 
 interface AlertItemProps {
   item: AlertType;
-  sigleRead: (id: number) => void;
+  singleRead: (id: number) => void;
 }
 
-const AlertItem: React.FC<AlertItemProps> = ({ item, sigleRead }) => {
+const AlertItem: React.FC<AlertItemProps> = ({ item, singleRead }) => {
+  const navigate = useNavigate();
+
   return (
-    <Wrapper>
+    <Wrapper
+      onClick={() => {
+        if (item.type === 'VOLUNTEER_APPLY_STATUS_CHANGE') navigate(`/aidrqdetail/${item.related_id}`);
+      }}>
       <p>{item.type}</p>
       <p>{item.title}</p>
       <div>
-        <p>2024.12.03</p>
+        <p>{item.created_at}</p>
         <button
           onClick={() => {
-            sigleRead(item.id);
+            singleRead(item.notification_id);
           }}>
           삭제
         </button>

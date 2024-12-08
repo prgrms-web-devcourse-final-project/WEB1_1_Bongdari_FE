@@ -13,7 +13,8 @@ const RecruitPopulation: React.FC<RecruitPopulationProps> = ({ getTitleAndFilter
       <AidRqCreateRecruitPopulation
         getPopulation={(population) => {
           getTitleAndFilter('recruitment_count', population);
-        }}></AidRqCreateRecruitPopulation>
+        }}
+        recruitmentcount={0}></AidRqCreateRecruitPopulation>
     </Wrapper>
   );
 };

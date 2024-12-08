@@ -1,7 +1,8 @@
 export interface AlertType {
-  id: number;
+  notification_id: number;
   title: string;
   type: string;
-  relatedId: string;
+  related_id: number;
+  created_at: string;
   read: boolean;
 }
