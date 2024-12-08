@@ -31,18 +31,25 @@ const AdjustmentModal = ({ setOpenAdjustmentModal }: AdjustmentModalProps) => {
   const { data: applicantsData, isLoading, isError } = useVolunteerApplies(parsedRecruitBoardId, 0, 9, 'APPROVED');
   const participants: VolunteerApply[] = applicantsData;
 
-  // console.log('파티', participants);
-
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const { mutate: settle } = useSettleApplyment();
 
+  // console.log('봉사활동 승인된 봉사자(전체))', participants);
+
   // attend가 true인 지원자들의 id를 초기 selectedIds로 설정
+  // attend가 true인 애들은 체크박스가 활성화된 상태로 disabled 처리되게
   useEffect(() => {
     if (participants) {
       const attendedIds = participants.filter((participant) => participant.attend).map((participant) => participant.id);
       setSelectedIds(attendedIds);
+
+      // console.log('정산된 id들 불러오기', attendedIds);
     }
   }, [participants]);
+
+  useEffect(() => {
+    // console.log('체크된 id 실시간 확인', selectedIds);
+  }, [selectedIds]);
 
   if (isLoading) return <div style={{ paddingTop: '450px' }}>로딩 중...</div>;
   if (isError) return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;
@@ -61,14 +68,18 @@ const AdjustmentModal = ({ setOpenAdjustmentModal }: AdjustmentModalProps) => {
 
   // 정산하기 처리
   const handleSettle = () => {
-    console.log('클릭');
-    if (selectedIds.length === 0) {
+    const newSelectedIds = selectedIds.filter((id) => !participants.find((p) => p.id === id)?.attend);
+
+    if (newSelectedIds.length === 0) {
       alert('선택된 봉사자가 없습니다.');
       return;
     }
-    settle(selectedIds, {
+
+    settle(newSelectedIds, {
       onSuccess: () => {
         alert('정산이 성공적으로 완료되었습니다.');
+        // console.log('이번에 요청 보낸 id', newSelectedIds);
+
         setOpenAdjustmentModal(false);
       }
     });
