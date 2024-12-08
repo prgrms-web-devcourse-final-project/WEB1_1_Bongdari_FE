@@ -1,8 +1,18 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
-import { AlertBox, AlertPositioning, Contents, LoginBtn, Logo, LogoutBtn, Menu, Wrapper } from './HeaderCss';
+import {
+  AlertBox,
+  AlertPositioning,
+  Contents,
+  LoginBtn,
+  Logo,
+  LogoutBtn,
+  Menu,
+  StyledToastContainer,
+  Wrapper
+} from './HeaderCss';
 import Alert from '@/features/alert';
 import { useLoginStore } from '@/store/stores/login/loginStore';
 import { AlertType } from '@/shared/types/alert-type/AlertType';
@@ -114,13 +124,13 @@ export default function Header() {
             <li>커뮤니티</li>
           </Link>
           {isLoggedIn && (
-            <Link to="/centermypage" className="link">
+            <Link to="/mypage" className="link">
               <li>마이페이지</li>
             </Link>
           )}
         </Menu>
-        <ToastContainer />
       </Contents>
+      <StyledToastContainer />
     </Wrapper>
   );
 }

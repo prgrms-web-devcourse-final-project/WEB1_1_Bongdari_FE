@@ -1,5 +1,5 @@
 // routes.ts
-import { createBrowserRouter, RouteObject } from 'react-router-dom';
+import { createBrowserRouter, Navigate, RouteObject } from 'react-router-dom';
 import Layout from '@/layout/Layout';
 import MainPage from '@/pages/main-page/MainPage';
 import TestPage from '@/pages/test-page';
@@ -20,6 +20,22 @@ import CommunityListPage from '@/pages/community-list-page';
 import CommunityCreatePage from '@/pages/community-create-page';
 import FindNearByActivityPage from '@/pages/find-nearby-activitiy-page';
 import LandingPage from '@/pages/landing-page';
+import { useLoginStore } from '@/store/stores/login/loginStore';
+
+const MyPage = () => {
+  const loginType = useLoginStore((state) => state.loginType);
+
+  // loginType에 따라 다른 컴포넌트 렌더링
+  switch (loginType) {
+    case 'ROLE_CENTER':
+      return <CenterMyPage />;
+    case 'ROLE_VOLUNTEER':
+      return <PersonalMyPage />;
+    default:
+      // 로그인 정보가 없거나 잘못된 경우 로그인 페이지로 리다이렉트
+      return <Navigate to="/login" replace />;
+  }
+};
 
 const routes: RouteObject[] = [
   {
@@ -43,27 +59,27 @@ const routes: RouteObject[] = [
         element: <AidRqDetailPage />
       },
       {
-        path: '/centermypage',
-        element: <CenterMyPage />
+        path: '/mypage',
+        element: <MyPage />
       },
       {
-        path: '/centermypage/adminaidreqlist',
+        path: '/mypage/adminaidreqlist',
         element: <AdminAidRqListPage />
       },
       {
-        path: '/centermypage/adminaidreqcreate',
+        path: '/mypage/adminaidreqcreate',
         element: <AidRqCreatePage />
       },
       {
-        path: '/centermypage/adminaidreqmodify',
+        path: '/mypage/adminaidreqmodify',
         element: <AidRqModifyPage />
       },
       {
-        path: '/centermypage/adminaidreqlist/:id',
+        path: '/mypage/adminaidreqlist/:id',
         element: <AidRqDetailAdminPage />
       },
       {
-        path: '/centermypage/adminaidreqlist/:id/applicantList',
+        path: '/mypage/adminaidreqlist/:id/applicantList',
         element: <AidRqApplicantListPage />
       },
       {
@@ -77,10 +93,6 @@ const routes: RouteObject[] = [
       {
         path: '/profile/:userId',
         element: <PersonalProfilePage />
-      },
-      {
-        path: '/personalmypage',
-        element: <PersonalMyPage />
       },
       {
         path: '/community',
