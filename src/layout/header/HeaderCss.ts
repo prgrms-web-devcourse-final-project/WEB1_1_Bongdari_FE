@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -104,5 +106,47 @@ export const LogoutBtn = styled.button`
   &:hover {
     border: 1px solid #2382ff;
     cursor: pointer;
+  }
+`;
+
+// Styled ToastContainer component
+export const StyledToastContainer = styled(ToastContainer)`
+  &.Toastify__toast-container {
+    width: 320px;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .Toastify__toast {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-family: inherit;
+  }
+
+  .Toastify__toast--success {
+    border-left: 4px solid #4caf50;
+  }
+
+  .Toastify__toast--error {
+    border-left: 4px solid #f44336;
+  }
+
+  .Toastify__toast--info {
+    border-left: 4px solid #2196f3;
+  }
+
+  .Toastify__close-button {
+    color: #666;
+    opacity: 0.7;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .Toastify__progress-bar {
+    height: 3px;
   }
 `;

@@ -103,9 +103,17 @@ export const RejectButton = styled.button`
   cursor: pointer;
   font-weight: 600;
   transition: 0.3s;
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+  pointer-events: ${({ disabled }) => (disabled ? 'none' : 'auto')};
 
   &:active {
     color: ${theme.pointColor.clicked};
     border: 1px solid ${theme.pointColor.clicked};
+  }
+
+  &:disabled {
+    border: 1px solid #adadad;
+    color: #adadad;
+    background-color: #ffffff;
   }
 `;

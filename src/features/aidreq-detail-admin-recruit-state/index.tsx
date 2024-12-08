@@ -68,8 +68,8 @@ const AdminReqDetailAdminRecruitState = ({
           </RecruitedButton>
           <FinishedButton
             isActive={activeState === '종료'}
-            onClick={() => setActiveState('종료')}
-            disabled={isUpdating}>
+            // onClick={() => setActiveState('종료')}
+          >
             <img src="/assets/imgs/recruit-completed.svg" alt="종료"></img>
           </FinishedButton>
           <StateText>

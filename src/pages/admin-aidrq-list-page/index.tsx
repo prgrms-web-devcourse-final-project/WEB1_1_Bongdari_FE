@@ -10,6 +10,7 @@ import { useLoginStore } from '@/store/stores/login/loginStore';
 
 const AdminAidRqListPage = () => {
   const centerId = useLoginStore((state) => state.myLoginId);
+
   const { handleTabChange } = useChangeStatusTab();
   const { keyword, category, region, admitted, sort, status } = useAdminSearchStore();
 

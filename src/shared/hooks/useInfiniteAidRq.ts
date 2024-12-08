@@ -41,7 +41,7 @@ export const useInfiniteAidRq = (
 ) => {
   const { data, fetchNextPage, hasNextPage, refetch, isLoading, isError, error } = useInfiniteQuery({
     queryKey: ['aidRequests'],
-    queryFn: ({ pageParam = 1 }) =>
+    queryFn: ({ pageParam = 0 }) =>
       fetchAidRequests({
         page: pageParam,
         keyword,

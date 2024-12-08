@@ -5,19 +5,60 @@ import GoodsItem from './_components/goods-item-box';
 import RegisterBar from './_components/register-bar';
 import useHandleItem from './logic/useAddItem';
 import type { centerPreferItemType } from '@/shared/types/center-profile/centerProfile';
+import { usePreferItem } from '@/store/queries/center-mypage/usePreferItems';
+import { useQuery } from '@tanstack/react-query';
 
 interface RegisterGoodsProps {
+  name: string;
   preferData: centerPreferItemType[];
 }
 
-const RegisterGoods = ({ preferData }: RegisterGoodsProps) => {
-  const { goodsList, currentInput, setCurrentInput, handleAddGoods, handleKeyPress, handleDeleteGoods } =
-    useHandleItem(preferData);
+const RegisterGoods = ({ name, preferData }: RegisterGoodsProps) => {
+  const { addItem, isLoading } = usePreferItem();
+  const { data: preferItems } = useQuery({
+    queryKey: ['preferItems'],
+    // 초기 데이터로 props로 받은 preferData 사용
+    initialData: preferData,
+    staleTime: 1000 * 60 * 5,
+    refetchOnWindowFocus: false
+  });
 
+  // console.log('픺', preferItems);
+
+  const { goodsList, currentInput, setCurrentInput, handleKeyPress, handleDeleteGoods, addGoodsToList } =
+    useHandleItem(preferItems);
+
+  const handleAdd = async (itemName: string) => {
+    if (!itemName.trim()) {
+      alert('물품명을 입력해주세요.');
+      return;
+    }
+    if (itemName.length > 15) {
+      alert('물품명은 15자 이내로 입력해주세요.');
+      return;
+    }
+
+    addItem(itemName, {
+      onSuccess: (response) => {
+        // 새 아이템을 로컬 상태에 추가
+        const newItem: centerPreferItemType = {
+          id: response.id,
+          centerId: response.center_id,
+          itemName: response.item_name
+        };
+        addGoodsToList(newItem);
+        setCurrentInput('');
+      },
+      onError: (error) => {
+        console.error('물품 추가 실패', error);
+        alert('물품 등록에 실패했습니다.');
+      }
+    });
+  };
   return (
     <SectionBox>
       <RegisterTitleSection>
-        <ResisterTitle>기관 선호물품 등록</ResisterTitle>
+        <ResisterTitle>{name}의 선호물품 등록</ResisterTitle>
         <Tooltip title={`기관에 필요한 물품을 직접 입력해 등록해보세요 (예: 어린이 동화 10권 or 옷 5벌)`} arrow>
           <Button style={{ paddingLeft: 0 }}>
             <TooltipBorder>
@@ -34,8 +75,9 @@ const RegisterGoods = ({ preferData }: RegisterGoodsProps) => {
       <RegisterBar
         currentInput={currentInput}
         setCurrentInput={setCurrentInput}
-        handleAddGoods={handleAddGoods}
-        handleKeyPress={handleKeyPress}
+        handleAddGoods={handleAdd}
+        handleKeyPress={(e) => handleKeyPress(e, handleAdd)}
+        disabled={isLoading}
       />
     </SectionBox>
   );

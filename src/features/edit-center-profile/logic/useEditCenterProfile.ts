@@ -1,74 +1,102 @@
-import { useImageUpload } from '@/shared/hooks/useImageUpload';
-import { useState, useEffect } from 'react';
-import { validatePhone, validateURL } from './validation';
-import type { centerProfileType } from '@/shared/types/center-profile/centerProfile';
+import { useState } from 'react';
+import { useUpdateCenterProfile, type CenterProfile } from '@/store/queries/center-mypage/useCenterProfile';
 
 interface UseEditCenterProfileProps {
-  profileData: centerProfileType;
+  data: CenterProfile;
 }
 
-const useEditCenterProfile = ({ profileData }: UseEditCenterProfileProps) => {
-  const { preview, setPreview, handleImageUpload } = useImageUpload();
+const useEditCenterProfile = ({ data }: UseEditCenterProfileProps) => {
+  const updateProfile = useUpdateCenterProfile();
 
-  // 수정중인 데이터 모아놓는 상태
-  const [centerName, setCenterName] = useState('');
-  const [centerPhone, setCenterPhone] = useState('');
-  const [centerURL, setCenterURL] = useState('');
-  const [centerIntroduction, setCenterIntroduction] = useState('');
-
-  // 원래 데이터 상태
-  const [originalName, setOriginalName] = useState('');
-
+  // 각 input 상태 관리
+  const [preview, setPreview] = useState<File | null>(null);
+  const [centerName, setCenterName] = useState(data.name);
+  const [originalName, setOriginalName] = useState(data.name);
+  const [centerPhone, setCenterPhone] = useState(data.contact_number);
+  const [centerURL, setCenterURL] = useState(data.homepage_link);
+  const [centerIntroduction, setCenterIntroduction] = useState(data.introduce);
   const [validURL, setValidURL] = useState(true);
   const [validPhone, setValidPhone] = useState(true);
 
-  useEffect(() => {
-    if (profileData) {
-      setCenterName(profileData.name);
-      setCenterPhone(profileData.contact_number);
-      setCenterURL(profileData.homepage_link);
-      setCenterIntroduction(profileData.introduce);
+  // 이미지 업로드 핸들러
+  const handleImageUpload = (file: File) => {
+    setPreview(file);
+  };
 
-      setOriginalName(profileData.name);
-
-      if (profileData.img_url) {
-        setPreview(profileData.img_url);
-      }
-
-      setValidPhone(validatePhone(profileData.contact_number));
-      setValidURL(validateURL(profileData.homepage_link));
-    }
-  }, [profileData, setPreview]);
-
-  // 상태 업데이트 핸들러
+  // 입력 핸들러 모음
   const handleNameChange = (name: string) => setCenterName(name);
-
-  const handlePhoneChange = (phone: string) => {
+  const handlePhoneChange = (phone: string, isValid: boolean) => {
     setCenterPhone(phone);
-    setValidPhone(validatePhone(phone));
+    setValidPhone(isValid);
   };
-
-  const handleURLChange = (url: string) => {
+  const handleURLChange = (url: string, isValid: boolean) => {
     setCenterURL(url);
-    setValidURL(validateURL(url));
+    setValidURL(isValid);
   };
+  const handleIntroductionChange = (introduce: string) => setCenterIntroduction(introduce);
 
-  const handleIntroductionChange = (introduction: string) => setCenterIntroduction(introduction);
+  // 제출 핸들러
+  const handleEditProfile = async () => {
+    if (!validURL || !validPhone || !centerName.trim()) {
+      return;
+    }
+
+    const profileData = {
+      name: centerName.trim(),
+      contact_number: centerPhone,
+      homepage_link: centerURL,
+      introduce: centerIntroduction
+    };
+
+    // 성공 시 처리 (TODO: 팝업으로 변경해서 UI/UX 개선하면 좋을 것 같습니당)
+    try {
+      // const updateData = preview
+      //   ? { data: profileData, img_file: preview }
+      //   : { data: profileData, img_url: data.img_url };
+
+      const updateData = {
+        data: profileData,
+        ...(preview && { img_file: preview }), // 새 이미지가 있을 경우에만 추가
+        ...(data.img_url && !preview && { img_url: data.img_url }) // 기존 이미지를 유지
+      };
+
+      // const updateData =
+      //   preview && preview instanceof File ? { data: profileData, img_file: preview } : { data: profileData };
+
+      // console.log('요청 데이터:', updateData);
+      // if (preview) {
+      //   console.log('파일 정보:', {
+      //     name: preview.name,
+      //     size: preview.size,
+      //     type: preview.type
+      //   });
+      // }
+
+      await updateProfile.mutateAsync(updateData);
+      setOriginalName(centerName.trim());
+      alert('프로필이 성공적으로 수정되었습니다.');
+    } catch (error) {
+      console.error('오류 발생:', error);
+      alert('프로필 수정 중 오류가 발생했습니다. 다시 시도해주세요.');
+    }
+  };
 
   return {
     preview,
+    handleImageUpload,
     centerName,
     originalName,
     centerPhone,
     centerURL,
     centerIntroduction,
-    handleImageUpload,
     handleNameChange,
     handlePhoneChange,
     handleURLChange,
     handleIntroductionChange,
     validURL,
-    validPhone
+    validPhone,
+    handleEditProfile,
+    isSubmitting: updateProfile.isPending
   };
 };
 
