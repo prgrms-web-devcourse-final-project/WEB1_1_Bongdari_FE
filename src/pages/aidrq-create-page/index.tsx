@@ -39,7 +39,7 @@ const AidRqCreatePage = () => {
   return (
     <Wrapper>
       <Title>도움요청 글 작성</Title>
-      <AidRqCreateShared getTitleAndFilter={getTitleAndFilter}></AidRqCreateShared>
+      <AidRqCreateShared getTitleAndFilter={getTitleAndFilter} volunteerData={volunteerData}></AidRqCreateShared>
       <ThirdLine>
         <RecruitPopulation getTitleAndFilter={getTitleAndFilter}></RecruitPopulation>
         <LocationBox getTitleAndFilter={getTitleAndFilter}></LocationBox>

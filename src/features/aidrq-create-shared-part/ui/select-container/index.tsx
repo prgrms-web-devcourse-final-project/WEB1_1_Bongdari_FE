@@ -1,22 +1,27 @@
 import Select from '@/components/select';
 import { SelectBox, Wrapper } from './indexCss';
+import { VolunteerType } from '@/shared/types/aidrq-create-type/AidRqCreateType';
+import { categoryToKorean } from '@/shared/mapping/aidrq-category-mapping';
 
 interface SelectContainerProps {
   getSelectedType: (text: string) => void;
   getSelectedRegion: (text: string) => void;
   getSelectedCertification: (text: string) => void;
+  volunteerData: VolunteerType;
 }
 
 const SelectContainer: React.FC<SelectContainerProps> = ({
   getSelectedType,
   getSelectedRegion,
-  getSelectedCertification
+  getSelectedCertification,
+  volunteerData
 }) => {
   return (
     <Wrapper>
       <SelectBox>
         <p>활동유형</p>
         <Select
+          key={volunteerData.volunteer_category}
           text="활동유형을 선택해주세요."
           width="100%"
           height="50px"
@@ -39,29 +44,34 @@ const SelectContainer: React.FC<SelectContainerProps> = ({
           ]}
           getSelectedOption={(text) => {
             getSelectedType(text);
-          }}></Select>
+          }}
+          initialValue={categoryToKorean[volunteerData.volunteer_category]}></Select>
       </SelectBox>
       <SelectBox>
         <p>지역</p>
         <Select
+          key={volunteerData.region}
           text="지역을 선택해주세요."
           width="100%"
           height="50px"
           data={['서울특별시', '인천광역시', '대전광역시']}
           getSelectedOption={(text) => {
             getSelectedRegion(text);
-          }}></Select>
+          }}
+          initialValue={volunteerData.region}></Select>
       </SelectBox>
       <SelectBox>
         <p>시간인증여부</p>
         <Select
+          key={volunteerData.admitted ? '인증' : '미인증'}
           text="시간인증여부를 선택해주세요."
           width="100%"
           height="50px"
           data={['인증', '미인증']}
           getSelectedOption={(text) => {
             getSelectedCertification(text);
-          }}></Select>
+          }}
+          initialValue={volunteerData.admitted ? '인증' : '미인증'}></Select>
       </SelectBox>
     </Wrapper>
   );

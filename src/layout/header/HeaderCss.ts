@@ -62,12 +62,13 @@ export const Menu = styled.ul`
   }
 `;
 
-export const AlertBox = styled.li`
+export const AlertBox = styled.li<{ hasNotifications?: boolean }>`
   width: 50px;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 
   & > img {
     width: 18px;
@@ -76,6 +77,21 @@ export const AlertBox = styled.li`
   &:hover {
     cursor: pointer;
   }
+
+  ${({ hasNotifications }) =>
+    hasNotifications &&
+    `
+    &::after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 8px;
+      height: 8px;
+      background-color: #ff0000;
+      border-radius: 50%;
+    }
+  `}
 `;
 
 export const AlertPositioning = styled.div`

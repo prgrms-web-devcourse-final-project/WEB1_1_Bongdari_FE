@@ -13,7 +13,8 @@ const VolunteerDate: React.FC<VolunteerDataProps> = ({ getDate, label }) => {
       <AidRqCreateDate
         getDate={(date) => {
           getDate(date);
-        }}></AidRqCreateDate>
+        }}
+        datetime=""></AidRqCreateDate>
     </Wrapper>
   );
 };

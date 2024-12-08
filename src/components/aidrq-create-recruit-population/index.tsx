@@ -3,10 +3,17 @@ import { PopulationInfo, Wrapper } from './indexCss';
 
 interface AidRqCreateRecruitPopulationProps {
   getPopulation: (population: number) => void;
+  recruitmentcount: number;
 }
 
-const AidRqCreateRecruitPopulation: React.FC<AidRqCreateRecruitPopulationProps> = ({ getPopulation }) => {
+const AidRqCreateRecruitPopulation: React.FC<AidRqCreateRecruitPopulationProps> = ({
+  getPopulation,
+  recruitmentcount
+}) => {
   const [populationState, setPopulationState] = useState(0);
+  useEffect(() => {
+    setPopulationState(recruitmentcount);
+  }, [recruitmentcount]);
   useEffect(() => {
     getPopulation(populationState);
   }, [populationState]);

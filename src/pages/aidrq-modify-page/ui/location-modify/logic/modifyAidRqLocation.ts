@@ -1,6 +1,4 @@
-import axios from 'axios';
-import Cookies from 'js-cookie';
-
+import axiosInstance from '@/api/apis';
 interface LocationData {
   region: string;
   address: string;
@@ -10,15 +8,7 @@ interface LocationData {
 
 export const updateLocation = async (id: string, locationData: LocationData) => {
   try {
-    const response = await axios.put(
-      `${import.meta.env.VITE_APP_BASE_URL}/api/recruit-board/${id}/location`,
-      locationData,
-      {
-        headers: {
-          Authorization: `Bearer ${Cookies.get('centerToken')}`
-        }
-      }
-    );
+    const response = await axiosInstance.put(`/api/recruit-board/${id}/location`, locationData);
     console.log(response);
   } catch (error) {
     console.error('Error:', error);
