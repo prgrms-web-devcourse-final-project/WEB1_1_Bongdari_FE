@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+
 import { Title, Wrapper } from './indexCss';
 import InfoModify from './ui/info-modify';
 import LocationModify from './ui/location-modify';
@@ -6,6 +8,9 @@ import { VolunteerType, Location } from '@/shared/types/aidrq-create-type/AidRqC
 import { fetchAidRqDefault } from './logic/fetchAidRqDefault';
 
 const AidRqModifyPage = () => {
+  const location = useLocation();
+  const id = location.state?.id;
+
   const [volunteerData, setVolunteerData] = useState<VolunteerType>({
     title: '',
     content: '',
@@ -31,7 +36,7 @@ const AidRqModifyPage = () => {
   }, []);
 
   useEffect(() => {
-    console.log(volunteerData);
+    console.log('바뀐데이터', volunteerData);
   }, [volunteerData]);
 
   const getTitleAndFilter = (key: keyof VolunteerType, value: Location | string | number | boolean) => {
@@ -44,8 +49,8 @@ const AidRqModifyPage = () => {
   return (
     <Wrapper>
       <Title>도움요청 글 수정</Title>
-      <LocationModify getTitleAndFilter={getTitleAndFilter} volunteerData={volunteerData}></LocationModify>
-      <InfoModify></InfoModify>
+      <LocationModify id={id} getTitleAndFilter={getTitleAndFilter} volunteerData={volunteerData}></LocationModify>
+      <InfoModify id={id} getTitleAndFilter={getTitleAndFilter} volunteerData={volunteerData}></InfoModify>
     </Wrapper>
   );
 };

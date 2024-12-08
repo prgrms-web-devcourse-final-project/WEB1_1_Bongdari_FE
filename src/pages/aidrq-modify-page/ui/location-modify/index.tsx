@@ -4,11 +4,12 @@ import { VolunteerType, Location } from '@/shared/types/aidrq-create-type/AidRqC
 import { updateLocation } from './logic/modifyAidRqLocation';
 
 interface LocationModifyProps {
+  id: string;
   getTitleAndFilter: (key: keyof VolunteerType, value: Location | string | number | boolean) => void;
   volunteerData: VolunteerType;
 }
 
-const LocationModify: React.FC<LocationModifyProps> = ({ getTitleAndFilter, volunteerData }) => {
+const LocationModify: React.FC<LocationModifyProps> = ({ id, getTitleAndFilter, volunteerData }) => {
   const changedLocation = {
     region: volunteerData.region,
     ...volunteerData.location
@@ -26,7 +27,7 @@ const LocationModify: React.FC<LocationModifyProps> = ({ getTitleAndFilter, volu
       </Contents>
       <button
         onClick={() => {
-          updateLocation('11', changedLocation);
+          updateLocation(id, changedLocation);
         }}>
         수정하기
       </button>
