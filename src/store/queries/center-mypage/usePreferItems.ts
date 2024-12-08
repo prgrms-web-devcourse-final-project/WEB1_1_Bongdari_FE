@@ -1,6 +1,6 @@
 import axiosInstance from '@/api/apis';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 
 // 기관 물품 등록 api ------------------------------------------------------
 export interface PreferItemResponse {
@@ -55,11 +55,13 @@ export const usePreferItem = () => {
 
 // 기관 물품 삭제 api ------------------------------------------------------
 const deletePreferItem = async (preferItemId: number) => {
-  const response = await axiosInstance.delete(`/api/preferItem/${preferItemId}`, {
-    headers: {
-      Authorization: `Bearer ${Cookies.get('ACCESS')}`
-    }
-  });
+  // const response = await axiosInstance.delete(`/api/preferItem/${preferItemId}`, {
+  //   headers: {
+  //     Authorization: `Bearer ${Cookies.get('ACCESS')}`
+  //   }
+  // });
+
+  const response = await axiosInstance.delete(`/api/preferItem/${preferItemId}`);
   return response.data;
 };
 

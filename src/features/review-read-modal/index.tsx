@@ -24,7 +24,7 @@ import { useGetOtherVolunteerProfile } from '@/store/queries/volunteer-profile/u
 
 interface ReviewModalProps {
   handleReviewModal: () => void;
-  reviewId?: number | null;
+  reviewId: number;
 }
 
 const ReviewReadModal: React.FC<ReviewModalProps> = ({ handleReviewModal, reviewId }) => {
@@ -40,8 +40,6 @@ const ReviewReadModal: React.FC<ReviewModalProps> = ({ handleReviewModal, review
 
   const review = reviewData.data;
   const volunteer = volunteerData.data;
-
-  // TODO: user defualt 이미지 들어오면 바꿔야 함
 
   return (
     <Modal variant="big" isOpen onClose={handleReviewModal}>

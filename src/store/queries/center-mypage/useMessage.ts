@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import axiosInstance from '@/api/apis';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 
 // 해당 기관에게 온 쪽지 리스트 api---------------------------------------------------------------
 export interface MessageItem {
@@ -12,11 +12,12 @@ export interface MessageItem {
 }
 
 const fetchMessageList = async (page: number) => {
-  const response = await axiosInstance.get(`/api/note/center?page=${page}&size=6`, {
-    headers: {
-      Authorization: `Bearer ${Cookies.get('ACCESS')}`
-    }
-  });
+  // const response = await axiosInstance.get(`/api/note/center?page=${page}&size=6`, {
+  //   headers: {
+  //     Authorization: `Bearer ${Cookies.get('ACCESS')}`
+  //   }
+  // });
+  const response = await axiosInstance.get(`/api/note/center?page=${page}&size=6`);
 
   return response.data;
 };
