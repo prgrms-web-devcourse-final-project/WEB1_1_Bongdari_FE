@@ -11,7 +11,6 @@ interface ManageCenterPostSetProps {
 
 const ManageCenterPostSet = ({ centerId }: ManageCenterPostSetProps) => {
   const [selectedMenuItem, setSelectedMenuItem] = useState<number>(0);
-  const [readStates, setReadStates] = useState<boolean[]>(Array(6).fill(false));
 
   return (
     <SectionWrapper>
@@ -20,7 +19,7 @@ const ManageCenterPostSet = ({ centerId }: ManageCenterPostSetProps) => {
         {selectedMenuItem === 0 ? (
           <GoAidReqSet />
         ) : selectedMenuItem === 1 ? (
-          <MessageSet readStates={readStates} setReadStates={setReadStates} />
+          <MessageSet />
         ) : (
           <ReviewSet centerId={centerId} />
         )}

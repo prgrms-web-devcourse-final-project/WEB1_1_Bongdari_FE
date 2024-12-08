@@ -4,20 +4,18 @@ import Stack from '@mui/material/Stack';
 import MessageLabel from '@/components/label/MessageLabel';
 import { Author, CustomPagination, List, ListItem, ListItemTitle, NoteSetTitle, StateBox, Wrapper } from './indexCss';
 import MessageReadModal from '../../../message-read-modal';
+import { useMessageList, type MessageItem } from '@/store/queries/center-mypage/useMessage';
+import { usePagination } from '@/shared/hooks/usePagination';
 
-interface MessageSetProps {
-  readStates: boolean[];
-  setReadStates: React.Dispatch<React.SetStateAction<boolean[]>>;
-}
-
-const MessageSet: React.FC<MessageSetProps> = ({ readStates, setReadStates }) => {
+const MessageSet = () => {
   const [openNoteModal, setNoteModal] = useState(false);
-  const [, setSelectedNoteIndex] = useState<number | null>(null);
+  const { page, handlePageChange } = usePagination();
 
-  const handleItemClick = (index: number) => {
-    // 읽음 상태 업데이트
-    setReadStates((prevStates) => prevStates.map((state, idx) => (idx === index ? true : state)));
-    setSelectedNoteIndex(index);
+  const { data: messages } = useMessageList(page);
+
+  console.log('메세지야 안녕!!!!!!!!!!!!!!', messages);
+
+  const handleItemClick = () => {
     setNoteModal(true);
   };
 
@@ -30,18 +28,18 @@ const MessageSet: React.FC<MessageSetProps> = ({ readStates, setReadStates }) =>
       <Wrapper>
         <NoteSetTitle>쪽지리스트</NoteSetTitle>
         <List>
-          {readStates.map((isRead, index) => (
-            <ListItem key={index} onClick={() => handleItemClick(index)}>
-              <ListItemTitle $isRead={isRead}>조치 완료했습니다.</ListItemTitle>
+          {messages?.content?.map((message: MessageItem) => (
+            <ListItem key={message.id} onClick={() => handleItemClick()}>
+              <ListItemTitle $isRead={message.is_read}>{message.title}</ListItemTitle>
               <StateBox>
-                {!isRead && <MessageLabel />}
-                <Author>글쓴이</Author>
+                {!message.is_read && <MessageLabel />}
+                <Author>{message.sender_name}</Author>
               </StateBox>
             </ListItem>
           ))}
         </List>
         <Stack spacing={2} sx={{ margin: 'auto' }}>
-          <CustomPagination count={5} />
+          <CustomPagination page={page + 1} onChange={handlePageChange} count={messages?.totalPages} />
         </Stack>
       </Wrapper>
       {openNoteModal && <MessageReadModal handleModalClose={handleModalClose} />}
