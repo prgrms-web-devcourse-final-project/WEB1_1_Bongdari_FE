@@ -1,6 +1,6 @@
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import axiosInstance from '@/api/apis';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 
 // 지원자 리스트 api
 
@@ -44,11 +44,14 @@ const getVolunteerApplies = async ({ recruitBoardId, page, size, attended, statu
     params.append('status', status);
   }
 
-  const response = await axiosInstance.get(`/api/volunteer-applies/recruit-board/${recruitBoardId}?${params}`, {
-    headers: {
-      Authorization: `${Cookies.get('ACCESS')}`
-    }
-  });
+  // 혹시 몰라 주석처리
+  // const response = await axiosInstance.get(`/api/volunteer-applies/recruit-board/${recruitBoardId}?${params}`, {
+  //   headers: {
+  //     Authorization: `${Cookies.get('ACCESS')}`
+  //   }
+  // });
+
+  const response = await axiosInstance.get(`/api/volunteer-applies/recruit-board/${recruitBoardId}?${params}`);
 
   return response.data.content;
 };

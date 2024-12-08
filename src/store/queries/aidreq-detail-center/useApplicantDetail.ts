@@ -1,6 +1,6 @@
 import axiosInstance from '@/api/apis';
 import { useQuery } from '@tanstack/react-query';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 
 // 지원자 리스트 상세 모달 api
 interface ApplicantDetailInfo {
@@ -21,11 +21,13 @@ interface ApplicantDetailInfo {
 }
 
 const fetchApplicantDetail = async (volunteerId: string): Promise<ApplicantDetailInfo> => {
-  const response = await axiosInstance.get(`/api/volunteer/profile/${volunteerId}/detailed`, {
-    headers: {
-      Authorization: `${Cookies.get('ACCESS')}`
-    }
-  });
+  // const response = await axiosInstance.get(`/api/volunteer/profile/${volunteerId}/detailed`, {
+  //   headers: {
+  //     Authorization: `${Cookies.get('ACCESS')}`
+  //   }
+  // });
+
+  const response = await axiosInstance.get(`/api/volunteer/profile/${volunteerId}/detailed`);
 
   return response.data;
 };

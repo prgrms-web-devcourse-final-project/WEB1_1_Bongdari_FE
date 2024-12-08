@@ -1,16 +1,18 @@
 import axiosInstance from '@/api/apis';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 
 // 봉사활동 지원 거절 api -------------------------------------------
 const rejectApplyment = async (id: number) => {
-  const response = await axiosInstance.patch(
-    `/api/volunteer-apply/${id}/reject`,
-    {},
-    {
-      headers: { Authorization: `Bearer ${Cookies.get('ACCESS')}` }
-    }
-  );
+  // const response = await axiosInstance.patch(
+  //   `/api/volunteer-apply/${id}/reject`,
+  //   {},
+  //   {
+  //     headers: { Authorization: `Bearer ${Cookies.get('ACCESS')}` }
+  //   }
+  // );
+
+  const response = await axiosInstance.patch(`/api/volunteer-apply/${id}/reject`, {});
   return response.data;
 };
 
@@ -30,13 +32,15 @@ export const useRejectApplyment = () => {
 
 // 봉사활동 지원 승인 api -------------------------------------------
 const approveApplyment = async (id: number) => {
-  const response = await axiosInstance.patch(
-    `/api/volunteer-apply/${id}/approve`,
-    {},
-    {
-      headers: { Authorization: `Bearer ${Cookies.get('ACCESS')}` }
-    }
-  );
+  // const response = await axiosInstance.patch(
+  //   `/api/volunteer-apply/${id}/approve`,
+  //   {},
+  //   {
+  //     headers: { Authorization: `Bearer ${Cookies.get('ACCESS')}` }
+  //   }
+  // );
+
+  const response = await axiosInstance.patch(`/api/volunteer-apply/${id}/approve`);
   return response.data;
 };
 
@@ -56,17 +60,21 @@ export const useApproveApplyment = () => {
 
 // 봉사활동 지원 승인 정산 api ---------------------------------------
 const settleApplyment = async (ids: number[]) => {
-  const response = await axiosInstance.post(
-    '/api/volunteer-applies/settle',
-    {
-      ids
-    },
-    {
-      headers: {
-        Authorization: `${Cookies.get('ACCESS')}`
-      }
-    }
-  );
+  // const response = await axiosInstance.post(
+  //   '/api/volunteer-applies/settle',
+  //   {
+  //     ids
+  //   },
+  //   {
+  //     headers: {
+  //       Authorization: `${Cookies.get('ACCESS')}`
+  //     }
+  //   }
+  // );
+
+  const response = await axiosInstance.post('/api/volunteer-applies/settle', {
+    ids
+  });
 
   return response.data;
 };

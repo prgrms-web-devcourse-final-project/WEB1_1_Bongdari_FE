@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axiosInstance from '@/api/apis';
 import axios from 'axios';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 
 // 물품등록 관련 인터페이스
 export interface PreferItem {
@@ -38,7 +38,7 @@ interface CenterProfileUpdateRequest {
 const fetchCenterProfile = async (centerId: string): Promise<CenterProfile> => {
   const response = await axiosInstance.get(`/api/center/profile/${centerId}`);
 
-  console.log('기관프로필 get 결과: ', response.data);
+  // console.log('기관프로필 get 결과: ', response.data);
 
   return response.data;
 };
@@ -61,10 +61,16 @@ const updateCenterProfile = async ({ data, img_file }: CenterProfileUpdateReques
     console.log(`${key}:`, value instanceof File ? 'File object' : value);
   }
 
+  // const response = await axiosInstance.put('/api/center/profile', formData, {
+  //   headers: {
+  //     'Content-Type': 'multipart/form-data',
+  //     Authorization: `Bearer ${Cookies.get('ACCESS')}`
+  //   }
+  // });
+
   const response = await axiosInstance.put('/api/center/profile', formData, {
     headers: {
-      'Content-Type': 'multipart/form-data',
-      Authorization: `Bearer ${Cookies.get('ACCESS')}`
+      'Content-Type': 'multipart/form-data'
     }
   });
   return response.data;
