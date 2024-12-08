@@ -3,10 +3,10 @@ import { AlertType } from '@/shared/types/alert-type/AlertType';
 
 interface AlertItemProps {
   item: AlertType;
-  sigleRead: (id: number) => void;
+  singleRead: (id: number) => void;
 }
 
-const AlertItem: React.FC<AlertItemProps> = ({ item, sigleRead }) => {
+const AlertItem: React.FC<AlertItemProps> = ({ item, singleRead }) => {
   return (
     <Wrapper>
       <p>{item.type}</p>
@@ -15,7 +15,7 @@ const AlertItem: React.FC<AlertItemProps> = ({ item, sigleRead }) => {
         <p>2024.12.03</p>
         <button
           onClick={() => {
-            sigleRead(item.id);
+            singleRead(item.id);
           }}>
           삭제
         </button>

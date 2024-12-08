@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import AlertItem from '@/components/alert-item';
 import { Container, Top, Wrapper } from './indexCss';
 import { AlertType } from '@/shared/types/alert-type/AlertType';
-import { sigleRead } from './logic/single-read';
+import { singleRead } from './logic/single-read';
 import axiosInstance from '@/api/apis';
 
 const Alert = () => {
@@ -27,43 +27,43 @@ const Alert = () => {
     console.log('notifications', notifications);
   }, [notifications]);
 
-  const data = [
-    {
-      id: 123,
-      title: '{발신자:봉사자,기관} 님의 새 쪽지가 도착했습니다.',
-      type: 'NOTE',
-      relatedId: '1',
-      read: false
-    },
-    {
-      id: 124,
-      title: '{수신자:봉사자} 님, 최근 활동하신 활동의 후기를 작성해주세요!',
-      type: 'REVIEW',
-      relatedId: '1',
-      read: false
-    },
-    {
-      id: 125,
-      title: '{발신자:봉사자,기관} 님이 새로운 댓글을 작성하셨습니다.',
-      type: 'COMMENT',
-      relatedId: '1',
-      read: false
-    },
-    {
-      id: 127,
-      title: '{발신자:기관} 님이 봉사 활동 신청을 승인하셨습니다.',
-      type: 'RECRUIT',
-      relatedId: '1',
-      read: false
-    },
-    {
-      id: 128,
-      title: '{발신자:기관} 님이 봉사 활동 신청을 거절하셨습니다.',
-      type: 'RECRUIT',
-      relatedId: '1',
-      read: false
-    }
-  ];
+  // const data = [
+  //   {
+  //     id: 123,
+  //     title: '{발신자:봉사자,기관} 님의 새 쪽지가 도착했습니다.',
+  //     type: 'NOTE',
+  //     relatedId: '1',
+  //     read: false
+  //   },
+  //   {
+  //     id: 124,
+  //     title: '{수신자:봉사자} 님, 최근 활동하신 활동의 후기를 작성해주세요!',
+  //     type: 'REVIEW',
+  //     relatedId: '1',
+  //     read: false
+  //   },
+  //   {
+  //     id: 125,
+  //     title: '{발신자:봉사자,기관} 님이 새로운 댓글을 작성하셨습니다.',
+  //     type: 'COMMENT',
+  //     relatedId: '1',
+  //     read: false
+  //   },
+  //   {
+  //     id: 127,
+  //     title: '{발신자:기관} 님이 봉사 활동 신청을 승인하셨습니다.',
+  //     type: 'RECRUIT',
+  //     relatedId: '1',
+  //     read: false
+  //   },
+  //   {
+  //     id: 128,
+  //     title: '{발신자:기관} 님이 봉사 활동 신청을 거절하셨습니다.',
+  //     type: 'RECRUIT',
+  //     relatedId: '1',
+  //     read: false
+  //   }
+  // ];
 
   return (
     <Wrapper>
@@ -72,8 +72,8 @@ const Alert = () => {
           <p>알림</p>
           <span>전체 삭제하기</span>
         </Top>
-        {data.map((item) => (
-          <AlertItem key={item.id} item={item} sigleRead={sigleRead}></AlertItem>
+        {notifications.map((item) => (
+          <AlertItem key={item.id} item={item} singleRead={singleRead}></AlertItem>
         ))}
       </Container>
     </Wrapper>
