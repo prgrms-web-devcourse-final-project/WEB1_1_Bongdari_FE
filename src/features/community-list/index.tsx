@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { CommuntiyListCss } from './indexCss';
 import { useCommunityList } from './logic/useCommunityList';
 import { SubmitButton } from '@/components/button';
@@ -9,6 +9,7 @@ import { useLoginStore } from '@/store/stores/login/loginStore';
 const CommuntiyList = ({ searchWord }: { searchWord: string }) => {
   const { listData, totPage, currPage, setCurrPage } = useCommunityList({ searchWord });
   const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
+  const navigate = useNavigate();
   return (
     <CommuntiyListCss>
       <div className="listHeader">
@@ -34,7 +35,13 @@ const CommuntiyList = ({ searchWord }: { searchWord: string }) => {
       </div>
       <CustomPagination totPage={totPage} currPage={currPage} setCurrPage={setCurrPage} />
       <div className="btnWrap">
-        <SubmitButton label="작성하기" variant={isLoggedIn ? 'enabledTwo' : 'disabled'} />
+        <SubmitButton
+          label="작성하기"
+          variant={isLoggedIn ? 'enabledTwo' : 'disabled'}
+          onClick={() => {
+            navigate('/communitycreate');
+          }}
+        />
       </div>
     </CommuntiyListCss>
   );

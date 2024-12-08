@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 
 import { AlertBox, AlertPositioning, Contents, LoginBtn, Logo, LogoutBtn, Menu, Wrapper } from './HeaderCss';
 import Alert from '@/features/alert';
@@ -17,15 +17,19 @@ export default function Header() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log('isLoggedIn 상태:', isLoggedIn); // isLoggedIn 상태 확인
+
     let eventSource: EventSource;
 
     const connectSSE = () => {
+      console.log('SSE 연결 시도'); // 연결 시도 확인
       eventSource = new EventSource(`${import.meta.env.VITE_APP_BASE_URL}/api/sse/subscribe`, {
         withCredentials: true
       });
 
       // 연결 성공 시 호출되는 핸들러 추가
       eventSource.onopen = () => {
+        console.log('SSE 연결 성공!');
         toast.success('SSE가 연결되었습니다', {
           position: 'top-right',
           autoClose: 3000
@@ -115,6 +119,7 @@ export default function Header() {
             </Link>
           )}
         </Menu>
+        <ToastContainer />
       </Contents>
     </Wrapper>
   );
