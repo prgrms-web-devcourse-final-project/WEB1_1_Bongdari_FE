@@ -11,8 +11,6 @@ interface ButtonGroupProps {
 const ButtonGroup = ({ handleAdjustmentButton, status }: ButtonGroupProps) => {
   const navigate = useNavigate();
 
-  console.log('statuss', status);
-
   return (
     <ButtonWrapper>
       <EmptyButton onClick={() => navigate('/centermypage/adminaidreqmodify')}>수정하기</EmptyButton>

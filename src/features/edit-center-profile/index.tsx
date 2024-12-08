@@ -9,14 +9,13 @@ import {
   SectionBox
 } from './indexCss';
 import useEditCenterProfile from './logic/useEditCenterProfile';
-import useSubmitCenterProfile from './logic/useSubmitCenterProfile';
-import type { centerProfileType } from '@/shared/types/center-profile/centerProfile';
+import type { CenterProfile } from '@/store/queries/center-mypage/useCenterProfile';
 
 interface EditCenterProfileProps {
-  profileData: centerProfileType;
+  data: CenterProfile;
 }
 
-const EditCenterProfile = ({ profileData }: EditCenterProfileProps) => {
+const EditCenterProfile = ({ data }: EditCenterProfileProps) => {
   const {
     preview,
     handleImageUpload,
@@ -30,18 +29,10 @@ const EditCenterProfile = ({ profileData }: EditCenterProfileProps) => {
     handleURLChange,
     handleIntroductionChange,
     validURL,
-    validPhone
-  } = useEditCenterProfile({ profileData });
-
-  const { handleEditProfile, isSubmitting } = useSubmitCenterProfile();
-
-  const handleEditButton = () => {
-    if (!centerName.trim()) {
-      alert('기관명을 입력해주세요.');
-      return;
-    }
-    handleEditProfile(centerName, centerPhone, centerURL, centerIntroduction, preview, validURL, validPhone);
-  };
+    validPhone,
+    handleEditProfile,
+    isSubmitting
+  } = useEditCenterProfile({ data });
 
   return (
     <CenterProfileEditContainer>
@@ -52,7 +43,17 @@ const EditCenterProfile = ({ profileData }: EditCenterProfileProps) => {
       )}
       <SectionBox>
         <ProfileEditWrapper>
-          <ImageUploader preview={preview} onImageUpload={handleImageUpload} />
+          {/* <ImageUploader
+            preview={preview}
+            initialImage={data.img_url || '/assets/imgs/no-img-person.svg'}
+            onImageUpload={handleImageUpload}
+          /> */}
+          <ImageUploader
+            preview={preview || null} // preview가 없으면 기본 이미지 사용
+            initialImage={preview ? URL.createObjectURL(preview) : data.img_url || '/assets/imgs/no-img-person.svg'}
+            onImageUpload={handleImageUpload}
+          />
+
           <EditProfileForm
             handleNameChange={handleNameChange}
             handlePhoneChange={handlePhoneChange}
@@ -70,7 +71,7 @@ const EditCenterProfile = ({ profileData }: EditCenterProfileProps) => {
           <OtherButton
             label="수정하기"
             width="220px"
-            onClick={handleEditButton}
+            onClick={handleEditProfile}
             disabled={isSubmitting || !validURL || !validPhone || !centerName.trim()}
           />
         </EditButtonContainer>

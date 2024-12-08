@@ -63,7 +63,7 @@ const routes: RouteObject[] = [
         element: <AidRqDetailAdminPage />
       },
       {
-        path: '/centermypage/adminaidreqlist/:id/applicants',
+        path: '/centermypage/adminaidreqlist/:id/applicantList',
         element: <AidRqApplicantListPage />
       },
       {

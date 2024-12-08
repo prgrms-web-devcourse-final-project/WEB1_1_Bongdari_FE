@@ -51,17 +51,17 @@ export const RecruitedButton = styled.button<{ isActive?: boolean }>`
   }
 `;
 
-export const FinishedButton = styled.button<{ isActive?: boolean }>`
-  cursor: pointer;
+export const FinishedButton = styled.div<{ isActive?: boolean }>`
+  /* cursor: pointer; */
   background-color: ${({ isActive }) => (isActive ? '#FFE5CF' : theme.box.section.backgroundColor)};
   border: ${({ isActive }) => (isActive ? '1px solid #FFA680' : theme.box.section.border)};
   border-radius: ${theme.box.section.borderRadius};
   padding: 36px 114px 24px 113px;
   transition: 0.3s;
 
-  &:hover {
+  /* &:hover {
     background-color: #fff1e5;
-  }
+  } */
 `;
 
 export const StateText = styled.p`

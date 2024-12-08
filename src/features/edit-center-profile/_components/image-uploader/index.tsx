@@ -1,18 +1,29 @@
-import { type ChangeEvent } from 'react';
+import type { ChangeEvent } from 'react';
 import { HiddenInput, ImageCircle, PreviewImage, UploadButton, UploadContainer } from './indexCss';
 
 interface ImageUploadProps {
-  preview: string | null;
-  onImageUpload: (e: ChangeEvent<HTMLInputElement>) => void;
+  preview: File | null;
+  initialImage: string;
+  onImageUpload: (file: File) => void;
 }
 
-// TODO: 주영님이 이미지 올려주시면 preview === ''일 때, 기관 이미지 넣기
-const ImageUploader = ({ preview, onImageUpload }: ImageUploadProps) => {
+const ImageUploader = ({ preview, initialImage, onImageUpload }: ImageUploadProps) => {
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      onImageUpload(file);
+    }
+  };
+
+  const imageSource = preview ? URL.createObjectURL(preview) : initialImage || '/assets/imgs/no-img-person.svg';
+
   return (
     <UploadContainer>
-      <ImageCircle>{preview && <PreviewImage src={preview} alt="Preview" />}</ImageCircle>
+      <ImageCircle>
+        <PreviewImage src={imageSource} alt={preview ? 'Preview' : initialImage ? 'Initial profile' : 'No image'} />
+      </ImageCircle>
       <UploadButton>
-        <HiddenInput type="file" accept="image/*" onChange={onImageUpload} />
+        <HiddenInput type="file" accept="image/*" onChange={handleFileChange} />
         <span>+</span>
       </UploadButton>
     </UploadContainer>

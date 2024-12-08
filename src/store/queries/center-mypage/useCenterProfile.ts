@@ -1,5 +1,6 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axiosInstance from '@/api/apis';
+import axios from 'axios';
 // import Cookies from 'js-cookie';
 
 // 물품등록 관련 인터페이스
@@ -10,18 +11,18 @@ export interface PreferItem {
 }
 
 // 기관 프로필 조회에 필요한 인터페이스
-interface CenterProfile {
+export interface CenterProfile {
   center_id: string;
   name: string;
   contact_number: string;
   homepage_link: string;
+  img_url: string;
   introduce: string;
-  img_url?: string;
   prefer_items: PreferItem[];
 }
 
 // 수정 인터페이스
-interface CenterProfileData {
+interface CenterProfileUpdateData {
   name: string;
   contact_number: string;
   homepage_link: string;
@@ -29,53 +30,51 @@ interface CenterProfileData {
 }
 
 interface CenterProfileUpdateRequest {
-  data: CenterProfileData;
+  data: CenterProfileUpdateData;
   img_file?: File;
 }
-
-// 응답 타입
-// interface ApiResponse {
-//   code: number;
-//   message: string;
-//   data: string;
-// }
 
 // 기관 프로필 get 해오는 fetch 함수
 const fetchCenterProfile = async (centerId: string): Promise<CenterProfile> => {
   const response = await axiosInstance.get(`/api/center/profile/${centerId}`);
 
-  console.log('기관프로필 get 결과: ', response.data);
+  // console.log('기관프로필 get 결과: ', response.data);
 
   return response.data;
 };
 
 // 기관 프로필 수정 put
-// const EditCenterProfile = async (formData: FormData): Promise<ApiResponse> => {
-//   // const formData = new FormData();
+const updateCenterProfile = async ({ data, img_file }: CenterProfileUpdateRequest) => {
+  const formData = new FormData();
 
-//   // const jsonProfileData = {
-//   //   name: data.name,
-//   //   contact_number: data.contact_number,
-//   //   homepage_link: data.homepage_link,
-//   //   introduce: data.introduce
-//   // };
-//   // formData.append('data', JSON.stringify(jsonProfileData));
+  formData.append('data', JSON.stringify(data));
 
-//   // if (data.img_file) {
-//   //   formData.append('img_file', data.img_file);
-//   // }
+  // 새로운 이미지가 있을 때만 img_file 필드 추가
+  if (img_file && img_file instanceof File) {
+    formData.append('img_file', img_file);
+  }
+  // img_file이 없으면 기존 이미지 유지를 위해 필드 자체를 포함하지 않음
 
-//   const response = await axiosInstance.put<ApiResponse>('/api/center/profile', formData, {
-//     headers: {
-//       'Content-Type': 'multipart/form-data',
-//       Accept: 'application/json',
-//       Authorization: `Bearer ${Cookies.get('centerToken')}`
-//     }
-//   });
+  // 로깅
+  console.log('FormData entries:');
+  for (const [key, value] of formData.entries()) {
+    console.log(`${key}:`, value instanceof File ? 'File object' : value);
+  }
 
-//   console.log('프로필 수정 결과!', response.data);
-//   return response.data;
-// };
+  // const response = await axiosInstance.put('/api/center/profile', formData, {
+  //   headers: {
+  //     'Content-Type': 'multipart/form-data',
+  //     Authorization: `Bearer ${Cookies.get('ACCESS')}`
+  //   }
+  // });
+
+  const response = await axiosInstance.put('/api/center/profile', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  });
+  return response.data;
+};
 
 // 기관 프로필 조회 훅
 export const useGetCenterProfile = (centerId: string) => {
@@ -88,47 +87,20 @@ export const useGetCenterProfile = (centerId: string) => {
 };
 
 // 기관 프로필 수정 훅
-// export const useEditCenterProfile = () => {
-//   const queryClient = useQueryClient();
-//   return useMutation({
-//     mutationFn: EditCenterProfile,
-//     onSuccess: (data) => {
-//       console.log('프로필 수정 완료!!', data);
-//       queryClient.invalidateQueries({ queryKey: ['centerProfile'] });
-//     }
-//   });
-// };
-
-const updateCenterProfile = async ({ data, img_file }: CenterProfileUpdateRequest) => {
-  const formData = new FormData();
-
-  // JSON 데이터를 FormData에 추가
-  formData.append('data', JSON.stringify(data));
-
-  // 이미지 파일이 있는 경우에만 추가
-  if (img_file) {
-    formData.append('img_file', img_file);
-  }
-
-  const response = await axiosInstance.put('/api/center/profile', formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    }
-  });
-
-  return response.data;
-};
-
 export const useUpdateCenterProfile = () => {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: updateCenterProfile,
     onSuccess: () => {
-      // 성공 시 처리할 로직
-      console.log('프로필이 성공적으로 수정되었습니다.');
+      queryClient.invalidateQueries({ queryKey: ['centerProfile'] });
     },
     onError: (error) => {
-      // 에러 처리
-      console.error('프로필 수정 중 오류가 발생했습니다:', error);
+      if (axios.isAxiosError(error) && error.response?.status === 401) {
+        window.location.href = '/login';
+        return;
+      }
+      throw error; // 다른 에러는 다시 throw
     }
   });
 };

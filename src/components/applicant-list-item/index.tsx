@@ -17,33 +17,34 @@ import {
 } from './indexCss';
 import { useState } from 'react';
 import ApplicantDetailModal from '@/features/applicant-detail-modal';
+import type { VolunteerApply } from '@/store/queries/aidreq-detail-center/useApplicant';
+import { useApproveApplyment, useRejectApplyment } from '@/store/queries/aidreq-detail-center/useManageApplyment';
 
 interface ApplicantListItemProps {
-  volunteerId: number;
-  name: string;
-  nickName: string;
-  email: string;
-  img_url: string;
-  status: string;
-  created_at: string;
+  applicant: VolunteerApply;
+  recruitStatus: string;
 }
 
-const ApplicantListItem: React.FC<ApplicantListItemProps> = ({
-  volunteerId,
-  name,
-  nickName,
-  email,
-  status,
-  img_url
-}) => {
+const ApplicantListItem = ({ applicant, recruitStatus }: ApplicantListItemProps) => {
   const [isOpenDetailModal, setIsOpenDetailModal] = useState(false);
 
-  // 모달 open, close 함수
+  console.log('applicant(얜 아이템)', applicant);
+  const applymentId = applicant.id;
+
+  const { mutate: approve } = useApproveApplyment();
+  const { mutate: reject } = useRejectApplyment();
+
   const handleOpenDetailProfileModal = () => {
     setIsOpenDetailModal(!isOpenDetailModal);
   };
 
-  // TODO: 수락/반려 버튼 클릭 핸들러 함수 구현 -> 수락/반려 api fetching할 때 volunteerId 사용
+  const handleRejectApplyment = () => {
+    reject(applymentId);
+  };
+
+  const handleApproveApplyment = () => {
+    approve(applymentId);
+  };
 
   return (
     <>
@@ -51,16 +52,19 @@ const ApplicantListItem: React.FC<ApplicantListItemProps> = ({
         <ProfileWrapper>
           <ProfileBox>
             <ProfileImgWrapper>
-              <ProfileImg src={img_url} alt="프로필이미지들어갈자리" />
+              <ProfileImg
+                src={applicant.volunteer.img_url || '/assets/imgs/no-img-person.svg'}
+                alt="프로필이미지들어갈자리"
+              />
             </ProfileImgWrapper>
             <ProfileInfoWrapper>
               <SimpleProfile>
                 <Name>
-                  {name} ({nickName})
+                  {applicant.volunteer.name} ({applicant.volunteer.nickname})
                 </Name>
-                <Email>{email}</Email>
+                <Email>{applicant.volunteer.email}</Email>
               </SimpleProfile>
-              <Status>{status}</Status>
+              <Status>{applicant.status}</Status>
             </ProfileInfoWrapper>
           </ProfileBox>
 
@@ -68,18 +72,27 @@ const ApplicantListItem: React.FC<ApplicantListItemProps> = ({
         </ProfileWrapper>
 
         <ButtonGroup>
-          <RejectButton>반려하기</RejectButton>
+          <RejectButton
+            onClick={handleRejectApplyment}
+            disabled={recruitStatus === 'COMPLETED' || applicant.status === 'REJECTED'}>
+            반려하기
+          </RejectButton>
           <OtherButton
             label="수락하기"
             width="163px"
             height="48px"
             fontSize={theme.fontSize.eighthSize}
             fontWeight="600"
+            onClick={handleApproveApplyment}
+            disabled={recruitStatus === 'COMPLETED' || applicant.status === 'APPROVED'}
           />
         </ButtonGroup>
       </ApplicantListItemWrapper>
       {isOpenDetailModal && (
-        <ApplicantDetailModal handleOpenDetailProfileModal={handleOpenDetailProfileModal} volunteerId={volunteerId} />
+        <ApplicantDetailModal
+          handleOpenDetailProfileModal={handleOpenDetailProfileModal}
+          applicantId={applicant.volunteer.id}
+        />
       )}
     </>
   );

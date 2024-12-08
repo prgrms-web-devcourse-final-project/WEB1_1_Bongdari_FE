@@ -29,9 +29,15 @@ const ApplicationPeriod = ({ createdAt, startDateTime, endDateTime }: Applicatio
             <DateTag>봉사 시작일</DateTag> <TimeInfo>{formatDateDot(startDateTime)}</TimeInfo>
           </DateInfo>
         </DateInfoWrap>
-        <TimeInfo>
-          접수 마감 &nbsp;<DueDate>{remainingDays > 0 ? remainingDays : '마감'}</DueDate>&nbsp;일 남았습니다.
-        </TimeInfo>
+        {remainingDays > 0 ? (
+          <TimeInfo>
+            접수 마감 &nbsp;<DueDate>{remainingDays}</DueDate>&nbsp;일 남았습니다.
+          </TimeInfo>
+        ) : (
+          <TimeInfo>
+            접수 &nbsp;<DueDate>마감</DueDate>&nbsp;되었습니다.
+          </TimeInfo>
+        )}
       </SectionBox2>
     </div>
   );
