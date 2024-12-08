@@ -53,14 +53,18 @@ export interface myMessageDetailType {
 }
 
 export interface interestCenterType {
-  id: string;
-  name: string;
-  imgUrl?: string;
+  center_id: string;
+  center_name: string;
+  img_url: string;
 }
 
 export interface reviewType {
-  id: string;
+  id: number;
+  volunteer_id: string;
+  volunteer_nickname: string;
   title: string;
-  createdTime: string;
-  writer?: string;
+  content: string;
+  img_url: string;
+  created_at: string;
+  update_at: string;
 }

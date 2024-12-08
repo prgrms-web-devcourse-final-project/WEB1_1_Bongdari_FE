@@ -1,11 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { myMessageType, myVolunteerType } from '@/shared/types/person-profile/personProfile';
-import {
-  fetchMyMessage,
-  fetchMyMessageDetail,
-  fetchMyVolunteer
-} from '@/pages/personal-my-page/_component/logic/fetchMyData';
+import { fetchMyMessage, fetchMyVolunteer } from '@/pages/personal-my-page/_component/logic/fetchMyData';
 import { useLoginStore } from '@/store/stores/login/loginStore';
 
 interface useHalfListProps {
@@ -18,6 +14,9 @@ interface useHalfListReturn {
   setCurrPage: (page: number) => void;
   onClickMyVolunteer: (content_id: string) => void;
   onClickMyMessage: (content_id: string) => void;
+  msgOpenId: number;
+  isMsgModalOpen: boolean;
+  setIsMsgModalOpen: (bool: boolean) => void;
 }
 
 export const useHalfList = ({ listType }: useHalfListProps): useHalfListReturn => {
@@ -26,6 +25,8 @@ export const useHalfList = ({ listType }: useHalfListProps): useHalfListReturn =
   const [data, setData] = useState<myVolunteerType[] | myMessageType[]>();
   const myLoginId = useLoginStore((state) => state.myLoginId);
   const navigate = useNavigate();
+  const [isMsgModalOpen, setIsMsgModalOpen] = useState<boolean>(false);
+  const [msgOpenId, setMsgOpenId] = useState<number>(0);
 
   const onClickMyVolunteer = (content_id: string) => {
     navigate(`/aidrqdetail/${content_id}`);
@@ -33,11 +34,8 @@ export const useHalfList = ({ listType }: useHalfListProps): useHalfListReturn =
 
   const onClickMyMessage = (message_id: string) => {
     console.log(message_id, '메시지 띄우기');
-    const fetchData = async () => {
-      const data = await fetchMyMessageDetail(Number(message_id));
-      console.log('메시지 디테일 데이터', data?.content);
-    };
-    fetchData();
+    setMsgOpenId(Number(message_id));
+    setIsMsgModalOpen(true);
   };
 
   useEffect(() => {
@@ -56,55 +54,65 @@ export const useHalfList = ({ listType }: useHalfListProps): useHalfListReturn =
           setData(data.content);
           setTotPage(data.totalPages);
         }
-        // setData([
-        //   {
-        //     id: 1,
-        //     title: '안녕하세요',
-        //     sender_id: '111',
-        //     sender_name: 'jooyoung',
-        //     is_read: false
-        //   },
-        //   {
-        //     id: 1,
-        //     title: '안녕하세요',
-        //     sender_id: '111',
-        //     sender_name: 'jooyoung',
-        //     is_read: false
-        //   },
-        //   {
-        //     id: 1,
-        //     title: '안녕하세요',
-        //     sender_id: '111',
-        //     sender_name: 'jooyoung',
-        //     is_read: false
-        //   },
-        //   {
-        //     id: 1,
-        //     title: '안녕하세요',
-        //     sender_id: '111',
-        //     sender_name: 'jooyoung',
-        //     is_read: false
-        //   },
-        //   {
-        //     id: 1,
-        //     title: '안녕하세요',
-        //     sender_id: '111',
-        //     sender_name: 'jooyoung',
-        //     is_read: false
-        //   },
-        //   {
-        //     id: 1,
-        //     title: '안녕하세요',
-        //     sender_id: '111',
-        //     sender_name: 'jooyoung',
-        //     is_read: false
-        //   }
-        // ]);
-        // setTotPage(2);
+        setData([
+          {
+            id: 1,
+            title: '안녕하세요',
+            sender_id: '111',
+            sender_name: 'jooyoung',
+            is_read: false
+          },
+          {
+            id: 1,
+            title: '안녕하세요',
+            sender_id: '111',
+            sender_name: 'jooyoung',
+            is_read: false
+          },
+          {
+            id: 1,
+            title: '안녕하세요',
+            sender_id: '111',
+            sender_name: 'jooyoung',
+            is_read: false
+          },
+          {
+            id: 1,
+            title: '안녕하세요',
+            sender_id: '111',
+            sender_name: 'jooyoung',
+            is_read: false
+          },
+          {
+            id: 1,
+            title: '안녕하세요',
+            sender_id: '111',
+            sender_name: 'jooyoung',
+            is_read: false
+          },
+          {
+            id: 1,
+            title: '안녕하세요',
+            sender_id: '111',
+            sender_name: 'jooyoung',
+            is_read: false
+          }
+        ]);
+        setTotPage(2);
       }
     };
     fetchData();
   }, []);
 
-  return { data, totPage, currPage, setCurrPage, onClickMyVolunteer, onClickMyMessage };
+  return {
+    data,
+    totPage,
+    currPage,
+    setCurrPage,
+    onClickMyVolunteer,
+    onClickMyMessage,
+    msgOpenId,
+    isMsgModalOpen,
+    setIsMsgModalOpen
+  };
 };

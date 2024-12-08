@@ -23,7 +23,7 @@ export const useMyReview = (): useMyReviewReturn => {
       // 로그인 상태가 아니라면 불러오지 않기
       if (myLoginId) {
         const data = await fetchMyReview(myLoginId, currPage);
-        if (data) setReviewData(data.data.content);
+        if (data) setReviewData(data.content);
       }
     };
     fetchData();
@@ -34,7 +34,7 @@ export const useMyReview = (): useMyReviewReturn => {
     // 전체 페이지 수 계산
     const calcPage = () => {
       if (reviewData) {
-        setTotPage(Math.ceil(reviewData.length / 5));
+        setTotPage(Math.ceil(reviewData.length / 5) || 1);
       }
     };
 
@@ -42,7 +42,7 @@ export const useMyReview = (): useMyReviewReturn => {
       // 로그인 상태가 아니라면 불러오지 않기
       if (myLoginId) {
         const data = await fetchMyReview(myLoginId);
-        if (data) setReviewData(data.data.content);
+        if (data) setReviewData(data.content);
       }
     };
 

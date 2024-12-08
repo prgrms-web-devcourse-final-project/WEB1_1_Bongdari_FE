@@ -22,12 +22,13 @@ import useDateFormat from '@/shared/hooks/useDateFormat';
 interface NoteModalProps {
   handleModalClose: () => void;
   noteId: number;
+  type?: 'center' | 'volunteer';
 }
 
-const MessageReadModal: React.FC<NoteModalProps> = ({ handleModalClose, noteId }) => {
+const MessageReadModal: React.FC<NoteModalProps> = ({ handleModalClose, noteId, type = 'center' }) => {
   const navigate = useNavigate();
   const { formatDateTime } = useDateFormat();
-  const { data: messageDetail, isLoading: isMessageLoading } = useMessageDetail(noteId);
+  const { data: messageDetail, isLoading: isMessageLoading } = useMessageDetail(noteId, type);
   const { data: profileDetail, isLoading: isProfileLoading } = useApplicantDetail(messageDetail?.sender_id);
 
   if (isMessageLoading || isProfileLoading) {
@@ -60,10 +61,11 @@ const MessageReadModal: React.FC<NoteModalProps> = ({ handleModalClose, noteId }
                 />
               </ImgWrapper>
               <NickName>{profileDetail?.data?.nickname || messageDetail.sender_name}</NickName>
-              <GloveImg
-                src={`/assets/imgs/mitten-${profileDetail?.data?.tier?.toLowerCase() || 'red'}.svg`}
-                alt="tierGlove"
-              />
+              {type === 'center' ? (
+                <GloveImg src={`/assets/imgs/mitten-${profileDetail?.data?.tier || 'RED'}.svg`} alt="tierGlove" />
+              ) : (
+                ''
+              )}
             </ProfileInfo>
             <OtherButton
               label="프로필 확인하기"
@@ -72,7 +74,8 @@ const MessageReadModal: React.FC<NoteModalProps> = ({ handleModalClose, noteId }
               fontSize={theme.fontSize.eighthSize}
               fontWeight="600"
               onClick={() => {
-                navigate(`/profile/${messageDetail.sender_id}`);
+                if (type === 'center') navigate(`/profile/${messageDetail.sender_id}`);
+                else navigate(`/centerprofile/${messageDetail.sender_id}`);
               }}
             />
           </ProfileBox>

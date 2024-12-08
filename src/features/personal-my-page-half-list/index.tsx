@@ -3,13 +3,24 @@ import { HalfListCss } from './indexCss';
 import { useHalfList } from './logic/useHalfList';
 import LongListItem from '@/components/long-list-item';
 import TitleWithPagenation from '@/features/personal-my-page-title-with-pagenation';
+import MessageReadModal from '../message-read-modal';
 
 interface HalfListProps {
   listType: 'myVolunteer' | 'myMessage';
-  // data: { content_id: string; title: string; isRead?: boolean; mailWriter?: string }[] | undefined;
 }
+
 const HalfList: React.FC<HalfListProps> = ({ listType }) => {
-  const { data, totPage, currPage, setCurrPage, onClickMyVolunteer, onClickMyMessage } = useHalfList({ listType });
+  const {
+    data,
+    totPage,
+    currPage,
+    setCurrPage,
+    onClickMyVolunteer,
+    onClickMyMessage,
+    msgOpenId,
+    isMsgModalOpen,
+    setIsMsgModalOpen
+  } = useHalfList({ listType });
 
   // 타입 가드: myVolunteerType 확인
   const isMyVolunteerType = (data: myVolunteerType[] | myMessageType[]): data is myVolunteerType[] => {
@@ -62,6 +73,7 @@ const HalfList: React.FC<HalfListProps> = ({ listType }) => {
               })}
           </div>
         )}
+        {isMsgModalOpen && <MessageReadModal handleModalClose={() => setIsMsgModalOpen(false)} noteId={msgOpenId} />}
       </HalfListCss>
     );
   }
