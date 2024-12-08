@@ -102,8 +102,8 @@ export const useCommunityComment = (content_id: number): useCommunityCommentRetu
   useEffect(() => {
     const getLoginName = async () => {
       const data = await fetchMyProfile();
-      setLoginName(data.nickname);
-      console.log('login nickname:', data.nickname);
+      setLoginName(data?.nickname ?? '');
+      console.log('login nickname:', data?.nickname);
     };
     getLoginName();
   }, []);

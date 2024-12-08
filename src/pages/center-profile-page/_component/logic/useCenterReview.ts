@@ -34,45 +34,6 @@ export const useCenterReview = (): useCenterReviewReturn => {
       if (center_id) {
         const data = await fetchCenterReview(center_id);
         if (data) setReviewData(data.data.content);
-      } else {
-        setReviewData([
-          {
-            id: '1',
-            title: '서울도서관은 아주 유명한 도서관임1',
-            createdTime: '2024.10.1',
-            writer: '글쓴이11'
-          },
-          {
-            id: '1',
-            title: '서울도서관은 아주 유명한 도서관임2',
-            createdTime: '2024.10.1',
-            writer: '글쓴이22'
-          },
-          {
-            id: '1',
-            title: '서울도서관은 아주 유명한 도서관임3',
-            createdTime: '2024.10.1',
-            writer: '글쓴이'
-          },
-          {
-            id: '1',
-            title: '서울도서관은 아주 유명한 도서관임',
-            createdTime: '2024.10.1',
-            writer: '글쓴이'
-          },
-          {
-            id: '1',
-            title: '서울도서관은 아주 유명한 도서관임',
-            createdTime: '2024.10.1',
-            writer: '글쓴이'
-          },
-          {
-            id: '1',
-            title: '서울도서관은 아주 유명한 도서관임',
-            createdTime: '2024.10.1',
-            writer: '글쓴이'
-          }
-        ]);
       }
     };
     fetchData();
