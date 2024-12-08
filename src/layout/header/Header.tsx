@@ -18,6 +18,7 @@ import { useLoginStore } from '@/store/stores/login/loginStore';
 import { AlertType } from '@/shared/types/alert-type/AlertType';
 import { centerLogout } from './logic/centerLogout';
 import { personLogout } from './logic/personLogout';
+import axiosInstance from '@/api/apis';
 
 export default function Header() {
   const [alertState, setAlertState] = useState(false);
@@ -26,9 +27,23 @@ export default function Header() {
   const loginType = useLoginStore((state) => state.loginType);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log('isLoggedIn 상태:', isLoggedIn); // isLoggedIn 상태 확인
+  const [notifications, setNotifications] = useState<AlertType[]>([]);
 
+  const fetchNotifications = async () => {
+    try {
+      const response = await axiosInstance(`/api/notification/unread`);
+      const data = await response.data;
+      setNotifications(data); // data형식 보고 이부분 수정해야함
+    } catch (error) {
+      console.error('알림을 가져오는데 실패했습니다:', error);
+    }
+  };
+
+  useEffect(() => {
+    console.log('notifications', notifications);
+  }, [notifications]);
+
+  useEffect(() => {
     let eventSource: EventSource;
 
     const connectSSE = () => {
@@ -46,13 +61,15 @@ export default function Header() {
         });
       };
 
-      eventSource.onmessage = (event) => {
+      eventSource.onmessage = async (event) => {
         const newNotification: AlertType = JSON.parse(event.data);
         // 새 알림이 오면 토스트 메시지 표시
         toast.info(newNotification.title, {
           position: 'top-right',
           autoClose: 5000
         });
+
+        await fetchNotifications();
       };
 
       // 연결 에러 처리
@@ -66,6 +83,7 @@ export default function Header() {
     // 로그인 상태일 때만 SSE 연결
     if (isLoggedIn) {
       connectSSE();
+      fetchNotifications();
     }
 
     // 컴포넌트 언마운트 시 SSE 연결 종료
@@ -107,8 +125,9 @@ export default function Header() {
               로그아웃
             </LogoutBtn>
           )}
-          <AlertPositioning>{alertState && <Alert></Alert>}</AlertPositioning>
+          <AlertPositioning>{alertState && <Alert notifications={notifications}></Alert>}</AlertPositioning>
           <AlertBox
+            hasNotifications={notifications.length > 0}
             onClick={() => {
               setAlertState((prev) => !prev);
             }}>
