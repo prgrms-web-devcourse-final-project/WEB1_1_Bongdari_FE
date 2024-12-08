@@ -3,14 +3,73 @@ import { ButtonContainer, Contents, ScrollSection, Title, Wrapper } from './inde
 import InputBox from '@/components/inputBox';
 import TextArea from '@/components/textArea';
 import UploadBox from '@/components/img-drag-box';
-import { handleFileSelect } from './logic/handleFileSelect';
+import { useState } from 'react';
+import { createReview } from './logic/createReview';
 
 interface ReviewCreateModalProps {
   reviewModalState: boolean;
   SetReviewModalState: (state: boolean) => void;
+  recruitBoardId: number;
 }
 
-const ReviewCreateModal: React.FC<ReviewCreateModalProps> = ({ reviewModalState, SetReviewModalState }) => {
+interface ReviewForm {
+  title: string;
+  content: string;
+  img_file?: File;
+}
+
+const ReviewCreateModal: React.FC<ReviewCreateModalProps> = ({
+  reviewModalState,
+  SetReviewModalState,
+  recruitBoardId
+}) => {
+  const [formData, setFormData] = useState<ReviewForm>({
+    title: '',
+    content: ''
+  });
+
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const handleFileSelect = (files: File[]) => {
+    if (files.length > 0) {
+      setFormData((prev) => ({
+        ...prev,
+        img_file: files[0] // 첫 번째 파일만 사용
+      }));
+    }
+  };
+
+  const handleSubmit = async () => {
+    try {
+      setIsLoading(true);
+
+      await createReview({
+        recruit_board_id: recruitBoardId,
+        title: formData.title,
+        content: formData.content,
+        img_file: formData.img_file
+      });
+
+      // 성공 시 모달 닫기
+      SetReviewModalState(false);
+      // 폼 초기화
+      setFormData({
+        title: '',
+        content: ''
+      });
+
+      alert('리뷰가 성공적으로 작성되었습니다.');
+    } catch (error) {
+      let errorMessage = '리뷰 작성에 실패했습니다.';
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      alert(errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <Modal
       isOpen={reviewModalState}
@@ -28,7 +87,10 @@ const ReviewCreateModal: React.FC<ReviewCreateModalProps> = ({ reviewModalState,
                 colortype={1}
                 width="100%"
                 getInputText={(text) => {
-                  console.log(text);
+                  setFormData((prev) => ({
+                    ...prev,
+                    title: text
+                  }));
                 }}></InputBox>
             </div>
             <div>
@@ -46,7 +108,9 @@ const ReviewCreateModal: React.FC<ReviewCreateModalProps> = ({ reviewModalState,
                 }}></TextArea>
             </div>
             <ButtonContainer>
-              <button>전송</button>
+              <button onClick={handleSubmit} disabled={isLoading || !formData.title || !formData.content}>
+                {isLoading ? '전송 중...' : '전송'}
+              </button>
             </ButtonContainer>
           </Contents>
         </ScrollSection>
