@@ -19,7 +19,7 @@ const PMPGTop = () => {
         <EditProfile
           profileImg={profileData.img_url}
           profileNickname={profileData.nickname}
-          profileDescripton={profileData.introduce}
+          profileDescription={profileData.introduce}
         />
       </PMPGTopCss>
     );

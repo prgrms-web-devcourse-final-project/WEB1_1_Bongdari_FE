@@ -8,6 +8,7 @@ export const EditProfileImgCss = styled.div`
     width: 244px;
     height: 244px;
     border-radius: 244px;
+    border: 1px solid #b3b3b3;
     background-color: #b3b3b3;
 
     object-fit: cover;
@@ -20,7 +21,7 @@ export const EditProfileImgCss = styled.div`
     width: 50px;
     height: 50px;
     font-size: 30px;
-    line-height: 30px;
+    line-height: 48px;
     text-align: center;
     cursor: pointer;
 
