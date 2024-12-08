@@ -41,7 +41,7 @@ export const useInfiniteAidRq = (
 ) => {
   const { data, fetchNextPage, hasNextPage, refetch, isLoading, isError, error } = useInfiniteQuery({
     queryKey: ['aidRequests'],
-    queryFn: ({ pageParam = 1 }) =>
+    queryFn: ({ pageParam = 0 }) =>
       fetchAidRequests({
         page: pageParam,
         keyword,
@@ -51,7 +51,7 @@ export const useInfiniteAidRq = (
         sort,
         status
       }),
-    initialPageParam: 1,
+    initialPageParam: 0,
     getNextPageParam: (lastPage) => (lastPage.items.data.data.last ? undefined : lastPage.items.data.data.number + 1),
     enabled: false, // 자동 실행 방지
     staleTime: 1000 * 60 * 5, // 5분간 캐시 유지
