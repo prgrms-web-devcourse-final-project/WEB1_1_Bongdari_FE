@@ -15,7 +15,7 @@ export interface Review {
 
 // 리뷰 목록 조회
 const fetchCenterReviews = async (centerId: string, page: number, category?: string) => {
-  let url = `/api/reviews/center/${centerId}?page=${page}&size=8`;
+  let url = `/api/reviews/center/${centerId}?page=${page}&size=10`;
   if (category) {
     url += `&category=${category}`;
   }
@@ -40,7 +40,7 @@ export const useGetCenterReviews = (centerId: string, page: number, category?: s
 // 단일 리뷰 조회
 const fetchReviewById = async (reviewId: number) => {
   const response = await axiosInstance.get(`/api/review/${reviewId}`);
-  return response.data.data;
+  return response.data;
 };
 
 export const useGetReviewById = (reviewId: number) => {

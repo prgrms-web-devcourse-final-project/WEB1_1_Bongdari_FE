@@ -23,47 +23,45 @@ import { useGetReviewById } from '@/store/queries/center-mypage/useReview';
 import { useGetOtherVolunteerProfile } from '@/store/queries/volunteer-profile/useVolunteerProfile';
 
 interface ReviewModalProps {
-  handleReviewModal: () => void;
+  handleCloseReviewModal: () => void;
   reviewId: number;
 }
 
-const ReviewReadModal: React.FC<ReviewModalProps> = ({ handleReviewModal, reviewId }) => {
+const ReviewReadModal = ({ handleCloseReviewModal, reviewId }: ReviewModalProps) => {
   const navigate = useNavigate();
   const { formatDate } = useDateFormat();
   const { data: reviewData, isLoading: isReviewLoading } = useGetReviewById(reviewId);
-  const { data: volunteerData, isLoading: isVolunteerLoading } = useGetOtherVolunteerProfile(
-    reviewData?.data?.volunteer_id ?? null
-  );
+  const { data: volunteerData, isLoading: isVolunteerLoading } = useGetOtherVolunteerProfile(reviewData?.volunteer_id);
 
   if (isReviewLoading || isVolunteerLoading) return <div>로딩중...</div>;
-  if (!reviewData?.data || !volunteerData?.data) return null;
+  if (!reviewData || !volunteerData) return null;
 
-  const review = reviewData.data;
-  const volunteer = volunteerData.data;
+  console.log('reviewData', reviewData);
+  console.log('volunteerData', volunteerData);
 
   return (
-    <Modal variant="big" isOpen onClose={handleReviewModal}>
+    <Modal variant="big" isOpen onClose={handleCloseReviewModal}>
       <ModalContentWrapper>
         <ScrollSection>
           <ReviewTitleBox>
-            <ReviewTitle>{review.title}</ReviewTitle>
-            <CreatedAt>{formatDate(review.created_at)}</CreatedAt>
+            <ReviewTitle>{reviewData.title}</ReviewTitle>
+            <CreatedAt>{formatDate(reviewData.created_at)}</CreatedAt>
           </ReviewTitleBox>
           <ReviewImgBox>
-            {review.img_url && (
+            {reviewData.img_url && (
               <ReviewImgBox>
-                <ReviewImg src={review.img_url} alt="reviewImg" />
+                <ReviewImg src={reviewData.img_url} alt="reviewImg" />
               </ReviewImgBox>
             )}
           </ReviewImgBox>
-          <ReviewContent>{review.content}</ReviewContent>
+          <ReviewContent>{reviewData.content}</ReviewContent>
           <ProfileBox>
             <ProfileInfo>
               <ImgWrapper>
-                <ProfileImg src={volunteer.img_url || '/assets/imgs/user-icon.svg'} alt="profileImg" />
+                <ProfileImg src={volunteerData.img_url || `/assets/imgs/no-img-person.svg`} alt="profileImg" />
               </ImgWrapper>
-              <NickName>{volunteer.nickname}</NickName>
-              <GloveImg src={`/assets/imgs/tier-${volunteer.tier.toLowerCase()}.svg`} alt="tierGlove" />
+              <NickName>{volunteerData.nickname}</NickName>
+              <GloveImg src={`/assets/imgs/mitten-${volunteerData?.tier?.toLowerCase()}.svg`} alt="tierGlove" />
             </ProfileInfo>
             <OtherButton
               label="프로필 확인하기"
@@ -72,7 +70,7 @@ const ReviewReadModal: React.FC<ReviewModalProps> = ({ handleReviewModal, review
               fontSize={theme.fontSize.eighthSize}
               fontWeight="600"
               onClick={() => {
-                navigate(`/profile/${volunteer.volunteer_id}`);
+                navigate(`/profile/${volunteerData.volunteer_id}`);
               }}
             />
           </ProfileBox>
@@ -83,3 +81,13 @@ const ReviewReadModal: React.FC<ReviewModalProps> = ({ handleReviewModal, review
 };
 
 export default ReviewReadModal;
+
+// const ReviewReadModal = () => {
+//   return (
+//     <>
+//       <p>하하하</p>
+//     </>
+//   );
+// };
+
+// export default ReviewReadModal;
