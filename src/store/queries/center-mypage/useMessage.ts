@@ -41,16 +41,20 @@ export interface MessageItemDetail {
   created_at: string;
 }
 
-const fetchMessageDetail = async (noteId: number) => {
-  const response = await axiosInstance.get(`/api/note/center/${noteId}`);
-
-  return response.data;
+const fetchMessageDetail = async (noteId: number, type: 'center' | 'volunteer') => {
+  if (type === 'center') {
+    const response = await axiosInstance.get(`/api/note/center/${noteId}`);
+    return response.data;
+  } else if (type === 'volunteer') {
+    const response = await axiosInstance.get(`api/note/volunteer/${noteId}`);
+    return response.data;
+  }
 };
 
-export const useMessageDetail = (noteId: number) => {
+export const useMessageDetail = (noteId: number, type: 'center' | 'volunteer') => {
   return useQuery({
     queryKey: ['messageDetail', noteId],
-    queryFn: () => fetchMessageDetail(noteId),
+    queryFn: () => fetchMessageDetail(noteId, type),
     staleTime: 1000 * 60 * 5,
     enabled: !!noteId
   });

@@ -33,19 +33,6 @@ export const useMyInterestCenter = (): useMyInterestCenterReturn => {
     const fetchData = async () => {
       const data = await fetchMyInterestCenter();
       if (data) setInterestCenterData(data);
-      // else
-      //   setInterestCenterData([
-      //     { id: 'id1', name: 'name1' },
-      //     { id: 'id1', name: 'name1' },
-      //     { id: 'id1', name: 'name1' },
-      //     { id: 'id1', name: 'name1' },
-      //     { id: 'id1', name: 'name1' },
-      //     { id: 'id1', name: 'name1' },
-      //     { id: 'id1', name: 'name1' },
-      //     { id: 'id1', name: 'name2' },
-      //     { id: 'id1', name: 'name2' },
-      //     { id: 'id1', name: 'name2' }
-      //   ]);
     };
     fetchData();
     calcPage();

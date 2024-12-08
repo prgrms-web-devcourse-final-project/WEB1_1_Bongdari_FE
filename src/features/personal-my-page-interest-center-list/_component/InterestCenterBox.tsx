@@ -10,7 +10,7 @@ interface InterestCenterBoxProps {
 const InterestCenterBox: React.FC<InterestCenterBoxProps> = ({ org_id, orgName, orgImg, onClickFunc }) => {
   return (
     <InterestCenterBoxCss onClick={() => onClickFunc(org_id)}>
-      <img src={orgImg} />
+      <img src={orgImg || '/assets/imgs/no-img-center.svg'} />
       <p>{orgName}</p>
     </InterestCenterBoxCss>
   );

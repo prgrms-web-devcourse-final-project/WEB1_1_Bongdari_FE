@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { EditProfileImgCss } from './EditProfileImgCss';
 
-const EditProfileImg = ({ profileImg }: { profileImg?: string }) => {
+const EditProfileImg = ({ profileImg, setImg }: { profileImg?: string; setImg: (file: File) => void }) => {
   // TODO: changeImgBtn 클릭시 사진 선택 기능
-  const [imgFile, setImgFile] = useState<string>('');
+  const [imgUrl, setImgUrl] = useState<string>(profileImg ?? '');
 
   const pickProfileImg = (ev: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('activated');
+    console.log('img activated');
+
     const file = ev.target.files?.[0];
     if (file) {
       const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml', 'image/avif'];
@@ -19,10 +20,14 @@ const EditProfileImg = ({ profileImg }: { profileImg?: string }) => {
         return;
       }
 
+      setImg(file);
+
       const reader = new FileReader();
       reader.onload = (e) => {
+        // onloadend 사용시 오류나도 다 읽으면 호출됨
         const result = e.target?.result as string;
-        setImgFile(result);
+        // const result = reader.result as string;
+        setImgUrl(result);
       };
 
       reader.onerror = () => {
@@ -30,21 +35,20 @@ const EditProfileImg = ({ profileImg }: { profileImg?: string }) => {
       };
 
       reader.readAsDataURL(file);
-      //   setThumbnailFileName(file.name);
     }
-    console.log(imgFile);
+    console.log(imgUrl);
   };
 
   return (
     <EditProfileImgCss>
-      <img src={profileImg} alt="" />
-      <label htmlFor="file">
-        <button className="changeImgBtn">+</button>
+      <img src={imgUrl || '/assets/imgs/no-img-person.svg'} />
+      <label htmlFor="file" className="changeImgBtn">
+        +
       </label>
       <input
+        id="file"
         type="file"
         accept="image/jpeg, image/png, image/gif, image/webp, image/svg+xml, image/avif"
-        id="file"
         onChange={pickProfileImg}
       />
     </EditProfileImgCss>

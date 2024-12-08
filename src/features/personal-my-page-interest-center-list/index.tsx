@@ -20,7 +20,13 @@ const InterestCenterList = () => {
         <div className="listShowWrap" ref={containerRef}>
           <div className="listInnerWrap">
             {interestCenterData?.map((v, i) => (
-              <InterestCenterBox key={i} org_id={v.id} orgName={v.name} onClickFunc={(id: string) => console.log(id)} />
+              <InterestCenterBox
+                key={i}
+                org_id={v.center_id}
+                orgName={v.center_name}
+                orgImg={v.img_url}
+                onClickFunc={(id: string) => console.log(id)}
+              />
             ))}
           </div>
         </div>
