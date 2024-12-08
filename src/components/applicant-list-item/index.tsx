@@ -72,7 +72,9 @@ const ApplicantListItem = ({ applicant, recruitStatus }: ApplicantListItemProps)
         </ProfileWrapper>
 
         <ButtonGroup>
-          <RejectButton onClick={handleRejectApplyment} disabled={recruitStatus === 'COMPLETED'}>
+          <RejectButton
+            onClick={handleRejectApplyment}
+            disabled={recruitStatus === 'COMPLETED' || applicant.status === 'REJECTED'}>
             반려하기
           </RejectButton>
           <OtherButton
@@ -82,7 +84,7 @@ const ApplicantListItem = ({ applicant, recruitStatus }: ApplicantListItemProps)
             fontSize={theme.fontSize.eighthSize}
             fontWeight="600"
             onClick={handleApproveApplyment}
-            disabled={recruitStatus === 'COMPLETED'}
+            disabled={recruitStatus === 'COMPLETED' || applicant.status === 'APPROVED'}
           />
         </ButtonGroup>
       </ApplicantListItemWrapper>
