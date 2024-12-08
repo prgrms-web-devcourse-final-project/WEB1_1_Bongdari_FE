@@ -62,7 +62,7 @@ const InfoModify: React.FC<InfoModifyProps> = ({ id, getTitleAndFilter, voluntee
         <TextArea
           key={volunteerData.content}
           getInputText={(text) => {
-            console.log(text);
+            getTitleAndFilter('content', text);
           }}
           width="100%"
           height="500px"
