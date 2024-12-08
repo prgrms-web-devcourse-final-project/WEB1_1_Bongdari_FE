@@ -37,7 +37,7 @@ const AidRqListAdmin: React.FC<AidRqListAdminProps> = ({ finalData }) => {
   // ----------------------------------------------------------------
 
   const handleAidListItem = (id: string | number) => {
-    navigate(`/centermypage/adminaidreqlist/${id}`);
+    navigate(`/mypage/adminaidreqlist/${id}`);
     console.log('클릭');
   };
 
