@@ -19,7 +19,7 @@ const HalfList: React.FC<HalfListProps> = ({ listType }) => {
     onClickMyMessage,
     msgOpenId,
     isMsgModalOpen,
-    setIsMsgModalOpen
+    onCloseMsgModal
   } = useHalfList({ listType });
 
   // 타입 가드: myVolunteerType 확인
@@ -73,7 +73,7 @@ const HalfList: React.FC<HalfListProps> = ({ listType }) => {
               })}
           </div>
         )}
-        {isMsgModalOpen && <MessageReadModal handleModalClose={() => setIsMsgModalOpen(false)} noteId={msgOpenId} />}
+        {isMsgModalOpen && <MessageReadModal handleModalClose={onCloseMsgModal} noteId={msgOpenId} />}
       </HalfListCss>
     );
   }

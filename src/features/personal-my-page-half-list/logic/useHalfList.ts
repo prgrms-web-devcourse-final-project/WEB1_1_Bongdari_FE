@@ -16,7 +16,7 @@ interface useHalfListReturn {
   onClickMyMessage: (content_id: string) => void;
   msgOpenId: number;
   isMsgModalOpen: boolean;
-  setIsMsgModalOpen: (bool: boolean) => void;
+  onCloseMsgModal: () => void;
 }
 
 export const useHalfList = ({ listType }: useHalfListProps): useHalfListReturn => {
@@ -38,6 +38,32 @@ export const useHalfList = ({ listType }: useHalfListProps): useHalfListReturn =
     setIsMsgModalOpen(true);
   };
 
+  const onCloseMsgModal = () => {
+    const fetchData = async () => {
+      const data = await fetchMyMessage(currPage);
+      console.log('메시지 데이터', data?.content);
+      if (data) setData(data.content);
+    };
+    setIsMsgModalOpen(false);
+    fetchData();
+  };
+
+  // 페이지 변경시 다시 불러오기
+  useEffect(() => {
+    const fetchData = async () => {
+      if (listType === 'myVolunteer') {
+        const data = await fetchMyVolunteer(myLoginId ?? '', currPage);
+        console.log('봉사 데이터', data?.content);
+        if (data) setData(data.content);
+      } else {
+        const data = await fetchMyMessage(currPage);
+        console.log('메시지 데이터', data?.content);
+        if (data) setData(data.content);
+      }
+    };
+    fetchData();
+  }, [currPage]);
+
   useEffect(() => {
     const fetchData = async () => {
       if (listType === 'myVolunteer') {
@@ -54,51 +80,6 @@ export const useHalfList = ({ listType }: useHalfListProps): useHalfListReturn =
           setData(data.content);
           setTotPage(data.totalPages);
         }
-        setData([
-          {
-            id: 1,
-            title: '안녕하세요',
-            sender_id: '111',
-            sender_name: 'jooyoung',
-            is_read: false
-          },
-          {
-            id: 1,
-            title: '안녕하세요',
-            sender_id: '111',
-            sender_name: 'jooyoung',
-            is_read: false
-          },
-          {
-            id: 1,
-            title: '안녕하세요',
-            sender_id: '111',
-            sender_name: 'jooyoung',
-            is_read: false
-          },
-          {
-            id: 1,
-            title: '안녕하세요',
-            sender_id: '111',
-            sender_name: 'jooyoung',
-            is_read: false
-          },
-          {
-            id: 1,
-            title: '안녕하세요',
-            sender_id: '111',
-            sender_name: 'jooyoung',
-            is_read: false
-          },
-          {
-            id: 1,
-            title: '안녕하세요',
-            sender_id: '111',
-            sender_name: 'jooyoung',
-            is_read: false
-          }
-        ]);
-        setTotPage(2);
       }
     };
     fetchData();
@@ -113,6 +94,6 @@ export const useHalfList = ({ listType }: useHalfListProps): useHalfListReturn =
     onClickMyMessage,
     msgOpenId,
     isMsgModalOpen,
-    setIsMsgModalOpen
+    onCloseMsgModal
   };
 };
