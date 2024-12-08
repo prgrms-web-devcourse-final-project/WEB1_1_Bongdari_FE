@@ -1,4 +1,4 @@
-import ReviewList from '@/features/manage-center-post-set/_components/review-set/ReviewList';
+// import ReviewList from '@/features/manage-center-post-set/_components/review-set/ReviewList';
 import { CPPGReviewListCss } from './CPPGReviewListCss';
 import { useCenterReview } from './logic/useCenterReview';
 import CustomPagination from '@/features/custom-pagnation';
@@ -16,7 +16,7 @@ const CPPGReviewList = () => {
   } else {
     return (
       <CPPGReviewListCss>
-        <ReviewList data={reviewData} />
+        {/* <ReviewList data={reviewData} /> */}
         <CustomPagination totPage={totPage} currPage={currPage} setCurrPage={setCurrPage} />
       </CPPGReviewListCss>
     );
