@@ -133,7 +133,7 @@ export default function Header() {
             onClick={() => {
               setAlertState((prev) => !prev);
             }}>
-            <img src="assets/imgs/alert-icon.svg" alt="" />
+            <img src="/assets/imgs/alert-icon.svg" alt="" />
           </AlertBox>
           <Link to="/aidrqlist" className="link">
             <li>활동구인</li>
