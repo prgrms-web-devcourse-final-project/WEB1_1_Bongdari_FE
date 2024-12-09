@@ -24,7 +24,7 @@ const CPPGTop = ({ setIsModalOpen }: CPPGTopProps) => {
         <ProfileImgBox type="center" {...profileData} setIsModalOpen={setIsModalOpen} />
         <div className="rightWrap">
           <ProfileInfoBox type="center" {...profileData} />
-          <ProfilePreferItemBox preferItems={profileData.prefer_item ?? []} />
+          <ProfilePreferItemBox preferItems={profileData.prefer_items ?? []} />
         </div>
       </CPPGTopCss>
     );

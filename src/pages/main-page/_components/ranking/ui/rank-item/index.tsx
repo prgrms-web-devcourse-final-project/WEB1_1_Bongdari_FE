@@ -12,13 +12,13 @@ const RankItem: React.FC<RankItemProps> = ({ item, index }) => {
       <Top>
         <div>
           {index === 0 ? (
-            <img src="assets/imgs/rank-gold.svg"></img>
+            <img src="/assets/imgs/rank-gold.svg"></img>
           ) : index === 1 ? (
-            <img src="assets/imgs/rank-silver.svg"></img>
+            <img src="/assets/imgs/rank-silver.svg"></img>
           ) : index === 2 ? (
-            <img src="assets/imgs/rank-bronze.svg"></img>
+            <img src="/assets/imgs/rank-bronze.svg"></img>
           ) : (
-            <img src="assets/imgs/rank-blue.svg"></img>
+            <img src="/assets/imgs/rank-blue.svg"></img>
           )}
         </div>
         <NickName>
