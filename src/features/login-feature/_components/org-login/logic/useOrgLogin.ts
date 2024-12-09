@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { testLoginCenter } from './testLoginCenter';
+import { useNavigate } from 'react-router-dom';
 // import { useLoginStore } from '@/store/stores/login/loginStore';
 
 interface useOrgLoginReturn {
@@ -15,6 +16,7 @@ interface useOrgLoginReturn {
 export const useOrgLogin = (): useOrgLoginReturn => {
   // const setLoginInfo = useLoginStore((state) => state.setLoginInfo);
 
+  const navigate = useNavigate();
   const [id, setId] = useState<string>('');
   const [pwd, setPwd] = useState<string>('');
   const [idErr, setIdErr] = useState<string>('');
@@ -54,7 +56,7 @@ export const useOrgLogin = (): useOrgLoginReturn => {
     }
   };
   const onClickFirstVisit = () => {
-    console.log('기업 첫 방문 페이지로 이동');
+    navigate('/center-contact');
   };
 
   return {

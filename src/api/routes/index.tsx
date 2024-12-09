@@ -21,6 +21,7 @@ import CommunityCreatePage from '@/pages/community-create-page';
 import FindNearByActivityPage from '@/pages/find-nearby-activitiy-page';
 import LandingPage from '@/pages/landing-page';
 import { useLoginStore } from '@/store/stores/login/loginStore';
+import CenterContactPage from '@/pages/center-contact-page';
 
 const MyPage = () => {
   const loginType = useLoginStore((state) => state.loginType);
@@ -49,6 +50,10 @@ const routes: RouteObject[] = [
       {
         path: '/landing',
         element: <LandingPage />
+      },
+      {
+        path: '/center-contact',
+        element: <CenterContactPage />
       },
       {
         path: '/aidrqlist',
