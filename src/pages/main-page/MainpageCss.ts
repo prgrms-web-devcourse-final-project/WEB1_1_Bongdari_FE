@@ -5,6 +5,7 @@ export const Wrapper = styled.div`
   width: 90%;
   margin: 0 auto;
   padding: 250px 0;
+  padding-top: 150px;
 `;
 
 export const RankAndCommu = styled.div`

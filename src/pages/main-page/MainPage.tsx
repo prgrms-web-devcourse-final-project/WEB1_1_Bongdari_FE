@@ -8,8 +8,8 @@ import Ranking from './_components/ranking';
 import Community from './_components/community';
 import { useLoginStore } from '@/store/stores/login/loginStore';
 import axiosInstance from '@/api/apis';
-import LocalTestBox from './_components/localTestBox';
-import LocalTestBoxVolun from './_components/localTestBoxVolun';
+// import LocalTestBox from './_components/localTestBox';
+// import LocalTestBoxVolun from './_components/localTestBoxVolun';
 
 export default function MainPage() {
   const loginType = useLoginStore((state) => state.loginType);
@@ -37,8 +37,8 @@ export default function MainPage() {
 
   return (
     <Wrapper>
-      <LocalTestBox></LocalTestBox>
-      <LocalTestBoxVolun></LocalTestBoxVolun>
+      {/* <LocalTestBox></LocalTestBox>
+      <LocalTestBoxVolun></LocalTestBoxVolun> */}
       <MainBanner></MainBanner>
       {loginType === 'ROLE_CENTER' && <WriteAidReqButtonComponent></WriteAidReqButtonComponent>}
       <AidRqRecentList></AidRqRecentList>
