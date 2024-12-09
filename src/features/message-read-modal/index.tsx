@@ -42,6 +42,7 @@ const MessageReadModal: React.FC<NoteModalProps> = ({ handleModalClose, noteId, 
   console.log('noteId:', noteId);
   console.log('messageDetail:', messageDetail);
   console.log('profileDetail:', profileDetail);
+  console.log('sss', profileDetail?.data.tier?.toLowerCase());
 
   return (
     <Modal variant="small" isOpen onClose={handleModalClose}>
@@ -63,7 +64,7 @@ const MessageReadModal: React.FC<NoteModalProps> = ({ handleModalClose, noteId, 
               <NickName>{profileDetail?.data?.nickname || messageDetail.sender_name}</NickName>
               {type === 'center' ? (
                 <GloveImg
-                  src={`/assets/imgs/mitten-${profileDetail?.data?.tier.toLowerCase() || 'RED'}.svg`}
+                  src={`/assets/imgs/mitten-${profileDetail?.data.tier.toLowerCase() || 'RED'}.svg`}
                   alt="tierGlove"
                 />
               ) : (

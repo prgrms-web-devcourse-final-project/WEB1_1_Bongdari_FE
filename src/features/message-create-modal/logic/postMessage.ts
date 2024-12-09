@@ -14,17 +14,17 @@ export const postMessage = async (
         title,
         content
       });
-      console.log('postMessage data', res);
+      console.log('postMessage data from volunteer', res);
 
       if (res.code >= 200 && res.code < 300) return res.data;
       else console.log(`postMessage res ${res.code}`);
     } else if (from === 'center') {
-      const res: resType<number | string> = await axiosInstance.post('/api/note/center-to-volunteer', {
-        receiver_id,
+      const res: resType<number | string> = await axiosInstance.post('api/note/center-to-volunteer', {
+        receiver_id: 'c85c117f-8df9-448a-b3be-7876c853f522',
         title,
         content
       });
-      console.log('postMessage data', res);
+      console.log('postMessage data from center', res);
 
       if (res.code >= 200 && res.code < 300) return res.data;
       else console.log(`postMessage res ${res.code}`);

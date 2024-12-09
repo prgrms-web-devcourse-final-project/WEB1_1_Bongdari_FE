@@ -85,8 +85,8 @@ export interface ProfileDetail {
 }
 
 const fetchProfileDetail = async (senderId: string) => {
-  const response = await axiosInstance.get<ApiResponse>(`/api/volunteer/profile/${senderId}`);
-  return response.data;
+  const response: ApiResponse = await axiosInstance.get(`/api/volunteer/profile/${senderId}`);
+  return response;
 };
 
 export const useApplicantDetail = (senderId: string) => {
