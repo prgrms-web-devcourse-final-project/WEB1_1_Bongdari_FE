@@ -5,9 +5,10 @@ import { AlertType } from '@/shared/types/alert-type/AlertType';
 
 interface AlertProps {
   notifications: AlertType[];
+  fetchNotifications: () => Promise<void>;
 }
 
-const Alert: React.FC<AlertProps> = ({ notifications }) => {
+const Alert: React.FC<AlertProps> = ({ notifications, fetchNotifications }) => {
   return (
     <Wrapper>
       <Container>
@@ -16,7 +17,11 @@ const Alert: React.FC<AlertProps> = ({ notifications }) => {
           <span>전체 삭제하기</span>
         </Top>
         {notifications.map((item, index) => (
-          <AlertItem key={index} item={item} singleRead={singleRead}></AlertItem>
+          <AlertItem
+            key={index}
+            item={item}
+            singleRead={singleRead}
+            fetchNotifications={fetchNotifications}></AlertItem>
         ))}
       </Container>
     </Wrapper>
