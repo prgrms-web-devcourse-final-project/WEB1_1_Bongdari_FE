@@ -1,5 +1,4 @@
 import axiosInstance from '@/api/apis';
-import Cookies from 'js-cookie';
 import { resType } from '@/shared/types/resType';
 
 // 커뮤니티 게시글 등록
@@ -8,8 +7,7 @@ export const postCommunity = async (formData: FormData) => {
     // axios POST 요청
     const res: resType<string> = await axiosInstance.post('/api/community-board', formData, {
       headers: {
-        'Content-Type': 'multipart/form-data',
-        Authorization: `${Cookies.get('ACCESS')}`
+        'Content-Type': 'multipart/form-data'
       }
     });
 
@@ -27,10 +25,9 @@ export const postCommunity = async (formData: FormData) => {
 export const putCommunity = async (content_id: number, formData: FormData) => {
   try {
     // axios PUT 요청
-    const res: resType<string> = await axiosInstance.post(`/api/community-board/${content_id}`, formData, {
+    const res: resType<string> = await axiosInstance.put(`/api/community-board/${content_id}`, formData, {
       headers: {
-        'Content-Type': 'multipart/form-data',
-        Authorization: `${Cookies.get('ACCESS')}`
+        'Content-Type': 'multipart/form-data'
       }
     });
 

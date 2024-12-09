@@ -62,7 +62,10 @@ const MessageReadModal: React.FC<NoteModalProps> = ({ handleModalClose, noteId, 
               </ImgWrapper>
               <NickName>{profileDetail?.data?.nickname || messageDetail.sender_name}</NickName>
               {type === 'center' ? (
-                <GloveImg src={`/assets/imgs/mitten-${profileDetail?.data?.tier || 'RED'}.svg`} alt="tierGlove" />
+                <GloveImg
+                  src={`/assets/imgs/mitten-${profileDetail?.data?.tier.toLowerCase() || 'RED'}.svg`}
+                  alt="tierGlove"
+                />
               ) : (
                 ''
               )}

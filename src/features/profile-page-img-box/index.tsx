@@ -30,7 +30,7 @@ const ProfileImgBox: React.FC<ProfileImgBoxProps> = (props) => {
         <img src={img_url || '/assets/imgs/no-img-person.svg'} />
         <p>
           <i>{nickname}</i>
-          <img className="mitten" src={`/assets/imgs/mitten-${tier}.svg`} />
+          <img className="mitten" src={`/assets/imgs/mitten-${tier.toLowerCase()}.svg`} />
         </p>
         {/* 봉사자는 봉사자에게 쪽지 보낼 수 없음 */}
         <SubmitButton

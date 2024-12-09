@@ -4,46 +4,35 @@ import { useHalfList } from './logic/useHalfList';
 import LongListItem from '@/components/long-list-item';
 import TitleWithPagenation from '@/features/personal-my-page-title-with-pagenation';
 import MessageReadModal from '../message-read-modal';
+import { Link } from 'react-router-dom';
 
 interface HalfListProps {
   listType: 'myVolunteer' | 'myMessage';
 }
 
 const HalfList: React.FC<HalfListProps> = ({ listType }) => {
-  const {
-    data,
-    totPage,
-    currPage,
-    setCurrPage,
-    onClickMyVolunteer,
-    onClickMyMessage,
-    msgOpenId,
-    isMsgModalOpen,
-    onCloseMsgModal
-  } = useHalfList({ listType });
+  const { myData, totPage, currPage, setCurrPage, onClickMyMessage, msgOpenId, isMsgModalOpen, onCloseMsgModal } =
+    useHalfList({ listType });
 
   // 타입 가드: myVolunteerType 확인
-  const isMyVolunteerType = (data: myVolunteerType[] | myMessageType[]): data is myVolunteerType[] => {
-    return (data as myVolunteerType[])[0]?.recruit_board !== undefined;
+  const isMyVolunteerType = (myData: myVolunteerType[] | myMessageType[]): myData is myVolunteerType[] => {
+    return (myData as myVolunteerType[])[0]?.recruit_board !== undefined;
   };
 
   if (listType === 'myVolunteer') {
     return (
       <HalfListCss>
         <TitleWithPagenation title="내 봉사 목록" totPage={totPage} currPage={currPage} setCurrPage={setCurrPage} />
-        {!data || data.length === 0 ? (
+        {!myData || myData.length === 0 ? (
           <div className="noData">내 봉사 데이터가 없습니다</div>
         ) : (
           <div className="listWrap">
-            {isMyVolunteerType(data) &&
-              data.map((v, i) => {
+            {isMyVolunteerType(myData) &&
+              myData.map((v, i) => {
                 return (
-                  <LongListItem
-                    key={i}
-                    content_id={v.id.toString()}
-                    mainText={v.recruit_board.title}
-                    getContentId={() => onClickMyVolunteer(v.id.toString())}
-                  />
+                  <Link to={`/aidrqdetail/${v.id}`}>
+                    <LongListItem key={i} content_id={v.id.toString()} mainText={v.recruit_board.title} />
+                  </Link>
                 );
               })}
           </div>
@@ -54,12 +43,12 @@ const HalfList: React.FC<HalfListProps> = ({ listType }) => {
     return (
       <HalfListCss>
         <TitleWithPagenation title="내 쪽지 목록" totPage={totPage} currPage={currPage} setCurrPage={setCurrPage} />
-        {!data || data.length === 0 ? (
+        {!myData || myData.length === 0 ? (
           <div className="noData">내 쪽지가 없습니다</div>
         ) : (
           <div className="listWrap">
-            {!isMyVolunteerType(data) &&
-              data.map((v, i) => {
+            {!isMyVolunteerType(myData) &&
+              myData.map((v, i) => {
                 return (
                   <LongListItem
                     key={i}

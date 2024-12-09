@@ -28,18 +28,16 @@ export const usePersonProfile = (): usePersonProfileReturn => {
       // url에 id 없고 로그인 상태라면 내 프로필 데이터 보여주기
       if (userId === undefined && myLoginId) {
         const data = await fetchPersonProfile(myLoginId);
-        // console.log(data.code, data.message);
 
-        if (data) setProfileData(data.data as personProfileType);
+        if (data && !profileData) setProfileData(data.data as personProfileType);
       } else if (userId) {
         const data = await fetchPersonProfile(userId);
-        // console.log(data.code, data.message);
 
-        if (data) setProfileData(data.data as personProfileType);
+        if (data && !profileData) setProfileData(data.data as personProfileType);
       }
     };
     fetchData();
-  }, [userId, myLoginId]);
+  }, []);
 
   return { userId, profileData, isModalOpen, setIsModalOpenWhenLogin };
 };

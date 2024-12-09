@@ -31,72 +31,10 @@ export const useCommunityList = ({ searchWord }: { searchWord: string }): useCom
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchCommunityList(searchWord);
-      if (data) {
+      if (data && !listData) {
         setListData(data.data.content);
         setTotPage(data.data.totalPages);
-      } else
-        setListData([
-          {
-            id: 1,
-            title: '손모아 사이트 어떤가요?',
-            writer_nickname: 'jooyoug',
-            created_at: '2024.11.18'
-          },
-          {
-            id: 2,
-            title: '손모아 사이트 어떤가요?',
-            writer_nickname: 'jooyoug',
-            created_at: '2024.11.18'
-          },
-          {
-            id: 3,
-            title: '손모아 사이트 어떤가요?',
-            writer_nickname: 'jooyoug',
-            created_at: '2024.11.18'
-          },
-          {
-            id: 4,
-            title: '손모아 사이트 어떤가요?',
-            writer_nickname: 'jooyoug',
-            created_at: '2024.11.18'
-          },
-          {
-            id: 5,
-            title: '손모아 사이트 어떤가요?',
-            writer_nickname: 'jooyoug',
-            created_at: '2024.11.18'
-          },
-          {
-            id: 6,
-            title: '손모아 사이트 어떤가요?',
-            writer_nickname: 'jooyoug',
-            created_at: '2024.11.18'
-          },
-          {
-            id: 7,
-            title: '손모아 사이트 어떤가요?',
-            writer_nickname: 'jooyoug',
-            created_at: '2024.11.18'
-          },
-          {
-            id: 8,
-            title: '손모아 사이트 어떤가요?',
-            writer_nickname: 'jooyoug',
-            created_at: '2024.11.18'
-          },
-          {
-            id: 9,
-            title: '손모아 사이트 어떤가요?',
-            writer_nickname: 'jooyoug',
-            created_at: '2024.11.18'
-          },
-          {
-            id: 10,
-            title: '손모아 사이트 어떤가요?',
-            writer_nickname: 'jooyoug',
-            created_at: '2024.11.18'
-          }
-        ]);
+      }
     };
     fetchData();
   }, []);

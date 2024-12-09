@@ -32,7 +32,7 @@ export const useMyInterestCenter = (): useMyInterestCenterReturn => {
 
     const fetchData = async () => {
       const data = await fetchMyInterestCenter();
-      if (data) setInterestCenterData(data);
+      if (data && !interestCenterData) setInterestCenterData(data);
     };
     fetchData();
     calcPage();

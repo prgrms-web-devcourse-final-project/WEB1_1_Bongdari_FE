@@ -27,7 +27,7 @@ const ProfileInfoBox: React.FC<ProfileInfoBoxProps> = (props) => {
         </p>
         <p className="info">
           <i className="label">등급</i>
-          <img src={`/assets/imgs/mitten-${tier}.svg`} className="data" />
+          <img src={`/assets/imgs/mitten-${tier.toLowerCase()}.svg`} className="data" />
         </p>
         <p className="info">
           <i className="label rightLabel">총 봉사 횟수</i>

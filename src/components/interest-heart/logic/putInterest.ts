@@ -1,15 +1,22 @@
-import axios from 'axios';
+import axiosInstance from '@/api/apis';
+import { resType } from '@/shared/types/resType';
+
+interface interestType {
+  id: number;
+  volunteer_id: string;
+  center_id: string;
+}
 
 export const postInterest = async (center_id: string, myLoginId: string) => {
   try {
-    const res = await axios.post(import.meta.env.VITE_APP_BASE_URL + `/api/interest-center`, {
+    const res: resType<interestType> = await axiosInstance.post(`/api/interest-center`, {
       volunteer_id: myLoginId,
       center_id: center_id
     });
-    console.log('interest POST Response:', res.data);
-    if (res.status === 200) return res.data;
-    else if (res.status === 400) console.log('postInterest res 400');
-    else if (res.status === 500) console.log('postInterest res 500');
+    console.log('interest post Response:', res);
+
+    if (res.code >= 200 && res.code < 300) return res.data;
+    else console.log(`deleteInterest res ${res.code}`);
   } catch (e) {
     console.error('POST Error:', e);
   }
@@ -17,11 +24,11 @@ export const postInterest = async (center_id: string, myLoginId: string) => {
 
 export const deleteInterest = async (center_id: string) => {
   try {
-    const res = await axios.post(import.meta.env.VITE_APP_BASE_URL + `/api/interest-center/${center_id}`);
-    console.log('interest Delete Response:', res.data);
-    if (res.status === 200) return res.data;
-    else if (res.status === 400) console.log('deleteInterest res 400');
-    else if (res.status === 500) console.log('deleteInterest res 500');
+    const res: resType<string> = await axiosInstance.delete(`/api/interest-center/${center_id}`);
+    console.log('interest Delete Response:', res);
+
+    if (res.code >= 200 && res.code < 300) return res.data;
+    else console.log(`deleteInterest res ${res.code}`);
   } catch (e) {
     console.error('DELETE Error:', e);
   }

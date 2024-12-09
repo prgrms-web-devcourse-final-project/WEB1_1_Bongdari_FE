@@ -1,6 +1,6 @@
 import axiosInstance from '@/api/apis';
 import { useQuery } from '@tanstack/react-query';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 
 export interface Review {
   id: number;
@@ -21,9 +21,9 @@ const fetchCenterReviews = async (centerId: string, page: number, category?: str
   }
 
   const response = await axiosInstance.get(url, {
-    headers: {
-      Authorization: `Bearer ${Cookies.get('ACCESS')}`
-    }
+    // headers: {
+    //   Authorization: `Bearer ${Cookies.get('ACCESS')}`
+    // }
   });
   return response.data;
 };
