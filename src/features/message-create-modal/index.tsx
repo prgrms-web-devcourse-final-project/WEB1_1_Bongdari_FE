@@ -4,6 +4,7 @@ import { SubmitButton } from '@/components/button';
 import InputBox from '@/components/inputBox';
 import TextArea from '@/components/textArea';
 import Modal from '@/components/modal';
+import { useAlertDialog } from '@/store/stores/dialog/dialogStore'; // AlertDialog import 추가
 
 interface MessageCreateModalProps {
   user_id: string;
@@ -14,6 +15,19 @@ interface MessageCreateModalProps {
 const MessageCreateModal: React.FC<MessageCreateModalProps> = ({ user_id, isModalOpen, setIsModalOpen }) => {
   console.log('messageCreateModal', user_id);
   const { checkTitle, checkContent, checkSend, errMsg } = useSendMail({ user_id, setIsModalOpen });
+  const { openAlert } = useAlertDialog(); // AlertDialog 사용
+
+  const handleSendClick = () => {
+    // if (errMsg) {
+    //   // 에러가 있을 경우 Alert 표시
+    //   openAlert('제목과 내용을 확인해주세요.');
+    // } else {
+    // 전송 로직 실행
+    checkSend();
+    openAlert('쪽지가 성공적으로 전송되었습니다.');
+    // }
+  };
+
   return (
     <MessageCreateModalCss id={user_id}>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} variant="small">
@@ -42,7 +56,11 @@ const MessageCreateModal: React.FC<MessageCreateModalProps> = ({ user_id, isModa
           </div>
           <div className="btnWrap">
             <i className="checkErr">{errMsg}</i>
-            <SubmitButton label="전송" onClick={checkSend} variant={errMsg ? 'disabled' : 'enabledOne'} />
+            <SubmitButton
+              label="전송"
+              onClick={handleSendClick} // Alert 포함한 함수 호출
+              variant={errMsg ? 'disabled' : 'enabledOne'}
+            />
           </div>
         </div>
       </Modal>
