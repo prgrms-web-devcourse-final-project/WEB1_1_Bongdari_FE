@@ -15,12 +15,14 @@ export const myPresentStatus = async (
     const response = await axios.get(
       `https://api.somemore.site/api/volunteer-apply/recruit-board/${requestId}/volunteer/${volunteerId}`
     );
-    setPresentState(response.data.data);
+    if (response.data.code === 200) {
+      setPresentState(response.data.data);
+    } else if (response.data.code === 210) {
+      setPresentState({ status: 'none', attended: false });
+    }
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
-      if (error.response?.status === 400) {
-        console.log('지원 안했음');
-      }
+      console.log('지원 안했음');
     }
     throw error;
   }

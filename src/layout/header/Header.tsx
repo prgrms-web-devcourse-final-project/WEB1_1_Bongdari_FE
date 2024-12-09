@@ -98,7 +98,9 @@ export default function Header() {
     <Wrapper>
       <Contents>
         <Link to="/main" className="link">
-          <Logo>SOMEMORE</Logo>
+          <Logo>
+            <img src="/assets/imgs/logo.png" alt=""></img>
+          </Logo>
         </Link>
         <Menu>
           {!isLoggedIn && (

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Stack from '@mui/material/Stack';
+import { useQueryClient } from '@tanstack/react-query';
 
 import MessageLabel from '@/components/label/MessageLabel';
 import { Author, CustomPagination, List, ListItem, ListItemTitle, NoteSetTitle, StateBox, Wrapper } from './indexCss';
@@ -7,26 +8,40 @@ import { useMessageList, type MessageItem } from '@/store/queries/center-mypage/
 import { usePagination } from '@/shared/hooks/usePagination';
 import MessageReadModal from '@/features/message-read-modal';
 
+interface MessageListResponse {
+  content: MessageItem[];
+  totalPages: number;
+  totalElements: number;
+  size: number;
+  number: number;
+}
+
 const MessageSet = () => {
   const [openNoteModal, setNoteModal] = useState(false);
   const [selectedMessageId, setSelectedMessageId] = useState<number>(0);
   const { page, handlePageChange } = usePagination();
+  const queryClient = useQueryClient();
 
-  const { data: messages, refetch } = useMessageList(page);
+  const { data: messages } = useMessageList(page);
 
-  console.log('메세지야 안녕1', messages);
   const handleItemClick = (message: MessageItem) => {
     setSelectedMessageId(message.id);
     setNoteModal(true);
+
+    queryClient.setQueryData(['messageList', page], (old: MessageListResponse | undefined) => {
+      if (!old) return old;
+
+      return {
+        ...old,
+        content: old.content.map((item: MessageItem) => (item.id === message.id ? { ...item, is_read: true } : item))
+      };
+    });
   };
 
-  console.log('메세지야 안녕2', messages);
   const handleModalClose = () => {
     setNoteModal(false);
-    refetch();
   };
 
-  console.log('메세지야 안녕3', messages);
   return (
     <>
       <Wrapper>
