@@ -1,14 +1,17 @@
+import { useNavigate } from 'react-router-dom';
+import { Dispatch, SetStateAction } from 'react';
+
 import { OtherButton } from '@/components/button';
 import { MailButton, Wrapper } from './indexCss';
 import theme from '@/styles/theme';
-import { useNavigate } from 'react-router-dom';
 import { centerProfileType } from '@/shared/types/center-profile/centerProfile';
 
 interface ButtonContainerProps {
   centerProfile: centerProfileType;
+  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-const ButtonContainer: React.FC<ButtonContainerProps> = ({ centerProfile }) => {
+const ButtonContainer: React.FC<ButtonContainerProps> = ({ centerProfile, setIsModalOpen }) => {
   const navigate = useNavigate();
 
   return (
@@ -29,7 +32,7 @@ const ButtonContainer: React.FC<ButtonContainerProps> = ({ centerProfile }) => {
         disabled={false}></OtherButton>
       <MailButton
         onClick={() => {
-          console.log(centerProfile.center_id);
+          setIsModalOpen(true);
         }}>
         쪽지 전달하기
       </MailButton>
