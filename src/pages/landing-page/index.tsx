@@ -14,7 +14,7 @@ const LandingPage = () => {
         <img src="assets/imgs/landing-visual.svg" alt=""></img>
       </Visual>
       <ButtonContainer>
-        <Link to="/login" className="link">
+        <Link to="/main" className="link">
           <button>참여하기</button>
         </Link>
       </ButtonContainer>

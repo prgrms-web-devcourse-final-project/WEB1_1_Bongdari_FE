@@ -8,8 +8,10 @@ import VolunteerDate from './ui/volunteer-date';
 import Explanation from './ui/explanation';
 import { VolunteerType, Location } from '@/shared/types/aidrq-create-type/AidRqCreateType';
 import { postAidRq } from './logic/postAidRq';
+import { useNavigate } from 'react-router-dom';
 
 const AidRqCreatePage = () => {
+  const navigate = useNavigate();
   const [volunteerData, setVolunteerData] = useState<VolunteerType>({
     title: '',
     content: '',
@@ -60,7 +62,11 @@ const AidRqCreatePage = () => {
       <ButtonContainer>
         <button
           onClick={() => {
-            postAidRq(volunteerData);
+            const handleClick = async () => {
+              await postAidRq(volunteerData);
+              navigate('/main');
+            };
+            handleClick();
           }}>
           작성하기
         </button>
