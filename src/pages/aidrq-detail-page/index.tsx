@@ -51,9 +51,9 @@ const AidRqDetailPage = () => {
     myPresentStatus(setPresentState, myLoginState.myLoginId, id);
   }, []);
 
-  // useEffect(() => {
-  //   console.log(presentState);
-  // }, [presentState]);
+  useEffect(() => {
+    console.log(presentState);
+  }, [presentState]);
 
   return (
     <Wrapper>
@@ -73,7 +73,7 @@ const AidRqDetailPage = () => {
           </button>
           <button
             onClick={() => {
-              if (!presentState && data.data.recruit_status === 'RECRUITING') applyAidRq(id);
+              if (presentState?.status === 'none' && data.data.recruit_status === 'RECRUITING') applyAidRq(id);
             }}>
             지원하기
           </button>

@@ -54,7 +54,21 @@ const SelectContainer: React.FC<SelectContainerProps> = ({
           text="지역을 선택해주세요."
           width="100%"
           height="50px"
-          data={['서울특별시', '인천광역시', '대전광역시']}
+          data={[
+            '서울특별시',
+            '경기도',
+            '충청도',
+            '강원도',
+            '전라도',
+            '경상도',
+            '인천광역시',
+            '대구광역시',
+            '대전광역시',
+            '광주광역시',
+            '울산광역시',
+            '부산광역시',
+            '제주도'
+          ]}
           getSelectedOption={(text) => {
             getSelectedRegion(text);
           }}

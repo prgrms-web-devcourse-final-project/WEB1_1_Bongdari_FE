@@ -39,18 +39,22 @@ export const ButtonBox = styled.div<{ presentstate: PresentResponse | null; recs
   & > button:nth-of-type(2) {
     width: 220px;
     height: 53px;
-    background-color: ${(props) => (props.presentstate && props.recstatus !== 'RECRUITING' ? '#E2E2E2' : '#2382ff')};
+    background-color: ${(props) =>
+      props.presentstate?.status === 'none' && props.recstatus === 'RECRUITING' ? '#2382ff' : '#E2E2E2'};
     border: none;
     border-radius: 13px;
     outline: none;
-    color: ${(props) => (props.presentstate && props.recstatus !== 'RECRUITING' ? '#ADADAD' : 'white')};
+    color: ${(props) =>
+      props.presentstate?.status === 'none' && props.recstatus === 'RECRUITING' ? 'white' : '#ADADAD'};
     font-size: 14px;
     font-weight: 600;
     transition: 0.2s;
 
     &:hover {
-      cursor: ${(props) => (props.presentstate && props.recstatus !== 'RECRUITING' ? '' : 'pointer')};
-      background-color: ${(props) => (props.presentstate && props.recstatus !== 'RECRUITING' ? '#E2E2E2' : '#0a66de')};
+      cursor: ${(props) =>
+        props.presentstate?.status === 'none' && props.recstatus === 'RECRUITING' ? 'pointer' : ''};
+      background-color: ${(props) =>
+        props.presentstate?.status === 'none' && props.recstatus === 'RECRUITING' ? '#0a66de' : '#E2E2E2'};
     }
   }
 `;
