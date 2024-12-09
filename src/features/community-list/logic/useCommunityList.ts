@@ -21,7 +21,7 @@ export const useCommunityList = ({ searchWord }: { searchWord: string }): useCom
       const data = await fetchCommunityList(searchWord, currPage - 1);
       if (data) {
         // setListData(data.content as communityListType[]); // data.content를 communityListType[]로 지정
-        setListData(data.content[0] as communityListType[]);
+        setListData(data.content.flat() as communityListType[]);
       }
     };
     fetchData();
@@ -33,7 +33,7 @@ export const useCommunityList = ({ searchWord }: { searchWord: string }): useCom
       const data = await fetchCommunityList(searchWord);
       if (data && !listData) {
         // setListData(data.content as communityListType[]); // data.content를 communityListType[]로 지정
-        setListData(data.content[0] as communityListType[]);
+        setListData(data.content.flat() as communityListType[]);
         setTotPage(data.totalPages);
       }
     };
