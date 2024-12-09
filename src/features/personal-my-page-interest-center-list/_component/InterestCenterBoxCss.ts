@@ -9,6 +9,7 @@ export const InterestCenterBoxCss = styled.div`
   width: 160px;
   height: 200px;
   flex-shrink: 0; // 너비 줄어들지 못하도록
+  padding: 0 10px;
 
   cursor: pointer;
 
@@ -18,12 +19,23 @@ export const InterestCenterBoxCss = styled.div`
   align-items: center;
   gap: 30px;
 
-  img {
+  overflow: hidden; // 박스에서 넘치는 내용 숨김
+
+  & > img {
     width: 85px;
     height: 85px;
     border-radius: 50%;
     background-color: #d9d9d9;
 
     object-fit: contain;
+  }
+
+  & > p {
+    text-align: center;
+    word-break: break-word; // 줄바꿈 설정
+    overflow-wrap: anywhere; // 어디서든 줄바꿈 가능
+    white-space: normal; // 기본 줄바꿈 허용
+
+    display: block;
   }
 `;

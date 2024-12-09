@@ -7,10 +7,9 @@ interface interestType {
   center_id: string;
 }
 
-export const postInterest = async (center_id: string, myLoginId: string) => {
+export const postInterest = async (center_id: string) => {
   try {
     const res: resType<interestType> = await axiosInstance.post(`/api/interest-center`, {
-      volunteer_id: myLoginId,
       center_id: center_id
     });
     console.log('interest post Response:', res);

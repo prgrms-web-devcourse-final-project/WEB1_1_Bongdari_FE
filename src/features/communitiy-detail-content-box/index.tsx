@@ -3,6 +3,7 @@ import { useCommunityDetailContent } from './logic/useCommunityDetailContent';
 import { SubmitButton } from '@/components/button';
 import WriterProfileBox from './ui/WriterProfileBox';
 import useDateFormat from '@/shared/hooks/useDateFormat';
+import { Link } from 'react-router-dom';
 
 const CommunityDetailContentBox = ({ content_id }: { content_id: number }) => {
   const { detailData, writerData, isMyContent } = useCommunityDetailContent(content_id);
@@ -19,7 +20,15 @@ const CommunityDetailContentBox = ({ content_id }: { content_id: number }) => {
         <i className="modifiedDate">최근 수정일: {formatDate(detailData.updated_at)}</i>
         <WriterProfileBox {...writerData} />
         <div className="content">{detailData.content}</div>
-        <div className="btnWrap">{isMyContent ? <SubmitButton label="수정하기" /> : ''}</div>
+        <div className="btnWrap">
+          {isMyContent ? (
+            <Link to={`/communitycreate/${content_id}`}>
+              <SubmitButton label="수정하기" />
+            </Link>
+          ) : (
+            ''
+          )}
+        </div>
       </CommunityDetailContentBoxCss>
     );
   }

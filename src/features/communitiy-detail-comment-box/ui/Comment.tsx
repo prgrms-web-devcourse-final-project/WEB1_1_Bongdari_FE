@@ -3,6 +3,7 @@ import { commentType } from '@/shared/types/community-type/CommuntiyTypes';
 import useDateFormat from '@/shared/hooks/useDateFormat';
 import { useComment } from './logic/useComment';
 import CommentReplyInput from './CommentReplyInput';
+import { useAlertDialog } from '@/store/stores/dialog/dialogStore';
 
 const Comment = ({
   id,
@@ -38,7 +39,19 @@ const Comment = ({
     onClickEditComment,
     onClickDeleteComment
   } = useComment({ content, content_id, comment_id: id, writer_nickname, login_name, updateComments });
+
   const { formatDateTime } = useDateFormat();
+  const { openAlert } = useAlertDialog();
+
+  const handleDeleteClick = () => {
+    openAlert('댓글이 삭제되었습니다');
+    onClickDeleteComment(); // 삭제 함수 호출
+  };
+
+  const handleEditClick = () => {
+    openAlert('댓글 수정되었습니다');
+    onClickEditComment(); // 수정 함수 호출
+  };
 
   if (!isReply) {
     return (
@@ -64,13 +77,13 @@ const Comment = ({
                   <i className="editBtn" onClick={() => setIsEditState(true)}>
                     수정하기
                   </i>
-                  <i className="deleteBtn" onClick={onClickDeleteComment}>
+                  <i className="deleteBtn" onClick={handleDeleteClick}>
                     삭제하기
                   </i>
                 </>
               ) : (
                 <>
-                  <i className="editBtn" onClick={onClickEditComment}>
+                  <i className="editBtn" onClick={handleEditClick}>
                     수정완료
                   </i>
                   <i className="deleteBtn" onClick={() => setCommentText(content)}>
@@ -124,7 +137,7 @@ const Comment = ({
         <div className="commentInnerWrap">
           <i className="createdDate">{formatDateTime(updated_at)}</i>
           {isMyComment ? (
-            <i className="deleteBtn" onClick={onClickDeleteComment}>
+            <i className="deleteBtn" onClick={handleDeleteClick}>
               삭제하기
             </i>
           ) : (
@@ -135,4 +148,5 @@ const Comment = ({
     );
   }
 };
+
 export default Comment;

@@ -28,14 +28,14 @@ export const useInterest = ({ center_id }: useInterestProps): useInterestReturn 
       await deleteInterest(center_id);
       setIsInterest(false);
     } else {
-      await postInterest(center_id, myLoginId);
+      await postInterest(center_id);
       setIsInterest(true);
     }
   };
 
   useEffect(() => {
     const checkFirstState = async () => {
-      const data = await postInterest(center_id, myLoginId ?? '');
+      const data = await postInterest(center_id);
       if (!data) setIsInterest(true);
       else {
         await deleteInterest(center_id);

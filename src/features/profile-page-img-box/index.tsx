@@ -46,7 +46,7 @@ const ProfileImgBox: React.FC<ProfileImgBoxProps> = (props) => {
     return (
       <ProfileImgBoxCss id={center_id}>
         <InterestHeartBtn center_id={center_id} top={'15px'} right={'15px'} />
-        <img src={img_url} alt="" />
+        <img src={img_url || '/assets/imgs/no-img-center.svg'} />
         <p>
           <i>{name}</i>
           <i>{homepage_link}</i>
