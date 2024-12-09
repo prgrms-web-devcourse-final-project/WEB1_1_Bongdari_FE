@@ -36,6 +36,7 @@ const AidRqDetailAdminPage = () => {
           currentStatus={recruitDetailData.recruit_status as RecruitAPIState}
           id={parsedId}
           applicantCount={recruitDetailData.recruitment_count}
+          startDate={recruitDetailData.volunteer_start_date_time}
         />
         <AidReqDetailAdminInfo recruitDetailData={recruitDetailData} />
         <ButtonGroup
