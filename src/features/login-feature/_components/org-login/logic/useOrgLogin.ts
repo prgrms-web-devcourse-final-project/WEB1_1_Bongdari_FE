@@ -50,6 +50,7 @@ export const useOrgLogin = (): useOrgLoginReturn => {
         const response = await testLoginCenter(id, pwd);
         console.log(response);
         // setLoginInfo('centertestid', 'center');
+        navigate('/main');
       } catch (error) {
         console.error('Login failed:', error);
       }
