@@ -62,7 +62,7 @@ const AidRqDetailPage = () => {
         <ButtonBox presentstate={presentState}>
           <button
             onClick={() => {
-              SetReviewModalState(true);
+              if (presentState?.attended) SetReviewModalState(true);
             }}>
             리뷰쓰기
           </button>
