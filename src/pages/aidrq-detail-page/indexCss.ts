@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
   padding: 250px 0;
 `;
 
-export const ButtonBox = styled.div<{ presentstate: PresentResponse | null }>`
+export const ButtonBox = styled.div<{ presentstate: PresentResponse | null; recstatus: string }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,18 +39,18 @@ export const ButtonBox = styled.div<{ presentstate: PresentResponse | null }>`
   & > button:nth-of-type(2) {
     width: 220px;
     height: 53px;
-    background-color: ${(props) => (props.presentstate ? '#E2E2E2' : '#2382ff')};
+    background-color: ${(props) => (props.presentstate && props.recstatus === 'RECRUITING' ? '#E2E2E2' : '#2382ff')};
     border: none;
     border-radius: 13px;
     outline: none;
-    color: ${(props) => (props.presentstate ? '#ADADAD' : 'white')};
+    color: ${(props) => (props.presentstate && props.recstatus === 'RECRUITING' ? '#ADADAD' : 'white')};
     font-size: 14px;
     font-weight: 600;
     transition: 0.2s;
 
     &:hover {
-      cursor: ${(props) => (props.presentstate ? '' : 'pointer')};
-      background-color: ${(props) => (props.presentstate ? '#E2E2E2' : '#0a66de')};
+      cursor: ${(props) => (props.presentstate && props.recstatus === 'RECRUITING' ? '' : 'pointer')};
+      background-color: ${(props) => (props.presentstate && props.recstatus === 'RECRUITING' ? '#E2E2E2' : '#0a66de')};
     }
   }
 `;
