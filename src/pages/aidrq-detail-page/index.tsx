@@ -14,6 +14,7 @@ import { fetchCenterProfile } from './logic/fetchCenterProfile';
 import { applyAidRq } from './logic/applyAidRq';
 import { myPresentStatus } from './logic/myPresentStatus';
 import { useLoginStore } from '@/store/stores/login/loginStore';
+import MessageCreateModal from '@/features/message-create-modal';
 
 interface ApiResponse {
   code: number;
@@ -42,6 +43,8 @@ const AidRqDetailPage = () => {
   const location = useLocation();
   const centerId = location.state?.centerId;
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   useEffect(() => {
     fetchAidRqDetail(setData, id);
     fetchCenterProfile(setCenterData, centerId);
@@ -55,7 +58,9 @@ const AidRqDetailPage = () => {
   return (
     <Wrapper>
       {data && <Title data={data.data}></Title>}
-      {centerData && <AidRqDetailCenterProfile data={centerData.data}></AidRqDetailCenterProfile>}
+      {centerData && (
+        <AidRqDetailCenterProfile data={centerData.data} setIsModalOpen={setIsModalOpen}></AidRqDetailCenterProfile>
+      )}
       {data && <TextContent data={data.data}></TextContent>}
       {data && <AidRqDetailInfo data={data.data}></AidRqDetailInfo>}
       {data && myLoginState.loginType === 'ROLE_VOLUNTEER' && (
@@ -78,6 +83,7 @@ const AidRqDetailPage = () => {
         reviewModalState={reviewModalState}
         SetReviewModalState={SetReviewModalState}
         recruitBoardId={Number(id)}></ReviewCreateModal>
+      <MessageCreateModal user_id={centerId || ''} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       {!data && <p>요청하신 글에 접근이 불가합니다.</p>}
     </Wrapper>
   );
