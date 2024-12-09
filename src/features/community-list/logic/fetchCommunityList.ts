@@ -1,26 +1,30 @@
 import axiosInstance from '@/api/apis';
+import { communityListType } from '@/shared/types/community-type/CommuntiyTypes';
+import { dataTypeWithPage, resType } from '@/shared/types/resType';
 
-export const fetchCommunityList = async (searchWord: string, page: number = 0) => {
-  const trimSearchWord = searchWord.trim();
+export const fetchCommunityList = async (searchWord?: string, page: number = 0) => {
+  const trimSearchWord = searchWord?.trim();
   if (trimSearchWord) {
     try {
-      const res = await axiosInstance.get(`/api/community-boards/search?keyword=${searchWord}&page=${page}`);
-      console.log('fetchCommunityList data', res.data);
+      const res: resType<dataTypeWithPage<communityListType[]>> = await axiosInstance.get(
+        `/api/community-boards/search?keyword=${searchWord}&page=${page}`
+      );
+      console.log('fetchCommunityList data', res);
 
-      if (res.status === 200) return res.data;
-      else if (res.status === 400) console.log('fetchCommunityList res 400');
-      else if (res.status === 500) console.log('fetchCommunityList res 500');
+      if (res.code >= 200 && res.code < 300) return res.data;
+      else console.log(`fetchCommunityComment res ${res.code}`);
     } catch (e) {
       console.error(e);
     }
   } else {
     try {
-      const res = await axiosInstance.get(`/api/community-boards?page=${page}`);
-      console.log('fetchCommunityList data', res.data);
+      const res: resType<dataTypeWithPage<communityListType[]>> = await axiosInstance.get(
+        `/api/community-boards?page=${page}`
+      );
+      console.log('fetchCommunityList data', res);
 
-      if (res.status === 200) return res.data;
-      else if (res.status === 400) console.log('fetchCommunityList res 400');
-      else if (res.status === 500) console.log('fetchCommunityList res 500');
+      if (res.code >= 200 && res.code < 300) return res.data;
+      else console.log(`fetchCommunityComment res ${res.code}`);
     } catch (e) {
       console.error(e);
     }
