@@ -68,7 +68,7 @@ const AidRqDetailPage = () => {
           </button>
           <button
             onClick={() => {
-              if (!presentState) applyAidRq(id);
+              if (!presentState && data.data.recruit_status === 'RECRUITING') applyAidRq(id);
             }}>
             지원하기
           </button>
