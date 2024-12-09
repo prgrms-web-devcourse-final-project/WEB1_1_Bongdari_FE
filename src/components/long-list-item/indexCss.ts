@@ -16,10 +16,7 @@ const LongListItemCss = styled.div`
 
   & * {
     /* border: 1px solid gray; */
-
-    text-decoration-line: none;
   }
-
   .numbering {
     padding-left: 5%;
     color: #808080;
