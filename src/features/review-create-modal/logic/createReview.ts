@@ -2,7 +2,7 @@ import axiosInstance from '@/api/apis';
 
 export const createReview = async (formData: FormData) => {
   try {
-    const response = await axiosInstance.post('/api/recruit-board', formData, {
+    const response = await axiosInstance.post('/api/review', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
