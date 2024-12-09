@@ -97,7 +97,7 @@ export default function Header() {
   return (
     <Wrapper>
       <Contents>
-        <Link to="/" className="link">
+        <Link to="/main" className="link">
           <Logo>SOMEMORE</Logo>
         </Link>
         <Menu>
