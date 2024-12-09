@@ -62,13 +62,13 @@ const AidRqDetailPage = () => {
         <ButtonBox presentstate={presentState}>
           <button
             onClick={() => {
-              SetReviewModalState(true);
+              if (presentState?.attended) SetReviewModalState(true);
             }}>
             리뷰쓰기
           </button>
           <button
             onClick={() => {
-              if (!presentState) applyAidRq(id);
+              if (!presentState && data.data.recruit_status === 'RECRUITING') applyAidRq(id);
             }}>
             지원하기
           </button>

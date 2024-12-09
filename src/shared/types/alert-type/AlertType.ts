@@ -1,5 +1,5 @@
 export interface AlertType {
-  notification_id: number;
+  id: number;
   title: string;
   type: string;
   related_id: number;

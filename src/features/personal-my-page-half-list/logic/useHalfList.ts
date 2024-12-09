@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { myMessageType, myVolunteerType } from '@/shared/types/person-profile/personProfile';
 import { fetchMyMessage, fetchMyVolunteer } from '@/pages/personal-my-page/_component/logic/fetchMyData';
 import { useLoginStore } from '@/store/stores/login/loginStore';
@@ -8,11 +7,10 @@ interface useHalfListProps {
   listType: 'myVolunteer' | 'myMessage';
 }
 interface useHalfListReturn {
-  data: myVolunteerType[] | myMessageType[] | undefined;
+  myData: myVolunteerType[] | myMessageType[] | undefined;
   totPage: number;
   currPage: number;
   setCurrPage: (page: number) => void;
-  onClickMyVolunteer: (content_id: string) => void;
   onClickMyMessage: (content_id: string) => void;
   msgOpenId: number;
   isMsgModalOpen: boolean;
@@ -22,15 +20,10 @@ interface useHalfListReturn {
 export const useHalfList = ({ listType }: useHalfListProps): useHalfListReturn => {
   const [totPage, setTotPage] = useState<number>(1);
   const [currPage, setCurrPage] = useState<number>(1);
-  const [data, setData] = useState<myVolunteerType[] | myMessageType[]>();
+  const [myData, setData] = useState<myVolunteerType[] | myMessageType[]>();
   const myLoginId = useLoginStore((state) => state.myLoginId);
-  const navigate = useNavigate();
   const [isMsgModalOpen, setIsMsgModalOpen] = useState<boolean>(false);
   const [msgOpenId, setMsgOpenId] = useState<number>(0);
-
-  const onClickMyVolunteer = (content_id: string) => {
-    navigate(`/aidrqdetail/${content_id}`);
-  };
 
   const onClickMyMessage = (message_id: string) => {
     console.log(message_id, '메시지 띄우기');
@@ -69,16 +62,16 @@ export const useHalfList = ({ listType }: useHalfListProps): useHalfListReturn =
       if (listType === 'myVolunteer') {
         const data = await fetchMyVolunteer(myLoginId ?? '');
         console.log('봉사 데이터', data?.content);
-        if (data) {
+        if (data && !myData) {
           setData(data.content);
-          setTotPage(data.totalPages);
+          setTotPage(data.totalPages || 1);
         }
       } else {
         const data = await fetchMyMessage();
         console.log('메시지 데이터', data?.content);
-        if (data) {
+        if (data && !myData) {
           setData(data.content);
-          setTotPage(data.totalPages);
+          setTotPage(data.totalPages || 1);
         }
       }
     };
@@ -86,11 +79,10 @@ export const useHalfList = ({ listType }: useHalfListProps): useHalfListReturn =
   }, []);
 
   return {
-    data,
+    myData,
     totPage,
     currPage,
     setCurrPage,
-    onClickMyVolunteer,
     onClickMyMessage,
     msgOpenId,
     isMsgModalOpen,

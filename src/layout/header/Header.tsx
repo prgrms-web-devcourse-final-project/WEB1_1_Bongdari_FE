@@ -125,7 +125,9 @@ export default function Header() {
               로그아웃
             </LogoutBtn>
           )}
-          <AlertPositioning>{alertState && <Alert notifications={notifications}></Alert>}</AlertPositioning>
+          <AlertPositioning>
+            {alertState && <Alert notifications={notifications} fetchNotifications={fetchNotifications}></Alert>}
+          </AlertPositioning>
           <AlertBox
             hasNotifications={notifications.length > 0}
             onClick={() => {

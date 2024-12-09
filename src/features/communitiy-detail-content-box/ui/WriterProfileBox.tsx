@@ -19,7 +19,7 @@ const WriterProfileBox = ({
       <div className="infoWrap">
         <img className="profileImg" src={img_url || '/assets/imgs/no-img-person.svg'} />
         <i className="nickname">{nickname ?? '정보 없음'}</i>
-        {tier ? <img className="tier" src={`/assets/imgs/mitten-${tier}.svg`} /> : ''}
+        {tier ? <img className="tier" src={`/assets/imgs/mitten-${tier.toLowerCase()}.svg`} /> : ''}
       </div>
       {volunteer_id ? (
         <Link to={`/profile/${volunteer_id}`}>
