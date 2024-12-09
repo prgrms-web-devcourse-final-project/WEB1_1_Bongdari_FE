@@ -25,7 +25,7 @@ interface NoteModalProps {
   type?: 'center' | 'volunteer';
 }
 
-const MessageReadModal: React.FC<NoteModalProps> = ({ handleModalClose, noteId, type = 'center' }) => {
+const MessageReadModal = ({ handleModalClose, noteId, type = 'center' }: NoteModalProps) => {
   const navigate = useNavigate();
   const { formatDateTime } = useDateFormat();
   const { data: messageDetail, isLoading: isMessageLoading } = useMessageDetail(noteId, type);
@@ -39,9 +39,9 @@ const MessageReadModal: React.FC<NoteModalProps> = ({ handleModalClose, noteId, 
     return null;
   }
 
-  console.log('noteId:', noteId);
-  console.log('messageDetail:', messageDetail);
-  console.log('profileDetail:', profileDetail);
+  // console.log('noteId:', noteId);
+  // console.log('messageDetail:', messageDetail);
+  // console.log('profileDetail:', profileDetail);
 
   return (
     <Modal variant="small" isOpen onClose={handleModalClose}>
@@ -60,12 +60,9 @@ const MessageReadModal: React.FC<NoteModalProps> = ({ handleModalClose, noteId, 
                   alt="profileImg"
                 />
               </ImgWrapper>
-              <NickName>{profileDetail?.data?.nickname || messageDetail.sender_name}</NickName>
+              <NickName>{profileDetail?.nickname || messageDetail.sender_name}</NickName>
               {type === 'center' ? (
-                <GloveImg
-                  src={`/assets/imgs/mitten-${profileDetail?.data?.tier.toLowerCase() || 'RED'}.svg`}
-                  alt="tierGlove"
-                />
+                <GloveImg src={`/assets/imgs/mitten-${profileDetail?.tier.toLowerCase()}.svg`} alt="tierGlove" />
               ) : (
                 ''
               )}

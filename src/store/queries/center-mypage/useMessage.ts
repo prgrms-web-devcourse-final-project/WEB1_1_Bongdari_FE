@@ -61,11 +61,11 @@ export const useMessageDetail = (noteId: number, type: 'center' | 'volunteer') =
 };
 
 // 티어를 넣기 위한 타인 프로필 조회 api 연결
-interface ApiResponse {
-  code: number;
-  message: string;
-  data: ProfileDetail;
-}
+// interface ApiResponse {
+//   code: number;
+//   message: string;
+//   data: ProfileDetail;
+// }
 
 export interface ProfileDetail {
   volunteer_id: string;
@@ -85,12 +85,12 @@ export interface ProfileDetail {
 }
 
 const fetchProfileDetail = async (senderId: string) => {
-  const response = await axiosInstance.get<ApiResponse>(`/api/volunteer/profile/${senderId}`);
+  const response = await axiosInstance.get<ProfileDetail>(`/api/volunteer/profile/${senderId}`);
   return response.data;
 };
 
 export const useApplicantDetail = (senderId: string) => {
-  return useQuery<ApiResponse>({
+  return useQuery<ProfileDetail>({
     // ApiResponse 타입으로 지정
     queryKey: ['profileDetail', senderId],
     queryFn: () => fetchProfileDetail(senderId),
