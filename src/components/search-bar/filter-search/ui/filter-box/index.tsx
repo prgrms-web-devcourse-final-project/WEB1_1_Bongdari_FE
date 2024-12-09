@@ -49,7 +49,22 @@ const FilterBox: React.FC<FilterBoxProps> = ({ setSearchState, searchAidRequests
         <Select
           text="지역을 입력해주세요."
           width="100%"
-          data={['전체', '서울특별시', '경기도', '강원도']}
+          data={[
+            '전체',
+            '서울특별시',
+            '경기도',
+            '충청도',
+            '강원도',
+            '전라도',
+            '경상도',
+            '인천광역시',
+            '대구광역시',
+            '대전광역시',
+            '광주광역시',
+            '울산광역시',
+            '부산광역시',
+            '제주도'
+          ]}
           getSelectedOption={(option: string) => {
             setSearchState({
               region: regionMapping[option]
