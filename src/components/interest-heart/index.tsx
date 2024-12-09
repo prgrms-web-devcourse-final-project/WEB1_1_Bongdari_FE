@@ -6,7 +6,6 @@ import { useInterest } from './logic/useInterest';
 
 interface interestHeartBtnProps {
   center_id: string;
-  firstState: boolean;
   top: string;
   right: string;
 }

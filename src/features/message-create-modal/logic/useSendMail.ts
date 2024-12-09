@@ -36,6 +36,7 @@ export const useSendMail = ({ user_id, setIsModalOpen }: UseSendEmailProps): Use
   };
 
   const checkSend = () => {
+    console.log('checkkkk', user_id, mailTitle, mailContent);
     if (errMsg === '') sendMail(user_id, mailTitle, mailContent);
   };
 

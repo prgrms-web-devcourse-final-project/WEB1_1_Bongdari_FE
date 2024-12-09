@@ -12,6 +12,7 @@ interface MessageCreateModalProps {
 }
 
 const MessageCreateModal: React.FC<MessageCreateModalProps> = ({ user_id, isModalOpen, setIsModalOpen }) => {
+  console.log('messageCreateModal', user_id);
   const { checkTitle, checkContent, checkSend, errMsg } = useSendMail({ user_id, setIsModalOpen });
   return (
     <MessageCreateModalCss id={user_id}>
