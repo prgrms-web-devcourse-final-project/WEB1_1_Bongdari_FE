@@ -7,7 +7,7 @@ export interface ApplicantListProps {
   recruitStatus: string;
 }
 const ApplicantList = ({ applicants, recruitStatus }: ApplicantListProps) => {
-  console.log('머읖리칸트(얜 배열)', applicants);
+  // console.log('머읖리칸트(얜 배열)', applicants);
 
   return (
     <ApplicantListWrapper>

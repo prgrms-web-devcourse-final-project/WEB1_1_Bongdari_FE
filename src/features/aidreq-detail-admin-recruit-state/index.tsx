@@ -18,6 +18,7 @@ import recruitStatusMapping, {
   statusToKorean
 } from '@/shared/mapping/aid-recruit-status-mapping';
 import { useUpdateRecruitStatus } from '@/store/queries/aidreq-detail-center/useRecruitBoard';
+import { useAlertDialog, useConfirmDialog } from '@/store/stores/dialog/dialogStore';
 
 interface AdminReqDetailAdminRecruitStateProps {
   currentStatus: RecruitAPIState;
@@ -32,17 +33,21 @@ const AdminReqDetailAdminRecruitState = ({
 }: AdminReqDetailAdminRecruitStateProps) => {
   const [activeState, setActiveState] = useState<RecruitUIState>(statusToKorean[currentStatus]);
   const { mutate: updateStatus, isPending: isUpdating } = useUpdateRecruitStatus();
+  const { openConfirm } = useConfirmDialog();
+  const { openAlert } = useAlertDialog();
 
   const handleStatusUpdate = () => {
     if (!id || isNaN(id)) return;
 
     if (currentStatus === 'COMPLETED' && recruitStatusMapping[activeState] !== 'COMPLETED') {
-      alert('종료된 모집은 상태를 변경할 수 없습니다.');
+      openAlert('종료된 모집은 상태를 변경할 수 없습니다.');
       return;
     }
 
     updateStatus({ id, status: recruitStatusMapping[activeState] });
-    alert('모집 상태가 성공적으로 변경되었습니다.');
+    openConfirm('모집 상태를 변경하시겠습니까?', () => {
+      openAlert('모집 상태가 성공적으로 변경되었습니다.');
+    });
   };
 
   console.log('현재 active된 state', activeState);

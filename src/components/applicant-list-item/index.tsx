@@ -19,6 +19,7 @@ import { useState } from 'react';
 import ApplicantDetailModal from '@/features/applicant-detail-modal';
 import type { VolunteerApply } from '@/store/queries/aidreq-detail-center/useApplicant';
 import { useApproveApplyment, useRejectApplyment } from '@/store/queries/aidreq-detail-center/useManageApplyment';
+import { useAlertDialog, useConfirmDialog } from '@/store/stores/dialog/dialogStore';
 
 interface ApplicantListItemProps {
   applicant: VolunteerApply;
@@ -27,8 +28,10 @@ interface ApplicantListItemProps {
 
 const ApplicantListItem = ({ applicant, recruitStatus }: ApplicantListItemProps) => {
   const [isOpenDetailModal, setIsOpenDetailModal] = useState(false);
+  const { openConfirm } = useConfirmDialog();
+  const { openAlert } = useAlertDialog();
 
-  console.log('applicant(얜 아이템)', applicant);
+  // console.log('applicant(얜 아이템)', applicant);
   const applymentId = applicant.id;
 
   const { mutate: approve } = useApproveApplyment();
@@ -39,11 +42,32 @@ const ApplicantListItem = ({ applicant, recruitStatus }: ApplicantListItemProps)
   };
 
   const handleRejectApplyment = () => {
-    reject(applymentId);
+    openConfirm(
+      `${applicant.volunteer.name}님의 지원을 반려하시겠습니까? 반려 후에도 수락하기로 변경할 수 있습니다.`,
+      async () => {
+        try {
+          await reject(applymentId);
+          openAlert(`${applicant.volunteer.name}님의 지원이 반려되었습니다.`);
+        } catch (error) {
+          openAlert('반려 처리 중 오류가 발생했습니다. 다시 시도해주세요.');
+          console.error('반려 처리 중 오류가 발생했습니다.', error);
+        }
+      }
+    );
   };
-
   const handleApproveApplyment = () => {
-    approve(applymentId);
+    openConfirm(
+      `${applicant.volunteer.name}님의 지원을 수학하시겠습니까? 수학 후에도 반려하기로 변경할 수 있습니다.`,
+      async () => {
+        try {
+          await approve(applymentId);
+          openAlert(`${applicant.volunteer.name}님의 지원이 성공적으로 수락되었습니다.`);
+        } catch (error) {
+          openAlert('수락 처리 중 오류가 발생했습니다. 다시 시도해주세요.');
+          console.error('수락 처리 중 오류가 발생했습니다. 다시 시도해주세요.', error);
+        }
+      }
+    );
   };
 
   return (

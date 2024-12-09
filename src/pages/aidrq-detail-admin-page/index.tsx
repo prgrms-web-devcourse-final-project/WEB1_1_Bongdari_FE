@@ -26,7 +26,7 @@ const AidRqDetailAdminPage = () => {
     setOpenAdjustmentModal(!openAdjustmentModal);
   };
 
-  console.log('모집글상세 데이터 하이', recruitDetailData);
+  // console.log('모집글상세 데이터 하이', recruitDetailData);
 
   return (
     <>
