@@ -43,22 +43,29 @@ const ReviewCreateModal: React.FC<ReviewCreateModalProps> = ({
     try {
       setIsLoading(true);
 
-      await createReview({
-        recruit_board_id: recruitBoardId,
-        title: formData.title,
-        content: formData.content,
-        img_file: formData.img_file
-      });
+      const reviewFormData = new FormData();
+      reviewFormData.append(
+        'data',
+        JSON.stringify({
+          recruit_board_id: recruitBoardId,
+          title: formData.title,
+          content: formData.content
+        })
+      );
 
-      // 성공 시 모달 닫기
+      if (formData.img_file) {
+        reviewFormData.append('img_file', formData.img_file);
+      }
+
+      await createReview(reviewFormData);
+
       SetReviewModalState(false);
-      // 폼 초기화
       setFormData({
         title: '',
         content: ''
       });
 
-      alert('리뷰가 성공적으로 작성되었습니다.');
+      console.log('리뷰가 성공적으로 작성되었습니다.');
     } catch (error) {
       let errorMessage = '리뷰 작성에 실패했습니다.';
       if (error instanceof Error) {
@@ -104,7 +111,10 @@ const ReviewCreateModal: React.FC<ReviewCreateModalProps> = ({
                 width="100%"
                 height="500px"
                 getInputText={(text) => {
-                  console.log(text);
+                  setFormData((prev) => ({
+                    ...prev,
+                    content: text
+                  }));
                 }}></TextArea>
             </div>
             <ButtonContainer>
