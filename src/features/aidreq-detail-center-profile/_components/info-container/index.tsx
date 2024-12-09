@@ -9,6 +9,7 @@ interface InfoContainerProps {
 }
 
 const InfoContainer: React.FC<InfoContainerProps> = ({ centerProfile }) => {
+  console.log(centerProfile);
   return (
     <Wrapper>
       <InterestHeartBtn
@@ -22,7 +23,7 @@ const InfoContainer: React.FC<InfoContainerProps> = ({ centerProfile }) => {
       <Explain>{centerProfile.introduce}</Explain>
       <PreferItemContainer>
         <p>이러한 지원이 필요해요!</p>
-        {centerProfile.prefer_item?.map((item) => <PreferItem label={item.itemName}></PreferItem>)}
+        {centerProfile.prefer_items?.map((item) => <PreferItem label={item.itemName}></PreferItem>)}
       </PreferItemContainer>
     </Wrapper>
   );

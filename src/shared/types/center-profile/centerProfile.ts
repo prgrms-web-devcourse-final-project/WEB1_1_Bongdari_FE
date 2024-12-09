@@ -5,8 +5,8 @@ export interface centerProfileType {
   homepage_link: string;
   introduce: string;
   img_url?: string;
-  // interest?: boolean; // 현재 로그인한 사람의 interest 여부
-  prefer_item?: centerPreferItemType[];
+  interest?: boolean; // 현재 로그인한 사람의 interest 여부
+  prefer_items?: centerPreferItemType[];
 }
 
 export interface centerPreferItemType {

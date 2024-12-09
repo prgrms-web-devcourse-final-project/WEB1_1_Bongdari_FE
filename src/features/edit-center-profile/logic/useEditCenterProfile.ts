@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useUpdateCenterProfile, type CenterProfile } from '@/store/queries/center-mypage/useCenterProfile';
+import { useAlertDialog } from '@/store/stores/dialog/dialogStore';
 
 interface UseEditCenterProfileProps {
   data: CenterProfile;
@@ -17,6 +18,8 @@ const useEditCenterProfile = ({ data }: UseEditCenterProfileProps) => {
   const [centerIntroduction, setCenterIntroduction] = useState(data.introduce);
   const [validURL, setValidURL] = useState(true);
   const [validPhone, setValidPhone] = useState(true);
+
+  const { openAlert } = useAlertDialog();
 
   // 이미지 업로드 핸들러
   const handleImageUpload = (file: File) => {
@@ -48,7 +51,7 @@ const useEditCenterProfile = ({ data }: UseEditCenterProfileProps) => {
       introduce: centerIntroduction
     };
 
-    // 성공 시 처리 (TODO: 팝업으로 변경해서 UI/UX 개선하면 좋을 것 같습니당)
+    // 성공 시 처리
     try {
       // const updateData = preview
       //   ? { data: profileData, img_file: preview }
@@ -74,10 +77,10 @@ const useEditCenterProfile = ({ data }: UseEditCenterProfileProps) => {
 
       await updateProfile.mutateAsync(updateData);
       setOriginalName(centerName.trim());
-      alert('프로필이 성공적으로 수정되었습니다.');
+      openAlert('프로필이 성공적으로 수정되었습니다.');
     } catch (error) {
       console.error('오류 발생:', error);
-      alert('프로필 수정 중 오류가 발생했습니다. 다시 시도해주세요.');
+      openAlert('프로필 수정 중 오류가 발생했습니다. 다시 시도해주세요.');
     }
   };
 

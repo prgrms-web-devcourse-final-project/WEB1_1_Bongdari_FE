@@ -59,7 +59,7 @@ const AidRqDetailPage = () => {
       {data && <TextContent data={data.data}></TextContent>}
       {data && <AidRqDetailInfo data={data.data}></AidRqDetailInfo>}
       {data && myLoginState.loginType === 'ROLE_VOLUNTEER' && (
-        <ButtonBox presentstate={presentState}>
+        <ButtonBox presentstate={presentState} recstatus={data.data.recruit_status}>
           <button
             onClick={() => {
               if (presentState?.attended) SetReviewModalState(true);
@@ -68,7 +68,7 @@ const AidRqDetailPage = () => {
           </button>
           <button
             onClick={() => {
-              if (!presentState) applyAidRq(id);
+              if (!presentState && data.data.recruit_status === 'RECRUITING') applyAidRq(id);
             }}>
             지원하기
           </button>

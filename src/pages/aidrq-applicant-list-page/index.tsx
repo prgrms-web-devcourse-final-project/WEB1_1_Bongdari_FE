@@ -17,7 +17,7 @@ const AidRqApplicantListPage = () => {
   const { page, handlePageChange } = usePagination();
   const { data: applicantsData, isLoading, isError } = useVolunteerApplies(parsedRecruitBoardId, page, 9);
 
-  console.log('모집글 상태', recruitStatus);
+  // console.log('모집글 상태', recruitStatus);
 
   if (isLoading) return <div style={{ paddingTop: '450px' }}>로딩 중...</div>;
   if (isError) return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;
