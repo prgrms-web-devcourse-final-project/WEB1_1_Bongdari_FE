@@ -10,7 +10,7 @@ interface useCommunityListReturn {
 }
 
 export const useCommunityList = ({ searchWord }: { searchWord: string }): useCommunityListReturn => {
-  const [listData, setListData] = useState<communityListType[]>();
+  const [listData, setListData] = useState<communityListType[] | undefined>();
   const [totPage, setTotPage] = useState<number>(1);
   const [currPage, setCurrPage] = useState<number>(1);
 
@@ -20,8 +20,8 @@ export const useCommunityList = ({ searchWord }: { searchWord: string }): useCom
     const fetchData = async () => {
       const data = await fetchCommunityList(searchWord, currPage - 1);
       if (data) {
-        setListData(data.data.content);
-        // console.log('listData', listData);
+        // setListData(data.content as communityListType[]); // data.content를 communityListType[]로 지정
+        setListData(data.content[0] as communityListType[]);
       }
     };
     fetchData();
@@ -32,8 +32,9 @@ export const useCommunityList = ({ searchWord }: { searchWord: string }): useCom
     const fetchData = async () => {
       const data = await fetchCommunityList(searchWord);
       if (data && !listData) {
-        setListData(data.data.content);
-        setTotPage(data.data.totalPages);
+        // setListData(data.content as communityListType[]); // data.content를 communityListType[]로 지정
+        setListData(data.content[0] as communityListType[]);
+        setTotPage(data.totalPages);
       }
     };
     fetchData();
