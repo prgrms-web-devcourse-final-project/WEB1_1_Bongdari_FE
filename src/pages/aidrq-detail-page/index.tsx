@@ -48,9 +48,9 @@ const AidRqDetailPage = () => {
     myPresentStatus(setPresentState, myLoginState.myLoginId, id);
   }, []);
 
-  useEffect(() => {
-    console.log(presentState);
-  }, [presentState]);
+  // useEffect(() => {
+  //   console.log(presentState);
+  // }, [presentState]);
 
   return (
     <Wrapper>

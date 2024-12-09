@@ -18,7 +18,8 @@ export const useSendMail = ({ user_id, setIsModalOpen }: UseSendEmailProps): Use
   const [mailTitle, setMailTitle] = useState<string>('');
   const [mailContent, setMailContent] = useState<string>('');
   const [errMsg, setErrMsg] = useState<string>('');
-  const myLoginId = useLoginStore((state) => state.myLoginId);
+  // const myLoginId = useLoginStore((state) => state.myLoginId);
+  const loginType = useLoginStore((state) => state.loginType);
 
   const checkErr = () => {
     if (mailTitle === '') setErrMsg('제목이 비어있습니다');
@@ -35,14 +36,16 @@ export const useSendMail = ({ user_id, setIsModalOpen }: UseSendEmailProps): Use
   };
 
   const checkSend = () => {
-    if (errMsg === '') sendMail(user_id, myLoginId, mailTitle, mailContent);
+    console.log('checkkkk', user_id, mailTitle, mailContent);
+    if (errMsg === '') sendMail(user_id, mailTitle, mailContent);
   };
 
-  const sendMail = (user_id: string, myLoginId: string | null, mailTitle: string, mailContent: string) => {
+  const sendMail = (user_id: string, mailTitle: string, mailContent: string) => {
     const postData = async () => {
-      postMessage('volunteer', user_id, mailTitle, mailContent);
+      if (loginType === 'ROLE_VOLUNTEER') postMessage('volunteer', user_id, mailTitle, mailContent);
+      else if (loginType === 'ROLE_CENTER') postMessage('center', user_id, mailTitle, mailContent);
     };
-    if (!myLoginId) console.error('Err: 로그인 상태가 아닙니다');
+    if (!loginType) console.error('Err: 로그인 상태가 아닙니다');
     else {
       postData();
     }

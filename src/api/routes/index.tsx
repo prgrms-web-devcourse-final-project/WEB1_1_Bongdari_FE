@@ -38,6 +38,14 @@ const MyPage = () => {
   }
 };
 
+const HomeRouter = () => {
+  // localStorage 체크
+  const isFirstVisit = localStorage.getItem('login-storage') !== null;
+
+  // 로그인 상태에 따라 리다이렉션
+  return isFirstVisit ? <Navigate to="/main" replace /> : <Navigate to="/landing" replace />;
+};
+
 const routes: RouteObject[] = [
   {
     path: '/',
@@ -45,6 +53,10 @@ const routes: RouteObject[] = [
     children: [
       {
         path: '/',
+        element: <HomeRouter />
+      },
+      {
+        path: '/main',
         element: <MainPage />
       },
       {
