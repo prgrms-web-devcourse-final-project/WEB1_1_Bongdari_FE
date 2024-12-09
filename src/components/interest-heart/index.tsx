@@ -10,8 +10,8 @@ interface interestHeartBtnProps {
   top: string;
   right: string;
 }
-const InterestHeartBtn = ({ center_id, firstState, top, right }: interestHeartBtnProps) => {
-  const { isInterest, isDisabled, onClickToggleInterest } = useInterest({ center_id, firstState });
+const InterestHeartBtn = ({ center_id, top, right }: interestHeartBtnProps) => {
+  const { isInterest, isDisabled, onClickToggleInterest } = useInterest({ center_id });
 
   return (
     <InterestHeartBtnCss

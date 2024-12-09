@@ -8,8 +8,8 @@ export const postMessage = async (
   content: string
 ) => {
   try {
-    if (from === 'center') {
-      const res: resType<number> = await axiosInstance.post('/api/note/volunteer-to-center', {
+    if (from === 'volunteer') {
+      const res: resType<number | string> = await axiosInstance.post('/api/note/volunteer-to-center', {
         receiver_id,
         title,
         content
@@ -18,8 +18,8 @@ export const postMessage = async (
 
       if (res.code >= 200 && res.code < 300) return res.data;
       else console.log(`postMessage res ${res.code}`);
-    } else if (from === 'volunteer') {
-      const res: resType<number> = await axiosInstance.post('/api/note/center-to-volunteer', {
+    } else if (from === 'center') {
+      const res: resType<number | string> = await axiosInstance.post('/api/note/center-to-volunteer', {
         receiver_id,
         title,
         content

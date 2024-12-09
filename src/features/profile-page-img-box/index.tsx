@@ -41,11 +41,11 @@ const ProfileImgBox: React.FC<ProfileImgBoxProps> = (props) => {
       </ProfileImgBoxCss>
     );
   } else {
-    const { center_id, name, homepage_link, img_url, interest } = props;
+    const { center_id, name, homepage_link, img_url } = props;
 
     return (
       <ProfileImgBoxCss id={center_id}>
-        <InterestHeartBtn center_id={center_id} firstState={interest ?? false} top={'15px'} right={'15px'} />
+        <InterestHeartBtn center_id={center_id} firstState={false} top={'15px'} right={'15px'} />
         <img src={img_url} alt="" />
         <p>
           <i>{name}</i>
