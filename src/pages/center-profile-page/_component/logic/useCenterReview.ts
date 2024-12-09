@@ -33,13 +33,13 @@ export const useCenterReview = (): useCenterReviewReturn => {
       // url에 center_id가 있을 떄만 데이터 fetch
       if (center_id) {
         const data = await fetchCenterReview(center_id);
-        if (data) setReviewData(data.data.content);
+        if (data && !reviewData) setReviewData(data.data.content);
       }
     };
     fetchData();
 
     setTotPage(reviewData?.length || 1);
-  }, [center_id]);
+  }, []);
 
   return { reviewData, totPage, currPage, setCurrPage };
 };

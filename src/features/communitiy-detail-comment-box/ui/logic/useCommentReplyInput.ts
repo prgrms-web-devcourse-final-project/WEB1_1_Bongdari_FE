@@ -35,7 +35,6 @@ export const useCommentReplyInput = ({
 
     const fetchData = async () => {
       const data = await postCommunityComment(content_id, commentText, parent_comment_id);
-      console.log('replycomment post ', data);
       // 댓글 post 성공 시 전체 댓글 다시 fetch
       if (data) {
         console.log('replycomment post ', data);

@@ -23,5 +23,7 @@ export const InterestCenterBoxCss = styled.div`
     height: 85px;
     border-radius: 50%;
     background-color: #d9d9d9;
+
+    object-fit: contain;
   }
 `;

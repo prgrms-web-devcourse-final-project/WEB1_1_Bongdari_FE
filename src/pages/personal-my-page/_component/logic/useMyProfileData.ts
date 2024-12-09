@@ -13,7 +13,7 @@ export const useMyProfileData = (): useMyProfileDataReturn => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchMyProfile();
-      if (data) setProfileData(data);
+      if (data && !profileData) setProfileData(data);
       // else
       //   setProfileData({
       //     volunteer_id: '1',

@@ -2,7 +2,16 @@ import axiosInstance from '@/api/apis';
 import { resType } from '@/shared/types/resType';
 
 // 커뮤니티 게시글 수정
-export const putMyProfile = async (formData: FormData) => {
+export const putMyProfile = async (changeProfileData: { introduce: string; nickname: string }, imgFile?: File) => {
+  const formData = new FormData();
+  formData.append('data', JSON.stringify(changeProfileData));
+  formData.append('img_file', imgFile || '');
+
+  // formData 콘솔에 찍기
+  for (const [key, value] of formData.entries()) {
+    console.log(`${key}:`, value instanceof File ? 'File object' : value);
+  }
+
   try {
     // axios PUT 요청
     const res: resType<string> = await axiosInstance.put(`/api/profile`, formData, {

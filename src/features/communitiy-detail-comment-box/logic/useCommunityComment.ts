@@ -56,47 +56,13 @@ export const useCommunityComment = (content_id: number): useCommunityCommentRetu
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchCommunityComment(content_id);
-      if (data) {
+      if (data && !commentData) {
         setCommentData(data.data.content);
-        console.log(data.data.content);
-        // } else {
-        //   setCommentData([
-        //     {
-        //       id: 11,
-        //       writer_nickname: 'Aperson123',
-        //       content:
-        //         '손모아 사이트 아주 좋습니다. 저는 6년째 사용중 입니다.손모아 사이트 아주 좋습니다. 저는 6년째 사용중 입니다.손모아 사이트 아주 좋습니다. 저는 6년째  사용중 입니다.',
-        //       updated_at: '2024-12-06T03:02:30.222Z',
-        //       replies: [
-        //         {
-        //           id: 1,
-        //           replies: [],
-        //           writer_nickname: '710minjoon',
-        //           content: '답변 감사합니다.',
-        //           updated_at: '2024-12-06T03:02:30.222Z'
-        //         },
-        //         {
-        //           id: 2,
-        //           replies: [],
-        //           writer_nickname: 'aperson123',
-        //           content: '궁금한 것 있으시면 쪽지주세요.',
-        //           updated_at: '2024-12-06T03:02:30.222Z'
-        //         }
-        //       ]
-        //     },
-        //     {
-        //       id: 22,
-        //       writer_nickname: 'joo123',
-        //       content: '혹시 다른 사이트 추천도 가능하면 댓글로 알려주세요',
-        //       updated_at: '2024-12-06T03:02:30.222Z',
-        //       replies: []
-        //     }
-        //   ]);
       }
       setCommentCount(data.data.content.length);
     };
     fetchData();
-  }, [content_id]);
+  }, []);
 
   // 로그인한 사람 이름 가져오기
   useEffect(() => {

@@ -2,6 +2,7 @@ import { InterestCenterListCss } from './indexCss';
 import { useMyInterestCenter } from './logic/useMyInterestCenter';
 import TitleWithPagenation from '@/features/personal-my-page-title-with-pagenation';
 import InterestCenterBox from './_component/InterestCenterBox';
+import { Link } from 'react-router-dom';
 
 const InterestCenterList = () => {
   const { interestCenterData, containerRef, totPage, currPage, setCurrPage } = useMyInterestCenter();
@@ -20,13 +21,9 @@ const InterestCenterList = () => {
         <div className="listShowWrap" ref={containerRef}>
           <div className="listInnerWrap">
             {interestCenterData?.map((v, i) => (
-              <InterestCenterBox
-                key={i}
-                org_id={v.center_id}
-                orgName={v.center_name}
-                orgImg={v.img_url}
-                onClickFunc={(id: string) => console.log(id)}
-              />
+              <Link to={`/centerprofile/${v.center_id}`}>
+                <InterestCenterBox key={i} orgName={v.center_name} orgImg={v.img_url} />
+              </Link>
             ))}
           </div>
         </div>

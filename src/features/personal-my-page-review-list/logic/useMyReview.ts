@@ -42,13 +42,13 @@ export const useMyReview = (): useMyReviewReturn => {
       // 로그인 상태가 아니라면 불러오지 않기
       if (myLoginId) {
         const data = await fetchMyReview(myLoginId);
-        if (data) setReviewData(data.content);
+        if (data && !reviewData) setReviewData(data.content);
       }
     };
 
     fetchData();
     calcPage();
-  }, [myLoginId]);
+  }, []);
 
   return {
     reviewData,
