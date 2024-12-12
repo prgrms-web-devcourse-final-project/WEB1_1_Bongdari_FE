@@ -4,8 +4,6 @@
 
 배포 URL: https://www.somemore.site/ <br />
 노션 링크: https://www.notion.so/prgrms/Team08-81045d7e1f3e48ccbb9b215a663b97c6 <br />
-프론트 레포지토리: https://github.com/prgrms-web-devcourse-final-project/WEB1_1_Bongdari_FE <br />
-백엔드 레포지토리: https://github.com/prgrms-web-devcourse-final-project/WEB1_1_Bongdari_BE <br />
 
 ## 🎇프로젝트 개요
 
@@ -30,15 +28,6 @@
 - [팀원 소개 및 느낀점](#팀원-소개-및-느낀점)
 
 ## 👩🏻‍💻프로젝트 구성원
-
-### Backend
-
-|                Backend                 |                Backend                 |                Backend                 |                Backend                 |
-| :-----------------------------------: | :------------------------------------: | :------------------------------------: | :------------------------------------: |
-|              **조재중(팀장)**               |              **윤서진(PM)**               |              **양아영**               |              **이범수**                |
-| [<img src="https://github.com/m-a-king.png" width="300"> <br/> @m-a-king](https://github.com/m-a-king) | [<img src="https://github.com/7zrv.png" width="300"> <br/> @7zrv](https://github.com/7zrv) | [<img src="https://github.com/ayoung-dev.png" width="300"> <br/> @ayoung-dev](https://github.com/ayoung-dev) | [<img src="https://github.com/leebs0521.png" width="300"> <br/> @leebs0521](https://github.com/leebs0521) |
-
-### Frontend
 
 |                Frontend                |                Frontend                |                Frontend                |
 | :-----------------------------------: | :------------------------------------: | :------------------------------------: |
@@ -146,34 +135,6 @@
 <img src="https://img.shields.io/badge/React_Toastify-FFB4B4?style=for-the-badge&logo=react&logoColor=black">
 </div>
 
-### 📌 Backend Tech Stack
-
-#### 🔤 언어
-<div style={{display: "flex"}}>
-<img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white">
-<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white">
-</div>
-
-#### 🛠 프레임워크
-<div style={{display: "flex"}}>
-<img src="https://img.shields.io/badge/Spring_Boot_3-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white">
-<img src="https://img.shields.io/badge/Spring_Data_JPA-6DB33F?style=for-the-badge&logo=spring&logoColor=white">
-<img src="https://img.shields.io/badge/Spring_Security-6DB33F?style=for-the-badge&logo=spring-security&logoColor=white">
-</div>
-
-#### 💾 데이터베이스
-<div style={{display: "flex"}}>
-<img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
-<img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white">
-<img src="https://img.shields.io/badge/Elasticsearch-005571?style=for-the-badge&logo=elasticsearch&logoColor=white">
-</div>
-
-#### 🚀 배포
-<div style={{display: "flex"}}>
-<img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white">
-<img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white">
-<img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white">
-</div>
 
 ### 🤝 협업 Tool
 <div style={{display: "flex"}}>
@@ -194,7 +155,7 @@
 ## 📁폴더 구조
 
 <details>
-  <summary>프론트엔드 디렉토리 구조</summary>
+  <summary>디렉토리 구조 (FSD 아키텍처)</summary>
 <pre><code>
 src
 ├── assets
@@ -248,50 +209,6 @@ src
     └── footer
 </code></pre>
 </details>
-<details>
-  <summary>백엔드 디렉토리 구조</summary>
-  <pre><code>
-com.example.develetter
-├── global
-│   ├── config
-│   ├── exception
-│   ├── handler
-│		├── common
-│   └── util
-├── center
-│   ├── domain
-│ 	│   └── entity
-│   ├── controller
-│   │   ├── query
-│   │   └── command
-│   ├── service
-│   │   ├── query
-│   │   └── command
-│   ├── dto
-│   │   ├── request
-│   │   └── response
-│   ├── repository
-│   │   ├── query
-│   │   └── command             
-│   └── scheduler
-├── volunteer
-│   ├── domain
-│ 	│   └── entity
-│   ├── controller
-│   │   ├── query
-│   │   └── command
-│   ├── service
-│   │   ├── query
-│   │   └── command
-│   ├── dto
-│   │   ├── request
-│   │   └── response
-│   ├── repository
-│   │   ├── query
-│   │   └── command             
-│   └── scheduler
-  </code></pre>
-</details>
 
 <br />
 
@@ -343,9 +260,446 @@ yarn dev
 <br />
 
 ## 🛠트러블 슈팅
+<details>
+  <summary>DOM으로 불필요한 props가 전달되는 문제</summary>
+    <div markdown="1">
+    <ul>
+      <div>
 
-- TODO: 노션링크 연결 또는 직접 작성
+## ✉️ 오류 메시지
 
+![alt text](image.png)
+
+## 📃 문제 상황
+
+CSS-in-JS 인 `styled-components`를 사용하여 props로 사용자 정의 스타일 속성을 넘겨주며 작업하다 아래와 같은 경고 메세지를 겪게 되었다. 
+
+첫 번째 문제는 React는 DOM 요소로 `borderRadius`, `bgColor` props를 인식하지 못하고 있었고, 
+
+두 번째 문제는 이 속성들을 각각 `borderradius`, `bgcolor`로 변경할 것을 권하고 있었다. 
+
+## 🤔 에러가 발생한 이유
+
+렌더링은 잘 되지만 콘솔에 경고 메세지가 뜨는게 거슬려서 이들을 다 소문자로 바꿔주었으나, 오류 메세지는 해결되지 않아서 찾아 보았더니,
+
+ `React`가 HTML DOM(위의 메시지에서는 `<button>` 태그)에 전달되지 않아야 할 사용자 정의 props(위의 메시지에서 `borderRadius`, `bgColor`등)가 전달돼 발생한다는 것을 알게 되었다. 
+
+## 🧠 해결 과정
+
+`React`는 기본적으로 HTML 표준 속성만 DOM에 렌더링 하며, 사용자 정의 속성은 DOM으로 전달되면 HTML 표준 속성이 아니라서 `React`가 인식을 하지 못 해 경고를 발생시킨다고 한다. 
+이 렌더링은 되지만, 이러한 경고를 해결하기 위해서는 `styled-components`에서 필요한 props만 필터링하여 DOM에 전달되도록 처리해야 한다고 한다. 
+
+# 💡 해결 방법
+
+현재 우리 프로젝트에서 사용하는 버전은 `v6.1.13`이고, 공식 문서에 따르면 `v5.1` 이상부터 **`shouldForwardProp`을 권장**한다고 한다. (공식문서**:** https://styled-components.com/docs/api)
+
+이 옵션을 사용하면 DOM에 전달하지 않을 props를 필터링할 수 있다고 한다. 
+
+## 🛠️ 수정
+
+그래서 아래의 코드를 다음과 같이 바꿔주었다. 
+
+- 변경 전
+    
+    ```jsx
+    import styled from 'styled-components';
+    
+    const TabButtonComponent = styled.button<{
+      border: string;
+      borderRadius: string;
+      fontSize: string;
+      bgColor: string;
+      color: string;
+      width: string;
+      height?: string;
+      disabled?: boolean;
+    }>`
+      border: ${({ border }) => border || '1px solid #DFDFDF'};
+      border-radius: ${({ borderRadius }) => borderRadius || '10px'};
+      font-size: ${({ fontSize }) => fontSize || '16px'};
+      background-color: ${({ bgColor }) => bgColor || '#2382FF'};
+      color: ${({ color }) => color || '#848484'};
+      width: ${({ width }) => width || '167px'};
+      height: ${({ height }) => height || '47px'};
+    
+      font-weight: 600;
+      cursor: pointer;
+    `;
+    
+    export default TabButtonComponent;
+    ```
+    
+- 변경 후(`shouldForwardProp` 적용)
+    
+    ```jsx
+    import styled from 'styled-components';
+    
+    const TabButtonComponent = styled.button.withConfig({
+      shouldForwardProp: (prop) =>
+        !['border', 'borderRadius', 'fontSize', 'bgColor', 'color', 'width', 'height', 'disabled'].includes(prop)
+    })<{
+      border?: string;
+      borderRadius?: string;
+      fontSize?: string;
+      bgColor?: string;
+      color?: string;
+      width?: string;
+      height?: string;
+    }>`
+      border: ${({ border }) => border || '1px solid #DFDFDF'};
+      border-radius: ${({ borderRadius }) => borderRadius || '10px'};
+      font-size: ${({ fontSize }) => fontSize || '16px'};
+      background-color: ${({ bgColor }) => bgColor || '#2382FF'};
+      color: ${({ color }) => color || '#848484'};
+      width: ${({ width }) => width || '167px'};
+      height: ${({ height }) => height || '47px'};
+    
+      font-weight: 600;
+      cursor: pointer;
+    `;
+    
+    export default TabButtonComponent;
+    ```
+    </div>
+    </ul>
+  </div>
+</details>
+<details>
+  <summary>모달 열었을 때, 모달 뒤의 브라우저 이벤트 막기</summary>
+    <div markdown="2">
+    <ul>
+      <div>
+
+## 📃 문제 상황
+
+모달을 열었을 때 모달 뒤의 body에서 클릭, 스크롤 등이 일어나는 이벤트를 막아줘야 해서 조건문과 useEffect를 이용해 isOpen === true일 때 body의 스크롤을 막고, 그 외에 경우에는 막는 속성을 제거해주는 코드를 작성해줬는데, 위의 사진처럼 모달을 열고 닫았을 때 body의 스크롤 이벤트가 제거된 상태인 문제 상황이 나타났다.
+
+```bash
+// 문제 상황이 일어난 코드
+import { useEffect } from 'react';
+import { ModalWrapper, ModalContainer, CloseButton } from './indexCss';
+
+interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  variant: 'big' | 'small';
+  children?: React.ReactNode;
+}
+
+const Modal = ({ isOpen, onClose, variant, children }: ModalProps) => {
+  useEffect(() => {
+    if (isOpen) document.body.style.overflow = 'hidden';
+    else document.body.style.removeProperty('overflow');
+  }, [isOpen]);
+
+  if (!isOpen) return null;
+
+  // 모달 내부 클릭 시 이벤트 버블링 방지
+  const handleModalClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
+
+  return (
+    <ModalWrapper onClick={onClose}>
+      <ModalContainer variant={variant} onClick={handleModalClick}>
+        {children}
+        <CloseButton onClick={onClose}>
+          <i className="fa-solid fa-x"></i>
+        </CloseButton>
+      </ModalContainer>
+    </ModalWrapper>
+  );
+};
+
+export default Modal;
+```
+
+## 🤔 에러가 발생한 이유
+
+**문제1: 스크롤 위치 손실**
+
+- `overflow-hidden`을 설정해서 모달을 열었을 때 스크롤을 잠그려고 했는데, 이 속성을 사용하면 사용자가 현재 스크롤 중이라면 모달을 닫을 때 이전 스크롤 위치를 복원하지 않는다고 한다.
+
+**문제2: `removeProperty` 가 제대로 동작 안함**
+
+- `removeProperty` 로 overflow 스타일을 삭제하려 했는데, body에 적용된 다른 속성에 의해 이 속성이 body에 적용이 안된 것 같았다.
+
+## 🧠 해결 과정
+
+위의 방법대로 했을 땐 브라우저의 스크롤 자체가 사라지며 페이지가 살짝 움직이는  layout shift 현상을 해결하기 위해 브라우저의 바깥 너비, 내부 너비를 계산해 스크롤바의 너비를 구하여 모달이 열렸을 때 padding 값을 브라우저에 주어 너비가 바뀌어 보이는 현상을 제거하고 모달을 열고 닫았을 때 스크롤 했던 위치를 기억하고 복원하는 훅을 만들어 Modal 컴포넌트에 적용해보았다. 
+
+# 💡 해결 방법
+
+---
+
+```bash
+import { useCallback, useEffect } from 'react';
+
+// 뒤의 스크롤이벤트를 없앨 경우, body의 스크롤바가 사라지면서 스크롤바가 차지하던 공간이 없어져
+//  너비가 바뀌거나 페이지가 살짝 움직이는 현상을 방지하기 위해
+// 브라우저의 스크롤바 너비를 계산하는 함수를 만들었습니다. -> 너비만큼 padding-right를 추가하기 위한 작업
+// 이렇게 하면 어제 멘토님께서 말씀하신 layout shift 현상을 방지할 수 있습니다.
+const getScrollbarWidth = () => {
+  // 보이지 않는 외부 div 생성
+  const outer = document.createElement('div');
+  outer.style.visibility = 'hidden';
+  outer.style.overflow = 'scroll';
+  document.body.appendChild(outer);
+
+  // 보이지 않는 내부 div 생성
+  const inner = document.createElement('div');
+  outer.appendChild(inner);
+
+  // 스크롤바 너비 = 외부 div 너비 - 내부 div 너비
+  const scrollbarWidth = outer.offsetWidth - inner.offsetWidth;
+  // DOM에 사용된 outer를 삭제하고 스크롤바 너비 계산한 값만 남김
+  outer.parentNode?.removeChild(outer);
+
+  return scrollbarWidth;
+};
+
+const useScrollLock = (isOpen: boolean) => {
+  // 스크롤 잠금 로직을 메모이제이션 -> 불필요한 재생성 방지
+  const lockScroll = useCallback(() => {
+    // 현재 스크롤 위치 저장하는 변수
+    const scrollY = window.scrollY;
+    const body = document.body;
+
+    // 현재 body의 스타일을 객체로 저장
+    const originalStyle = {
+      position: body.style.position,
+      top: body.style.top,
+      overflow: body.style.overflow,
+      width: body.style.width,
+      paddingRight: body.style.paddingRight
+    };
+
+    // 모달 열렸을 떄, body에 새로운 스타일 저장. 이 때 padding-right를 채워 너비 변동 방지
+    body.style.cssText = `
+      position: fixed;
+      top: -${scrollY}px;
+      overflow-y: scroll;
+      width: 100%;
+      padding-right: ${getScrollbarWidth()}px;
+    `;
+
+    // cleanup 함수
+    return () => {
+      Object.assign(body.style, originalStyle); // 모달 닫으면 원래 스타일로 복원
+      window.scrollTo(0, scrollY); // 모달 닫으면 원래 스크롤 위치로 복원
+    };
+  }, []);
+
+  // isOpen === true일 떄만 스크롤 잠금 적용
+  useEffect(() => {
+    if (isOpen) {
+      const unlock = lockScroll(); // isOpen일 때만 잠금 실행
+      return unlock; // 컴포넌트 unmount 되거나 !isOpen일 때 잠금 해제
+    }
+  }, [isOpen, lockScroll]);
+};
+
+export default useScrollLock;
+```
+
+팀원들과 미래의 내가 보기 편하게 주석을 코드마다 달아놓았다. 
+
+`getScrollbarWidth`  함수로 스크롤바 너비를 계산하고 `useScrollLock` 훅 함수를 만들어 안에 
+
+`useCallback` 을 사용해 현재 body에 적용된 속성들을 기억하는 `originalStyle`을 객체로 만들어 저장하고, 모달을 열었을 때 적용될 속성들을 getScrollbarWidth를 사용해 만들어주었다. 
+
+그리고 cleanup 함수를 통해 모달을 닫았을 때 이전에 저장된 원래 스타일대로 복원하는 작업도 해주었다.
+      </div>
+    </ul>
+  </div>
+</details>
+<details>
+  <summary>백엔드 API 연결 안됨 (MSW 도입 과정)</summary>
+    <div markdown="3">
+    <ul>
+      <div>
+
+![alt text](image-1.png)
+
+## 📃 문제 상황
+
+새로 배정받은 AWS 계정으로 프론트와 백을 각각 다시 배포하여 https 도메인을 얻어 개발을 하던 중, API 연결이 됐다가 안됐다가 하는 가챠하는 것 같은 상황이 발생했다. (누구는 되고 누구는 안되고,, 🥲)
+
+## 🤔 에러가 발생한 이유
+
+프론트 배포까지 백엔드에서 맡아서 해주셔서(정말 감사합니다) 원인은 잘 모르지만, 프론트와 백 도메인을 같이 쓰게 됐는데 여기서 요청이 백엔드로 잘 안가고 중간에 엉킨 것 같다고 하셨다. 
+
+## 🧠 해결 과정
+
+배포를 직접하지 않아 이 원인에 대해 해결책은 찾지 못했지만, 테스트를 해보며 개발을 해야 하는데 연결을 해야 하는 페이지가 많이 남았기 때문에 무작정 기다리고 있을 수만은 없어서 잠시 worker.stop() 해놓았던 msw를 다시 가동시켜 쓰기로 결정했다. 
+
+# 💡 해결 방법
+
+---
+
+우선, `main.tsx`에서 작동 중지 시켜놨던 msw worker를 작동 시켰다. 
+
+```jsx
+import { createRoot } from 'react-dom/client';
+import App from './App.tsx';
+
+async function enableMocking() {
+  if (!import.meta.env.DEV) {
+    return;
+  }
+
+  const { worker } = await import('@/mocks/browser.ts');
+
+  return worker.start({
+    onUnhandledRequest: 'bypass'
+  });
+
+  // worker.stop();
+}
+
+enableMocking().then(() => {
+  createRoot(document.getElementById('root')!).render(<App />);
+});
+```
+
+그 다음 mock 폴더의 핸들러에 api 명세에 맞게 get, post 필요한 핸들러를 작성해주었다. 
+
+```jsx
+import { http, HttpResponse } from 'msw';
+
+// post 요청 body 타입 정의
+interface PreferItemRequest {
+  item_name: string;
+}
+
+export const centerHandlers = [
+  http.get('https://somemore.site/api/center/profile/:centerId', ({ params }) => {
+    const { centerId } = params;
+
+    // 기관 프로필 get
+    return HttpResponse.json({
+      code: 200,
+      message: '조회 성공',
+      data: {
+        center_id: centerId,
+        name: '서울 도서관',
+        contact_number: '010-1234-5678',
+        img_url:
+          'https://png.pngtree.com/png-clipart/20190614/original/pngtree-company-business-business-company-friendly-man-greeting-man-png-image_3785135.jpg',
+        introduce: '서울 도서관을 소개해요',
+        homepage_link: 'https://fitnesscenter.com',
+        prefer_items: [
+          {
+            id: 1,
+            centerId: 'B84733D0-AE17-11EF-AA15-0A855994FB4B',
+            itemName: '도서 10권'
+          },
+          {
+            id: 2,
+            centerId: 'B84733D0-AE17-11EF-AA15-0A855994FB4B',
+            itemName: '옷 10벌'
+          }
+        ]
+      }
+    });
+  }),
+
+  // 기관 마이페이지 선호물품 post
+  http.post('https://somemore.site/api/preferItem', async ({ request }) => {
+    const requestData = (await request.json()) as PreferItemRequest;
+
+    return HttpResponse.json({
+      code: 200,
+      message: '요청 성공',
+      data: {
+        id: 111,
+        center_id: 'B84733D0-AE17-11EF-AA15-0A855994FB4B',
+        item_name: requestData.item_name
+      }
+    });
+  })
+];
+```
+
+그 다음 handlers/index.tsx에 핸들러 내보내기를 하고..
+
+```jsx
+// 요청을 지연시킬 수 있는 유틸리티 함수 -> api 응답을 시뮬레이션할 때 사용
+import { delay } from 'msw';
+
+// 핸들러 불러오기
+import { centerProfileHandlers } from './centerProfile-handler.mock';
+import { preferItemHandlers } from './preferItemHandler.mock';
+import { centerHandlers } from './center.mock';
+
+// 개발 환경에서만 작동하는 지연 함수
+export const delayForDevelopment = async (ms = 1000) => {
+  if (import.meta.env.NODE_ENV === 'development') {
+    await delay(ms);
+  }
+};
+
+// 배열 안에 mock-data 안에 있는 핸들러 spread 연산자로 불러오기
+export const handlers = [...centerProfileHandlers, ...preferItemHandlers, ...centerHandlers];
+```
+
+이렇게 작성을 해준 다음에 원래대로 api 호출을 하고 개발을 하면
+
+```jsx
+import { useQuery } from '@tanstack/react-query';
+import axiosInstance from '@/api/apis';
+
+export interface PreferItem {
+  id: number;
+  centerId: string;
+  itemName: string;
+}
+
+interface CenterProfile {
+  centerId: string;
+  name: string;
+  contact_number: string;
+  homepage_link: string;
+  introduce: string;
+  img_url?: string;
+  prefer_items: PreferItem[];
+}
+
+// 기관 프로필 get 해오는 fetch 함수
+const fetchCenterProfile = async (centerId: string): Promise<CenterProfile> => {
+  const response = await axiosInstance.get(`/api/center/profile/${centerId}`);
+
+  console.log('기관프로필 get 결과: ', response.data);
+
+  return response.data;
+};
+
+// TODO: 기관 프로필 수정 put 만들어야 함
+
+export const useGetCenterProfile = (centerId: string) => {
+  return useQuery({
+    queryKey: ['centerProfile', centerId],
+    queryFn: () => fetchCenterProfile(centerId),
+    staleTime: 1000 * 60 * 30, // 30분
+    gcTime: 1000 * 60 * 60 // 1시간
+  });
+};
+```
+![alt text](<image (2).png>)
+![alt text](<image (3).png>)
+      </div>
+    </ul>
+  </div>
+</details>
+<details>
+  <summary>트러블 내용</summary>
+    <div markdown="4">
+    <ul>
+      <li>슈팅 내용</li>
+      <li></li>
+    </ul>
+  </div>
+</details>
 <br />
 
 ## 🔧향후 개선 사항
