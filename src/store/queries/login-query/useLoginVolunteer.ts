@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-export const testLoginPerson = async () => {
+export const handleLoginPerson = async () => {
   try {
     const response = await axios.get(
       `${import.meta.env.VITE_APP_BASE_URL}/api/develop/token/volunteer/9a524bd3-2542-47f1-987f-8141704a6590`

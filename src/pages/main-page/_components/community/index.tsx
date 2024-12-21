@@ -1,9 +1,9 @@
 import LongListItem from '@/components/long-list-item';
 import { Bottom, Title, Top, Wrapper } from './indexCss';
-import { useMainCommunity } from './logic/fetchMainCommunity';
 import { communityListType } from '@/shared/types/community-type/CommuntiyTypes';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useMainCommunity } from '@/store/queries/main-page-common-query/useFetchMainCommunity';
 
 const Community = () => {
   const { data, isLoading, error } = useMainCommunity();

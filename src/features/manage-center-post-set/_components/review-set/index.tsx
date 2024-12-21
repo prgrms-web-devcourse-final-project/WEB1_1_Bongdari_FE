@@ -31,7 +31,7 @@ const ReviewSet = ({ centerId }: ReviewSetProps) => {
 
   const { data: reviews } = useGetCenterReviews(centerId, page, category ? aidrqCategoryMapping[category] : undefined);
 
-  console.log('기고나리뷰', reviews);
+  // console.log('기고나리뷰', reviews);
 
   const handleSelectedOption = (selectOption: string) => {
     setCategory(selectOption === '전체' ? '' : selectOption);

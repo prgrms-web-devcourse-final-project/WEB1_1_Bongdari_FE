@@ -1,12 +1,8 @@
 import axiosInstance from '@/api/apis';
 import { resType } from '@/shared/types/resType';
-import axios from 'axios';
-
 export const fetchCommunityComment = async (content_id: number) => {
   try {
-    const res = await axios.get(
-      import.meta.env.VITE_APP_BASE_URL + `/api/community-board/${content_id}/comments?sort=%5B%22DESC%22%5D`
-    );
+    const res = await axiosInstance.get(`/api/community-board/${content_id}/comments?sort=%5B%22DESC%22%5D`);
     console.log('fetchCommunityComment data', res.data);
 
     if (res.status === 200) return res.data;

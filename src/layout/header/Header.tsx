@@ -16,9 +16,9 @@ import {
 import Alert from '@/features/alert';
 import { useLoginStore } from '@/store/stores/login/loginStore';
 import { AlertType } from '@/shared/types/alert-type/AlertType';
-import { centerLogout } from './logic/centerLogout';
-import { personLogout } from './logic/personLogout';
 import axiosInstance from '@/api/apis';
+import { centerLogout } from '@/store/queries/logout-query/useCenterLogout';
+import { personLogout } from '@/store/queries/logout-query/useVolunteerLogout';
 
 export default function Header() {
   const [alertState, setAlertState] = useState(false);

@@ -1,5 +1,5 @@
+import { putMyProfile } from '@/store/queries/volunteer-mypage/usePutMyProfile';
 import { useState } from 'react';
-import { putMyProfile } from './putMyProfile';
 
 interface useEditMyyProfileReturn {
   setImg: (file: File) => void;

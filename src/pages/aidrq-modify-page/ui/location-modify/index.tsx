@@ -1,7 +1,7 @@
 import AidRqCreateLocation from '@/components/aidrq-create-location';
 import { AidRqCreateLocationWrapper, Contents, Wrapper } from './indexCss';
 import { VolunteerType, Location } from '@/shared/types/aidrq-create-type/AidRqCreateType';
-import { updateLocation } from './logic/modifyAidRqLocation';
+import { updateLocation } from '@/store/queries/aidreq-control-center-query/useModifyAidRqLocation';
 
 interface LocationModifyProps {
   id: string;

@@ -4,7 +4,7 @@ import InputBox from '@/components/inputBox';
 import TextArea from '@/components/textArea';
 import UploadBox from '@/components/img-drag-box';
 import { useState } from 'react';
-import { createReview } from './logic/createReview';
+import { createReview } from '@/store/queries/review-create-common-query/useCreateReview';
 
 interface ReviewCreateModalProps {
   reviewModalState: boolean;

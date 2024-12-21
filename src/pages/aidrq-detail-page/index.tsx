@@ -9,12 +9,12 @@ import AidRqDetailInfo from '@/features/aidreq-detail-info';
 import { AidRqDetailType } from '@/shared/types/aidrq-detail/aidrqDetailType';
 import { centerProfileType } from '@/shared/types/center-profile/centerProfile';
 import ReviewCreateModal from '@/features/review-create-modal';
-import { fetchAidRqDetail } from './logic/fetchAidRqDetail';
-import { fetchCenterProfile } from './logic/fetchCenterProfile';
-import { applyAidRq } from './logic/applyAidRq';
-import { myPresentStatus } from './logic/myPresentStatus';
 import { useLoginStore } from '@/store/stores/login/loginStore';
 import MessageCreateModal from '@/features/message-create-modal';
+import { applyAidRq } from '@/store/queries/aidreq-detail-volunteer-query/useApplyAidRq';
+import { fetchAidRqDetail } from '@/store/queries/aidreq-detail-volunteer-query/useFetchAidRqDetail';
+import { fetchCenterProfileForAidRq } from '@/store/queries/aidreq-detail-volunteer-query/useFetchCenterProfile';
+import { myPresentStatus } from '@/store/queries/aidreq-detail-volunteer-query/usePresentStatus';
 
 interface ApiResponse {
   code: number;
@@ -47,7 +47,7 @@ const AidRqDetailPage = () => {
 
   useEffect(() => {
     fetchAidRqDetail(setData, id);
-    fetchCenterProfile(setCenterData, centerId);
+    fetchCenterProfileForAidRq(setCenterData, centerId);
     myPresentStatus(setPresentState, myLoginState.myLoginId, id);
   }, []);
 

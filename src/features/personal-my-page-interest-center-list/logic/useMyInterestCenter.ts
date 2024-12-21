@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { fetchMyInterestCenter } from '@/pages/personal-my-page/_component/logic/fetchMyData';
 import { interestCenterType } from '@/shared/types/person-profile/personProfile';
+import { fetchMyInterestCenter } from '@/store/queries/volunteer-mypage/useFetchMyData';
 
 // InterestCenterList에 쓰이는 use
 interface useMyInterestCenterReturn {

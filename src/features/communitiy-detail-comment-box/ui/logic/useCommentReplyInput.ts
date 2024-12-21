@@ -1,5 +1,5 @@
+import { postCommunityComment } from '@/store/queries/community-detail-common-query/useCommunityComment';
 import { useEffect, useRef, useState } from 'react';
-import { postCommunityComment } from '../../logic/fetchCommunityComment';
 
 interface useCommentReplyInputProps {
   isAddReply: boolean;

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchPersonProfile } from './fetchPersonProfile';
 import { useLoginStore } from '@/store/stores/login/loginStore';
 import { personProfileType } from '@/shared/types/person-profile/personProfile';
+import { fetchPersonProfile } from '@/store/queries/volunteer-profile/useFetchPersonProfile';
 
 interface usePersonProfileReturn {
   userId: string | undefined;

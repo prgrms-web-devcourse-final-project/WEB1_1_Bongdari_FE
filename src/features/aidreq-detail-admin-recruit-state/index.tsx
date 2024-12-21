@@ -146,7 +146,7 @@ import recruitStatusMapping, {
   type RecruitAPIState,
   statusToKorean
 } from '@/shared/mapping/aid-recruit-status-mapping';
-import { useUpdateRecruitStatus } from '@/store/queries/aidreq-detail-center/useRecruitBoard';
+import { useUpdateRecruitStatus } from '@/store/queries/aidreq-detail-admin-query/useRecruitBoard';
 import { useAlertDialog, useConfirmDialog } from '@/store/stores/dialog/dialogStore';
 
 interface AdminReqDetailAdminRecruitStateProps {

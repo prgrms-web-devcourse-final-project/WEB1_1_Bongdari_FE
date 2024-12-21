@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { fetchMyProfile } from './fetchMyData';
 import { personProfileType } from '@/shared/types/person-profile/personProfile';
+import { fetchMyProfile } from '@/store/queries/volunteer-mypage/useFetchMyData';
 
 // PMPGTop에 쓰이는 use
 interface useMyProfileDataReturn {

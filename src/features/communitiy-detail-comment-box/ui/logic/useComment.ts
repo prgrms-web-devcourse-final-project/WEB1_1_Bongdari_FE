@@ -1,5 +1,8 @@
+import {
+  deleteCommunityComment,
+  putCommunityComment
+} from '@/store/queries/community-detail-common-query/useCommunityComment';
 import { useEffect, useRef, useState } from 'react';
-import { deleteCommunityComment, putCommunityComment } from '../../logic/fetchCommunityComment';
 
 interface useCommentProps {
   content: string;

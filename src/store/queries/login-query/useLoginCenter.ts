@@ -2,7 +2,7 @@ import axios from 'axios';
 
 //기관로그인은 폼데이터로
 
-export const testLoginCenter = async (id: string, pwd: string) => {
+export const handleLoginCenter = async (id: string, pwd: string) => {
   try {
     // FormData 객체 생성
     const formData = new FormData();

@@ -1,7 +1,7 @@
 import { Container, Wrapper } from './indexCss';
 import { AidRqDetailType } from '@/shared/types/aidrq-detail/aidrqDetailType';
-import { fetchCurrentRecruitment } from './logic/fetchCurrentRecruitment';
 import { RecruitmentState } from '@/shared/types/recruitment-state/recruitmentStateType';
+import { fetchCurrentRecruitment } from '@/store/queries/aidreq-detail-volunteer-query/useCurrentRecruitment';
 import { useEffect, useState } from 'react';
 
 interface AidRqDetailCenterProfileProps {

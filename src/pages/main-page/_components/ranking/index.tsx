@@ -1,5 +1,5 @@
+import { useRanking } from '@/store/queries/main-page-common-query/useFetchRanking';
 import { Bottom, Title, Top, Wrapper } from './indexCss';
-import { useRanking } from './logic/fetchRanking';
 import RankItem from './ui/rank-item';
 import { RankingDataType } from '@/shared/types/ranking-data/RankingDataType';
 

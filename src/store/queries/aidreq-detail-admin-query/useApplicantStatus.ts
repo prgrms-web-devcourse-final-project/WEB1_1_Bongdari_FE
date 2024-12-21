@@ -1,5 +1,5 @@
-import { fetchCurrentRecruitment } from '@/features/aidreq-detail-info/_components/current-recruit/logic/fetchCurrentRecruitment';
 import { useQuery } from '@tanstack/react-query';
+import { fetchCurrentRecruitment } from '../aidreq-detail-volunteer-query/useCurrentRecruitment';
 
 export const useCurrentRecruitment = (id: number) => {
   return useQuery({

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { fetchMyReview } from '@/pages/personal-my-page/_component/logic/fetchMyData';
 import { reviewType } from '@/shared/types/person-profile/personProfile';
 import { useLoginStore } from '@/store/stores/login/loginStore';
+import { fetchMyReview } from '@/store/queries/volunteer-mypage/useFetchMyData';
 
 // ReviewList에 쓰이는 use
 interface useMyReviewReturn {

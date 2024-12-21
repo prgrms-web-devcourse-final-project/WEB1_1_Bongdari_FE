@@ -1,6 +1,6 @@
 import { communityListType } from '@/shared/types/community-type/CommuntiyTypes';
+import { fetchCommunityList } from '@/store/queries/community-list-common-query/useCommunityList';
 import { useEffect, useState } from 'react';
-import { fetchCommunityList } from './fetchCommunityList';
 
 interface useCommunityListReturn {
   listData: communityListType[] | undefined;

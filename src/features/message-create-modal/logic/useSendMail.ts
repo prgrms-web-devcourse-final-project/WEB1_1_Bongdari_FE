@@ -1,6 +1,6 @@
+import { postMessage } from '@/store/queries/message-create-common-query/usePostMessage';
 import { useLoginStore } from '@/store/stores/login/loginStore';
 import { useState } from 'react';
-import { postMessage } from './postMessage';
 
 interface UseSendEmailProps {
   user_id: string;
