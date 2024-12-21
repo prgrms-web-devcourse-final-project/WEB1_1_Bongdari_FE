@@ -1,10 +1,5 @@
 import axiosInstance from '@/api/apis';
-interface LocationData {
-  region: string;
-  address: string;
-  latitude: number;
-  longitude: number;
-}
+import { LocationData } from '@/shared/types/location/locationType';
 
 export const updateLocation = async (id: string, locationData: LocationData) => {
   try {

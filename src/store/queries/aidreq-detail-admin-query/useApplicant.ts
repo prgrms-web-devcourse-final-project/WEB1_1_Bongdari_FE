@@ -1,34 +1,9 @@
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import axiosInstance from '@/api/apis';
+import { VolunteerApplyParams } from '@/shared/types/aidrq-volunteer-list/volunteerListType';
 // import Cookies from 'js-cookie';
 
 // 지원자 리스트 api
-
-export interface Volunteer {
-  id: string;
-  name: string;
-  nickname: string;
-  email: string;
-  img_url: string;
-}
-
-export interface VolunteerApply {
-  id: number;
-  recruit_board_id: number;
-  status: 'WAITING' | 'APPROVED' | 'REJECTED';
-  attend: boolean;
-  created_at: string;
-  updated_at: string;
-  volunteer: Volunteer;
-}
-
-interface VolunteerApplyParams {
-  recruitBoardId: number;
-  page: number;
-  size: number;
-  status?: 'WAITING' | 'APPROVED' | 'REJECTED';
-  attended?: boolean;
-}
 
 const getVolunteerApplies = async ({ recruitBoardId, page, size, attended, status }: VolunteerApplyParams) => {
   const params = new URLSearchParams({

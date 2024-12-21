@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { useUpdateCenterProfile, type CenterProfile } from '@/store/queries/center-mypage/useCenterProfile';
+import { useUpdateCenterProfile } from '@/store/queries/center-mypage/useCenterProfile';
 import { useAlertDialog } from '@/store/stores/dialog/dialogStore';
+import { centerProfileType } from '@/shared/types/center-profile/centerProfile';
 
 interface UseEditCenterProfileProps {
-  data: CenterProfile;
+  data: centerProfileType;
 }
 
 const useEditCenterProfile = ({ data }: UseEditCenterProfileProps) => {

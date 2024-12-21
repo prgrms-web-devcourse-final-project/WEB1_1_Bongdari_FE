@@ -5,17 +5,12 @@ import TextArea from '@/components/textArea';
 import UploadBox from '@/components/img-drag-box';
 import { useState } from 'react';
 import { createReview } from '@/store/queries/review-create-common-query/useCreateReview';
+import { ReviewForm } from '@/shared/types/review/reviewType';
 
 interface ReviewCreateModalProps {
   reviewModalState: boolean;
   SetReviewModalState: (state: boolean) => void;
   recruitBoardId: number;
-}
-
-interface ReviewForm {
-  title: string;
-  content: string;
-  img_file?: File;
 }
 
 const ReviewCreateModal: React.FC<ReviewCreateModalProps> = ({

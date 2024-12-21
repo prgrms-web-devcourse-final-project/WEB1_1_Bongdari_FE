@@ -47,10 +47,10 @@ export const useCommunityComment = (content_id: number): useCommunityCommentRetu
     const fetchData = async () => {
       const data = await fetchCommunityComment(content_id);
       if (data) {
-        setCommentData(data.data.content);
-        console.log(data.data.content);
+        setCommentData(data.content);
+        console.log(data.content);
       }
-      setCommentCount(data.data.content.length);
+      setCommentCount(data.content.length);
     };
     fetchData();
   };
@@ -60,9 +60,9 @@ export const useCommunityComment = (content_id: number): useCommunityCommentRetu
     const fetchData = async () => {
       const data = await fetchCommunityComment(content_id);
       if (data && !commentData) {
-        setCommentData(data.data.content);
+        setCommentData(data.content);
       }
-      setCommentCount(data.data.content.length);
+      setCommentCount(data.content.length);
     };
     fetchData();
   }, []);

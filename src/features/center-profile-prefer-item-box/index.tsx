@@ -2,6 +2,7 @@ import { centerPreferItemType } from '@/shared/types/center-profile/centerProfil
 import { ProfilePreferItemBoxCss } from './indexCss';
 
 const ProfilePreferItemBox = ({ preferItems }: { preferItems: centerPreferItemType[] }) => {
+  console.log('이거확인좀', preferItems);
   return (
     <ProfilePreferItemBoxCss>
       <p className="blueTitle">필요한 지원물품</p>

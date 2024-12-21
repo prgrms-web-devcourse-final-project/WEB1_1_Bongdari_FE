@@ -2,17 +2,6 @@ import axiosInstance from '@/api/apis';
 import { useQuery } from '@tanstack/react-query';
 // import Cookies from 'js-cookie';
 
-export interface Review {
-  id: number;
-  volunteer_id: string;
-  volunteer_nickname: string;
-  title: string;
-  content: string;
-  img_url: string;
-  created_at: string;
-  updated_at: string;
-}
-
 // 리뷰 목록 조회
 const fetchCenterReviews = async (centerId: string, page: number, category?: string) => {
   let url = `/api/reviews/center/${centerId}?page=${page}&size=10`;

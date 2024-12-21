@@ -18,7 +18,7 @@ interface personProfileDetailType {
   email: string;
   gender: 'male' | 'female';
   birthDate: string;
-  contactNumber: string;
+  contact_number: string;
 }
 
 export interface myVolunteerType {

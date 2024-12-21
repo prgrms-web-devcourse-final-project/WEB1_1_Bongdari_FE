@@ -1,16 +1,7 @@
 import axiosInstance from '@/api/apis';
 import axios from 'axios';
 
-interface RegularData {
-  title: string;
-  content: string;
-  region: string;
-  recruitment_count: number;
-  volunteer_start_date_time: string;
-  volunteer_end_date_time: string;
-  volunteer_category: string;
-  admitted: boolean;
-}
+import { RegularData } from '@/shared/types/aidrq-detail/aidrqDetailType';
 
 export const updateRegular = async (id: string, changedRegular: RegularData, imgFile?: File) => {
   try {

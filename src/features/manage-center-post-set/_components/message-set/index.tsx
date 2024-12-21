@@ -4,9 +4,10 @@ import { useQueryClient } from '@tanstack/react-query';
 
 import MessageLabel from '@/components/label/MessageLabel';
 import { Author, CustomPagination, List, ListItem, ListItemTitle, NoteSetTitle, StateBox, Wrapper } from './indexCss';
-import { useMessageList, type MessageItem } from '@/store/queries/center-mypage/useMessage';
+import { useMessageList } from '@/store/queries/center-mypage/useMessage';
 import { usePagination } from '@/shared/hooks/usePagination';
 import MessageReadModal from '@/features/message-read-modal';
+import { MessageItem } from '@/shared/types/message/messageItemType';
 
 interface MessageListResponse {
   content: MessageItem[];

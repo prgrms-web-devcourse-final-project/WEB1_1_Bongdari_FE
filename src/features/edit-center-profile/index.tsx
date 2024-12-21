@@ -9,10 +9,10 @@ import {
   SectionBox
 } from './indexCss';
 import useEditCenterProfile from './logic/useEditCenterProfile';
-import type { CenterProfile } from '@/store/queries/center-mypage/useCenterProfile';
+import { centerProfileType } from '@/shared/types/center-profile/centerProfile';
 
 interface EditCenterProfileProps {
-  data: CenterProfile;
+  data: centerProfileType;
 }
 
 const EditCenterProfile = ({ data }: EditCenterProfileProps) => {
