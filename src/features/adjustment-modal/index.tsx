@@ -15,10 +15,10 @@ import {
   TitleBox
 } from './indexCss';
 import { Checkbox } from '@mui/material';
-import { useVolunteerApplies, type VolunteerApply } from '@/store/queries/aidreq-detail-center/useApplicant';
+import { useVolunteerApplies, type VolunteerApply } from '@/store/queries/aidreq-detail-admin-query/useApplicant';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useSettleApplyment } from '@/store/queries/aidreq-detail-center/useManageApplyment';
+import { useSettleApplyment } from '@/store/queries/aidreq-detail-admin-query/useManageApplyment';
 
 interface AdjustmentModalProps {
   setOpenAdjustmentModal: (isOpen: boolean) => void;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { reviewType } from '@/shared/types/person-profile/personProfile';
-import { fetchCenterReview } from './fetchCenterData';
+import { fetchCenterReview } from '@/store/queries/center-profile-query/useFetchCenterData';
 
 interface useCenterReviewReturn {
   reviewData: reviewType[] | undefined;

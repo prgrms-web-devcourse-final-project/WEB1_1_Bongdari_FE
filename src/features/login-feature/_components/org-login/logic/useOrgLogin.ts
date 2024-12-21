@@ -1,5 +1,5 @@
+import { handleLoginCenter } from '@/store/queries/login-query/useLoginCenter';
 import { useState } from 'react';
-import { testLoginCenter } from './testLoginCenter';
 import { useNavigate } from 'react-router-dom';
 // import { useLoginStore } from '@/store/stores/login/loginStore';
 
@@ -47,7 +47,7 @@ export const useOrgLogin = (): useOrgLoginReturn => {
       console.log(id, pwd, '로그인시도');
 
       try {
-        const response = await testLoginCenter(id, pwd);
+        const response = await handleLoginCenter(id, pwd);
         console.log(response);
         // setLoginInfo('centertestid', 'center');
         navigate('/main');

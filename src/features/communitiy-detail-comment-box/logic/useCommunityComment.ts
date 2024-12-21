@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
-import { fetchCommunityComment, postCommunityComment } from './fetchCommunityComment';
 import { commentType } from '@/shared/types/community-type/CommuntiyTypes';
-import { fetchMyProfile } from '@/pages/personal-my-page/_component/logic/fetchMyData';
 import { useLoginStore } from '@/store/stores/login/loginStore';
+import {
+  fetchCommunityComment,
+  postCommunityComment
+} from '@/store/queries/community-detail-common-query/useCommunityComment';
+import { fetchMyProfile } from '@/store/queries/volunteer-mypage/useFetchMyData';
 
 interface useCommunityCommentReturn {
   commentData: commentType[] | undefined;

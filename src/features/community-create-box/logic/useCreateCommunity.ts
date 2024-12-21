@@ -1,8 +1,8 @@
-import { fetchCommunityDetailContent } from '@/features/communitiy-detail-content-box/logic/fetchCommunityDetailContent';
 import { useEffect, useState } from 'react';
-import { postCommunity, putCommunity } from './postCommunity';
 import { useNavigate } from 'react-router-dom';
 import { useLoginStore } from '@/store/stores/login/loginStore';
+import { fetchCommunityDetailContent } from '@/store/queries/community-detail-common-query/useCommunityDetailContent';
+import { postCommunity, putCommunity } from '@/store/queries/community-create-common-query/useControlCommunity';
 
 interface useCreateCommunityReturn {
   titleText: string;

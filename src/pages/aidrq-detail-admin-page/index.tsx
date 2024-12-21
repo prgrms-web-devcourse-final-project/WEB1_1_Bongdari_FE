@@ -60,9 +60,9 @@ import { PageWrapper } from './indexCss';
 import ButtonGroup from './ui/button-group';
 import { useState } from 'react';
 import AdjustmentModal from '@/features/adjustment-modal';
-import { useGetRecruitDetail } from '@/store/queries/aidreq-detail-center/useAidRqDetail';
+import { useGetRecruitDetail } from '@/store/queries/aidreq-detail-admin-query/useAidRqDetail';
 import type { RecruitAPIState } from '@/shared/mapping/aid-recruit-status-mapping';
-import { useCurrentRecruitment } from '@/store/queries/aidreq-detail-center/useApplicantStatus';
+import { useCurrentRecruitment } from '@/store/queries/aidreq-detail-admin-query/useApplicantStatus';
 
 const AidRqDetailAdminPage = () => {
   const { id } = useParams();

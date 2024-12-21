@@ -16,7 +16,7 @@ import {
   SimpleProfileList,
   SimpleItem
 } from './indexCss';
-import useApplicantDetail from '@/store/queries/aidreq-detail-center/useApplicantDetail';
+import useApplicantDetail from '@/store/queries/aidreq-detail-admin-query/useApplicantDetail';
 
 interface ApplicantDetailModalProps {
   handleOpenDetailProfileModal: () => void;

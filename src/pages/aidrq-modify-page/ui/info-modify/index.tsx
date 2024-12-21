@@ -5,7 +5,7 @@ import AidRqCreateDate from '@/components/aidrq-create-date';
 import TextArea from '@/components/textArea';
 import { VolunteerType } from '@/shared/types/aidrq-create-type/AidRqCreateType';
 import { useEffect } from 'react';
-import { updateRegular } from './logic/modifyAidRqRegular';
+import { updateRegular } from '@/store/queries/aidreq-control-center-query/useModifyAidRqRegular';
 
 interface InfoModifyProps {
   id: string;

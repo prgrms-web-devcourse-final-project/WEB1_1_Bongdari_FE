@@ -5,7 +5,7 @@ import { Title, Wrapper } from './indexCss';
 import InfoModify from './ui/info-modify';
 import LocationModify from './ui/location-modify';
 import { VolunteerType, Location } from '@/shared/types/aidrq-create-type/AidRqCreateType';
-import { fetchAidRqDefault } from './logic/fetchAidRqDefault';
+import { fetchAidRqDefault } from '@/store/queries/aidreq-control-center-query/useFetchAidRqDefault';
 
 const AidRqModifyPage = () => {
   const location = useLocation();

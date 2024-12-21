@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { myMessageType, myVolunteerType } from '@/shared/types/person-profile/personProfile';
-import { fetchMyMessage, fetchMyVolunteer } from '@/pages/personal-my-page/_component/logic/fetchMyData';
 import { useLoginStore } from '@/store/stores/login/loginStore';
+import { fetchMyMessage, fetchMyVolunteer } from '@/store/queries/volunteer-mypage/useFetchMyData';
 
 interface useHalfListProps {
   listType: 'myVolunteer' | 'myMessage';

@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 
 import AidReqListItem from '@/components/aidreq-list-Item';
 import { Wrapper } from './indexCss';
-import { fetchListShort } from './logic/fetchListShort';
 import { AidRequest } from '@/shared/types/aidrq-list-item/aidrqListItemType';
+import { fetchListShort } from '@/store/queries/main-page-common-query/useListShort';
 
 const AidRqListShort = () => {
   const [aidRequests, setAidRequests] = useState<AidRequest[]>([]);

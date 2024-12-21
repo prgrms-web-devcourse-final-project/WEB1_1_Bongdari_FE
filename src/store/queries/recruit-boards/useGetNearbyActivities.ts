@@ -20,7 +20,7 @@ const getNearbyActivities = async ({
       keyword
     }
   });
-  console.log('근처 데이터: ', response.data.content);
+  // console.log('근처 데이터: ', response.data.content);
 
   return response.data.content;
 };

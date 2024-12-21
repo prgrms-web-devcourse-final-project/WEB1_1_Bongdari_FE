@@ -7,8 +7,8 @@ import LocationBox from './ui/location';
 import VolunteerDate from './ui/volunteer-date';
 import Explanation from './ui/explanation';
 import { VolunteerType, Location } from '@/shared/types/aidrq-create-type/AidRqCreateType';
-import { postAidRq } from './logic/postAidRq';
 import { useNavigate } from 'react-router-dom';
+import { postAidRq } from '@/store/queries/aidreq-control-center-query/usePostAidRq';
 
 const AidRqCreatePage = () => {
   const navigate = useNavigate();

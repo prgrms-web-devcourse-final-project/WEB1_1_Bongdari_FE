@@ -8,7 +8,7 @@ interface CenterResponse {
   data: centerProfileType;
 }
 
-export const fetchCenterProfile = async (
+export const fetchCenterProfileForAidRq = async (
   setCenterData: Dispatch<SetStateAction<CenterResponse | null>>,
   centerId: string
 ) => {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { centerProfileType } from '@/shared/types/center-profile/centerProfile';
-import { fetchCenterProfile } from './fetchCenterData';
+import { fetchCenterProfile } from '@/store/queries/center-profile-query/useFetchCenterData';
 
 interface useCenterProfileReturn {
   profileData: centerProfileType | undefined;

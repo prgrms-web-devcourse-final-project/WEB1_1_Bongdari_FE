@@ -36,8 +36,8 @@ const ReviewReadModal = ({ handleCloseReviewModal, reviewId }: ReviewModalProps)
   if (isReviewLoading || isVolunteerLoading) return <div>로딩중...</div>;
   if (!reviewData || !volunteerData) return null;
 
-  console.log('reviewData', reviewData);
-  console.log('volunteerData', volunteerData);
+  // console.log('reviewData', reviewData);
+  // console.log('volunteerData', volunteerData);
 
   return (
     <Modal variant="big" isOpen onClose={handleCloseReviewModal}>
