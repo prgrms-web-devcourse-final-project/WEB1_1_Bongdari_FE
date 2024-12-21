@@ -2,7 +2,6 @@ import theme from '@/styles/theme';
 import { InputBoxContainer, Wrapper } from './indexCss';
 import { OtherButton } from '@/components/button';
 import InputBox from '@/components/inputBox';
-import testFunc from './logic/testFunc';
 import { useState } from 'react';
 
 interface NonFilterSearchBar {
@@ -14,6 +13,10 @@ const NonFilterSearchBar: React.FC<NonFilterSearchBar> = ({ type, getInput }) =>
   const [word, setWord] = useState<string>('');
   const onClickGetInput = () => {
     if (getInput) getInput(word);
+  };
+
+  const testFunc = () => {
+    console.log('test');
   };
 
   return (

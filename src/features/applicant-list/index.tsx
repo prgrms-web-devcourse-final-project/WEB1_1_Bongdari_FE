@@ -1,6 +1,6 @@
 import ApplicantListItem from '@/components/applicant-list-item';
 import { ApplicantListWrapper } from './indexCss';
-import type { VolunteerApply } from '@/store/queries/aidreq-detail-admin-query/useApplicant';
+import { VolunteerApply } from '@/shared/types/aidrq-volunteer-list/volunteerListType';
 
 export interface ApplicantListProps {
   applicants: VolunteerApply[];

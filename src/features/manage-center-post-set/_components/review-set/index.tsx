@@ -13,9 +13,10 @@ import {
 } from './indexCss';
 import { useState } from 'react';
 import aidrqCategoryMapping from '@/shared/mapping/aidrq-category-mapping';
-import { useGetCenterReviews, type Review } from '@/store/queries/center-mypage/useReview';
+import { useGetCenterReviews } from '@/store/queries/center-mypage/useReview';
 import { usePagination } from '@/shared/hooks/usePagination';
 import ReviewReadModal from '@/features/review-read-modal';
+import { Review } from '@/shared/types/review/reviewType';
 
 interface ReviewSetProps {
   centerId: string;

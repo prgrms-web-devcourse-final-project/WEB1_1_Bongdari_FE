@@ -22,3 +22,15 @@ export interface AidRqDetailType {
   location: Location;
   region: string;
 }
+
+//수정 시에 location 제외한 수정가능 데이터 타입
+export interface RegularData {
+  title: string;
+  content: string;
+  region: string;
+  recruitment_count: number;
+  volunteer_start_date_time: string;
+  volunteer_end_date_time: string;
+  volunteer_category: string;
+  admitted: boolean;
+}

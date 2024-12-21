@@ -15,27 +15,11 @@ import { applyAidRq } from '@/store/queries/aidreq-detail-volunteer-query/useApp
 import { fetchAidRqDetail } from '@/store/queries/aidreq-detail-volunteer-query/useFetchAidRqDetail';
 import { fetchCenterProfileForAidRq } from '@/store/queries/aidreq-detail-volunteer-query/useFetchCenterProfile';
 import { myPresentStatus } from '@/store/queries/aidreq-detail-volunteer-query/usePresentStatus';
-
-interface ApiResponse {
-  code: number;
-  message: string;
-  data: AidRqDetailType;
-}
-
-interface CenterResponse {
-  code: number;
-  message: string;
-  data: centerProfileType;
-}
-
-interface PresentResponse {
-  status: string;
-  attended: boolean;
-}
+import { PresentResponse } from '@/shared/types/aidrq-detail/PresentResponse';
 
 const AidRqDetailPage = () => {
-  const [data, setData] = useState<ApiResponse | null>(null);
-  const [centerData, setCenterData] = useState<CenterResponse | null>(null);
+  const [data, setData] = useState<AidRqDetailType | null>(null);
+  const [centerData, setCenterData] = useState<centerProfileType | null>(null);
   const [reviewModalState, SetReviewModalState] = useState(false);
   const [presentState, setPresentState] = useState<PresentResponse | null>(null);
   const myLoginState = useLoginStore((state) => state);
@@ -46,25 +30,26 @@ const AidRqDetailPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    fetchAidRqDetail(setData, id);
-    fetchCenterProfileForAidRq(setCenterData, centerId);
-    myPresentStatus(setPresentState, myLoginState.myLoginId, id);
+    const handleFetch = async () => {
+      const data = await fetchAidRqDetail(id);
+      setData(data);
+      const centerData = await fetchCenterProfileForAidRq(centerId);
+      setCenterData(centerData);
+      myPresentStatus(setPresentState, myLoginState.myLoginId, id);
+    };
+    handleFetch();
   }, []);
-
-  useEffect(() => {
-    console.log(presentState);
-  }, [presentState]);
 
   return (
     <Wrapper>
-      {data && <Title data={data.data}></Title>}
+      {data && <Title data={data}></Title>}
       {centerData && (
-        <AidRqDetailCenterProfile data={centerData.data} setIsModalOpen={setIsModalOpen}></AidRqDetailCenterProfile>
+        <AidRqDetailCenterProfile data={centerData} setIsModalOpen={setIsModalOpen}></AidRqDetailCenterProfile>
       )}
-      {data && <TextContent data={data.data}></TextContent>}
-      {data && <AidRqDetailInfo data={data.data}></AidRqDetailInfo>}
+      {data && <TextContent data={data}></TextContent>}
+      {data && <AidRqDetailInfo data={data}></AidRqDetailInfo>}
       {data && myLoginState.loginType === 'ROLE_VOLUNTEER' && (
-        <ButtonBox presentstate={presentState} recstatus={data.data.recruit_status}>
+        <ButtonBox presentstate={presentState} recstatus={data.recruit_status}>
           <button
             onClick={() => {
               if (presentState?.attended) SetReviewModalState(true);
@@ -74,7 +59,7 @@ const AidRqDetailPage = () => {
           <button
             onClick={() => {
               const handleClick = async () => {
-                if (presentState?.status === 'none' && data.data.recruit_status === 'RECRUITING') {
+                if (presentState?.status === 'none' && data.recruit_status === 'RECRUITING') {
                   await applyAidRq(id);
                   window.location.reload();
                 }

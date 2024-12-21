@@ -11,6 +11,7 @@ interface TopProps {
   category: string;
   admitted: boolean;
 }
+
 const Top = ({ title, content, center, category, admitted }: TopProps) => {
   return (
     <Wrapper>

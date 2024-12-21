@@ -1,12 +1,7 @@
 import axiosInstance from '@/api/apis';
+import { interestType } from '@/shared/types/interest/interestType';
 import { resType } from '@/shared/types/resType';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-
-interface interestType {
-  id: number;
-  volunteer_id: string;
-  center_id: string;
-}
 
 export const postInterest = async (center_id: string) => {
   try {

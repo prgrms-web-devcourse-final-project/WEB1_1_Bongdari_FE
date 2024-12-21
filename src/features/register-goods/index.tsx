@@ -41,8 +41,8 @@ const RegisterGoods = ({ name, preferData }: RegisterGoodsProps) => {
         // 새 아이템을 로컬 상태에 추가 -> 즉시 ui에 반영하기 위해
         const newItem: centerPreferItemType = {
           id: response.id,
-          centerId: response.center_id,
-          itemName: response.item_name
+          centerId: response.centerId,
+          itemName: response.itemName
         };
         addGoodsToList(newItem);
         setCurrentInput('');

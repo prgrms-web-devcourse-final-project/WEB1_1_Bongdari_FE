@@ -1,13 +1,7 @@
 import axiosInstance from '@/api/apis';
+import { centerPreferItemType } from '@/shared/types/center-profile/centerProfile';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 // import Cookies from 'js-cookie';
-
-// 기관 물품 등록 api ------------------------------------------------------
-export interface PreferItemResponse {
-  id: number;
-  center_id: string;
-  item_name: string;
-}
 
 // 물품 POST fetch 함수
 const addPreferItem = async (itemName: string) => {
@@ -23,7 +17,7 @@ const addPreferItem = async (itemName: string) => {
   //   }
   // );
 
-  const response = await axiosInstance.post<PreferItemResponse>('/api/preferItem', {
+  const response = await axiosInstance.post<centerPreferItemType>('/api/preferItem', {
     item_name: itemName
   });
 

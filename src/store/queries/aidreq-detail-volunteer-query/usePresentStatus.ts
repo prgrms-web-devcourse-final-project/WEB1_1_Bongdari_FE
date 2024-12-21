@@ -1,10 +1,6 @@
+import { PresentResponse } from '@/shared/types/aidrq-detail/PresentResponse';
 import axios from 'axios';
 import { Dispatch, SetStateAction } from 'react';
-
-interface PresentResponse {
-  status: string;
-  attended: boolean;
-}
 
 export const myPresentStatus = async (
   setPresentState: Dispatch<SetStateAction<PresentResponse | null>>,

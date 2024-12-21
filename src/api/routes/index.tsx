@@ -2,7 +2,6 @@
 import { createBrowserRouter, Navigate, RouteObject } from 'react-router-dom';
 import Layout from '@/layout/Layout';
 import MainPage from '@/pages/main-page/MainPage';
-import TestPage from '@/pages/test-page';
 import LoginPage from '@/pages/login-page/LoginPage';
 import AidRqListPage from '@/pages/aidrq-list-page';
 import AidRqDetailPage from '@/pages/aidrq-detail-page';
@@ -134,11 +133,6 @@ const routes: RouteObject[] = [
       {
         path: '/findnearmyactivity',
         element: <FindNearByActivityPage />
-      },
-      // "/test" 경로는 아래에 둘 수 있도록 해주세요 (이 위로 라우팅 설정 해달라는 뜻입니다)
-      {
-        path: '/test',
-        element: <TestPage />
       }
     ]
   }

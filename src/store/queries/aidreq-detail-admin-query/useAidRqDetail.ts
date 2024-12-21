@@ -1,31 +1,9 @@
 import axiosInstance from '@/api/apis';
 import { useQuery } from '@tanstack/react-query';
 
-// 모집글 상세 관리 페이지 api
-interface RecruitDetail {
-  id: number;
-  center_id: string;
-  created_at: string;
-  updated_at: string;
-  title: string;
-  content: string;
-  region: string;
-  recruit_status: string;
-  recruitment_count: number;
-  volunteer_start_date_time: string;
-  volunteer_end_date_time: string;
-  volunteer_category: string;
-  volunteer_time: string;
-  admitted: boolean;
-  img_url: string;
-  location: {
-    address: string;
-    latitude: number;
-    longitude: number;
-  };
-}
+import { AidRqDetailType } from '@/shared/types/aidrq-detail/aidrqDetailType';
 
-const fetchRecruitDetail = async (id: number): Promise<RecruitDetail> => {
+const fetchRecruitDetail = async (id: number): Promise<AidRqDetailType> => {
   const response = await axiosInstance.get(`/api/recruit-board/${id}`);
   return response.data;
 };

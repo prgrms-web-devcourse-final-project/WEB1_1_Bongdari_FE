@@ -1,16 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import axiosInstance from '@/api/apis';
+import { personProfileType } from '@/shared/types/person-profile/personProfile';
 // import Cookies from 'js-cookie';
 
 // 해당 기관에게 온 쪽지 리스트 api---------------------------------------------------------------
-export interface MessageItem {
-  id: number;
-  title: string;
-  sender_id: string;
-  sender_name: string;
-  is_read: boolean;
-}
-
 const fetchMessageList = async (page: number) => {
   // const response = await axiosInstance.get(`/api/note/center?page=${page}&size=6`, {
   //   headers: {
@@ -31,15 +24,6 @@ export const useMessageList = (page: number) => {
 };
 
 // 해당 기관에게 온 쪽지 상세 조회 api -----------------------------------------------------------
-export interface MessageItemDetail {
-  note_id: number;
-  title: string;
-  content: string;
-  sender_id: string;
-  sender_name: string;
-  sender_profile_img_link: string;
-  created_at: string;
-}
 
 const fetchMessageDetail = async (noteId: number, type: 'center' | 'volunteer') => {
   if (type === 'center') {
@@ -67,30 +51,13 @@ export const useMessageDetail = (noteId: number, type: 'center' | 'volunteer') =
 //   data: ProfileDetail;
 // }
 
-export interface ProfileDetail {
-  volunteer_id: string;
-  nickname: string;
-  img_url: string;
-  introduce: string;
-  tier: string;
-  total_volunteer_hours: number;
-  total_volunteer_count: number;
-  detail: {
-    name: string;
-    email: string;
-    gender: string;
-    birth_date: string;
-    contact_number: string;
-  };
-}
-
 const fetchProfileDetail = async (senderId: string) => {
-  const response = await axiosInstance.get<ProfileDetail>(`/api/volunteer/profile/${senderId}`);
+  const response = await axiosInstance.get<personProfileType>(`/api/volunteer/profile/${senderId}`);
   return response.data;
 };
 
 export const useApplicantDetail = (senderId: string) => {
-  return useQuery<ProfileDetail>({
+  return useQuery<personProfileType>({
     // ApiResponse 타입으로 지정
     queryKey: ['profileDetail', senderId],
     queryFn: () => fetchProfileDetail(senderId),

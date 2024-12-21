@@ -17,9 +17,9 @@ import {
 } from './indexCss';
 import { useState } from 'react';
 import ApplicantDetailModal from '@/features/applicant-detail-modal';
-import type { VolunteerApply } from '@/store/queries/aidreq-detail-admin-query/useApplicant';
 import { useApproveApplyment, useRejectApplyment } from '@/store/queries/aidreq-detail-admin-query/useManageApplyment';
 import { useAlertDialog, useConfirmDialog } from '@/store/stores/dialog/dialogStore';
+import { VolunteerApply } from '@/shared/types/aidrq-volunteer-list/volunteerListType';
 
 interface ApplicantListItemProps {
   applicant: VolunteerApply;

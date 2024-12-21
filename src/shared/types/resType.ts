@@ -3,6 +3,7 @@ export interface resType<T> {
   data: T;
   message: string;
 }
+
 export interface dataTypeWithPage<T> {
   content: T[];
   empty: boolean;

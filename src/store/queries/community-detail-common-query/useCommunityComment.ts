@@ -2,12 +2,14 @@ import axiosInstance from '@/api/apis';
 import { resType } from '@/shared/types/resType';
 export const fetchCommunityComment = async (content_id: number) => {
   try {
-    const res = await axiosInstance.get(`/api/community-board/${content_id}/comments?sort=%5B%22DESC%22%5D`);
-    console.log('fetchCommunityComment data', res.data);
+    const res: resType<number> = await axiosInstance.get(
+      `/api/community-board/${content_id}/comments?sort=%5B%22DESC%22%5D`
+    );
 
-    if (res.status === 200) return res.data;
-    else if (res.status === 400) console.log('fetchCommunityComment res 400');
-    else if (res.status === 500) console.log('fetchCommunityComment res 500');
+    if (res.code === 200) {
+      return res.data;
+    } else if (res.code === 400) console.log('fetchCommunityComment res 400');
+    else if (res.code === 500) console.log('fetchCommunityComment res 500');
   } catch (e) {
     console.error(e);
   }

@@ -3,13 +3,13 @@ import { Wrapper } from './indexCss';
 import Bottom from './ui/bottom';
 import Top from './ui/top';
 
-interface AidReqListItem {
+interface AidReqListItemProps {
   width: string;
   onClick?: () => void;
   request: AidRequest;
 }
 
-const AidReqListItem: React.FC<AidReqListItem> = ({ width, onClick, request }) => {
+const AidReqListItem: React.FC<AidReqListItemProps> = ({ width, onClick, request }) => {
   if (!request) return null;
 
   return (

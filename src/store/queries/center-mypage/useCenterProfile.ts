@@ -1,25 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axiosInstance from '@/api/apis';
 import axios from 'axios';
+import { centerProfileType } from '@/shared/types/center-profile/centerProfile';
 // import Cookies from 'js-cookie';
-
-// 물품등록 관련 인터페이스
-export interface PreferItem {
-  id: number;
-  centerId: string;
-  itemName: string;
-}
-
-// 기관 프로필 조회에 필요한 인터페이스
-export interface CenterProfile {
-  center_id: string;
-  name: string;
-  contact_number: string;
-  homepage_link: string;
-  img_url: string;
-  introduce: string;
-  prefer_items: PreferItem[];
-}
 
 // 수정 인터페이스
 interface CenterProfileUpdateData {
@@ -35,7 +18,7 @@ interface CenterProfileUpdateRequest {
 }
 
 // 기관 프로필 get 해오는 fetch 함수
-const fetchCenterProfile = async (centerId: string): Promise<CenterProfile> => {
+const fetchCenterProfile = async (centerId: string): Promise<centerProfileType> => {
   const response = await axiosInstance.get(`/api/center/profile/${centerId}`);
 
   // console.log('기관프로필 get 결과: ', response.data);
