@@ -1,22 +1,17 @@
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-
 import AidReqListItem from '@/components/aidreq-list-Item';
 import { Wrapper } from './indexCss';
 import { AidRequest } from '@/shared/types/aidrq-list-item/aidrqListItemType';
-import { fetchListShort } from '@/store/queries/main-page-common-query/useListShort';
+import { useListShort } from '@/store/queries/main-page-common-query/useListShort';
 
 const AidRqListShort = () => {
-  const [aidRequests, setAidRequests] = useState<AidRequest[]>([]);
   const navigate = useNavigate();
+  const { data, isLoading, error } = useListShort();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetchListShort();
-      setAidRequests(data.content);
-    };
-    fetchData();
-  }, []);
+  if (isLoading) return <div>로딩 중...</div>;
+  if (error) return <div>에러 발생!</div>;
+
+  const aidRequests: AidRequest[] = data?.content || [];
 
   return (
     <Wrapper>
