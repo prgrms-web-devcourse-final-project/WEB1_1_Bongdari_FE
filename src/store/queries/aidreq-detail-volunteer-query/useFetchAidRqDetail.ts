@@ -14,7 +14,7 @@ const fetchAidRqDetail = async (id: string | undefined) => {
 
 export const useFetchAidRqDetail = (id: string | undefined) => {
   return useQuery<AidRqDetailType>({
-    queryKey: ['centerProfile', id],
+    queryKey: ['aidrqDetail', id],
     queryFn: () => fetchAidRqDetail(id)
   });
 };

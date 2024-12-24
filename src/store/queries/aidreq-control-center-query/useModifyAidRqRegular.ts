@@ -5,6 +5,7 @@ import { RegularData } from '@/shared/types/aidrq-detail/aidrqDetailType';
 
 export const updateRegular = async (id: string, changedRegular: RegularData, imgFile?: File) => {
   try {
+    console.log(changedRegular);
     const formData = new FormData();
     formData.append('data', JSON.stringify(changedRegular));
     formData.append('img_file', imgFile || '');

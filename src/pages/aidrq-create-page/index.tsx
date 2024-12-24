@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import AidRqCreateShared from '@/features/aidrq-create-shared-part';
 import { ButtonContainer, FourthLine, ThirdLine, Title, Wrapper } from './indexCss';
@@ -8,10 +8,11 @@ import VolunteerDate from './ui/volunteer-date';
 import Explanation from './ui/explanation';
 import { VolunteerType, Location } from '@/shared/types/aidrq-create-type/AidRqCreateType';
 import { useNavigate } from 'react-router-dom';
-import { postAidRq } from '@/store/queries/aidreq-control-center-query/usePostAidRq';
+import { usePostAidRq } from '@/store/queries/aidreq-control-center-query/usePostAidRq';
 
 const AidRqCreatePage = () => {
   const navigate = useNavigate();
+  const postMutation = usePostAidRq();
   const [volunteerData, setVolunteerData] = useState<VolunteerType>({
     title: '',
     content: '',
@@ -27,15 +28,20 @@ const AidRqCreatePage = () => {
       longitude: 0
     }
   });
-  useEffect(() => {
-    console.log(volunteerData);
-  }, [volunteerData]);
-
   const getTitleAndFilter = (key: keyof VolunteerType, value: Location | string | number | boolean) => {
     setVolunteerData((prev) => ({
       ...prev,
       [key]: value
     }));
+  };
+
+  const handleSubmit = async () => {
+    try {
+      await postMutation.mutateAsync({ volunteerData });
+      navigate('/main');
+    } catch (error) {
+      console.error('게시글 작성 실패:', error);
+    }
   };
 
   return (
@@ -60,15 +66,8 @@ const AidRqCreatePage = () => {
       </FourthLine>
       <Explanation getTitleAndFilter={getTitleAndFilter}></Explanation>
       <ButtonContainer>
-        <button
-          onClick={() => {
-            const handleClick = async () => {
-              await postAidRq(volunteerData);
-              navigate('/main');
-            };
-            handleClick();
-          }}>
-          작성하기
+        <button onClick={handleSubmit} disabled={postMutation.isPending}>
+          {postMutation.isPending ? '작성 중...' : '작성하기'}
         </button>
       </ButtonContainer>
     </Wrapper>
