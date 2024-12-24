@@ -1,9 +1,9 @@
+import axiosInstance from '@/api/apis';
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 
 const fetchMainCommunity = async () => {
-  const response = await axios.get(`${import.meta.env.VITE_APP_BASE_URL}/api/community-boards?page=0`, {});
-  return response.data.data;
+  const response = await axiosInstance.get(`/api/community-boards?page=0`, {});
+  return response.data;
 };
 
 export const useMainCommunity = () => {
