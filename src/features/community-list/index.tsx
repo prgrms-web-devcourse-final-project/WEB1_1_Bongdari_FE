@@ -1,13 +1,15 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { CommuntiyListCss } from './indexCss';
-import { useCommunityList } from './logic/useCommunityList';
 import { SubmitButton } from '@/components/button';
 import LongListItem from '@/components/long-list-item';
 import CustomPagination from '@/features/custom-pagnation';
 import { useLoginStore } from '@/store/stores/login/loginStore';
+import { useCommunityList } from '@/store/queries/community-list-common-query/useCommunityList';
 
 const CommuntiyList = ({ searchWord }: { searchWord: string }) => {
-  const { listData, totPage, currPage, setCurrPage } = useCommunityList({ searchWord });
+  const { listData, totPage, currPage, setCurrPage } = useCommunityList({
+    searchWord
+  });
   const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
   const navigate = useNavigate();
   return (
