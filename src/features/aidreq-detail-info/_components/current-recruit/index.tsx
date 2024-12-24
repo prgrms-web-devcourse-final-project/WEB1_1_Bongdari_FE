@@ -1,30 +1,19 @@
 import { Container, Wrapper } from './indexCss';
 import { AidRqDetailType } from '@/shared/types/aidrq-detail/aidrqDetailType';
-import { RecruitmentState } from '@/shared/types/recruitment-state/recruitmentStateType';
-import { fetchCurrentRecruitment } from '@/store/queries/aidreq-detail-volunteer-query/useCurrentRecruitment';
-import { useEffect, useState } from 'react';
+import { useCurrentRecruitment } from '@/store/queries/aidreq-detail-volunteer-query/useCurrentRecruitment';
 
 interface AidRqDetailCenterProfileProps {
   data: AidRqDetailType;
 }
 
 const CurrentRecruit: React.FC<AidRqDetailCenterProfileProps> = ({ data }) => {
-  const [currentRecruitment, setCurrentRecruitment] = useState<RecruitmentState | null>(null);
+  const { data: currentRecruitment, isLoading, error } = useCurrentRecruitment(data.id);
 
-  useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        const stats = await fetchCurrentRecruitment(data.id);
-        setCurrentRecruitment(stats);
-      } catch (error) {
-        console.error('통계 데이터 불러오기 실패:', error);
-      }
-    };
-
-    fetchStats();
-  }, [data.id]);
-
-  if (!currentRecruitment) return null;
+  if (error) {
+    console.error('Error:', error);
+    return <div>데이터를 불러오는데 실패했습니다</div>;
+  }
+  if (isLoading || !currentRecruitment) return null;
   return (
     <Wrapper>
       <h2>모집상태</h2>

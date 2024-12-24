@@ -6,39 +6,47 @@ import { ButtonBox, Wrapper } from './indexCss';
 import Title from './ui/title';
 import TextContent from './ui/text-content';
 import AidRqDetailInfo from '@/features/aidreq-detail-info';
-import { AidRqDetailType } from '@/shared/types/aidrq-detail/aidrqDetailType';
-import { centerProfileType } from '@/shared/types/center-profile/centerProfile';
 import ReviewCreateModal from '@/features/review-create-modal';
 import { useLoginStore } from '@/store/stores/login/loginStore';
 import MessageCreateModal from '@/features/message-create-modal';
-import { applyAidRq } from '@/store/queries/aidreq-detail-volunteer-query/useApplyAidRq';
-import { fetchAidRqDetail } from '@/store/queries/aidreq-detail-volunteer-query/useFetchAidRqDetail';
-import { fetchCenterProfileForAidRq } from '@/store/queries/aidreq-detail-volunteer-query/useFetchCenterProfile';
+import { useFetchCenterProfileForAidRq } from '@/store/queries/aidreq-detail-volunteer-query/useFetchCenterProfile';
 import { myPresentStatus } from '@/store/queries/aidreq-detail-volunteer-query/usePresentStatus';
 import { PresentResponse } from '@/shared/types/aidrq-detail/PresentResponse';
+import { useFetchAidRqDetail } from '@/store/queries/aidreq-detail-volunteer-query/useFetchAidRqDetail';
+import { useApplyAidRq } from '@/store/queries/aidreq-detail-volunteer-query/useApplyAidRq';
 
 const AidRqDetailPage = () => {
-  const [data, setData] = useState<AidRqDetailType | null>(null);
-  const [centerData, setCenterData] = useState<centerProfileType | null>(null);
-  const [reviewModalState, SetReviewModalState] = useState(false);
-  const [presentState, setPresentState] = useState<PresentResponse | null>(null);
   const myLoginState = useLoginStore((state) => state);
   const { id } = useParams();
   const location = useLocation();
   const centerId = location.state?.centerId;
-
+  const [reviewModalState, SetReviewModalState] = useState(false);
+  const [presentState, setPresentState] = useState<PresentResponse | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { data: centerData } = useFetchCenterProfileForAidRq(centerId);
+  const { data: data } = useFetchAidRqDetail(id);
 
   useEffect(() => {
-    const handleFetch = async () => {
-      const data = await fetchAidRqDetail(id);
-      setData(data);
-      const centerData = await fetchCenterProfileForAidRq(centerId);
-      setCenterData(centerData);
-      myPresentStatus(setPresentState, myLoginState.myLoginId, id);
-    };
-    handleFetch();
+    myPresentStatus(setPresentState, myLoginState.myLoginId, id);
   }, []);
+
+  const { mutate: applyAidRq, isPending } = useApplyAidRq();
+
+  const handleApply = () => {
+    if (!id) return;
+
+    applyAidRq(id, {
+      onSuccess: () => {
+        // 성공 시 처리 (예: 알림 표시, 페이지 새로고침 등)
+        console.log('지원 성공!');
+        window.location.reload();
+      },
+      onError: (error) => {
+        // 에러 처리
+        console.error('지원 실패:', error);
+      }
+    });
+  };
 
   return (
     <Wrapper>
@@ -58,14 +66,15 @@ const AidRqDetailPage = () => {
           </button>
           <button
             onClick={() => {
-              const handleClick = async () => {
+              const handleClick = () => {
                 if (presentState?.status === 'none' && data.recruit_status === 'RECRUITING') {
-                  await applyAidRq(id);
+                  handleApply();
                   window.location.reload();
                 }
               };
               handleClick();
-            }}>
+            }}
+            disabled={isPending}>
             지원하기
           </button>
         </ButtonBox>
