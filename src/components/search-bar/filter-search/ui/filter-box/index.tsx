@@ -1,10 +1,9 @@
 import { Wrapper, SelectWrapper } from './indexCss';
-import { OtherButton } from '@/components/button';
 import Select from '@/components/select';
-import theme from '@/styles/theme';
 import aidrqCategoryMapping from '@/shared/mapping/aidrq-category-mapping';
 import regionMapping from '@/shared/mapping/aid-region-mapping';
 import admittedMapping from '@/shared/mapping/aid-admitted-mapping';
+import Button from '@/components/button';
 
 interface FilterBoxProps {
   setSearchState: (state: {
@@ -80,17 +79,17 @@ const FilterBox: React.FC<FilterBoxProps> = ({ setSearchState, searchAidRequests
             });
           }}></Select>
       </SelectWrapper>
-      <OtherButton
+      <Button
         onClick={searchAidRequests}
         label="검색하기"
-        width="188px"
-        border={`1px solid ${theme.pointColor.Regular}`}
-        borderRadius="8px"
-        bgColor={theme.pointColor.Regular}
-        color="white"
-        fontSize="16px"
-        fontWeight="700"
-        disabled={false}></OtherButton>
+        // width="188px"
+        // border={`1px solid ${theme.pointColor.Regular}`}
+        // borderRadius="8px"
+        // bgColor={theme.pointColor.Regular}
+        // color="white"
+        // fontSize="16px"
+        // fontWeight="700"
+        disabled={false}></Button>
     </Wrapper>
   );
 };

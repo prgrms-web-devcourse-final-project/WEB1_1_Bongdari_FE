@@ -1,3 +1,4 @@
+import Button from '@/components/button';
 import theme from '@/styles/theme';
 import styled from 'styled-components';
 
@@ -50,4 +51,12 @@ export const Wrapper = styled.ul`
   gap: 10px;
   width: 100%;
   justify-content: center;
+`;
+
+export const SearchButton = styled(Button)`
+  width: 80px;
+  height: 47px;
+  font-size: ${theme.fontSize.seventhSize};
+  font-weight: 600;
+  border-radius: 12px;
 `;

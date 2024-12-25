@@ -84,8 +84,7 @@ const FindNearByActivityMap = ({
           ))}
 
         <LocationButtonBox>
-          <NearbyButton onClick={onNearbyClick}>
-            현재 위치에서 재검색
+          <NearbyButton onClick={onNearbyClick} label="현재 위치에서 재검색" type="white">
             <RefreshIcon src="/assets/imgs/icon-refresh.svg" alt="현재위치에서검색" />
           </NearbyButton>
           <MyLocationButton onClick={handleMyLocationClick}>

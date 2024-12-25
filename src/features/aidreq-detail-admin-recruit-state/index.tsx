@@ -127,8 +127,8 @@
 
 // export default AdminReqDetailAdminRecruitState;
 
-import { OtherButton } from '@/components/button';
 import {
+  ApplyButton,
   ButtonBox,
   FinishedButton,
   NumberOfPeople,
@@ -244,10 +244,11 @@ const AdminReqDetailAdminRecruitState = ({
         </RecruitStateButtonContainer>
       </StateContainer>
       <ButtonBox>
-        <OtherButton
+        <ApplyButton
           label="상태 변경 적용"
           onClick={handleStatusUpdate}
           disabled={isUpdating || recruitStatusMapping[activeState] === currentStatus}
+          type="blue"
         />
       </ButtonBox>
     </Wrapper>

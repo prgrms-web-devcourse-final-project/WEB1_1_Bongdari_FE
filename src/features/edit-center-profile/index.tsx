@@ -1,4 +1,4 @@
-import { OtherButton } from '@/components/button';
+import Button from '@/components/button';
 import ImageUploader from './_components/image-uploader';
 import EditProfileForm from './_components/profile-edit-form/index';
 import {
@@ -68,9 +68,9 @@ const EditCenterProfile = ({ data }: EditCenterProfileProps) => {
           />
         </ProfileEditWrapper>
         <EditButtonContainer>
-          <OtherButton
+          <Button
             label="수정하기"
-            width="220px"
+            // width="220px"
             onClick={handleEditProfile}
             disabled={isSubmitting || !validURL || !validPhone || !centerName.trim()}
           />
