@@ -4,16 +4,19 @@ import AidRqCreateRecruitPopulation from '@/components/aidrq-create-recruit-popu
 import AidRqCreateDate from '@/components/aidrq-create-date';
 import TextArea from '@/components/textArea';
 import { VolunteerType } from '@/shared/types/aidrq-create-type/AidRqCreateType';
-import { useEffect } from 'react';
 import { updateRegular } from '@/store/queries/aidreq-control-center-query/useModifyAidRqRegular';
 
 interface InfoModifyProps {
   id: string;
   getTitleAndFilter: (key: keyof VolunteerType, value: string | number | boolean) => void;
-  volunteerData: VolunteerType;
+  volunteerData: VolunteerType | null;
 }
 
 const InfoModify: React.FC<InfoModifyProps> = ({ id, getTitleAndFilter, volunteerData }) => {
+  if (!volunteerData) {
+    return null;
+  }
+
   const changedRegular = {
     title: volunteerData.title,
     content: volunteerData.content,
@@ -24,10 +27,6 @@ const InfoModify: React.FC<InfoModifyProps> = ({ id, getTitleAndFilter, voluntee
     volunteer_category: volunteerData.volunteer_category,
     admitted: volunteerData.admitted
   };
-
-  useEffect(() => {
-    console.log('넘기기직전데이터', volunteerData);
-  }, [volunteerData]);
   return (
     <Wrapper>
       <AidRqCreateShared getTitleAndFilter={getTitleAndFilter} volunteerData={volunteerData}></AidRqCreateShared>

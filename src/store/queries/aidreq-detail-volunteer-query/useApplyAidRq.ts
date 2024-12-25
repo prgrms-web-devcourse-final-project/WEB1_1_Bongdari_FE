@@ -7,7 +7,6 @@ const applyAidRqFn = async (id: string) => {
   return response;
 };
 
-// Mutation 훅
 export const useApplyAidRq = () => {
   return useMutation({
     mutationFn: (id: string) => applyAidRqFn(id),

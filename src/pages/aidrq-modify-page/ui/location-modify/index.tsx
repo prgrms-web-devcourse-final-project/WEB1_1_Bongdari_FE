@@ -6,10 +6,14 @@ import { updateLocation } from '@/store/queries/aidreq-control-center-query/useM
 interface LocationModifyProps {
   id: string;
   getTitleAndFilter: (key: keyof VolunteerType, value: Location | string | number | boolean) => void;
-  volunteerData: VolunteerType;
+  volunteerData: VolunteerType | null;
 }
 
 const LocationModify: React.FC<LocationModifyProps> = ({ id, getTitleAndFilter, volunteerData }) => {
+  if (!volunteerData) {
+    return null;
+  }
+
   const changedLocation = {
     region: volunteerData.region,
     ...volunteerData.location
