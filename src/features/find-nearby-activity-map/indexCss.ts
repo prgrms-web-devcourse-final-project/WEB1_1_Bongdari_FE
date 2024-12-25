@@ -1,3 +1,4 @@
+import Button from '@/components/button';
 import theme from '@/styles/theme';
 import styled, { keyframes } from 'styled-components';
 
@@ -34,7 +35,7 @@ export const MyLocationButton = styled.button`
   justify-content: center;
 `;
 
-export const NearbyButton = styled.button`
+export const NearbyButton = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,6 +53,7 @@ export const NearbyButton = styled.button`
   &:active {
     color: ${theme.pointColor.clicked};
     border: 1px solid ${theme.pointColor.clicked};
+    background-color: #d9e8fa;
   }
 `;
 

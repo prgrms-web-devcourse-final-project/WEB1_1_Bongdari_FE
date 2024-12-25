@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MapPageTitle, ScrollSection, SearchBarComponent, SearchBox, Wrapper } from './indexCss';
+import { MapPageTitle, ScrollSection, SearchBarComponent, SearchBox, SearchButton, Wrapper } from './indexCss';
 import AidReqListItem from '@/components/aidreq-list-Item';
 import InputBox from '@/components/inputBox';
 import type { Activity } from '@/shared/types/location/nearbyLocation';
-import Button from '@/components/button';
 
 interface FindNearByActivitySearchProps {
   activities: Activity[];
@@ -34,14 +33,7 @@ const FindNearByActivitySearch = ({ activities, isLoading, onSearch }: FindNearB
         <MapPageTitle>주변 활동 찾기</MapPageTitle>
         <SearchBarComponent>
           <InputBox colortype={0} width="80%" getInputText={handleInputChange} />
-          <Button
-            label="검색"
-            // width="80px"
-            // height="47px"
-            // fontSize={theme.fontSize.seventhSize}
-            // fontWeight="600"
-            onClick={handleSearch}
-          />
+          <SearchButton label="검색" onClick={handleSearch} />
         </SearchBarComponent>
         <Wrapper>
           {!isLoading &&

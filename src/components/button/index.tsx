@@ -2,16 +2,18 @@ import ButtonComponent from './indexCss';
 
 interface ButtonProps {
   onClick?: () => void;
-  label: string;
+  label?: string;
   disabled?: boolean;
   type?: 'blue' | 'white';
   className?: string;
+  children?: React.ReactNode;
 }
 
-const Button = ({ onClick = () => {}, label, disabled = false, type = 'blue', className }: ButtonProps) => {
+const Button = ({ onClick = () => {}, label, disabled = false, type = 'blue', className, children }: ButtonProps) => {
   return (
     <ButtonComponent onClick={onClick} disabled={disabled} $type={type} className={className}>
-      {label}
+      <span>{label}</span>
+      {children}
     </ButtonComponent>
   );
 };
