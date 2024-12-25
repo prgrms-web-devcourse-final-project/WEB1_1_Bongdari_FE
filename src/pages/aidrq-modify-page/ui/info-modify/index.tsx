@@ -5,6 +5,7 @@ import AidRqCreateDate from '@/components/aidrq-create-date';
 import TextArea from '@/components/textArea';
 import { VolunteerType } from '@/shared/types/aidrq-create-type/AidRqCreateType';
 import { updateRegular } from '@/store/queries/aidreq-control-center-query/useModifyAidRqRegular';
+import { useAlertDialog, useConfirmDialog } from '@/store/stores/dialog/dialogStore';
 
 interface InfoModifyProps {
   id: string;
@@ -13,6 +14,9 @@ interface InfoModifyProps {
 }
 
 const InfoModify: React.FC<InfoModifyProps> = ({ id, getTitleAndFilter, volunteerData }) => {
+  const { openConfirm } = useConfirmDialog();
+  const { openAlert } = useAlertDialog();
+
   if (!volunteerData) {
     return null;
   }
@@ -27,6 +31,19 @@ const InfoModify: React.FC<InfoModifyProps> = ({ id, getTitleAndFilter, voluntee
     volunteer_category: volunteerData.volunteer_category,
     admitted: volunteerData.admitted
   };
+
+  const handleUpdateInfoDialog = () => {
+    openConfirm(`정보를 수정하시겠습니까?`, () => {
+      try {
+        updateRegular(id, changedRegular);
+        openAlert(`정보가 수정되었습니다.`);
+      } catch (error) {
+        openAlert('수정 중 오류가 발생했습니다. 다시 시도해주세요.');
+        console.error('수정오류', error);
+      }
+    });
+  };
+
   return (
     <Wrapper>
       <AidRqCreateShared getTitleAndFilter={getTitleAndFilter} volunteerData={volunteerData}></AidRqCreateShared>
@@ -71,7 +88,7 @@ const InfoModify: React.FC<InfoModifyProps> = ({ id, getTitleAndFilter, voluntee
       <ButtonContainer>
         <button
           onClick={() => {
-            updateRegular(id, changedRegular);
+            handleUpdateInfoDialog();
           }}>
           수정하기
         </button>

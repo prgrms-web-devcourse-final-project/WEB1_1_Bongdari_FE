@@ -21,7 +21,12 @@ export const Wrapper = styled.div`
     border: none;
     outline: none;
     background-color: #2382ff;
-    font-size: 1rem;
+    font-size: 14px;
+
+    &:hover {
+      background-color: #0a66de;
+      cursor: pointer;
+    }
   }
 `;
 
