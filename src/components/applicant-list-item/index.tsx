@@ -57,7 +57,7 @@ const ApplicantListItem = ({ applicant, recruitStatus }: ApplicantListItemProps)
   };
   const handleApproveApplyment = () => {
     openConfirm(
-      `${applicant.volunteer.name}님의 지원을 수학하시겠습니까? 수학 후에도 반려하기로 변경할 수 있습니다.`,
+      `${applicant.volunteer.name}님의 지원을 수락하시겠습니까? 수락 후에도 반려하기로 변경할 수 있습니다.`,
       async () => {
         try {
           await approve(applymentId);

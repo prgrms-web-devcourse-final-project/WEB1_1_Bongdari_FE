@@ -9,6 +9,7 @@ import Explanation from './ui/explanation';
 import { VolunteerType, Location } from '@/shared/types/aidrq-create-type/AidRqCreateType';
 import { useNavigate } from 'react-router-dom';
 import { usePostAidRq } from '@/store/queries/aidreq-control-center-query/usePostAidRq';
+import { useAlertDialog, useConfirmDialog } from '@/store/stores/dialog/dialogStore';
 
 const AidRqCreatePage = () => {
   const navigate = useNavigate();
@@ -28,6 +29,9 @@ const AidRqCreatePage = () => {
       longitude: 0
     }
   });
+  const { openConfirm } = useConfirmDialog();
+  const { openAlert } = useAlertDialog();
+
   const getTitleAndFilter = (key: keyof VolunteerType, value: Location | string | number | boolean) => {
     setVolunteerData((prev) => ({
       ...prev,
@@ -38,10 +42,18 @@ const AidRqCreatePage = () => {
   const handleSubmit = async () => {
     try {
       await postMutation.mutateAsync({ volunteerData });
+      openAlert(`작성이 성공적으로 완료되었습니다.`);
       navigate('/main');
     } catch (error) {
+      openAlert(`작성 중 오류가 발생했습니다. 다시 시도해주세요.`);
       console.error('게시글 작성 실패:', error);
     }
+  };
+
+  const handleSubmitDialog = () => {
+    openConfirm(`작성하시겠습니까?`, () => {
+      handleSubmit();
+    });
   };
 
   return (
@@ -66,7 +78,7 @@ const AidRqCreatePage = () => {
       </FourthLine>
       <Explanation getTitleAndFilter={getTitleAndFilter}></Explanation>
       <ButtonContainer>
-        <button onClick={handleSubmit} disabled={postMutation.isPending}>
+        <button onClick={handleSubmitDialog} disabled={postMutation.isPending}>
           {postMutation.isPending ? '작성 중...' : '작성하기'}
         </button>
       </ButtonContainer>
