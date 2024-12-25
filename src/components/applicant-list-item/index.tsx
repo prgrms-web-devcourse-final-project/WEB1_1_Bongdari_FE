@@ -1,5 +1,3 @@
-import theme from '@/styles/theme';
-import { OtherButton } from '../button';
 import {
   ApplicantListItemWrapper,
   ButtonGroup,
@@ -20,6 +18,7 @@ import ApplicantDetailModal from '@/features/applicant-detail-modal';
 import { useApproveApplyment, useRejectApplyment } from '@/store/queries/aidreq-detail-admin-query/useManageApplyment';
 import { useAlertDialog, useConfirmDialog } from '@/store/stores/dialog/dialogStore';
 import { VolunteerApply } from '@/shared/types/aidrq-volunteer-list/volunteerListType';
+import Button from '../button';
 
 interface ApplicantListItemProps {
   applicant: VolunteerApply;
@@ -101,12 +100,12 @@ const ApplicantListItem = ({ applicant, recruitStatus }: ApplicantListItemProps)
             disabled={recruitStatus === 'COMPLETED' || applicant.status === 'REJECTED'}>
             반려하기
           </RejectButton>
-          <OtherButton
+          <Button
             label="수락하기"
-            width="163px"
-            height="48px"
-            fontSize={theme.fontSize.eighthSize}
-            fontWeight="600"
+            // width="163px"
+            // height="48px"
+            // fontSize={theme.fontSize.eighthSize}
+            // fontWeight="600"
             onClick={handleApproveApplyment}
             disabled={recruitStatus === 'COMPLETED' || applicant.status === 'APPROVED'}
           />

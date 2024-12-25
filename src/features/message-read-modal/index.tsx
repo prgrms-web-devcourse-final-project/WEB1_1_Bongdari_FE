@@ -13,11 +13,10 @@ import {
   ProfileInfo,
   ScrollSection
 } from './indexCss';
-import { OtherButton } from '@/components/button';
-import theme from '@/styles/theme';
 import { useNavigate } from 'react-router-dom';
 import { useApplicantDetail, useMessageDetail } from '@/store/queries/center-mypage/useMessage';
 import useDateFormat from '@/shared/hooks/useDateFormat';
+import Button from '@/components/button';
 
 interface NoteModalProps {
   handleModalClose: () => void;
@@ -67,12 +66,12 @@ const MessageReadModal = ({ handleModalClose, noteId, type = 'center' }: NoteMod
                 ''
               )}
             </ProfileInfo>
-            <OtherButton
+            <Button
               label="프로필 확인하기"
-              width="221px"
-              height="53px"
-              fontSize={theme.fontSize.eighthSize}
-              fontWeight="600"
+              // width="221px"
+              // height="53px"
+              // fontSize={theme.fontSize.eighthSize}
+              // fontWeight="600"
               onClick={() => {
                 if (type === 'center') navigate(`/profile/${messageDetail.sender_id}`);
                 else navigate(`/centerprofile/${messageDetail.sender_id}`);

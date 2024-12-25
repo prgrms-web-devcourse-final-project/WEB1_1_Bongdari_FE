@@ -1,6 +1,4 @@
-import { OtherButton } from '@/components/button';
 import Modal from '@/components/modal';
-import theme from '@/styles/theme';
 import {
   AdjustmentSubTitle,
   AdjustmentTitle,
@@ -20,6 +18,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useSettleApplyment } from '@/store/queries/aidreq-detail-admin-query/useManageApplyment';
 import { VolunteerApply } from '@/shared/types/aidrq-volunteer-list/volunteerListType';
+import Button from '@/components/button';
 
 interface AdjustmentModalProps {
   setOpenAdjustmentModal: (isOpen: boolean) => void;
@@ -113,12 +112,12 @@ const AdjustmentModal = ({ setOpenAdjustmentModal }: AdjustmentModalProps) => {
             ))}
           </ApplicantList>
           <ButtonBox>
-            <OtherButton
+            <Button
               label="정산하기"
-              width="163px"
-              height="48px"
-              fontSize={theme.fontSize.eighthSize}
-              fontWeight="600"
+              // width="163px"
+              // height="48px"
+              // fontSize={theme.fontSize.eighthSize}
+              // fontWeight="600"
               onClick={handleSettle}
               disabled={!hasUnsettledParticipants}
             />

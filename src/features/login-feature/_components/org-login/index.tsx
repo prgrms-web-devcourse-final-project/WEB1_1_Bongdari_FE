@@ -1,7 +1,7 @@
 import { OrgLoginCss } from './indexCss';
-import { SubmitButton } from '@/components/button';
 import InputBox from '@/components/inputBox';
 import { useOrgLogin } from './logic/useOrgLogin';
+import Button from '@/components/button';
 
 const OrgLogin = () => {
   const { idErr, pwdErr, checkId, checkPwd, onClickFindAcount, onClickLogin, onClickFirstVisit } = useOrgLogin();
@@ -37,7 +37,7 @@ const OrgLogin = () => {
         <button className="findAccountBtn" onClick={onClickFindAcount}>
           계정 찾기
         </button>
-        <SubmitButton label="로그인" width="49%" height="55px" onClick={onClickLogin} />
+        <Button label="로그인" onClick={onClickLogin} />
       </div>
       <button className="firstVisitBtn" onClick={onClickFirstVisit}>
         첫방문이신가요?

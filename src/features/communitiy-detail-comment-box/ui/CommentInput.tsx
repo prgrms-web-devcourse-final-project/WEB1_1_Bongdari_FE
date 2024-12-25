@@ -1,5 +1,5 @@
+import Button from '@/components/button';
 import { CommentInputCss } from './CommentInputCss';
-import { SubmitButton } from '@/components/button';
 import InputBox from '@/components/inputBox';
 
 const CommentInput = ({
@@ -21,7 +21,7 @@ const CommentInput = ({
         setFunc={setCommentText}
         onEnterFunc={onEventPost}
       />
-      <SubmitButton label="댓글 등록" onClick={onEventPost} />
+      <Button label="댓글 등록" onClick={onEventPost} />
     </CommentInputCss>
   );
 };

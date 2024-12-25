@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
-import { OtherButton } from '@/components/button';
 import { ButtonWrapper, EmptyButton } from './indexCss';
+import Button from '@/components/button';
 
 interface ButtonGroupProps {
   id: string | undefined;
@@ -22,7 +22,7 @@ const ButtonGroup = ({ id, handleAdjustmentButton, status }: ButtonGroupProps) =
         }>
         수정하기
       </EmptyButton>
-      <OtherButton label="정산하기" width="221px" onClick={handleAdjustmentButton} disabled={status !== 'COMPLETED'} />
+      <Button label="정산하기" onClick={handleAdjustmentButton} disabled={status !== 'COMPLETED'} />
     </ButtonWrapper>
   );
 };

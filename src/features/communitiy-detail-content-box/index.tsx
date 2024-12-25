@@ -1,6 +1,6 @@
+import Button from '@/components/button';
 import { CommunityDetailContentBoxCss } from './indexCss';
 import { useCommunityDetailContent } from './logic/useCommunityDetailContent';
-import { SubmitButton } from '@/components/button';
 import WriterProfileBox from './ui/WriterProfileBox';
 import useDateFormat from '@/shared/hooks/useDateFormat';
 import { Link } from 'react-router-dom';
@@ -23,7 +23,7 @@ const CommunityDetailContentBox = ({ content_id }: { content_id: number }) => {
         <div className="btnWrap">
           {isMyContent ? (
             <Link to={`/communitycreate/${content_id}`}>
-              <SubmitButton label="수정하기" />
+              <Button label="수정하기" />
             </Link>
           ) : (
             ''

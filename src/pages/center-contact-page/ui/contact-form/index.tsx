@@ -1,8 +1,8 @@
 import InputBox from '@/components/inputBox';
 import { Form, FormContainer, FormGroup, FormRow, FormTitle, ImageUploadArea, Label, UploadIcon } from './indexCss';
 import TextArea from '@/components/textArea';
-import { OtherButton } from '@/components/button';
 import { ButtonBox } from '@/features/adjustment-modal/indexCss';
+import Button from '@/components/button';
 
 const ContactForm = () => {
   return (
@@ -89,7 +89,7 @@ const ContactForm = () => {
         </FormGroup>
 
         <ButtonBox>
-          <OtherButton type="submit" label="작성하기" width="220px" height="53px" />
+          <Button label="작성하기" />
         </ButtonBox>
       </Form>
     </FormContainer>
