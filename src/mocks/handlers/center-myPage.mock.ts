@@ -28,8 +28,11 @@ let currentProfileData = {
 };
 
 export const centerHandlers = [
-  // 기관 프로필 get
-  http.get('https://api.somemore.site/api/center/profile/:centerId', () => {
+  // 기관 프로필 get -------------------------------------------------------------------
+  http.get('https://api.somemore.site/api/center/profile/:centerId', ({ params }) => {
+    const { centerId } = params;
+    console.log('Requested centerId:', centerId);
+
     return HttpResponse.json({
       code: 200,
       message: '조회 성공',
@@ -37,7 +40,7 @@ export const centerHandlers = [
     });
   }),
 
-  // 기관 프로필 put
+  // 기관 프로필 put -------------------------------------------------------------------
   http.put('https://api.somemore.site/api/center/profile', async ({ request }) => {
     const formData = await request.formData();
     const jsonData = JSON.parse(formData.get('data') as string);
@@ -60,7 +63,7 @@ export const centerHandlers = [
     });
   }),
 
-  // 기관 마이페이지 선호물품 post
+  // 기관 마이페이지 선호물품 post -------------------------------------------------------
   http.post('https://api.somemore.site/api/preferItem', async ({ request }) => {
     const requestData = (await request.json()) as PreferItemRequest;
 

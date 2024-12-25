@@ -39,7 +39,6 @@ const updateCenterProfile = async ({ data, img_file }: CenterProfileUpdateReques
   // img_file이 없으면 기존 이미지 유지를 위해 필드 자체를 포함하지 않음
 
   // 로깅
-  console.log('FormData entries:');
   for (const [key, value] of formData.entries()) {
     console.log(`${key}:`, value instanceof File ? 'File object' : value);
   }

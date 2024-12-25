@@ -9,7 +9,7 @@ export interface CenterProfile {
   item_name: string;
 }
 
-export const centerProfileData: Record<string, any> = {
+export const centerProfileData: Record<string, object> = {
   '1': {
     data: {
       center_id: 1,
