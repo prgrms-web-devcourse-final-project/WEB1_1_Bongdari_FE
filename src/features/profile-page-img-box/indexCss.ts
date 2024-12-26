@@ -1,5 +1,15 @@
+import Button from '@/components/button';
 import theme from '@/styles/theme';
 import styled from 'styled-components';
+
+export const ApplyButton = styled(Button)`
+  max-width: 220px;
+  width: 80%;
+  height: 50px;
+
+  font-size: ${theme.fontSize.eighthSize};
+  border-radius: 13px;
+`;
 
 export const ProfileImgBoxCss = styled.div`
   max-width: 460px;

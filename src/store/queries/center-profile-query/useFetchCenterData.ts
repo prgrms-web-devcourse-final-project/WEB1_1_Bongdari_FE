@@ -1,27 +1,30 @@
-import axios from 'axios';
+import axiosInstance from '@/api/apis';
+import { useQuery } from '@tanstack/react-query';
 
-export const fetchCenterProfile = async (center_id: string) => {
-  try {
-    const res = await axios.get(import.meta.env.VITE_APP_BASE_URL + `/api/center/profile/${center_id}`);
-    console.log('fetchCenterProfile data', res.data);
+// 해당 기관 Profile 불러오기
+const fetchCenterProfile = async (center_id: string) => {
+  const res = await axiosInstance.get(`/api/center/profile/${center_id}`);
 
-    if (res.status === 200) return res.data;
-    else if (res.status === 400) console.log('fetchCenterProfile res 400');
-    else if (res.status === 500) console.log('fetchCenterProfile res 500');
-  } catch (e) {
-    console.error(e);
-  }
+  return res.data;
 };
 
-export const fetchCenterReview = async (center_id: string, page: number = 1) => {
-  try {
-    const res = await axios.get(import.meta.env.VITE_APP_BASE_URL + `/api/reviews/center/${center_id}?page=${page}`);
-    console.log('fetchCenterReview data', res.data);
+export const useCenterProfile = (center_id: string) => {
+  return useQuery({
+    queryKey: ['centerProfile'],
+    queryFn: () => fetchCenterProfile(center_id)
+  });
+};
 
-    if (res.status === 200) return res.data;
-    else if (res.status === 400) console.log('fetchCenterReview res 400');
-    else if (res.status === 500) console.log('fetchCenterReview res 500');
-  } catch (e) {
-    console.error(e);
-  }
+// 해당 기관 Review 불러오기
+const fetchCenterReview = async (center_id: string, page: number = 1) => {
+  const res = await axiosInstance.get(`/api/reviews/center/${center_id}?page=${page}`);
+
+  return res.data;
+};
+
+export const useCenterReview = (center_id: string, page: number = 1) => {
+  return useQuery({
+    queryKey: ['community'],
+    queryFn: () => fetchCenterReview(center_id, page)
+  });
 };
