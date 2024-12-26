@@ -13,8 +13,7 @@ const Comment = ({
   replies,
   content_id,
   isReply = false,
-  login_name,
-  updateComments
+  login_name
 }: {
   id: number;
   writer_nickname: string;
@@ -24,7 +23,6 @@ const Comment = ({
   content_id: number;
   isReply?: boolean;
   login_name: string;
-  updateComments: () => void;
 }) => {
   const {
     isMyComment,
@@ -38,7 +36,7 @@ const Comment = ({
     setIsAddReply,
     onClickEditComment,
     onClickDeleteComment
-  } = useComment({ content, content_id, comment_id: id, writer_nickname, login_name, updateComments });
+  } = useComment({ content, content_id, comment_id: id, writer_nickname, login_name });
 
   const { formatDateTime } = useDateFormat();
   const { openAlert } = useAlertDialog();
@@ -102,7 +100,6 @@ const Comment = ({
             parent_comment_id={id}
             isAddReply={isAddReply}
             setIsAddReply={setIsAddReply}
-            updateComments={updateComments}
           />
         ) : (
           ''
@@ -110,14 +107,7 @@ const Comment = ({
 
         <div className={'replyCommentWrap'}>
           {replies.map((v, i) => (
-            <Comment
-              key={i}
-              {...v}
-              isReply={true}
-              content_id={content_id}
-              updateComments={updateComments}
-              login_name={login_name}
-            />
+            <Comment key={i} {...v} isReply={true} content_id={content_id} login_name={login_name} />
           ))}
         </div>
       </CommentCss>

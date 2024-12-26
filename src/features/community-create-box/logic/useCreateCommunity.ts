@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLoginStore } from '@/store/stores/login/loginStore';
-import { fetchCommunityDetailContent } from '@/store/queries/community-detail-common-query/useCommunityDetailContent';
-import { postCommunity, putCommunity } from '@/store/queries/community-create-common-query/useControlCommunity';
+import { useCommunityDetail } from '@/store/queries/community-detail-common-query/useCommunityDetailContent';
+import { usePostCommunity, usePutCommunity } from '@/store/queries/community-create-common-query/useControlCommunity';
 
 interface useCreateCommunityReturn {
   titleText: string;
@@ -14,6 +14,26 @@ interface useCreateCommunityReturn {
 }
 
 export const useCreateCommunity = ({ content_id }: { content_id?: number }): useCreateCommunityReturn => {
+  const { mutate: postCommunity } = usePostCommunity({
+    onSuccess: (data) => {
+      console.log('Post success:', data);
+      navigate(`/community/${content_id}`);
+    },
+    onError: (error) => {
+      console.error('Post error:', error);
+    }
+  });
+
+  const { mutate: putCommunity } = usePutCommunity({
+    onSuccess: (data) => {
+      console.log('Put success:', data);
+      navigate(`/community/${content_id}`);
+    },
+    onError: (error) => {
+      console.error('Put error:', error);
+    }
+  });
+
   const [titleText, setTitleText] = useState<string>('');
   const [contentText, setContentText] = useState<string>('');
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
@@ -47,42 +67,34 @@ export const useCreateCommunity = ({ content_id }: { content_id?: number }): use
 
       if (isMyContent && content_id) {
         // 게시글 수정
-        const data = await putCommunity(content_id, formData);
-        console.log('Put success:', data);
+        putCommunity({ content_id, formData });
       } else {
         // 게시글 등록
-        const data = await postCommunity(formData);
-        console.log('Post success:', data);
+        postCommunity(formData);
       }
     } catch (error) {
       console.error('Post error:', error);
     }
 
-    navigate('/community');
+    navigate(`/community/${content_id}`);
   };
 
   // content_id가 존재하고 내 글이면 수정, 아니면 새로 작성
-  useEffect(() => {
-    const fetchData = async () => {
-      if (content_id) {
-        const data = await fetchCommunityDetailContent(content_id);
-        // console.log('hererer', data);
+  const { data } = useCommunityDetail(content_id ?? 0);
 
-        if (data) {
-          // 내 글인지 확인
-          if (data.writer_id === myLoginId) {
-            setIsMyContent(true);
-            setTitleText(data.title);
-            setContentText(data.content);
-          } else {
-            alert('내가 작성한 글만 수정할 수 있습니다.');
-            navigate('/community');
-          }
-        }
+  useEffect(() => {
+    if (content_id && data) {
+      // 내 글인지 확인
+      if (data.writer_id === myLoginId) {
+        setIsMyContent(true);
+        setTitleText(data.title);
+        setContentText(data.content);
+      } else {
+        alert('내가 작성한 글만 수정할 수 있습니다.');
+        navigate('/community');
       }
-    };
-    fetchData();
-  }, []);
+    }
+  }, [data, myLoginId, navigate]);
 
   return { titleText, setTitleText, contentText, setContentText, handleFileSelect, onClickPost };
 };

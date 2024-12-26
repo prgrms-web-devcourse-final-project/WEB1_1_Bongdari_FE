@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 
 const CommunityCreatePage = () => {
   const { content_id } = useParams();
+  console.log('ci', content_id);
 
   return (
     <Wrapper>

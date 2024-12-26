@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
 import { useLoginStore } from '@/store/stores/login/loginStore';
 import { communityDetailType } from '@/shared/types/community-type/CommuntiyTypes';
 import { personProfileType } from '@/shared/types/person-profile/personProfile';
-import { fetchCommunityDetailContent } from '@/store/queries/community-detail-common-query/useCommunityDetailContent';
-import { fetchPersonProfile } from '@/store/queries/volunteer-profile/useFetchPersonProfile';
+import { useCommunityDetail } from '@/store/queries/community-detail-common-query/useCommunityDetailContent';
+// import { fetchPersonProfile } from '@/store/queries/volunteer-profile/useFetchPersonProfile';
 
 interface useCommunityDetailContentReturn {
   detailData: communityDetailType | undefined;
@@ -12,27 +11,23 @@ interface useCommunityDetailContentReturn {
 }
 
 export const useCommunityDetailContent = (content_id: number): useCommunityDetailContentReturn => {
-  const [detailData, setDetailData] = useState<communityDetailType>();
-  const [writerData, setWriterData] = useState<personProfileType>();
-  const [isMyContent, setIsMyContent] = useState<boolean>(false);
   const myLoginId = useLoginStore((state) => state.myLoginId);
   const loginType = useLoginStore((state) => state.loginType);
 
-  // 첫 데이터 불러오기
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetchCommunityDetailContent(content_id);
-      if (data && !detailData) {
-        setDetailData(data);
-        console.log('ismycontent? myloginId is', myLoginId, 'and writer_id is', data.writer_id);
-        if (loginType === 'ROLE_VOLUNTEER' && data.writer_id === myLoginId) setIsMyContent(true);
-        const data2 = await fetchPersonProfile(data.writer_id);
-        if (data2) setWriterData(data2.data);
-      }
-    };
+  // useCommunityDetail을 통해 커뮤니티 상세 데이터 가져오기
+  // const { data: detailData, isLoading: isLoadingDetailData, error: detailDataError } = useCommunityDetail(content_id);
+  const { data: detailData } = useCommunityDetail(content_id);
 
-    fetchData();
-  }, []);
+  // writerData를 가져오기 위한 쿼리 (tmp)
+  const writerData: personProfileType = {
+    volunteer_id: 'c85c117f-8df9-448a-b3be-7876c853f522',
+    nickname: 'a431d0d4',
+    tier: 'YELLOW',
+    detail: null
+  };
+
+  // 내 콘텐츠 여부 확인
+  const isMyContent = detailData ? loginType === 'ROLE_VOLUNTEER' && detailData.writer_id === myLoginId : false;
 
   return { detailData, writerData, isMyContent };
 };
