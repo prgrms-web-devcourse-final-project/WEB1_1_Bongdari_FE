@@ -1,3 +1,4 @@
+import Button from '@/components/button';
 import theme from '@/styles/theme';
 import styled from 'styled-components';
 
@@ -9,14 +10,6 @@ export const CenterProfileEditContainer = styled.section`
   gap: 1rem;
 `;
 
-export const SectionBox = styled.section`
-  border: ${theme.box.section.border};
-  background-color: ${theme.box.section.backgroundColor};
-  border-radius: ${theme.box.section.borderRadius};
-  width: 100%;
-  padding: 100px 130px 75px 100px;
-`;
-
 export const CenterProfileTitle = styled.h1`
   font-size: ${theme.fontSize.secondSize};
   font-weight: 600;
@@ -26,7 +19,12 @@ export const CenterProfileTitle = styled.h1`
 
 export const ProfileEditWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  gap: 29px;
+`;
+
+export const FormSection = styled.div`
+  flex: 1;
+  width: 100%;
 `;
 
 export const EditButtonContainer = styled.div`
@@ -34,4 +32,27 @@ export const EditButtonContainer = styled.div`
   display: flex;
   justify-content: end;
   padding-top: 62px;
+`;
+
+export const ProfileImgEditButton = styled(Button)`
+  width: 221px;
+  height: 53px;
+  font-weight: 600;
+  font-size: ${theme.fontSize.eighthSize};
+  border-radius: 13px;
+`;
+
+export const EditEtcProfileButton = styled(Button)`
+  width: 221px;
+`;
+
+export const ProfileSection = styled.section`
+  border: ${theme.box.section.border};
+  background-color: ${theme.box.section.backgroundColor};
+  border-radius: ${theme.box.section.borderRadius};
+  display: flex;
+  flex-direction: column;
+  gap: 213px;
+  align-items: center;
+  padding: 75px 110px 42px 110px;
 `;

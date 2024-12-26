@@ -1,3 +1,4 @@
+import Button from '@/components/button';
 import theme from '@/styles/theme';
 import styled from 'styled-components';
 
@@ -5,15 +6,40 @@ export const EditFormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
-  width: 60%;
-  max-width: 565px;
+  width: 100%;
+`;
+
+export const NickNameSection = styled.section`
+  border: ${theme.box.section.border};
+  background-color: ${theme.box.section.backgroundColor};
+  border-radius: ${theme.box.section.borderRadius};
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 56px 134px 46px 46px;
+  width: 100%;
+  box-sizing: border-box;
+  gap: 14px;
+`;
+
+export const EtcProfileSection = styled.section`
+  border: ${theme.box.section.border};
+  background-color: ${theme.box.section.backgroundColor};
+  border-radius: ${theme.box.section.borderRadius};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 33px 133px 42px 57px;
+  width: 100%;
+  box-sizing: border-box;
+  gap: 12px;
 `;
 
 export const EditItem = styled.div`
   display: flex;
-  gap: 1rem;
-  justify-content: space-between;
+  gap: 23px;
   align-items: center;
+  width: 100%;
 `;
 
 export const EditLabel = styled.label`
@@ -24,9 +50,14 @@ export const EditLabel = styled.label`
 
 export const EditItem_TextArea = styled.div`
   display: flex;
-  gap: 1rem;
-  justify-content: space-between;
+  gap: 35px;
   align-items: start;
+  width: 100%;
+`;
+
+export const TextAreaWrapper = styled.div`
+  flex: 1;
+  width: 100%;
 `;
 
 export const ErrorMessage = styled.p`
@@ -37,11 +68,17 @@ export const ErrorMessage = styled.p`
   padding-bottom: 10px;
 `;
 
+export const InputWrapper = styled.div`
+  flex: 1;
+  width: 100%;
+`;
+
 export const Input = styled.input`
-  box-sizing: border-box;
+  display: flex;
+  flex: 1;
   outline: none;
   border: none;
-  width: 480px;
+  width: 100%;
   height: 38px;
   line-height: 16px;
   padding: 15px;
@@ -63,7 +100,7 @@ export const CenterIntroTextArea = styled.textarea`
   box-sizing: border-box;
   outline: none;
   resize: none;
-  width: 480px;
+  width: 100%;
   height: 220px;
   line-height: 16px;
   font-weight: 400;
@@ -82,4 +119,25 @@ export const CenterIntroTextArea = styled.textarea`
     background-color: ${theme.inputGray.variants.focused.backgroundColor};
     border: none;
   }
+`;
+
+export const EditNickNameButton = styled(Button)`
+  width: 111px;
+  height: 37px;
+  border-radius: 13px;
+  font-weight: 600;
+  font-size: ${theme.fontSize.eighthSize};
+`;
+
+export const EtcButtonContainer = styled.div`
+  display: flex;
+  justify-content: end;
+  padding-top: 20px;
+`;
+export const EditEtcProfileButton = styled(Button)`
+  width: 221px;
+  height: 53px;
+  border-radius: 13px;
+  font-weight: 600;
+  font-size: ${theme.fontSize.eighthSize};
 `;
