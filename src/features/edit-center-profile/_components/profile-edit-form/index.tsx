@@ -85,7 +85,7 @@ const EditProfileForm = ({
       </ProfileSection1>
       <ProfileSection2>
         <EditItem>
-          <EditLabel htmlFor="centerName">기관명</EditLabel>
+          <EditLabel htmlFor="centerName">닉네임</EditLabel>
           <InputWrapper>
             <Input
               id="centerName"
@@ -94,7 +94,7 @@ const EditProfileForm = ({
               onChange={(e) => handleNameChange(e.target.value)}
               placeholder="기관명을 입력해주세요"
             />
-            {centerName === '' && <ErrorMessage>⚠️ 기관명을 입력해주세요.</ErrorMessage>}
+            {centerName === '' && <ErrorMessage>⚠️ 닉네임을 입력해주세요.</ErrorMessage>}
           </InputWrapper>
         </EditItem>
         <EditItem_TextArea>
