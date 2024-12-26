@@ -4,7 +4,7 @@ import CommentInput from './ui/CommentInput';
 import Comment from './ui/Comment';
 
 const CommunityDetailCommentBox = ({ content_id }: { content_id: number }) => {
-  const { commentData, commentCount, commentText, loginName, setCommentText, onEventPost, updateComments } =
+  const { commentData, commentCount, commentText, loginName, setCommentText, onEventPost } =
     useCommunityComment(content_id);
 
   return (
@@ -12,9 +12,7 @@ const CommunityDetailCommentBox = ({ content_id }: { content_id: number }) => {
       <i className="title">{`댓글 (${commentCount})`}</i>
       <CommentInput commentText={commentText} setCommentText={setCommentText} onEventPost={onEventPost} />
       <div className="commentWrap">
-        {commentData?.map((v, i) => (
-          <Comment key={i} {...v} content_id={content_id} updateComments={updateComments} login_name={loginName} />
-        ))}
+        {commentData?.map((v, i) => <Comment key={i} {...v} content_id={content_id} login_name={loginName} />)}
       </div>
     </CommunityDetailCommentBoxCss>
   );

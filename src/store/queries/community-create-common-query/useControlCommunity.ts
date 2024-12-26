@@ -1,42 +1,64 @@
 import axiosInstance from '@/api/apis';
-import { resType } from '@/shared/types/resType';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 // 커뮤니티 게시글 등록
-export const postCommunity = async (formData: FormData) => {
-  try {
-    // axios POST 요청
-    const res: resType<string> = await axiosInstance.post('/api/community-board', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    });
+const postCommunity = async (formData: FormData) => {
+  const res = await axiosInstance.post('/api/community-board', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  });
 
-    console.log('postCommunity data', res);
+  return res.data;
+};
 
-    if (res.code >= 200 || res.code < 300) return res.data;
-    else console.log(`postCommunity res ${res.code}`);
-  } catch (e) {
-    console.error('postCommunity error:', e);
-    throw e; // 에러를 호출한 함수로 전달 (필요시)
-  }
+export const usePostCommunity = (options?: {
+  onSuccess?: (data: number) => void;
+  onError?: (error: unknown) => void;
+}) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: postCommunity,
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ['community'] });
+      options?.onSuccess?.(data);
+    },
+    onError: (error) => {
+      console.error('Error posting community:', error);
+      options?.onError?.(error);
+      throw error;
+    }
+  });
 };
 
 // 커뮤니티 게시글 수정
-export const putCommunity = async (content_id: number, formData: FormData) => {
-  try {
-    // axios PUT 요청
-    const res: resType<string> = await axiosInstance.put(`/api/community-board/${content_id}`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    });
+const putCommunity = async (content_id: number, formData: FormData) => {
+  const res = await axiosInstance.put(`/api/community-board/${content_id}`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  });
+  return res.data;
+};
 
-    console.log('putCommunity data', res);
+export const usePutCommunity = (options?: {
+  onSuccess?: (data: number) => void;
+  onError?: (error: unknown) => void;
+}) => {
+  const queryClient = useQueryClient();
 
-    if (res.code >= 200 || res.code < 300) return res.data;
-    else console.log(`putCommunity res ${res.code}`);
-  } catch (e) {
-    console.error('putCommunity error:', e);
-    throw e; // 에러를 호출한 함수로 전달 (필요시)
-  }
+  return useMutation({
+    mutationFn: ({ content_id, formData }: { content_id: number; formData: FormData }) =>
+      putCommunity(content_id, formData),
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ['community'] });
+      options?.onSuccess?.(data);
+    },
+    onError: (error) => {
+      console.error('Error updating community:', error);
+      options?.onError?.(error);
+      throw error; // 다른 에러는 다시 throw
+    }
+  });
 };

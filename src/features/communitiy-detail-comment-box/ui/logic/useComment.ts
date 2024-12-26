@@ -1,6 +1,6 @@
 import {
-  deleteCommunityComment,
-  putCommunityComment
+  useDeleteCommunityComment,
+  usePutCommunityComment
 } from '@/store/queries/community-detail-common-query/useCommunityComment';
 import { useEffect, useRef, useState } from 'react';
 
@@ -10,7 +10,6 @@ interface useCommentProps {
   comment_id: number;
   writer_nickname: string;
   login_name: string;
-  updateComments?: () => void;
 }
 
 interface useCommentReturn {
@@ -32,14 +31,15 @@ export const useComment = ({
   content_id,
   comment_id,
   writer_nickname,
-  login_name,
-  updateComments
+  login_name
 }: useCommentProps): useCommentReturn => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [commentText, setCommentText] = useState<string>(content);
   const [isEditState, setIsEditState] = useState<boolean>(false);
   const [isAddReply, setIsAddReply] = useState<boolean>(false);
   const [isMyComment, setIsMyComment] = useState<boolean>(false);
+  const { mutate: putComment } = usePutCommunityComment();
+  const { mutate: deleteComment } = useDeleteCommunityComment();
 
   // 내가 쓴 댓글인지 확인
   useEffect(() => {
@@ -69,30 +69,34 @@ export const useComment = ({
 
   // 작성완료 클릭시 댓글 수정(PUT)
   const onClickEditComment = () => {
-    setIsEditState(false);
-    const putData = async () => {
-      const data = await putCommunityComment(content_id, comment_id, commentText);
-      console.log('comment put ', data);
-      if (data) {
-        console.log('comment put success ', data);
-        content = commentText;
+    if (commentText === content) return;
+
+    putComment(
+      { content_id, comment_id, content: commentText },
+      {
+        onSuccess: () => {
+          setIsEditState(false); // 수정 모드 종료
+        },
+        onError: (error) => {
+          console.error('댓글 수정 실패:', error);
+        }
       }
-    };
-    if (commentText !== content) putData();
+    );
   };
 
   // 삭제하기 클릭시 댓글 삭제(DELETE)
   const onClickDeleteComment = () => {
-    setIsEditState(false);
-    const deleteData = async () => {
-      const data = await deleteCommunityComment(content_id, comment_id);
-      console.log('comment delete ', data);
-      if (data) {
-        console.log('comment delete success ', data);
+    deleteComment(
+      { content_id, comment_id },
+      {
+        onSuccess: () => {
+          setIsEditState(false); // 수정 모드 종료
+        },
+        onError: (error) => {
+          console.error('댓글 삭제 실패:', error);
+        }
       }
-      if (updateComments) updateComments();
-    };
-    deleteData();
+    );
   };
 
   return {

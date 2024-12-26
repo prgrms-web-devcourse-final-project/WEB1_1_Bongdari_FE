@@ -6,21 +6,13 @@ interface CommentReplyInputProps {
   parent_comment_id: number;
   isAddReply: boolean;
   setIsAddReply: (bool: boolean) => void;
-  updateComments: () => void;
 }
-const CommentReplyInput = ({
-  content_id,
-  parent_comment_id,
-  isAddReply,
-  setIsAddReply,
-  updateComments
-}: CommentReplyInputProps) => {
+const CommentReplyInput = ({ content_id, parent_comment_id, isAddReply, setIsAddReply }: CommentReplyInputProps) => {
   const { textareaRef, handleTextboxHeight, commentText, setCommentText, onEventPost } = useCommentReplyInput({
     isAddReply,
     setIsAddReply,
     content_id,
-    parent_comment_id,
-    updateComments
+    parent_comment_id
   });
   return (
     <CommentCss className="replyInput">
