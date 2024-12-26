@@ -1,5 +1,6 @@
 import theme from '@/styles/theme';
 import styled from 'styled-components';
+import Button from '@/components/button';
 
 export const ApplicantListItemWrapper = styled.li`
   display: flex;
@@ -67,22 +68,12 @@ export const Status = styled.p`
   cursor: default;
 `;
 
-export const EmptyButton = styled.button`
+export const EmptyButton = styled(Button)`
   width: 331px;
   height: 48px;
-  border: 1px solid ${theme.pointColor.event};
   border-radius: 13px;
-  background-color: #ffffff;
-  color: ${theme.pointColor.event};
   font-size: ${theme.fontSize.eighthSize};
-  cursor: pointer;
   font-weight: 600;
-  transition: 0.3s;
-
-  &:active {
-    color: ${theme.pointColor.clicked};
-    border: 1px solid ${theme.pointColor.clicked};
-  }
 `;
 
 export const ButtonGroup = styled.div`
@@ -92,28 +83,18 @@ export const ButtonGroup = styled.div`
   padding: 20px 31px 25px 31px;
 `;
 
-export const RejectButton = styled.button`
+export const RejectButton = styled(Button)`
   width: 163px;
   height: 48px;
-  border: 1px solid ${theme.pointColor.event};
   border-radius: 13px;
-  background-color: #ffffff;
-  color: ${theme.pointColor.event};
   font-size: ${theme.fontSize.eighthSize};
-  cursor: pointer;
   font-weight: 600;
-  transition: 0.3s;
-  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
-  pointer-events: ${({ disabled }) => (disabled ? 'none' : 'auto')};
+`;
 
-  &:active {
-    color: ${theme.pointColor.clicked};
-    border: 1px solid ${theme.pointColor.clicked};
-  }
-
-  &:disabled {
-    border: 1px solid #adadad;
-    color: #adadad;
-    background-color: #ffffff;
-  }
+export const ApproveButton = styled(Button)`
+  width: 163px;
+  height: 48px;
+  border-radius: 13px;
+  font-size: ${theme.fontSize.eighthSize};
+  font-weight: 600;
 `;
