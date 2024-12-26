@@ -11,6 +11,7 @@ interface useInterestReturn {
   isInterest: boolean;
   isDisabled: boolean;
   onClickToggleInterest: () => void;
+  isLoading: boolean;
 }
 
 export const useInterest = ({ center_id }: useInterestProps): useInterestReturn => {
@@ -20,15 +21,17 @@ export const useInterest = ({ center_id }: useInterestProps): useInterestReturn 
   const myLoginId = useLoginStore((state) => state.myLoginId);
   const loginType = useLoginStore((state) => state.loginType);
 
-  const { mutate: postInterest } = usePostInterest();
-  const { mutate: deleteInterest } = useDeleteInterest();
+  const { mutate: postInterest, isPending: postLoading } = usePostInterest();
+  const { mutate: deleteInterest, isPending: deleteLoading } = useDeleteInterest();
+
+  const isLoading = postLoading || deleteLoading;
 
   useEffect(() => {
     setIsDisabled(!loginType || loginType === 'ROLE_CENTER');
   }, [loginType]);
 
   const onClickToggleInterest = async () => {
-    if (!myLoginId) return;
+    if (!myLoginId || isLoading) return; // 로딩 중일 때 추가 클릭 방지
     if (isInterest) {
       deleteInterest(center_id, {
         onSuccess: () => {
@@ -59,5 +62,5 @@ export const useInterest = ({ center_id }: useInterestProps): useInterestReturn 
     checkFirstState();
   });
 
-  return { isInterest, isDisabled, onClickToggleInterest };
+  return { isInterest, isDisabled, onClickToggleInterest, isLoading };
 };

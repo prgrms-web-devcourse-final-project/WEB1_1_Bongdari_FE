@@ -10,12 +10,13 @@ interface interestHeartBtnProps {
   right: string;
 }
 const InterestHeartBtn = ({ center_id, top, right }: interestHeartBtnProps) => {
-  const { isInterest, isDisabled, onClickToggleInterest } = useInterest({ center_id });
+  const { isInterest, isDisabled, onClickToggleInterest, isLoading } = useInterest({ center_id });
 
   return (
     <InterestHeartBtnCss
       onClick={onClickToggleInterest}
       className={isDisabled ? 'disabled' : ''}
+      disabled={isLoading || isDisabled}
       top={top}
       right={right}>
       {isInterest ? <img src="/assets/imgs/heart.svg" /> : <img src="/assets/imgs/heart-empty.svg" />}
