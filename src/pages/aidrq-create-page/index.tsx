@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import AidRqCreateShared from '@/features/aidrq-create-shared-part';
-import { ButtonContainer, FourthLine, ThirdLine, Title, Wrapper } from './indexCss';
+import { ButtonContainer, FourthLine, ThirdLine, Title, Wrapper, WriteAidRqBtn } from './indexCss';
 import RecruitPopulation from './ui/recruit-population';
 import LocationBox from './ui/location';
 import VolunteerDate from './ui/volunteer-date';
@@ -78,9 +78,11 @@ const AidRqCreatePage = () => {
       </FourthLine>
       <Explanation getTitleAndFilter={getTitleAndFilter}></Explanation>
       <ButtonContainer>
-        <button onClick={handleSubmitDialog} disabled={postMutation.isPending}>
-          {postMutation.isPending ? '작성 중...' : '작성하기'}
-        </button>
+        <WriteAidRqBtn
+          onClick={handleSubmitDialog}
+          label={postMutation.isPending ? '작성 중...' : '작성하기'}
+          type="blue"
+          disabled={postMutation.isPending}></WriteAidRqBtn>
       </ButtonContainer>
     </Wrapper>
   );

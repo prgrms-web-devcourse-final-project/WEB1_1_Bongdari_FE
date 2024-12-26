@@ -1,5 +1,5 @@
 import AidRqCreateShared from '@/features/aidrq-create-shared-part';
-import { ButtonContainer, TextAreaContainer, ThirdLine, Wrapper } from './indexCss';
+import { ButtonContainer, TextAreaContainer, ThirdLine, Wrapper, ModifyInfoBtn } from './indexCss';
 import AidRqCreateRecruitPopulation from '@/components/aidrq-create-recruit-population';
 import AidRqCreateDate from '@/components/aidrq-create-date';
 import TextArea from '@/components/textArea';
@@ -86,12 +86,13 @@ const InfoModify: React.FC<InfoModifyProps> = ({ id, getTitleAndFilter, voluntee
           initialVal={volunteerData.content}></TextArea>
       </TextAreaContainer>
       <ButtonContainer>
-        <button
+        <ModifyInfoBtn
           onClick={() => {
             handleUpdateInfoDialog();
-          }}>
-          수정하기
-        </button>
+          }}
+          label="수정하기"
+          type="blue"
+          disabled={false}></ModifyInfoBtn>
       </ButtonContainer>
     </Wrapper>
   );

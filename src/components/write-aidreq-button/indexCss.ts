@@ -1,5 +1,6 @@
 import theme from '@/styles/theme';
 import styled from 'styled-components';
+import Button from '@/components/button';
 
 export const SectionBox = styled.div`
   width: 100%;
@@ -42,21 +43,11 @@ export const IntroSubTitle = styled.p`
   color: #939393;
 `;
 
-export const WritingButton = styled.button`
-  width: 237px;
-  height: 57px;
-  border: 1px solid ${theme.pointColor.event};
+export const WritingButton = styled(Button)`
+  width: 200px;
+  height: 53px;
   border-radius: 10px;
-  background-color: #ffffff;
-  color: ${theme.pointColor.event};
-  font-size: ${theme.fontSize.seventhSize};
-  cursor: pointer;
+  font-size: 14px;
   font-weight: 700;
-  transition: 0.3s;
   margin-left: 2rem;
-
-  &:active {
-    color: ${theme.pointColor.clicked};
-    border: 1px solid ${theme.pointColor.clicked};
-  }
 `;

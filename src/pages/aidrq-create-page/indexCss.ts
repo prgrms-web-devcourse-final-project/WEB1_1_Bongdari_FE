@@ -1,3 +1,4 @@
+import Button from '@/components/button';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
@@ -30,21 +31,12 @@ export const ButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 200px;
+`;
 
-  & > button {
-    width: 220px;
-    height: 53px;
-    border-radius: 12px;
-    background-color: #2382ff;
-    color: white;
-    font-weight: 600;
-    border: none;
-    outline: none;
-    transition: 0.2s;
-
-    &:hover {
-      background-color: #0a66de;
-      cursor: pointer;
-    }
-  }
+export const WriteAidRqBtn = styled(Button)`
+  width: 220px;
+  height: 53px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
 `;

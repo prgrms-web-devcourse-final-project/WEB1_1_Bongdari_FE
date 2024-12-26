@@ -1,5 +1,5 @@
 import AidRqCreateLocation from '@/components/aidrq-create-location';
-import { AidRqCreateLocationWrapper, Contents, Wrapper } from './indexCss';
+import { AidRqCreateLocationWrapper, Contents, Wrapper, ModifyLocationBtn } from './indexCss';
 import { VolunteerType, Location } from '@/shared/types/aidrq-create-type/AidRqCreateType';
 import { updateLocation } from '@/store/queries/aidreq-control-center-query/useModifyAidRqLocation';
 import { useAlertDialog, useConfirmDialog } from '@/store/stores/dialog/dialogStore';
@@ -45,12 +45,13 @@ const LocationModify: React.FC<LocationModifyProps> = ({ id, getTitleAndFilter, 
             locationData={volunteerData.location}></AidRqCreateLocation>
         </AidRqCreateLocationWrapper>
       </Contents>
-      <button
+      <ModifyLocationBtn
         onClick={() => {
           handleUpdateLocationDialog();
-        }}>
-        수정하기
-      </button>
+        }}
+        label="수정하기"
+        type="blue"
+        disabled={false}></ModifyLocationBtn>
     </Wrapper>
   );
 };
