@@ -1,4 +1,4 @@
-import { putMyProfile } from '@/store/queries/volunteer-mypage/usePutMyProfile';
+import { usePutMyProfile } from '@/store/queries/volunteer-mypage/usePutMyProfile';
 import { useState } from 'react';
 
 interface useEditMyyProfileReturn {
@@ -7,6 +7,7 @@ interface useEditMyyProfileReturn {
   setDescripton: (text: string) => void;
   onClickEditMyProfile: () => void;
 }
+
 export const useEditMyProfile = ({
   profileNickname,
   profileDescription
@@ -18,20 +19,30 @@ export const useEditMyProfile = ({
   const [nickname, setNickname] = useState<string>(profileNickname ?? '');
   const [descripton, setDescripton] = useState<string>(profileDescription ?? '');
 
+  const changeProfileData = {
+    nickname: nickname,
+    introduce: descripton
+  };
+  const { mutate } = usePutMyProfile();
+
   // 프로필 수정 버튼 클릭시 실행
   const onClickEditMyProfile = async () => {
-    try {
-      const changeProfileData = {
-        nickname: nickname,
-        introduce: descripton
-      };
-
-      // 게시글 수정
-      const data = await putMyProfile(changeProfileData, img);
-      console.log('Put success:', data);
-    } catch (error) {
-      console.error('Put error:', error);
-    }
+    mutate(
+      {
+        changeProfileData,
+        imgFile: img
+      },
+      {
+        onSuccess: () => {
+          console.log('Put success'); // 성공 시 동작
+          alert('프로필 수정이 완료되었습니다!');
+        },
+        onError: () => {
+          console.error('Put error'); // 에러 시 동작
+          alert('프로필 수정 중 오류가 발생했습니다.');
+        }
+      }
+    );
   };
 
   return { setImg, setNickname, setDescripton, onClickEditMyProfile };
