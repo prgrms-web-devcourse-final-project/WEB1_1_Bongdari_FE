@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
 import AidRqDetailCenterProfile from '@/features/aidreq-detail-center-profile';
-import { ButtonBox, Wrapper } from './indexCss';
+import { ButtonBox, Wrapper, ReviewBtn, ApplyBtn } from './indexCss';
 import Title from './ui/title';
 import TextContent from './ui/text-content';
 import AidRqDetailInfo from '@/features/aidreq-detail-info';
@@ -68,21 +68,22 @@ const AidRqDetailPage = () => {
       {data && <AidRqDetailInfo data={data}></AidRqDetailInfo>}
       {data && myLoginState.loginType === 'ROLE_VOLUNTEER' && (
         <ButtonBox presentstate={presentState} recstatus={data.recruit_status}>
-          <button
+          <ReviewBtn
             onClick={() => {
               if (presentState?.attended) SetReviewModalState(true);
-            }}>
-            리뷰쓰기
-          </button>
-          <button
+            }}
+            label="리뷰쓰기"
+            type="white"
+            disabled={!presentState?.attended}></ReviewBtn>
+          <ApplyBtn
             onClick={() => {
               if (presentState?.status === 'none' && data.recruit_status === 'RECRUITING') {
                 handleApplyDialog();
               }
             }}
-            disabled={isPending}>
-            지원하기
-          </button>
+            label="지원하기"
+            type="blue"
+            disabled={isPending || presentState?.status !== 'none' || data.recruit_status !== 'RECRUITING'}></ApplyBtn>
         </ButtonBox>
       )}
       <ReviewCreateModal

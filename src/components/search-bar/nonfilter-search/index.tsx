@@ -1,7 +1,6 @@
-import { InputBoxContainer, Wrapper } from './indexCss';
+import { InputBoxContainer, Wrapper, SearchBtn } from './indexCss';
 import InputBox from '@/components/inputBox';
 import { useState } from 'react';
-import Button from '@/components/button';
 
 interface NonFilterSearchBar {
   type: boolean;
@@ -31,18 +30,7 @@ const NonFilterSearchBar: React.FC<NonFilterSearchBar> = ({ type, getInput }) =>
           setFunc={setWord}
         />
       </InputBoxContainer>
-      <Button
-        label="검색하기"
-        // width={type ? '188px' : '100px'}
-        // border={`1px solid ${theme.pointColor.Regular}`}
-        // borderRadius="8px"
-        // bgColor={theme.pointColor.Regular}
-        // color="white"
-        // fontSize="14px"
-        // fontWeight="700"
-        disabled={false}
-        onClick={onClickGetInput}
-      />
+      <SearchBtn label="검색하기" disabled={false} onClick={onClickGetInput} />
     </Wrapper>
   );
 };

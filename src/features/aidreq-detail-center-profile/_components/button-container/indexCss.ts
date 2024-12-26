@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Button from '@/components/button';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -6,19 +7,18 @@ export const Wrapper = styled.div`
   gap: 5px;
 `;
 
-export const MailButton = styled.button`
+export const MailButton = styled(Button)`
   width: 220px;
   height: 47px;
-  border: 1px solid #dcdcdc;
   border-radius: 8px;
-  background-color: white;
   font-size: 14px;
   font-weight: 400;
-  color: #a4a4a4;
-  transition: 0.2s;
+`;
 
-  &:hover {
-    background-color: #dcdcdc;
-    cursor: pointer;
-  }
+export const ProfileBtn = styled(Button)`
+  width: 220px;
+  height: 47px;
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: 8px;
 `;

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Button from '@/components/button';
 
 interface PresentResponse {
   status: string;
@@ -18,43 +19,20 @@ export const ButtonBox = styled.div<{ presentstate: PresentResponse | null; recs
   align-items: center;
   padding-top: 100px;
   gap: 10px;
+`;
 
-  & > button:nth-of-type(1) {
-    width: 220px;
-    height: 53px;
-    border: 1px solid ${(props) => (props.presentstate?.attended === true ? '#2382ff' : '#E2E2E2')};
-    border-radius: 13px;
-    background-color: ${(props) => (props.presentstate?.attended === true ? 'white' : '#E2E2E2')};
-    color: ${(props) => (props.presentstate?.attended === true ? '#2382ff' : '#ADADAD')};
-    font-size: 14px;
-    font-weight: 600;
-    transition: 0.2s;
+export const ReviewBtn = styled(Button)`
+  width: 220px;
+  height: 53px;
+  border-radius: 13px;
+  font-size: 14px;
+  font-weight: 600;
+`;
 
-    &:hover {
-      cursor: ${(props) => (props.presentstate?.attended === true ? 'pointer' : '')};
-      background-color: ${(props) => (props.presentstate?.attended === true ? '#e2efff' : '#E2E2E2')};
-    }
-  }
-
-  & > button:nth-of-type(2) {
-    width: 220px;
-    height: 53px;
-    background-color: ${(props) =>
-      props.presentstate?.status === 'none' && props.recstatus === 'RECRUITING' ? '#2382ff' : '#E2E2E2'};
-    border: none;
-    border-radius: 13px;
-    outline: none;
-    color: ${(props) =>
-      props.presentstate?.status === 'none' && props.recstatus === 'RECRUITING' ? 'white' : '#ADADAD'};
-    font-size: 14px;
-    font-weight: 600;
-    transition: 0.2s;
-
-    &:hover {
-      cursor: ${(props) =>
-        props.presentstate?.status === 'none' && props.recstatus === 'RECRUITING' ? 'pointer' : ''};
-      background-color: ${(props) =>
-        props.presentstate?.status === 'none' && props.recstatus === 'RECRUITING' ? '#0a66de' : '#E2E2E2'};
-    }
-  }
+export const ApplyBtn = styled(Button)`
+  width: 220px;
+  height: 53px;
+  border-radius: 13px;
+  font-size: 14px;
+  font-weight: 600;
 `;

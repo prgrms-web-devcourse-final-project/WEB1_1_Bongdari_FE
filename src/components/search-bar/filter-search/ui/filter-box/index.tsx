@@ -1,9 +1,8 @@
-import { Wrapper, SelectWrapper } from './indexCss';
+import { Wrapper, SelectWrapper, SearchBtn } from './indexCss';
 import Select from '@/components/select';
 import aidrqCategoryMapping from '@/shared/mapping/aidrq-category-mapping';
 import regionMapping from '@/shared/mapping/aid-region-mapping';
 import admittedMapping from '@/shared/mapping/aid-admitted-mapping';
-import Button from '@/components/button';
 
 interface FilterBoxProps {
   setSearchState: (state: {
@@ -79,17 +78,7 @@ const FilterBox: React.FC<FilterBoxProps> = ({ setSearchState, searchAidRequests
             });
           }}></Select>
       </SelectWrapper>
-      <Button
-        onClick={searchAidRequests}
-        label="검색하기"
-        // width="188px"
-        // border={`1px solid ${theme.pointColor.Regular}`}
-        // borderRadius="8px"
-        // bgColor={theme.pointColor.Regular}
-        // color="white"
-        // fontSize="16px"
-        // fontWeight="700"
-        disabled={false}></Button>
+      <SearchBtn onClick={searchAidRequests} label="검색하기" disabled={false} type="blue"></SearchBtn>
     </Wrapper>
   );
 };
