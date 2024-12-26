@@ -24,7 +24,7 @@ const fetchCenterReview = async (center_id: string, page: number = 1) => {
 
 export const useCenterReview = (center_id: string, page: number = 1) => {
   return useQuery({
-    queryKey: ['community'],
+    queryKey: ['centerReview'],
     queryFn: () => fetchCenterReview(center_id, page)
   });
 };

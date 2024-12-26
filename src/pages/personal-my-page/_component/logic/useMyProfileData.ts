@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { personProfileType } from '@/shared/types/person-profile/personProfile';
-import { fetchMyProfile } from '@/store/queries/volunteer-mypage/useFetchMyData';
+import { useMyProfile } from '@/store/queries/volunteer-mypage/useFetchMyData';
 
 // PMPGTop에 쓰이는 use
 interface useMyProfileDataReturn {
@@ -9,13 +9,10 @@ interface useMyProfileDataReturn {
 
 export const useMyProfileData = (): useMyProfileDataReturn => {
   const [profileData, setProfileData] = useState<personProfileType>();
+  const { data } = useMyProfile();
 
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetchMyProfile();
-      if (data && !profileData) setProfileData(data);
-    };
-    fetchData();
+    if (data) setProfileData(data);
   }, []);
 
   return {

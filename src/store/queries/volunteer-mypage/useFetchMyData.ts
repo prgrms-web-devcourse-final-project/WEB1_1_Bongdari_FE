@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import axiosInstance from '@/api/apis';
 import {
   interestCenterType,
@@ -8,61 +9,71 @@ import {
 } from '@/shared/types/person-profile/personProfile';
 import { dataTypeWithPage, resType } from '@/shared/types/resType';
 
-export const fetchMyProfile = async () => {
-  try {
-    const res: resType<personProfileType> = await axiosInstance.get(`api/volunteer/profile/me`);
-    console.log('fetchMyProfile data', res.data);
-    if (res.code >= 200 && res.code < 300) return res.data;
-    else console.log(`fetchMyProfile res ${res.code}`);
-  } catch (e) {
-    console.error(e);
-  }
+// 내 프로필 불러오기
+const fetchMyProfile = async () => {
+  const res: resType<personProfileType> = await axiosInstance.get(`api/volunteer/profile/me`);
+  return res.data;
 };
 
-export const fetchMyVolunteer = async (myId: string, page: number = 0) => {
-  try {
-    const res: resType<dataTypeWithPage<myVolunteerType>> = await axiosInstance.get(
-      `api/volunteer-applies/volunteer/${myId}?page=${page}`
-    );
-    console.log('fetchMyVolunteer data', res.data);
-    if (res.code >= 200 && res.code < 300) return res.data;
-    else console.log(`fetchMyVolunteer res ${res.code}`);
-  } catch (e) {
-    console.error(e);
-  }
+export const useMyProfile = () => {
+  return useQuery({
+    queryKey: ['myProfile'],
+    queryFn: fetchMyProfile
+  });
 };
 
-export const fetchMyMessage = async (page: number = 0) => {
-  try {
-    const res: resType<dataTypeWithPage<myMessageType>> = await axiosInstance.get(`api/note/volunteer?page=${page}`);
-    console.log('fetchMyMessage data', res.data);
-    if (res.code >= 200 && res.code < 300) return res.data;
-    else console.log(`fetchMyMessage res ${res.code}`);
-  } catch (e) {
-    console.error(e);
-  }
+// 내 지원현황 불러오기
+const fetchMyVolunteer = async (myId: string, page: number = 0) => {
+  const res: resType<dataTypeWithPage<myVolunteerType>> = await axiosInstance.get(
+    `api/volunteer-applies/volunteer/${myId}?page=${page}&size=5`
+  );
+  return res.data;
 };
 
-export const fetchMyInterestCenter = async () => {
-  try {
-    const res: resType<interestCenterType[]> = await axiosInstance.get(`/api/interest-centers`);
-    console.log('fetchMyInterestCenter data', res.data);
-    if (res.code >= 200 && res.code < 300) return res.data;
-    else console.log(`fetchMyInterestCenter res ${res.code}`);
-  } catch (e) {
-    console.error(e);
-  }
+export const useMyVolunteer = (myId: string, page: number = 0) => {
+  return useQuery({
+    queryKey: ['myVolunteer', page],
+    queryFn: () => fetchMyVolunteer(myId, page - 1)
+  });
 };
 
-export const fetchMyReview = async (myLoginId: string, page: number = 0) => {
-  try {
-    const res: resType<dataTypeWithPage<reviewType>> = await axiosInstance.get(
-      `/api/reviews/volunteer/${myLoginId}?page=${page}`
-    );
-    console.log('fetchMyReview data', res.data);
-    if (res.code >= 200 && res.code < 300) return res.data;
-    else console.log(`fetchMyReview res ${res.code}`);
-  } catch (e) {
-    console.error(e);
-  }
+// 내 받은 메시지 불러오기
+const fetchMyMessage = async (page: number = 0) => {
+  const res: resType<dataTypeWithPage<myMessageType>> = await axiosInstance.get(`api/note/volunteer?page=${page}`);
+  return res.data;
+};
+
+export const useMyMessage = (page: number = 0) => {
+  return useQuery({
+    queryKey: ['myMessage', page],
+    queryFn: () => fetchMyMessage(page - 1)
+  });
+};
+
+// 내 관심기관 불러오기
+const fetchMyInterestCenter = async () => {
+  const res: resType<interestCenterType[]> = await axiosInstance.get(`/api/interest-centers`);
+  return res.data;
+};
+
+export const useMyInterestCenterQuery = () => {
+  return useQuery({
+    queryKey: ['myInterestCenter'],
+    queryFn: fetchMyInterestCenter
+  });
+};
+
+// 내가 남긴 리뷰 불러오기
+const fetchMyReview = async (myLoginId: string, page: number = 0) => {
+  const res: resType<dataTypeWithPage<reviewType>> = await axiosInstance.get(
+    `/api/reviews/volunteer/${myLoginId}?page=${page}`
+  );
+  return res.data;
+};
+
+export const useMyReviewQuery = (myLoginId: string, page: number = 0) => {
+  return useQuery({
+    queryKey: ['myReview'],
+    queryFn: () => fetchMyReview(myLoginId, page - 1)
+  });
 };
