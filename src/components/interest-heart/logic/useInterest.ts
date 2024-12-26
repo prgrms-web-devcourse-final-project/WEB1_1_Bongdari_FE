@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { deleteInterest, postInterest } from './putInterest';
+
 import { useLoginStore } from '@/store/stores/login/loginStore';
+import { useDeleteInterest, usePostInterest } from '@/store/queries/interest-heart-query/useInterestHeart';
 
 interface useInterestProps {
   center_id: string;
@@ -15,34 +16,48 @@ interface useInterestReturn {
 export const useInterest = ({ center_id }: useInterestProps): useInterestReturn => {
   const [isInterest, setIsInterest] = useState<boolean>(false);
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
+
   const myLoginId = useLoginStore((state) => state.myLoginId);
   const loginType = useLoginStore((state) => state.loginType);
 
+  const { mutate: postInterest } = usePostInterest();
+  const { mutate: deleteInterest } = useDeleteInterest();
+
   useEffect(() => {
-    if (!loginType || loginType === 'ROLE_CENTER') setIsDisabled(true);
+    setIsDisabled(!loginType || loginType === 'ROLE_CENTER');
   }, [loginType]);
 
   const onClickToggleInterest = async () => {
     if (!myLoginId) return;
     if (isInterest) {
-      await deleteInterest(center_id);
+      deleteInterest(center_id, {
+        onSuccess: () => {
+          console.log('관심기관 삭제가 완료되었습니다!');
+        },
+        onError: () => {
+          console.log('관심기관 삭제 중 오류가 발생했습니다.');
+        }
+      });
       setIsInterest(false);
     } else {
-      await postInterest(center_id);
+      postInterest(center_id, {
+        onSuccess: () => {
+          console.log('관심기관 설정이 완료되었습니다!');
+        },
+        onError: () => {
+          console.log('관심기관 설정 중 오류가 발생했습니다.');
+        }
+      });
       setIsInterest(true);
     }
   };
 
   useEffect(() => {
-    const checkFirstState = async () => {
-      const data = await postInterest(center_id);
-      if (!data) setIsInterest(true);
-      else {
-        await deleteInterest(center_id);
-        setIsInterest(false);
-      }
+    const checkFirstState = () => {
+      // TODO: 관심기관인지 확인하기 로직 구현
     };
     checkFirstState();
   });
+
   return { isInterest, isDisabled, onClickToggleInterest };
 };

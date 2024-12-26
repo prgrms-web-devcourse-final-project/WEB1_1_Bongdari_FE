@@ -3,30 +3,12 @@ import { interestType } from '@/shared/types/interest/interestType';
 import { resType } from '@/shared/types/resType';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-export const postInterest = async (center_id: string) => {
-  try {
-    const res: resType<interestType> = await axiosInstance.post(`/api/interest-center`, {
-      center_id: center_id
-    });
-    console.log('interest post Response:', res);
-
-    if (res.code >= 200 && res.code < 300) return res.data;
-    else console.log(`deleteInterest res ${res.code}`);
-  } catch (e) {
-    console.error('POST Error:', e);
-  }
-};
-
-export const deleteInterest = async (center_id: string) => {
-  try {
-    const res: resType<string> = await axiosInstance.delete(`/api/interest-center/${center_id}`);
-    console.log('interest Delete Response:', res);
-
-    if (res.code >= 200 && res.code < 300) return res.data;
-    else console.log(`deleteInterest res ${res.code}`);
-  } catch (e) {
-    console.error('DELETE Error:', e);
-  }
+// 관심기관 추가
+const postInterest = async (center_id: string) => {
+  const res: resType<interestType> = await axiosInstance.post(`/api/interest-center`, {
+    center_id: center_id
+  });
+  return res.data;
 };
 
 export const usePostInterest = () => {
@@ -44,6 +26,12 @@ export const usePostInterest = () => {
   });
 };
 
+// 관심기관 삭제
+const deleteInterest = async (center_id: string) => {
+  const res: resType<string> = await axiosInstance.delete(`/api/interest-center/${center_id}`);
+  return res.data;
+};
+
 export const useDeleteInterest = () => {
   const queryClient = useQueryClient();
 
@@ -53,7 +41,7 @@ export const useDeleteInterest = () => {
       queryClient.invalidateQueries({ queryKey: ['interests'] });
     },
     onError: (error) => {
-      console.error('Interest deletion failed:', error);
+      console.error('Interest delete failed:', error);
       // 에러 처리 로직 추가
     }
   });
