@@ -7,6 +7,7 @@ import useHandleItem from './logic/useAddItem';
 import type { centerPreferItemType } from '@/shared/types/center-profile/centerProfile';
 import { usePreferItem } from '@/store/queries/center-mypage/usePreferItems';
 import { useQuery } from '@tanstack/react-query';
+import { useAlertDialog } from '@/store/stores/dialog/dialogStore';
 
 interface RegisterGoodsProps {
   name: string;
@@ -26,13 +27,15 @@ const RegisterGoods = ({ name, preferData }: RegisterGoodsProps) => {
   const { goodsList, currentInput, setCurrentInput, handleKeyPress, handleDeleteGoods, addGoodsToList } =
     useHandleItem(preferItems);
 
+  const { openAlert } = useAlertDialog();
+
   const handleAdd = async (itemName: string) => {
     if (!itemName.trim()) {
-      alert('물품명을 입력해주세요.');
+      openAlert('물품명을 입력해주세요.');
       return;
     }
     if (itemName.length > 15) {
-      alert('물품명은 15자 이내로 입력해주세요.');
+      openAlert('물품명은 15자 이내로 입력해주세요.');
       return;
     }
 
@@ -49,7 +52,7 @@ const RegisterGoods = ({ name, preferData }: RegisterGoodsProps) => {
       },
       onError: (error) => {
         console.error('물품 추가 실패', error);
-        alert('물품 등록에 실패했습니다.');
+        openAlert('물품 등록에 실패했습니다.');
       }
     });
   };
