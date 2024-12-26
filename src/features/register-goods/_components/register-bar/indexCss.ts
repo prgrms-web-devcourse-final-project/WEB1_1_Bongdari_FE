@@ -1,3 +1,4 @@
+import Button from '@/components/button';
 import theme from '@/styles/theme';
 import styled from 'styled-components';
 
@@ -6,22 +7,13 @@ export const RegisterBarContainer = styled.div`
   gap: 16px;
 `;
 
-export const RegisterButton = styled.button`
+export const RegisterButton = styled(Button)`
   width: 221px;
   height: 53px;
-  border: 1px solid ${theme.pointColor.event};
   border-radius: 13px;
-  background-color: #ffffff;
-  color: ${theme.pointColor.event};
   font-size: ${theme.fontSize.eighthSize};
-  cursor: pointer;
   font-weight: 600;
   transition: 0.3s;
-
-  &:active {
-    color: ${theme.pointColor.clicked};
-    border: 1px solid ${theme.pointColor.clicked};
-  }
 `;
 
 export const RegisterInput = styled.input`

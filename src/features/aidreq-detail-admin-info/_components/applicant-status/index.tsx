@@ -25,9 +25,10 @@ const ApplicantStatus = ({ title, recruitStatus }: ApplicantStatusProps) => {
             navigate(`/mypage/adminaidreqlist/${id}/applicantList`, {
               state: { title, recruitStatus }
             })
-          }>
-          바로가기
-        </EmptyButton>
+          }
+          label="바로가기"
+          type="white"
+        />
       </SectionBox3>
     </div>
   );

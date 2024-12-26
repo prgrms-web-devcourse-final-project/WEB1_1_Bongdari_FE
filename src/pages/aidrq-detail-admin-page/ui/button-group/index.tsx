@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import { ButtonWrapper, EmptyButton } from './indexCss';
-import Button from '@/components/button';
+import { AdjustmentButton, ButtonWrapper, EditAidRqButton } from './indexCss';
 
 interface ButtonGroupProps {
   id: string | undefined;
@@ -14,15 +13,21 @@ const ButtonGroup = ({ id, handleAdjustmentButton, status }: ButtonGroupProps) =
 
   return (
     <ButtonWrapper>
-      <EmptyButton
+      <EditAidRqButton
         onClick={() =>
           navigate('/mypage/adminaidreqmodify', {
             state: { id: id }
           })
-        }>
-        수정하기
-      </EmptyButton>
-      <Button label="정산하기" onClick={handleAdjustmentButton} disabled={status !== 'COMPLETED'} />
+        }
+        label="수정하기"
+        type="white"
+      />
+      <AdjustmentButton
+        label="정산하기"
+        type="blue"
+        onClick={handleAdjustmentButton}
+        disabled={status !== 'COMPLETED'}
+      />
     </ButtonWrapper>
   );
 };

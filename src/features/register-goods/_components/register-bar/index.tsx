@@ -32,9 +32,7 @@ const RegisterBar: React.FC<RegisterBarProps> = ({
         onKeyUp={handleKeyPress}
         disabled={disabled}
       />
-      <RegisterButton onClick={() => handleAddGoods(currentInput)} disabled={disabled}>
-        등록하기
-      </RegisterButton>
+      <RegisterButton onClick={() => handleAddGoods(currentInput)} type="white" label="등록하기" />
     </RegisterBarContainer>
   );
 };
