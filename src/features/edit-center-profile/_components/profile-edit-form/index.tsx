@@ -1,18 +1,17 @@
 import { validatePhone, validateURL } from '../../logic/validation';
 import {
   CenterIntroTextArea,
-  EditEtcProfileButton,
+  EditProfileSectionButton,
   EditFormWrapper,
   EditItem,
   EditItem_TextArea,
   EditLabel,
-  EditNickNameButton,
   ErrorMessage,
-  EtcButtonContainer,
-  EtcProfileSection,
+  EditProfileSectionButtonContainer,
+  ProfileSection2,
   Input,
   InputWrapper,
-  NickNameSection,
+  ProfileSection1,
   TextAreaWrapper
 } from './indexCss';
 
@@ -43,23 +42,7 @@ const EditProfileForm = ({
 }: EditProfileFormProps) => {
   return (
     <EditFormWrapper>
-      <NickNameSection>
-        <EditItem>
-          <EditLabel htmlFor="centerName">기관명</EditLabel>
-          <InputWrapper>
-            <Input
-              id="centerName"
-              type="text"
-              value={centerName}
-              onChange={(e) => handleNameChange(e.target.value)}
-              placeholder="기관명을 입력해주세요"
-            />
-            {centerName === '' && <ErrorMessage>⚠️ 기관명을 입력해주세요.</ErrorMessage>}
-          </InputWrapper>
-        </EditItem>
-        <EditNickNameButton label="수정하기" type="blue" onClick={() => console.log('기관명 수정')} />
-      </NickNameSection>
-      <EtcProfileSection>
+      <ProfileSection1>
         <EditItem>
           <EditLabel htmlFor="centerPhone">연락처</EditLabel>
           <InputWrapper>
@@ -96,6 +79,24 @@ const EditProfileForm = ({
             {centerURL && !validURL && <ErrorMessage>⚠️ 올바른 URL 형식이 아닙니다.</ErrorMessage>}
           </InputWrapper>
         </EditItem>
+        <EditProfileSectionButtonContainer>
+          <EditProfileSectionButton label="수정하기" type="blue" onClick={() => console.log('연락처, 사이트 수정')} />
+        </EditProfileSectionButtonContainer>
+      </ProfileSection1>
+      <ProfileSection2>
+        <EditItem>
+          <EditLabel htmlFor="centerName">기관명</EditLabel>
+          <InputWrapper>
+            <Input
+              id="centerName"
+              type="text"
+              value={centerName}
+              onChange={(e) => handleNameChange(e.target.value)}
+              placeholder="기관명을 입력해주세요"
+            />
+            {centerName === '' && <ErrorMessage>⚠️ 기관명을 입력해주세요.</ErrorMessage>}
+          </InputWrapper>
+        </EditItem>
         <EditItem_TextArea>
           <EditLabel htmlFor="centerDescription" style={{ paddingTop: '14px' }}>
             설명
@@ -108,10 +109,10 @@ const EditProfileForm = ({
             />
           </TextAreaWrapper>
         </EditItem_TextArea>
-        <EtcButtonContainer>
-          <EditEtcProfileButton label="수정하기" type="blue" onClick={() => console.log('기타 프로필')} />
-        </EtcButtonContainer>
-      </EtcProfileSection>
+        <EditProfileSectionButtonContainer>
+          <EditProfileSectionButton label="수정하기" type="blue" onClick={() => console.log('기관명, 설명 수정')} />
+        </EditProfileSectionButtonContainer>
+      </ProfileSection2>
     </EditFormWrapper>
   );
 };
