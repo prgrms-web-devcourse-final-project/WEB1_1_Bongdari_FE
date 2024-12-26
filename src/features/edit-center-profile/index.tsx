@@ -1,12 +1,14 @@
-import { OtherButton } from '@/components/button';
 import ImageUploader from './_components/image-uploader';
 import EditProfileForm from './_components/profile-edit-form/index';
 import {
   CenterProfileEditContainer,
   CenterProfileTitle,
-  EditButtonContainer,
+  FormSection,
+  // EditButtonContainer,
+  // EditEtcProfileButton,
   ProfileEditWrapper,
-  SectionBox
+  ProfileImgEditButton,
+  ProfileSection
 } from './indexCss';
 import useEditCenterProfile from './logic/useEditCenterProfile';
 import { centerProfileType } from '@/shared/types/center-profile/centerProfile';
@@ -29,9 +31,9 @@ const EditCenterProfile = ({ data }: EditCenterProfileProps) => {
     handleURLChange,
     handleIntroductionChange,
     validURL,
-    validPhone,
-    handleEditProfile,
-    isSubmitting
+    validPhone
+    // handleEditProfile,
+    // isSubmitting
   } = useEditCenterProfile({ data });
 
   return (
@@ -41,41 +43,40 @@ const EditCenterProfile = ({ data }: EditCenterProfileProps) => {
       ) : (
         <CenterProfileTitle>안녕하세요, {originalName}님!</CenterProfileTitle>
       )}
-      <SectionBox>
+      <div>
         <ProfileEditWrapper>
-          {/* <ImageUploader
-            preview={preview}
-            initialImage={data.img_url || '/assets/imgs/no-img-person.svg'}
-            onImageUpload={handleImageUpload}
-          /> */}
-          <ImageUploader
-            preview={preview || null} // preview가 없으면 기본 이미지 사용
-            initialImage={preview ? URL.createObjectURL(preview) : data.img_url || '/assets/imgs/no-img-person.svg'}
-            onImageUpload={handleImageUpload}
-          />
-
-          <EditProfileForm
-            handleNameChange={handleNameChange}
-            handlePhoneChange={handlePhoneChange}
-            handleURLChange={handleURLChange}
-            handleIntroductionChange={handleIntroductionChange}
-            centerName={centerName}
-            centerPhone={centerPhone}
-            centerURL={centerURL}
-            validURL={validURL}
-            validPhone={validPhone}
-            centerIntroduction={centerIntroduction}
-          />
+          <ProfileSection>
+            <ImageUploader
+              preview={preview || null} // preview가 없으면 기본 이미지 사용
+              initialImage={preview ? URL.createObjectURL(preview) : data.img_url || '/assets/imgs/no-img-person.svg'}
+              onImageUpload={handleImageUpload}
+            />
+            <ProfileImgEditButton label="수정하기" type="blue" onClick={() => console.log('프로필이미지 수정')} />
+          </ProfileSection>
+          <FormSection>
+            <EditProfileForm
+              handleNameChange={handleNameChange}
+              handlePhoneChange={handlePhoneChange}
+              handleURLChange={handleURLChange}
+              handleIntroductionChange={handleIntroductionChange}
+              centerName={centerName}
+              centerPhone={centerPhone}
+              centerURL={centerURL}
+              validURL={validURL}
+              validPhone={validPhone}
+              centerIntroduction={centerIntroduction}
+            />
+            {/* <EditButtonContainer>
+              <EditEtcProfileButton
+                label="수정하기"
+                type="blue"
+                onClick={handleEditProfile}
+                disabled={isSubmitting || !validURL || !validPhone || !centerName.trim()}
+              />
+            </EditButtonContainer> */}
+          </FormSection>
         </ProfileEditWrapper>
-        <EditButtonContainer>
-          <OtherButton
-            label="수정하기"
-            width="220px"
-            onClick={handleEditProfile}
-            disabled={isSubmitting || !validURL || !validPhone || !centerName.trim()}
-          />
-        </EditButtonContainer>
-      </SectionBox>
+      </div>
     </CenterProfileEditContainer>
   );
 };

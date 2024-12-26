@@ -9,16 +9,19 @@ export const myPresentStatus = async (
 ) => {
   try {
     const response = await axios.get(
-      `https://api.somemore.site/api/volunteer-apply/recruit-board/${requestId}/volunteer/${volunteerId}`
+      `${import.meta.env.VITE_APP_BASE_URL}/api/volunteer-apply/recruit-board/${requestId}/volunteer/${volunteerId}`
     );
+    console.log('현재모집글에 대한 나의 지원상태', response.data);
     if (response.data.code === 200) {
       setPresentState(response.data.data);
-    } else if (response.data.code === 210) {
-      setPresentState({ status: 'none', attended: false });
+    } else if (response.data.code !== 200) {
+      console.log('백엔드에서 api명세를 다시 바꾼듯??');
     }
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
       console.log('지원 안했음');
+      //setPresentState를 210일때 set하다가, 다시 400일때 set하는거로 수정함
+      setPresentState({ status: 'none', attended: false });
     }
     throw error;
   }

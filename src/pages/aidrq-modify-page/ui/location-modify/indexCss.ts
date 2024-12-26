@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import theme from '@/styles/theme';
+import Button from '@/components/button';
 
 export const Wrapper = styled.div`
   border: ${theme.box.section.border};
@@ -11,18 +12,6 @@ export const Wrapper = styled.div`
   align-items: center;
   gap: 100px;
   height: 140px;
-
-  & > button {
-    width: 220px;
-    height: 53px;
-    color: white;
-    font-weight: 600;
-    border-radius: 12px;
-    border: none;
-    outline: none;
-    background-color: #2382ff;
-    font-size: 1rem;
-  }
 `;
 
 export const Contents = styled.div`
@@ -38,4 +27,12 @@ export const Contents = styled.div`
 
 export const AidRqCreateLocationWrapper = styled.div`
   flex: 1;
+`;
+
+export const ModifyLocationBtn = styled(Button)`
+  width: 220px;
+  height: 53px;
+  font-weight: 600;
+  border-radius: 12px;
+  font-size: 14px;
 `;

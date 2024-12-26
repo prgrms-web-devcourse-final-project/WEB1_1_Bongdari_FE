@@ -1,3 +1,4 @@
+import Button from '@/components/button';
 import theme from '@/styles/theme';
 import styled from 'styled-components';
 
@@ -82,4 +83,12 @@ export const ButtonBox = styled.div`
   width: 100%;
   display: flex;
   justify-content: end;
+`;
+
+export const ApplyButton = styled(Button)`
+  width: 221px;
+  height: 53px;
+  border-radius: 13px;
+  font-size: 14px;
+  font-weight: 600;
 `;

@@ -1,10 +1,10 @@
 import { MessageCreateModalCss } from './indexCss';
 import { useSendMail } from './logic/useSendMail';
-import { SubmitButton } from '@/components/button';
 import InputBox from '@/components/inputBox';
 import TextArea from '@/components/textArea';
 import Modal from '@/components/modal';
 import { useAlertDialog } from '@/store/stores/dialog/dialogStore'; // AlertDialog import 추가
+import Button from '@/components/button';
 
 interface MessageCreateModalProps {
   user_id: string;
@@ -56,10 +56,10 @@ const MessageCreateModal: React.FC<MessageCreateModalProps> = ({ user_id, isModa
           </div>
           <div className="btnWrap">
             <i className="checkErr">{errMsg}</i>
-            <SubmitButton
+            <Button
               label="전송"
               onClick={handleSendClick} // Alert 포함한 함수 호출
-              variant={errMsg ? 'disabled' : 'enabledOne'}
+              // variant={errMsg ? 'disabled' : 'enabledOne'} 버튼 커스텀 하실 때 풀어서 써주세요..!
             />
           </div>
         </div>

@@ -1,9 +1,9 @@
 import { CommunityCreateBoxCss } from './indexCss';
 import { useCreateCommunity } from './logic/useCreateCommunity';
-import { SubmitButton } from '@/components/button';
 import InputBox from '@/components/inputBox';
 import TextArea from '@/components/textArea';
 import UploadBox from '@/components/img-drag-box';
+import Button from '@/components/button';
 
 const CommunityCreateBox = ({ content_id }: { content_id?: number }) => {
   const { titleText, setTitleText, contentText, setContentText, handleFileSelect, onClickPost } = useCreateCommunity({
@@ -41,7 +41,7 @@ const CommunityCreateBox = ({ content_id }: { content_id?: number }) => {
       </div>
 
       <div className="btnWrap">
-        <SubmitButton label="작성하기" onClick={onClickPost} />
+        <Button label="작성하기" onClick={onClickPost} />
       </div>
     </CommunityCreateBoxCss>
   );

@@ -15,12 +15,11 @@ import {
   ReviewTitleBox,
   ScrollSection
 } from './indexCss';
-import { OtherButton } from '@/components/button';
-import theme from '@/styles/theme';
 import { useNavigate } from 'react-router-dom';
 import useDateFormat from '@/shared/hooks/useDateFormat';
 import { useGetReviewById } from '@/store/queries/center-mypage/useReview';
 import { useGetOtherVolunteerProfile } from '@/store/queries/volunteer-profile/useVolunteerProfile';
+import Button from '@/components/button';
 
 interface ReviewModalProps {
   handleCloseReviewModal: () => void;
@@ -63,12 +62,12 @@ const ReviewReadModal = ({ handleCloseReviewModal, reviewId }: ReviewModalProps)
               <NickName>{volunteerData.nickname}</NickName>
               <GloveImg src={`/assets/imgs/mitten-${volunteerData?.tier?.toLowerCase()}.svg`} alt="tierGlove" />
             </ProfileInfo>
-            <OtherButton
+            <Button
               label="프로필 확인하기"
-              width="221px"
-              height="53px"
-              fontSize={theme.fontSize.eighthSize}
-              fontWeight="600"
+              // width="221px"
+              // height="53px"
+              // fontSize={theme.fontSize.eighthSize}
+              // fontWeight="600"
               onClick={() => {
                 navigate(`/profile/${volunteerData.volunteer_id}`);
               }}

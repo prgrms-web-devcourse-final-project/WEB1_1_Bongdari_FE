@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
 
 export const fetchAidRqDefault = async (id: string | undefined) => {
   try {
@@ -7,4 +8,11 @@ export const fetchAidRqDefault = async (id: string | undefined) => {
   } catch (error) {
     console.error('Error:', error);
   }
+};
+
+export const useFetchAidRqDefault = (id: string | undefined) => {
+  return useQuery({
+    queryKey: ['aidrqDetail', id],
+    queryFn: () => fetchAidRqDefault(id)
+  });
 };

@@ -1,8 +1,8 @@
 import { EditProfileCss } from './indexCss';
-import { SubmitButton } from '@/components/button';
 import InputWithLabel from '@/features/input-with-label/InputWithLabel';
 import EditProfileImg from './_component/EditProfileImg';
 import { useEditMyProfile } from './logic/useEditMyProfile';
+import Button from '@/components/button';
 
 interface EditProfileProps {
   profileImg?: string;
@@ -30,7 +30,7 @@ const EditProfile: React.FC<EditProfileProps> = ({ profileImg, profileNickname, 
           isTextArea={true}
         />
         <div className="editBtnWrap">
-          <SubmitButton label="수정하기" onClick={onClickEditMyProfile} />
+          <Button label="수정하기" onClick={onClickEditMyProfile} />
         </div>
       </section>
     </EditProfileCss>

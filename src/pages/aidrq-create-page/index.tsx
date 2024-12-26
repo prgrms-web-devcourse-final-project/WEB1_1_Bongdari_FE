@@ -1,17 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import AidRqCreateShared from '@/features/aidrq-create-shared-part';
-import { ButtonContainer, FourthLine, ThirdLine, Title, Wrapper } from './indexCss';
+import { ButtonContainer, FourthLine, ThirdLine, Title, Wrapper, WriteAidRqBtn } from './indexCss';
 import RecruitPopulation from './ui/recruit-population';
 import LocationBox from './ui/location';
 import VolunteerDate from './ui/volunteer-date';
 import Explanation from './ui/explanation';
 import { VolunteerType, Location } from '@/shared/types/aidrq-create-type/AidRqCreateType';
 import { useNavigate } from 'react-router-dom';
-import { postAidRq } from '@/store/queries/aidreq-control-center-query/usePostAidRq';
+import { usePostAidRq } from '@/store/queries/aidreq-control-center-query/usePostAidRq';
+import { useAlertDialog, useConfirmDialog } from '@/store/stores/dialog/dialogStore';
 
 const AidRqCreatePage = () => {
   const navigate = useNavigate();
+  const postMutation = usePostAidRq();
   const [volunteerData, setVolunteerData] = useState<VolunteerType>({
     title: '',
     content: '',
@@ -27,15 +29,31 @@ const AidRqCreatePage = () => {
       longitude: 0
     }
   });
-  useEffect(() => {
-    console.log(volunteerData);
-  }, [volunteerData]);
+  const { openConfirm } = useConfirmDialog();
+  const { openAlert } = useAlertDialog();
 
   const getTitleAndFilter = (key: keyof VolunteerType, value: Location | string | number | boolean) => {
     setVolunteerData((prev) => ({
       ...prev,
       [key]: value
     }));
+  };
+
+  const handleSubmit = async () => {
+    try {
+      await postMutation.mutateAsync({ volunteerData });
+      openAlert(`작성이 성공적으로 완료되었습니다.`);
+      navigate('/main');
+    } catch (error) {
+      openAlert(`작성 중 오류가 발생했습니다. 다시 시도해주세요.`);
+      console.error('게시글 작성 실패:', error);
+    }
+  };
+
+  const handleSubmitDialog = () => {
+    openConfirm(`작성하시겠습니까?`, () => {
+      handleSubmit();
+    });
   };
 
   return (
@@ -60,16 +78,11 @@ const AidRqCreatePage = () => {
       </FourthLine>
       <Explanation getTitleAndFilter={getTitleAndFilter}></Explanation>
       <ButtonContainer>
-        <button
-          onClick={() => {
-            const handleClick = async () => {
-              await postAidRq(volunteerData);
-              navigate('/main');
-            };
-            handleClick();
-          }}>
-          작성하기
-        </button>
+        <WriteAidRqBtn
+          onClick={handleSubmitDialog}
+          label={postMutation.isPending ? '작성 중...' : '작성하기'}
+          type="blue"
+          disabled={postMutation.isPending}></WriteAidRqBtn>
       </ButtonContainer>
     </Wrapper>
   );

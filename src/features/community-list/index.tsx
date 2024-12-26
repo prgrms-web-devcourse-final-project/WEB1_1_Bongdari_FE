@@ -1,16 +1,16 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { CommuntiyListCss } from './indexCss';
-import { SubmitButton } from '@/components/button';
 import LongListItem from '@/components/long-list-item';
 import CustomPagination from '@/features/custom-pagnation';
-import { useLoginStore } from '@/store/stores/login/loginStore';
+// import { useLoginStore } from '@/store/stores/login/loginStore';
 import { useCommunityList } from '@/store/queries/community-list-common-query/useCommunityList';
+import Button from '@/components/button';
 
 const CommuntiyList = ({ searchWord }: { searchWord: string }) => {
   const { listData, totPage, currPage, setCurrPage } = useCommunityList({
     searchWord
   });
-  const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
+  // const isLoggedIn = useLoginStore((state) => state.isLoggedIn); 버튼 커스텀 하실 때 풀어서 써주세요..!
   const navigate = useNavigate();
   return (
     <CommuntiyListCss>
@@ -37,9 +37,9 @@ const CommuntiyList = ({ searchWord }: { searchWord: string }) => {
       </div>
       <CustomPagination totPage={totPage} currPage={currPage} setCurrPage={setCurrPage} />
       <div className="btnWrap">
-        <SubmitButton
+        <Button
           label="작성하기"
-          variant={isLoggedIn ? 'enabledTwo' : 'disabled'}
+          // variant={isLoggedIn ? 'enabledTwo' : 'disabled'} 버튼 커스텀 하실 때 풀어서 써주세요..!
           onClick={() => {
             navigate('/communitycreate');
           }}

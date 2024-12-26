@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import theme from '@/styles/theme';
+import Button from '@/components/button';
 
 export const Wrapper = styled.div`
   margin-top: 10px;
@@ -60,16 +61,12 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: end;
+`;
 
-  & > button {
-    width: 220px;
-    height: 53px;
-    color: white;
-    font-weight: 600;
-    border-radius: 12px;
-    border: none;
-    outline: none;
-    background-color: #2382ff;
-    font-size: 1rem;
-  }
+export const ModifyInfoBtn = styled(Button)`
+  width: 220px;
+  height: 53px;
+  font-weight: 600;
+  border-radius: 12px;
+  font-size: 14px;
 `;

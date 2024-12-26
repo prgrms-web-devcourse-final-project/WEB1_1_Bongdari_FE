@@ -1,5 +1,3 @@
-import theme from '@/styles/theme';
-import { OtherButton } from '../button';
 import {
   ApplicantListItemWrapper,
   ButtonGroup,
@@ -13,7 +11,8 @@ import {
   ProfileWrapper,
   RejectButton,
   SimpleProfile,
-  Status
+  Status,
+  ApproveButton
 } from './indexCss';
 import { useState } from 'react';
 import ApplicantDetailModal from '@/features/applicant-detail-modal';
@@ -57,7 +56,7 @@ const ApplicantListItem = ({ applicant, recruitStatus }: ApplicantListItemProps)
   };
   const handleApproveApplyment = () => {
     openConfirm(
-      `${applicant.volunteer.name}님의 지원을 수학하시겠습니까? 수학 후에도 반려하기로 변경할 수 있습니다.`,
+      `${applicant.volunteer.name}님의 지원을 수락하시겠습니까? 수락 후에도 반려하기로 변경할 수 있습니다.`,
       async () => {
         try {
           await approve(applymentId);
@@ -92,22 +91,23 @@ const ApplicantListItem = ({ applicant, recruitStatus }: ApplicantListItemProps)
             </ProfileInfoWrapper>
           </ProfileBox>
 
-          <EmptyButton onClick={handleOpenDetailProfileModal}>상세 프로필 정보</EmptyButton>
+          <EmptyButton
+            onClick={handleOpenDetailProfileModal}
+            label="상세 프로필 정보"
+            type="white"
+            disabled={false}></EmptyButton>
         </ProfileWrapper>
 
         <ButtonGroup>
           <RejectButton
             onClick={handleRejectApplyment}
-            disabled={recruitStatus === 'COMPLETED' || applicant.status === 'REJECTED'}>
-            반려하기
-          </RejectButton>
-          <OtherButton
+            label="반려하기"
+            type="white"
+            disabled={recruitStatus === 'COMPLETED' || applicant.status === 'REJECTED'}></RejectButton>
+          <ApproveButton
             label="수락하기"
-            width="163px"
-            height="48px"
-            fontSize={theme.fontSize.eighthSize}
-            fontWeight="600"
             onClick={handleApproveApplyment}
+            type="blue"
             disabled={recruitStatus === 'COMPLETED' || applicant.status === 'APPROVED'}
           />
         </ButtonGroup>
