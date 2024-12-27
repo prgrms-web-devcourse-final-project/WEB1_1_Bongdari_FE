@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { interestCenterType } from '@/shared/types/person-profile/personProfile';
-import { fetchMyInterestCenter } from '@/store/queries/volunteer-mypage/useFetchMyData';
+import { useMyInterestCenterQuery } from '@/store/queries/volunteer-mypage/useFetchMyData';
 
 // InterestCenterList에 쓰이는 use
 interface useMyInterestCenterReturn {
@@ -16,9 +16,13 @@ export const useMyInterestCenter = (): useMyInterestCenterReturn => {
   const [totPage, setTotPage] = useState<number>(1);
   const [currPage, setCurrPage] = useState<number>(1);
   const containerRef = useRef<HTMLDivElement>(null);
+  const { data } = useMyInterestCenterQuery();
 
   useEffect(() => {
+    if (data && !interestCenterData) setInterestCenterData(data);
+
     // 전체 페이지 수 계산 (div 너비 고려)
+    // 수정필요(주영)
     const calcPage = () => {
       if (containerRef.current && interestCenterData) {
         // 박스 너비(160px) + gap(5px)
@@ -30,11 +34,6 @@ export const useMyInterestCenter = (): useMyInterestCenterReturn => {
       }
     };
 
-    const fetchData = async () => {
-      const data = await fetchMyInterestCenter();
-      if (data && !interestCenterData) setInterestCenterData(data);
-    };
-    fetchData();
     calcPage();
   }, []);
 

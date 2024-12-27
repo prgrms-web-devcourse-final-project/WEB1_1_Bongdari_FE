@@ -1,14 +1,14 @@
-import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
+import axiosInstance from '@/api/apis';
 
-export const fetchPersonProfile = async (userId: string) => {
-  try {
-    const res = await axios.get(import.meta.env.VITE_APP_BASE_URL + `/api/volunteer/profile/${userId}`);
-    console.log('fetchPersonProfile res', res);
+const fetchPersonProfile = async (userId: string) => {
+  const res = await axiosInstance.get(`/api/volunteer/profile/${userId}`);
+  return res.data;
+};
 
-    if (res.status === 200) return res.data;
-    else if (res.status === 400) console.log('fetchPersonProfile res 400');
-    else if (res.status === 500) console.log('fetchPersonProfile res 500');
-  } catch (e) {
-    console.error(e);
-  }
+export const usePersonProfileQuery = (userId: string) => {
+  return useQuery({
+    queryKey: ['volunteerProfile'],
+    queryFn: () => fetchPersonProfile(userId)
+  });
 };

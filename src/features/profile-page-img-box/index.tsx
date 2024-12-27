@@ -1,9 +1,8 @@
-import { ProfileImgBoxCss } from './indexCss';
+import { ApplyButton, ProfileImgBoxCss } from './indexCss';
 import { personProfileType } from '@/shared/types/person-profile/personProfile';
 import { centerProfileType } from '@/shared/types/center-profile/centerProfile';
-// import { useLoginStore } from '@/store/stores/login/loginStore';  버튼 커스텀 하실 때 풀어서 써주세요..!
+import { useLoginStore } from '@/store/stores/login/loginStore';
 import InterestHeartBtn from '@/components/interest-heart';
-import Button from '@/components/button';
 
 type personOrCenter = ({ type: 'person' } & personProfileType) | ({ type: 'center' } & centerProfileType);
 
@@ -13,8 +12,9 @@ type ProfileImgBoxProps = {
 
 const ProfileImgBox: React.FC<ProfileImgBoxProps> = (props) => {
   const { setIsModalOpen } = props;
-  // const isLoggedIn = useLoginStore((state) => state.isLoggedIn); 버튼 커스텀 하실 때 풀어서 써주세요..!
-  // const loginType = useLoginStore((state) => state.loginType); 버튼 커스텀 하실 때 풀어서 써주세요..!
+  const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
+  const loginType = useLoginStore((state) => state.loginType);
+  console.log('isloggedin', isLoggedIn);
 
   // 타입 가드 함수 생성
   const isPersonProfile = (props: personOrCenter): props is { type: 'person' } & personProfileType => {
@@ -33,10 +33,11 @@ const ProfileImgBox: React.FC<ProfileImgBoxProps> = (props) => {
           <img className="mitten" src={`/assets/imgs/mitten-${tier.toLowerCase()}.svg`} />
         </p>
         {/* 봉사자는 봉사자에게 쪽지 보낼 수 없음 */}
-        <Button
+        <ApplyButton
           label="쪽지 전달하기"
+          type="blue"
+          disabled={!isLoggedIn || loginType !== 'ROLE_CENTER'}
           onClick={() => setIsModalOpen(true)}
-          // variant={isLoggedIn && loginType === 'ROLE_CENTER' ? 'enabledOne' : 'disabled'} 버튼 커스텀 하실 때 풀어서 써주세요..!
         />
       </ProfileImgBoxCss>
     );
@@ -52,10 +53,11 @@ const ProfileImgBox: React.FC<ProfileImgBoxProps> = (props) => {
           <i>{homepage_link}</i>
         </p>
         {/* 센터는 센터에게 쪽지 보낼 수 없음 */}
-        <Button
+        <ApplyButton
           label="쪽지 전달하기"
+          type="blue"
+          disabled={!isLoggedIn || loginType !== 'ROLE_VOLUNTEER'}
           onClick={() => setIsModalOpen(true)}
-          // variant={isLoggedIn && loginType === 'ROLE_VOLUNTEER' ? 'enabledOne' : 'disabled'}
         />
       </ProfileImgBoxCss>
     );

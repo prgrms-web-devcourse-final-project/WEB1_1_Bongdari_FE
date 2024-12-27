@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { myMessageType, myVolunteerType } from '@/shared/types/person-profile/personProfile';
 import { useLoginStore } from '@/store/stores/login/loginStore';
-import { fetchMyMessage, fetchMyVolunteer } from '@/store/queries/volunteer-mypage/useFetchMyData';
+import { useMyMessage, useMyVolunteer } from '@/store/queries/volunteer-mypage/useFetchMyData';
 
 interface useHalfListProps {
   listType: 'myVolunteer' | 'myMessage';
@@ -24,6 +24,8 @@ export const useHalfList = ({ listType }: useHalfListProps): useHalfListReturn =
   const myLoginId = useLoginStore((state) => state.myLoginId);
   const [isMsgModalOpen, setIsMsgModalOpen] = useState<boolean>(false);
   const [msgOpenId, setMsgOpenId] = useState<number>(0);
+  const { data: volunteerData } = useMyVolunteer(myLoginId ?? '', currPage);
+  const { data: messageData } = useMyMessage(currPage);
 
   const onClickMyMessage = (message_id: string) => {
     console.log(message_id, '메시지 띄우기');
@@ -31,52 +33,28 @@ export const useHalfList = ({ listType }: useHalfListProps): useHalfListReturn =
     setIsMsgModalOpen(true);
   };
 
+  // 왜 메시지 모달을 닫을 때 메시지 데이터를 set하지?
   const onCloseMsgModal = () => {
-    const fetchData = async () => {
-      const data = await fetchMyMessage(currPage);
-      console.log('메시지 데이터', data?.content);
-      if (data) setData(data.content);
-    };
+    if (messageData) setData(messageData.content);
     setIsMsgModalOpen(false);
-    fetchData();
   };
 
   // 페이지 변경시 다시 불러오기
   useEffect(() => {
-    const fetchData = async () => {
-      if (listType === 'myVolunteer') {
-        const data = await fetchMyVolunteer(myLoginId ?? '', currPage);
-        console.log('봉사 데이터', data?.content);
-        if (data) setData(data.content);
-      } else {
-        const data = await fetchMyMessage(currPage);
-        console.log('메시지 데이터', data?.content);
-        if (data) setData(data.content);
+    if (listType === 'myVolunteer') {
+      // `volunteerData`가 업데이트되었을 때 데이터를 설정
+      if (volunteerData) {
+        setData(volunteerData.content); // 새로운 데이터 설정
+        setTotPage(volunteerData.totalPages || 1); // 전체 페이지 수 업데이트
       }
-    };
-    fetchData();
-  }, [currPage]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      if (listType === 'myVolunteer') {
-        const data = await fetchMyVolunteer(myLoginId ?? '');
-        console.log('봉사 데이터', data?.content);
-        if (data && !myData) {
-          setData(data.content);
-          setTotPage(data.totalPages || 1);
-        }
-      } else {
-        const data = await fetchMyMessage();
-        console.log('메시지 데이터', data?.content);
-        if (data && !myData) {
-          setData(data.content);
-          setTotPage(data.totalPages || 1);
-        }
+    } else {
+      // `messageData`가 업데이트되었을 때 데이터를 설정
+      if (messageData) {
+        setData(messageData.content); // 새로운 데이터 설정
+        setTotPage(messageData.totalPages || 1); // 전체 페이지 수 업데이트
       }
-    };
-    fetchData();
-  }, []);
+    }
+  }, [currPage, listType, volunteerData, messageData]); // currPage와 관련 데이터를 의존성 배열에 추가
 
   return {
     myData,
