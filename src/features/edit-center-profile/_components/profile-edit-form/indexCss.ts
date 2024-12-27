@@ -9,20 +9,18 @@ export const EditFormWrapper = styled.div`
   width: 100%;
 `;
 
-export const NickNameSection = styled.section`
+export const ProfileSection1 = styled.section`
   border: ${theme.box.section.border};
   background-color: ${theme.box.section.backgroundColor};
   border-radius: ${theme.box.section.borderRadius};
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  flex-direction: column;
   padding: 56px 134px 46px 46px;
   width: 100%;
-  box-sizing: border-box;
   gap: 14px;
 `;
 
-export const EtcProfileSection = styled.section`
+export const ProfileSection2 = styled.section`
   border: ${theme.box.section.border};
   background-color: ${theme.box.section.backgroundColor};
   border-radius: ${theme.box.section.borderRadius};
@@ -31,7 +29,6 @@ export const EtcProfileSection = styled.section`
   justify-content: space-around;
   padding: 33px 133px 42px 57px;
   width: 100%;
-  box-sizing: border-box;
   gap: 12px;
 `;
 
@@ -121,22 +118,14 @@ export const CenterIntroTextArea = styled.textarea`
   }
 `;
 
-export const EditNickNameButton = styled(Button)`
-  width: 111px;
-  height: 37px;
-  border-radius: 13px;
-  font-weight: 600;
-  font-size: ${theme.fontSize.eighthSize};
-`;
-
-export const EtcButtonContainer = styled.div`
+export const EditProfileSectionButtonContainer = styled.div`
   display: flex;
   justify-content: end;
   padding-top: 20px;
 `;
-export const EditEtcProfileButton = styled(Button)`
-  width: 221px;
-  height: 53px;
+export const EditProfileSectionButton = styled(Button)`
+  width: 111px;
+  height: 37px;
   border-radius: 13px;
   font-weight: 600;
   font-size: ${theme.fontSize.eighthSize};
