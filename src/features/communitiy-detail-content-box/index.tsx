@@ -1,5 +1,4 @@
-import Button from '@/components/button';
-import { CommunityDetailContentBoxCss } from './indexCss';
+import { ApplyButton, CommunityDetailContentBoxCss } from './indexCss';
 import { useCommunityDetailContent } from './logic/useCommunityDetailContent';
 import WriterProfileBox from './ui/WriterProfileBox';
 import useDateFormat from '@/shared/hooks/useDateFormat';
@@ -23,7 +22,7 @@ const CommunityDetailContentBox = ({ content_id }: { content_id: number }) => {
         <div className="btnWrap">
           {isMyContent ? (
             <Link to={`/communitycreate/${content_id}`}>
-              <Button label="수정하기" />
+              <ApplyButton label="수정하기" type="blue" />
             </Link>
           ) : (
             ''

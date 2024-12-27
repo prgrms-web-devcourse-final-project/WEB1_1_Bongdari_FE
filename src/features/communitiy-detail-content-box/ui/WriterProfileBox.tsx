@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { WriterProfileBoxCss } from './WriterProfileBoxCss';
 import { tierType } from '@/shared/types/person-profile/personProfile';
-import Button from '@/components/button';
+import { ApplyButton } from '../indexCss';
 
 const WriterProfileBox = ({
   volunteer_id,
@@ -23,12 +23,10 @@ const WriterProfileBox = ({
       </div>
       {volunteer_id ? (
         <Link to={`/profile/${volunteer_id}`}>
-          {/* <SubmitButton label="프로필 확인하기" variant="enabledOne" /> 이걸 아래로 바꿔놨어요 밑에꺼 수정하면 이건 지우시면 됩니다. */}
-          <Button label="프로필 확인하기" />
+          <ApplyButton label="프로필 확인하기" type="blue" />
         </Link>
       ) : (
-        // <SubmitButton label="프로필 확인하기" variant="disabled" /> 이걸 아래로 바꿔놨어요 밑에꺼 수정하면 이건 지우시면 됩니다.
-        <Button label="프로필 확인하기" />
+        <ApplyButton label="프로필 확인하기" type="blue" disabled={true} />
       )}
     </WriterProfileBoxCss>
   );
