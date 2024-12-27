@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { useLoginStore } from '@/store/stores/login/loginStore';
 import { useDeleteInterest, usePostInterest } from '@/store/queries/interest-heart-query/useInterestHeart';
+import useInterestStore from '@/store/stores/interest-center/interestStore';
 
 interface useInterestProps {
   center_id: string;
@@ -21,6 +22,10 @@ export const useInterest = ({ center_id }: useInterestProps): useInterestReturn 
   const myLoginId = useLoginStore((state) => state.myLoginId);
   const loginType = useLoginStore((state) => state.loginType);
 
+  const centerIds = useInterestStore((state) => state.centerIds);
+  const removeCenterId = useInterestStore((state) => state.removeCenterId);
+  const addCenterId = useInterestStore((state) => state.addCenterId);
+
   const { mutate: postInterest, isPending: postLoading } = usePostInterest();
   const { mutate: deleteInterest, isPending: deleteLoading } = useDeleteInterest();
 
@@ -35,6 +40,7 @@ export const useInterest = ({ center_id }: useInterestProps): useInterestReturn 
     if (isInterest) {
       deleteInterest(center_id, {
         onSuccess: () => {
+          removeCenterId(center_id);
           console.log('관심기관 삭제가 완료되었습니다!');
         },
         onError: () => {
@@ -45,6 +51,7 @@ export const useInterest = ({ center_id }: useInterestProps): useInterestReturn 
     } else {
       postInterest(center_id, {
         onSuccess: () => {
+          addCenterId(center_id);
           console.log('관심기관 설정이 완료되었습니다!');
         },
         onError: () => {
@@ -57,7 +64,7 @@ export const useInterest = ({ center_id }: useInterestProps): useInterestReturn 
 
   useEffect(() => {
     const checkFirstState = () => {
-      // TODO: 관심기관인지 확인하기 로직 구현
+      setIsInterest(centerIds.has(center_id));
     };
     checkFirstState();
   });

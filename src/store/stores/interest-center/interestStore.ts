@@ -66,7 +66,14 @@ const useInterestStore = create<InterestStore>()(
     }),
     {
       name: 'interest-storage',
-      storage: createJSONStorage(() => customStorage)
+      storage: createJSONStorage(() => customStorage),
+      onRehydrateStorage: () => (state) => {
+        // localStorage에서 데이터를 불러올 때 실행
+        if (state && state.centerIds) {
+          // centerIds를 Set으로 변환
+          state.centerIds = new Set(state.centerIds);
+        }
+      }
     }
   )
 );
