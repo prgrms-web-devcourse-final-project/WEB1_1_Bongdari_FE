@@ -18,8 +18,8 @@ import {
 import { useNavigate } from 'react-router-dom';
 import useDateFormat from '@/shared/hooks/useDateFormat';
 import { useGetReviewById } from '@/store/queries/center-mypage/useReview';
-import { useGetOtherVolunteerProfile } from '@/store/queries/volunteer-profile/useVolunteerProfile';
 import Button from '@/components/button';
+import { usePersonProfileQuery } from '@/store/queries/volunteer-profile/useFetchPersonProfile';
 
 interface ReviewModalProps {
   handleCloseReviewModal: () => void;
@@ -30,7 +30,7 @@ const ReviewReadModal = ({ handleCloseReviewModal, reviewId }: ReviewModalProps)
   const navigate = useNavigate();
   const { formatDate } = useDateFormat();
   const { data: reviewData, isLoading: isReviewLoading } = useGetReviewById(reviewId);
-  const { data: volunteerData, isLoading: isVolunteerLoading } = useGetOtherVolunteerProfile(reviewData?.volunteer_id);
+  const { data: volunteerData, isLoading: isVolunteerLoading } = usePersonProfileQuery(reviewData?.volunteer_id);
 
   if (isReviewLoading || isVolunteerLoading) return <div>로딩중...</div>;
   if (!reviewData || !volunteerData) return null;
