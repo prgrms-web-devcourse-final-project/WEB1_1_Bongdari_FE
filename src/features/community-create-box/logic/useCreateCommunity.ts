@@ -16,8 +16,9 @@ interface useCreateCommunityReturn {
 export const useCreateCommunity = ({ content_id }: { content_id?: number }): useCreateCommunityReturn => {
   const { mutate: postCommunity } = usePostCommunity({
     onSuccess: (data) => {
+      // data는 글 번호(id)
       console.log('Post success:', data);
-      navigate(`/community/${content_id}`);
+      navigate(`/community/${data}`);
     },
     onError: (error) => {
       console.error('Post error:', error);
@@ -26,6 +27,7 @@ export const useCreateCommunity = ({ content_id }: { content_id?: number }): use
 
   const { mutate: putCommunity } = usePutCommunity({
     onSuccess: (data) => {
+      // data는 비어있음
       console.log('Put success:', data);
       navigate(`/community/${content_id}`);
     },

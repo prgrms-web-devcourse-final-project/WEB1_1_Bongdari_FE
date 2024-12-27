@@ -1,5 +1,13 @@
+import Button from '@/components/button';
 import theme from '@/styles/theme';
 import styled from 'styled-components';
+
+export const ApplyButton = styled(Button)`
+  width: 220px;
+  height: 50px;
+  font-size: ${theme.fontSize.eighthSize};
+  border-radius: 13px;
+`;
 
 export const CommunityCreateBoxCss = styled.div`
   background-color: ${theme.box.section.backgroundColor};

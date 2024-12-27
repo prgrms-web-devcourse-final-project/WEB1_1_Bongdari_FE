@@ -1,14 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
 import axiosInstance from '@/api/apis';
 
-const fetchPersonProfile = async (userId: string) => {
-  const res = await axiosInstance.get(`/api/volunteer/profile/${userId}`);
+const fetchPersonProfile = async (volunteerId: string) => {
+  const res = await axiosInstance.get(`/api/volunteer/profile/${volunteerId}`);
   return res.data;
 };
 
-export const usePersonProfileQuery = (userId: string) => {
+export const usePersonProfileQuery = (volunteerId: string) => {
   return useQuery({
-    queryKey: ['volunteerProfile'],
-    queryFn: () => fetchPersonProfile(userId)
+    queryKey: ['volunteerProfile', volunteerId],
+    queryFn: () => fetchPersonProfile(volunteerId),
+    enabled: !!volunteerId
   });
 };

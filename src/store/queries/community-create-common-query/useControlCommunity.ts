@@ -21,7 +21,7 @@ export const usePostCommunity = (options?: {
   return useMutation({
     mutationFn: postCommunity,
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ['community'] });
+      queryClient.invalidateQueries({ queryKey: ['communityDetail'] });
       options?.onSuccess?.(data);
     },
     onError: (error) => {
@@ -52,7 +52,7 @@ export const usePutCommunity = (options?: {
     mutationFn: ({ content_id, formData }: { content_id: number; formData: FormData }) =>
       putCommunity(content_id, formData),
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ['community'] });
+      queryClient.invalidateQueries({ queryKey: ['communityDetail'] });
       options?.onSuccess?.(data);
     },
     onError: (error) => {
