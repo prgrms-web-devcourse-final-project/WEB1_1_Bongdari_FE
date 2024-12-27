@@ -1,5 +1,14 @@
+import Button from '@/components/button';
 import theme from '@/styles/theme';
 import styled from 'styled-components';
+
+export const ApplyButton = styled(Button)`
+  width: 220px;
+  height: 50px;
+  font-size: ${theme.fontSize.seventhSize};
+  font-weight: 600;
+  border-radius: 13px;
+`;
 
 export const CommuntiyListCss = styled.div`
   width: 100%;
