@@ -19,7 +19,7 @@ export const useMyInterestCenter = (): useMyInterestCenterReturn => {
   const { data } = useMyInterestCenterQuery();
 
   useEffect(() => {
-    if (data && !interestCenterData) setInterestCenterData(data);
+    if (data) setInterestCenterData(data);
 
     // 전체 페이지 수 계산 (div 너비 고려)
     // 수정필요(주영)
@@ -35,7 +35,7 @@ export const useMyInterestCenter = (): useMyInterestCenterReturn => {
     };
 
     calcPage();
-  }, []);
+  }, [data, interestCenterData]);
 
   return {
     interestCenterData,

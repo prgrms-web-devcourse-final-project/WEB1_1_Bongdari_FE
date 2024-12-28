@@ -1,11 +1,22 @@
+import Button from '@/components/button';
 import Theme from '@/styles/theme';
 import styled from 'styled-components';
+
+export const ApplyButton = styled(Button)`
+  width: 220px;
+  height: 50px;
+
+  font-size: ${Theme.fontSize.eighthSize};
+  font-weight: 500;
+  border-radius: 13px;
+`;
 
 export const EditProfileCss = styled.div`
   background-color: ${Theme.box.section.backgroundColor};
   border: ${Theme.box.section.border};
   border-radius: ${Theme.box.section.borderRadius};
   width: 100%;
+  height: 600px;
   display: grid;
   grid-template-columns: 1fr 2fr;
   padding: 65px 100px;

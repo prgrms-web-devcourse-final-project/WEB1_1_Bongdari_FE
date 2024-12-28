@@ -8,9 +8,11 @@ const InterestCenterList = () => {
   const { interestCenterData, containerRef, totPage, currPage, setCurrPage } = useMyInterestCenter();
 
   if (!interestCenterData || interestCenterData.length === 0) {
+    // if (true) {
     return (
       <InterestCenterListCss currpage={currPage}>
         <TitleWithPagenation title="내 관심 기관" totPage={totPage} currPage={currPage} setCurrPage={setCurrPage} />
+
         <div className="noData">관심 기관이 없습니다</div>
       </InterestCenterListCss>
     );
