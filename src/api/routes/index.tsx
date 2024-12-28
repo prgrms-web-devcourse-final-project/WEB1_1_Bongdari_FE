@@ -141,10 +141,6 @@ const routes: RouteObject[] = [
         element: <LoginErrorPage />
       },
       {
-        path: '/404',
-        element: <NotFoundPage />
-      },
-      {
         path: '/*',
         element: <NotFoundPage />
       }
