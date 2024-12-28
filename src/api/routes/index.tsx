@@ -21,6 +21,8 @@ import FindNearByActivityPage from '@/pages/find-nearby-activitiy-page';
 import LandingPage from '@/pages/landing-page';
 import { useLoginStore } from '@/store/stores/login/loginStore';
 import CenterContactPage from '@/pages/center-contact-page';
+import LoginErrorPage from '@/pages/error-page/login-error-page';
+import NotFoundPage from '@/pages/error-page/not-found-page';
 
 const MyPage = () => {
   const loginType = useLoginStore((state) => state.loginType);
@@ -133,6 +135,18 @@ const routes: RouteObject[] = [
       {
         path: '/findnearmyactivity',
         element: <FindNearByActivityPage />
+      },
+      {
+        path: '/error/login',
+        element: <LoginErrorPage />
+      },
+      {
+        path: '/404',
+        element: <NotFoundPage />
+      },
+      {
+        path: '/*',
+        element: <NotFoundPage />
       }
     ]
   }
