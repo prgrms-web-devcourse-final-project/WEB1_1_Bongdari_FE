@@ -17,8 +17,8 @@ export const useCommunityDetailContent = (content_id: number): useCommunityDetai
   // 커뮤니티 상세 데이터 가져오기
   const { data: detailData } = useCommunityDetail(content_id);
   const { data: writerData } = usePersonProfileQuery(detailData?.writer_id ?? '');
-  console.log('dataaa', detailData);
-  console.log('dataaa', writerData);
+  // console.log('dataaa', detailData);
+  // console.log('dataaa', writerData);
 
   // 내 콘텐츠 여부 확인
   const isMyContent = detailData ? loginType === 'ROLE_VOLUNTEER' && detailData.writer_id === myLoginId : false;

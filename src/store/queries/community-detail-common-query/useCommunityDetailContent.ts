@@ -11,6 +11,7 @@ const fetchCommunityDetailContent = async (content_id: number) => {
 export const useCommunityDetail = (contentId: number) => {
   return useQuery({
     queryKey: ['communityDetail'],
-    queryFn: () => fetchCommunityDetailContent(contentId)
+    queryFn: () => fetchCommunityDetailContent(contentId),
+    enabled: !!contentId && contentId > 0
   });
 };

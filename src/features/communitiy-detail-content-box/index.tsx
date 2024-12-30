@@ -15,10 +15,10 @@ import { useAlertDialog, useConfirmDialog } from '@/store/stores/dialog/dialogSt
 
 const CommunityDetailContentBox = ({ content_id }: { content_id: number }) => {
   const { detailData, writerData, isMyContent } = useCommunityDetailContent(content_id);
-  const { formatDate } = useDateFormat();
-  const navigate = useNavigate();
   const { mutate: deleteCommunity } = useDeleteCommunity();
+  const navigate = useNavigate();
 
+  const { formatDate } = useDateFormat();
   const { openConfirm } = useConfirmDialog();
   const { openAlert } = useAlertDialog();
 
