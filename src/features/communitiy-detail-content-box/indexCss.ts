@@ -9,6 +9,13 @@ export const ApplyButton = styled(Button)`
   border-radius: 13px;
 `;
 
+export const DeleteCommunityButton = styled(Button)`
+  width: 220px;
+  height: 50px;
+  font-size: ${theme.fontSize.eighthSize};
+  border-radius: 13px;
+`;
+
 export const CommunityDetailContentBoxCss = styled.div`
   .noData {
     width: 100%;
@@ -57,4 +64,11 @@ export const CommunityImageContainer = styled.div`
 export const CommunityImage = styled.img`
   width: 100%;
   object-fit: cover;
+`;
+
+export const EditDeleteBtnCon = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
 `;

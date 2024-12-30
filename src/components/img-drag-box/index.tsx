@@ -41,6 +41,15 @@ const UploadBox: React.FC<UploadBoxProps> = ({ onFileSelect }) => {
     }
   };
 
+  // 이미지 미리보기로 업로드 했는데 다른 사진으로 변경하고 싶을 경우
+  // 다시 이미지 부분 클릭하여 파일 추가할 수 있도록
+  const handleChangeImage = () => {
+    const fileInput = document.getElementById('fileInput') as HTMLInputElement;
+    if (fileInput) {
+      fileInput.click();
+    }
+  };
+
   const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
@@ -73,16 +82,19 @@ const UploadBox: React.FC<UploadBoxProps> = ({ onFileSelect }) => {
         onChange={handleFileSelect}
         style={{ display: 'none' }}
       />
-      <div>
-        {previewImg ? <img src={previewImg} alt="미리보기 이미지" /> : null}
-
+      {previewImg ? (
+        <div onClick={handleChangeImage}>
+          <img src={previewImg} alt="미리보기 이미지" />
+          <p>클릭 또는 드래그하여 이미지 변경</p>
+        </div>
+      ) : (
         <label htmlFor="fileInput">
           <div>
             <p>이미지를 드래그하거나 클릭하여 업로드하세요</p>
             <p>지원 형식: JPG, PNG, GIF</p>
           </div>
         </label>
-      </div>
+      )}
     </UploadBoxContainer>
   );
 };
