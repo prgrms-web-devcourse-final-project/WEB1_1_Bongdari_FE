@@ -45,7 +45,6 @@ export const useCreateCommunity = ({ content_id }: { content_id?: number }): use
 
   // 선택된 이미지 파일 저장
   const handleFileSelect = (files: File[]) => {
-    console.log('Selected files:', files);
     setSelectedFiles(files);
   };
 
