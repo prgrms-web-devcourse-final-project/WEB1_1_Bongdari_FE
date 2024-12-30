@@ -45,3 +45,16 @@ export const CommunityDetailContentBoxCss = styled.div`
     margin-top: 50px;
   }
 `;
+
+export const CommunityImageContainer = styled.div`
+  background-color: ${theme.box.section.backgroundColor};
+  border: ${theme.box.section.border};
+  border-radius: ${theme.box.section.borderRadius};
+  margin: 10px 0;
+  overflow: hidden;
+`;
+
+export const CommunityImage = styled.img`
+  width: 100%;
+  object-fit: cover;
+`;

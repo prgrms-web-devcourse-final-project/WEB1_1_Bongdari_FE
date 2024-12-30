@@ -1,4 +1,4 @@
-import { ApplyButton, CommunityDetailContentBoxCss } from './indexCss';
+import { ApplyButton, CommunityDetailContentBoxCss, CommunityImage, CommunityImageContainer } from './indexCss';
 import { useCommunityDetailContent } from './logic/useCommunityDetailContent';
 import WriterProfileBox from './ui/WriterProfileBox';
 import useDateFormat from '@/shared/hooks/useDateFormat';
@@ -18,6 +18,11 @@ const CommunityDetailContentBox = ({ content_id }: { content_id: number }) => {
         <i className="title">{detailData.title}</i>
         <i className="modifiedDate">최근 수정일: {formatDate(detailData.updated_at)}</i>
         <WriterProfileBox {...writerData} />
+        {detailData.image_url && (
+          <CommunityImageContainer>
+            <CommunityImage src={detailData.image_url} alt="detailData.image_url" />
+          </CommunityImageContainer>
+        )}
         <div className="content">{detailData.content}</div>
         <div className="btnWrap">
           {isMyContent ? (
