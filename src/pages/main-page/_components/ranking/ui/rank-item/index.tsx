@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import { Bottom, NickName, Top, Wrapper } from './indexCss';
 import { RankingDataType } from '@/shared/types/ranking-data/RankingDataType';
 
@@ -23,7 +25,7 @@ const RankItem: React.FC<RankItemProps> = ({ item, index }) => {
         </div>
         <NickName>
           <span>{index + 1}위</span>
-          <p>{item.nickname}</p>
+          <Link to={`/profile/${item.volunteer_id}`}>{item.nickname}</Link>
         </NickName>
       </Top>
       <Bottom>

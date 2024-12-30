@@ -37,6 +37,12 @@ export const NickName = styled.div`
   & > p {
     font-weight: 600;
   }
+
+  & > a {
+    text-decoration: none;
+    color: inherit;
+    font-weight: 600;
+  }
 `;
 
 export const Bottom = styled.div`
