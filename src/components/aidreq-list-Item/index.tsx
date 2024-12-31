@@ -24,7 +24,7 @@ const AidReqListItem: React.FC<AidReqListItemProps> = ({ width, onClick, request
       <Bottom
         created_at={request?.created_at}
         volunteer_start_date_time={request?.volunteer_start_date_time}
-        volunteer_time={request?.volunteer_time}
+        volunteer_hours={request?.volunteer_hours}
       />
     </Wrapper>
   );

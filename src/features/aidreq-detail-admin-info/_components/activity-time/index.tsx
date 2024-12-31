@@ -5,11 +5,11 @@ import { ActiveTime } from './indexCss';
 interface ActivityTimeProps {
   startDateTime: string;
   endDateTime: string;
-  volunteerTime: string;
+  volunteerTime: number;
 }
 
 const ActivityTime = ({ startDateTime, endDateTime, volunteerTime }: ActivityTimeProps) => {
-  const { formatTime, formatDateTime } = useDateFormat();
+  const { formatDateTime } = useDateFormat();
 
   return (
     <div>
@@ -24,7 +24,7 @@ const ActivityTime = ({ startDateTime, endDateTime, volunteerTime }: ActivityTim
           </DateInfo>
         </DateInfoWrap>
         <TimeInfo>
-          활동 시간 &nbsp;<ActiveTime>{formatTime(volunteerTime)}</ActiveTime>&nbsp;시간 입니다.
+          활동 시간 &nbsp;<ActiveTime>{volunteerTime}</ActiveTime>&nbsp;시간 입니다.
         </TimeInfo>
       </SectionBox2>
     </div>

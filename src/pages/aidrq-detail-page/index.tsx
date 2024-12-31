@@ -89,7 +89,7 @@ const AidRqDetailPage = () => {
       <ReviewCreateModal
         reviewModalState={reviewModalState}
         SetReviewModalState={SetReviewModalState}
-        recruitBoardId={Number(id)}></ReviewCreateModal>
+        applyId={presentState?.id}></ReviewCreateModal>
       <MessageCreateModal user_id={centerId || ''} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       {!data && <p>요청하신 글에 접근이 불가합니다.</p>}
     </Wrapper>

@@ -36,7 +36,7 @@ const TextAreaTypes = {
   `
 };
 
-const TextAreaCss = styled.textarea<{ colortype: 'white' | 'gray' }>`
+export const TextAreaCss = styled.textarea<{ colortype: 'white' | 'gray' }>`
   box-sizing: border-box;
   outline: none;
   resize: none;

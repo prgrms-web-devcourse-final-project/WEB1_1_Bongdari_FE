@@ -26,9 +26,6 @@ const FilterSearchBar: React.FC<FilterSearchBarProps> = ({ searchAidRequests }) 
             keyword: text
           });
         }}
-        // inputBox 고쳐주세요!!
-        // height="57px"
-        // borderRadius="8px"
         colortype="white"
         placeholder="검색어를 입력해주세요."></InputBox>
       <FilterBox setSearchState={setSearchState} searchAidRequests={searchAidRequests}></FilterBox>

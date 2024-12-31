@@ -22,6 +22,7 @@ const FilterBox: React.FC<FilterBoxProps> = ({ setSearchState, searchAidRequests
         <Select
           text="활동 유형을 입력해주세요."
           width="100%"
+          height="50px"
           data={[
             '전체',
             '생활편의지원',
@@ -47,6 +48,7 @@ const FilterBox: React.FC<FilterBoxProps> = ({ setSearchState, searchAidRequests
         <Select
           text="지역을 입력해주세요."
           width="100%"
+          height="50px"
           data={[
             '전체',
             '서울특별시',
@@ -71,6 +73,7 @@ const FilterBox: React.FC<FilterBoxProps> = ({ setSearchState, searchAidRequests
         <Select
           text="시간 인증 여부를 입력해주세요."
           width="100%"
+          height="50px"
           data={['전체', '시간 인증', '시간 미인증']}
           getSelectedOption={(option: string) => {
             setSearchState({
