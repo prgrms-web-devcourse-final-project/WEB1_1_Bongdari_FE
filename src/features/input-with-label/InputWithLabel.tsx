@@ -4,7 +4,8 @@ import { InputWithLabelCss } from './InputWithLabelCss';
 
 interface InputWithLabelProps {
   getInput: (inputText: string) => void;
-  height?: string;
+  // TextArea 고쳐주세요!!
+  // height?: string;
   initialVal?: string;
   placeholder?: string;
 
@@ -12,7 +13,8 @@ interface InputWithLabelProps {
 }
 const InputWithLabel: React.FC<InputWithLabelProps> = ({
   getInput,
-  height,
+  // TextArea 고쳐주세요!!
+  // height,
   initialVal,
   placeholder,
 
@@ -23,10 +25,10 @@ const InputWithLabel: React.FC<InputWithLabelProps> = ({
       <InputWithLabelCss>
         <i className="label">설명</i>
         <TextArea
+          // TextArea 고쳐주세요!!
+          // height={height}
           getInputText={getInput}
-          colortype={1}
-          width="100%"
-          height={height}
+          colortype="gray"
           initialVal={initialVal}
           placeholder={placeholder}
         />
@@ -37,9 +39,9 @@ const InputWithLabel: React.FC<InputWithLabelProps> = ({
       <InputWithLabelCss>
         <i className="label">닉네임</i>
         <InputBox
+          // inputBox 고쳐주세요!!
           getInputText={getInput}
-          colortype={1}
-          width="100%"
+          colortype="gray"
           initialVal={initialVal}
           placeholder={placeholder}
         />

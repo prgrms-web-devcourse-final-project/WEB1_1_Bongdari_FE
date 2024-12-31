@@ -2,40 +2,34 @@ import TextAreaCss from './indexCss';
 import { useInput } from './logic/useInput';
 
 interface TextAreaProps {
-  getInputText: (inputText: string) => void; // inputText 상위전달
-  colortype: 0 | 1; // 색상 타입
-  width: string;
-  height?: string;
+  getInputText?: (inputText: string) => void; // inputText 상위전달
+  colortype: 'white' | 'gray';
+  disabled?: boolean;
   initialVal?: string; // input내의 초깃값
   placeholder?: string; // input의 placeholder
-  isDisabled?: boolean;
-  setFunc?: (inputText: string) => void;
   value?: string;
+  setFunc?: (inputText: string) => void;
 }
 
 const TextArea: React.FC<TextAreaProps> = ({
   getInputText,
-  colortype = 0,
-  width,
-  height = '',
+  colortype,
+  disabled = false,
   initialVal = '',
   placeholder = '작성하세요.',
-  isDisabled = false,
-  setFunc,
-  value
+  value,
+  setFunc
 }: TextAreaProps) => {
   const { inputText, onChangeInput, onBlur } = useInput({ initialVal, getInputText, setFunc });
 
   return (
     <TextAreaCss
-      width={width}
-      height={height}
       colortype={colortype}
       value={value ?? inputText}
+      disabled={disabled}
       placeholder={placeholder}
       onChange={onChangeInput}
       onBlur={onBlur}
-      disabled={isDisabled}
     />
   );
 };

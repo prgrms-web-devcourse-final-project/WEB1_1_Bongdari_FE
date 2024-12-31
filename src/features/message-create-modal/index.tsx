@@ -36,8 +36,8 @@ const MessageCreateModal: React.FC<MessageCreateModalProps> = ({ user_id, isModa
           <div className="inputWrap">
             <i>제목</i>
             <InputBox
-              colortype={1}
-              width="100%"
+              // inputBox 고쳐주세요!!
+              colortype="gray"
               placeholder="제목을 입력해주세요"
               getInputText={(txt) => checkTitle(txt)}
               setFunc={(txt) => checkTitle(txt)}
@@ -46,9 +46,9 @@ const MessageCreateModal: React.FC<MessageCreateModalProps> = ({ user_id, isModa
           <div className="inputWrap">
             <i>내용</i>
             <TextArea
-              colortype={1}
-              width="100%"
-              height="220px"
+              // TextArea 고쳐주세요!!
+              // height="220px"
+              colortype="gray"
               placeholder="내용을 입력해주세요"
               getInputText={(txt) => checkContent(txt)}
               setFunc={(txt) => checkContent(txt)}
