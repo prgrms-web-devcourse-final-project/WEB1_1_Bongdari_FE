@@ -24,4 +24,7 @@ export const TitleWithPagenationCss = styled.div`
     color: #e1e1e1;
     cursor: default;
   }
+  .pages.disabled {
+    color: rgb(175, 175, 175);
+  }
 `;

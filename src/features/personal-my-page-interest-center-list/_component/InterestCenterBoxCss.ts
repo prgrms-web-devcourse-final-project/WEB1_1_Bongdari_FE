@@ -31,11 +31,10 @@ export const InterestCenterBoxCss = styled.div`
   }
 
   & > p {
+    color: black;
     text-align: center;
-    word-break: break-word; // 줄바꿈 설정
-    overflow-wrap: anywhere; // 어디서든 줄바꿈 가능
     white-space: normal; // 기본 줄바꿈 허용
-
-    display: block;
+    font-size: ${Theme.fontSize.seventhSize};
+    font-weight: 400;
   }
 `;

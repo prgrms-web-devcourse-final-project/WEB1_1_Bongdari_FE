@@ -23,45 +23,52 @@ const HalfList: React.FC<HalfListProps> = ({ listType }) => {
     return (
       <HalfListCss>
         <TitleWithPagenation title="내 봉사 목록" totPage={totPage} currPage={currPage} setCurrPage={setCurrPage} />
-        {!myData || myData.length === 0 ? (
-          <div className="noData">내 봉사 데이터가 없습니다</div>
-        ) : (
-          <div className="listWrap">
-            {isMyVolunteerType(myData) &&
-              myData.map((v, i) => {
-                return (
-                  <Link to={`/aidrqdetail/${v.id}`}>
-                    <LongListItem key={i} content_id={v.id.toString()} mainText={v.recruit_board.title} />
-                  </Link>
-                );
-              })}
-          </div>
-        )}
+
+        <section className="contentWrap">
+          {!myData || myData.length === 0 ? (
+            <div className="noData">내 봉사 데이터가 없습니다</div>
+          ) : (
+            <div className="listWrap">
+              {isMyVolunteerType(myData) &&
+                myData.map((v, i) => {
+                  return (
+                    <Link to={`/aidrqdetail/${v.id}`} key={i}>
+                      <LongListItem content_id={v.id.toString()} mainText={v.recruit_board.title} />
+                    </Link>
+                  );
+                })}
+            </div>
+          )}
+        </section>
       </HalfListCss>
     );
   } else if (listType === 'myMessage') {
     return (
       <HalfListCss>
         <TitleWithPagenation title="내 쪽지 목록" totPage={totPage} currPage={currPage} setCurrPage={setCurrPage} />
-        {!myData || myData.length === 0 ? (
-          <div className="noData">내 쪽지가 없습니다</div>
-        ) : (
-          <div className="listWrap">
-            {!isMyVolunteerType(myData) &&
-              myData.map((v, i) => {
-                return (
-                  <LongListItem
-                    key={i}
-                    content_id={v.id.toString()}
-                    mainText={v.title}
-                    getContentId={() => onClickMyMessage(v.id.toString())}
-                    isRead={v.is_read}
-                    mailWriter={v.sender_name}
-                  />
-                );
-              })}
-          </div>
-        )}
+
+        <section className="contentWrap">
+          {!myData || myData.length === 0 ? (
+            <div className="noData">내 쪽지가 없습니다</div>
+          ) : (
+            <div className="listWrap">
+              {!isMyVolunteerType(myData) &&
+                myData.map((v, i) => {
+                  return (
+                    <LongListItem
+                      key={i}
+                      content_id={v.id.toString()}
+                      mainText={v.title}
+                      getContentId={() => onClickMyMessage(v.id.toString())}
+                      isRead={v.is_read}
+                      mailWriter={v.sender_name}
+                    />
+                  );
+                })}
+            </div>
+          )}
+        </section>
+
         {isMsgModalOpen && <MessageReadModal handleModalClose={onCloseMsgModal} noteId={msgOpenId} />}
       </HalfListCss>
     );

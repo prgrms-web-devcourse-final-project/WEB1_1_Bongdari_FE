@@ -2,6 +2,7 @@ import AlertItem from '@/components/alert-item';
 import { Container, Top, Wrapper } from './indexCss';
 import { singleRead } from './logic/single-read';
 import { AlertType } from '@/shared/types/alert-type/AlertType';
+import { deleteAllNotifications } from './logic/all-read/deleteAllNotifications';
 
 interface AlertProps {
   notifications: AlertType[];
@@ -14,7 +15,13 @@ const Alert: React.FC<AlertProps> = ({ notifications, fetchNotifications }) => {
       <Container>
         <Top>
           <p>알림</p>
-          <span>전체 삭제하기</span>
+          <span
+            onClick={async () => {
+              await deleteAllNotifications(notifications);
+              fetchNotifications();
+            }}>
+            전체 삭제하기
+          </span>
         </Top>
         {notifications.map((item, index) => (
           <AlertItem

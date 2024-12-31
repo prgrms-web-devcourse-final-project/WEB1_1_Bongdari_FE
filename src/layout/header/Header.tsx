@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 
 import {
@@ -28,7 +28,24 @@ export default function Header() {
   const navigate = useNavigate();
 
   const [notifications, setNotifications] = useState<AlertType[]>([]);
+  const alertRef = useRef<HTMLDivElement>(null); // ref 추가
 
+  //Alert바깥 클릭 시, Alert닫기
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (alertRef.current && !alertRef.current.contains(event.target as Node)) {
+        setAlertState(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  //알림 리스트 가져오기
   const fetchNotifications = async () => {
     try {
       const response = await axiosInstance(`/api/notification/unread`);
@@ -39,6 +56,7 @@ export default function Header() {
     }
   };
 
+  //알림 Event 로직
   useEffect(() => {
     let eventSource: EventSource;
 
@@ -123,7 +141,11 @@ export default function Header() {
             </LogoutBtn>
           )}
           <AlertPositioning>
-            {alertState && <Alert notifications={notifications} fetchNotifications={fetchNotifications}></Alert>}
+            {alertState && (
+              <div ref={alertRef}>
+                <Alert notifications={notifications} fetchNotifications={fetchNotifications}></Alert>
+              </div>
+            )}
           </AlertPositioning>
           <AlertBox
             hasNotifications={notifications.length > 0}

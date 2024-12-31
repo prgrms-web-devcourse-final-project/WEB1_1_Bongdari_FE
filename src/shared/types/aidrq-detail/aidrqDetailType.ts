@@ -16,7 +16,7 @@ export interface AidRqDetailType {
   created_at: string;
   updated_at: string;
   volunteer_category: string;
-  volunteer_time: string;
+  volunteer_hours: number;
   admitted: boolean;
   img_url: string;
   location: Location;

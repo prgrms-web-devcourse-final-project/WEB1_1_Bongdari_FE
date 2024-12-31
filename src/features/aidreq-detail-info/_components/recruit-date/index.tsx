@@ -8,6 +8,19 @@ interface AidRqDetailCenterProfileProps {
 
 const RecruitDate: React.FC<AidRqDetailCenterProfileProps> = ({ data }) => {
   const { formatDateTime } = useDateFormat();
+
+  const calculateDday = () => {
+    const today = new Date();
+    const endDate = new Date(data.volunteer_start_date_time);
+
+    const diffTime = endDate.getTime() - today.getTime();
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    return diffDays;
+  };
+
+  const dDay = calculateDday();
+
   return (
     <Wrapper>
       <h2>접수기간</h2>
@@ -23,9 +36,13 @@ const RecruitDate: React.FC<AidRqDetailCenterProfileProps> = ({ data }) => {
           </p>
         </div>
         <div>
-          <p>
-            접수마감 <span>1</span>일 남았습니다.
-          </p>
+          {dDay > 0 ? (
+            <p>
+              접수마감 <span>{dDay}</span>일 남았습니다.
+            </p>
+          ) : (
+            <p>접수가 마감되었습니다.</p>
+          )}
         </div>
       </Container>
     </Wrapper>

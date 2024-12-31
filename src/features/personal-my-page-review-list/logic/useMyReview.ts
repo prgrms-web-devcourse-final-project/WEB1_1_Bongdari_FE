@@ -22,7 +22,7 @@ export const useMyReview = (): useMyReviewReturn => {
   useEffect(() => {
     // 로그인 상태가 아니라면 불러오지 않기
     if (myLoginId && data) setReviewData(data.content);
-  }, [currPage]);
+  }, [currPage, data, myLoginId]);
 
   // 데이터 fetch 및 페이지 수 계산
   useEffect(() => {

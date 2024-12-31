@@ -26,6 +26,9 @@ export const useHalfList = ({ listType }: useHalfListProps): useHalfListReturn =
   const [msgOpenId, setMsgOpenId] = useState<number>(0);
   const { data: volunteerData } = useMyVolunteer(myLoginId ?? '', currPage);
   const { data: messageData } = useMyMessage(currPage);
+  console.log();
+  console.log('debugging... (volunteerData):', volunteerData);
+  console.log('debugging... (messageData):', messageData);
 
   const onClickMyMessage = (message_id: string) => {
     console.log(message_id, '메시지 띄우기');
@@ -33,7 +36,7 @@ export const useHalfList = ({ listType }: useHalfListProps): useHalfListReturn =
     setIsMsgModalOpen(true);
   };
 
-  // 왜 메시지 모달을 닫을 때 메시지 데이터를 set하지?
+  // 메시지 읽음 처리
   const onCloseMsgModal = () => {
     if (messageData) setData(messageData.content);
     setIsMsgModalOpen(false);
@@ -44,13 +47,13 @@ export const useHalfList = ({ listType }: useHalfListProps): useHalfListReturn =
     if (listType === 'myVolunteer') {
       // `volunteerData`가 업데이트되었을 때 데이터를 설정
       if (volunteerData) {
-        setData(volunteerData.content); // 새로운 데이터 설정
+        setData(volunteerData.content);
         setTotPage(volunteerData.totalPages || 1); // 전체 페이지 수 업데이트
       }
     } else {
       // `messageData`가 업데이트되었을 때 데이터를 설정
       if (messageData) {
-        setData(messageData.content); // 새로운 데이터 설정
+        setData(messageData.content);
         setTotPage(messageData.totalPages || 1); // 전체 페이지 수 업데이트
       }
     }

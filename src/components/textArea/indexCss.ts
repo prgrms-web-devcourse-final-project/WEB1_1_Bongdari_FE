@@ -1,38 +1,53 @@
 import { inputGray, inputWhite } from '@/styles/theme';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 // colortype ? 회색입력창 : 흰색입력창
-interface TextAreaCssProps {
-  colortype: 0 | 1;
-  width: string;
-  height: string;
-}
+const TextAreaTypes = {
+  white: css`
+    color: ${inputWhite.color};
+    background-color: ${inputWhite.backgroundColor};
+    border: ${inputWhite.variants.notFocused.border};
+    border-radius: ${inputWhite.borderRadius};
 
-const TextAreaCss = styled.textarea<TextAreaCssProps>`
+    &::placeholder {
+      color: ${inputWhite.placeholderColor};
+    }
+
+    &:focus-within {
+      background-color: ${inputWhite.backgroundColor};
+      border: ${inputWhite.variants.focused.border};
+    }
+  `,
+
+  gray: css`
+    color: ${inputGray.color};
+    background-color: ${inputGray.variants.notFocused.backgroundColor};
+    border: ${'none'};
+    border-radius: ${inputGray.borderRadius};
+
+    &::placeholder {
+      color: ${inputGray.placeholderColor};
+    }
+
+    &:focus-within {
+      background-color: ${inputGray.variants.focused.backgroundColor};
+      border: ${'none'};
+    }
+  `
+};
+
+export const TextAreaCss = styled.textarea<{ colortype: 'white' | 'gray' }>`
   box-sizing: border-box;
   outline: none;
   resize: none;
 
-  width: ${(props) => props.width};
-  height: ${(props) => props.height};
-  color: ${(props) => (props.colortype ? inputGray.color : inputWhite.color)};
-  background-color: ${(props) =>
-    props.colortype ? inputGray.variants.notFocused.backgroundColor : inputWhite.backgroundColor};
-  border: ${(props) => (props.colortype ? 'none' : inputWhite.variants.notFocused.border)};
-  border-radius: ${(props) => (props.colortype ? inputGray.borderRadius : inputWhite.borderRadius)};
+  width: 100%;
+
   line-height: 16px;
   font-size: 16px;
   font-weight: 400;
   padding: 15px;
 
-  &::placeholder {
-    color: ${(props) => (props.colortype ? inputGray.placeholderColor : inputWhite.placeholderColor)};
-  }
-
-  &:focus-within {
-    background-color: ${(props) =>
-      props.colortype ? inputGray.variants.focused.backgroundColor : inputWhite.backgroundColor};
-    border: ${(props) => (props.colortype ? 'none' : inputWhite.variants.focused.border)};
-  }
+  ${({ colortype }) => TextAreaTypes[colortype]}
 `;
 export default TextAreaCss;
