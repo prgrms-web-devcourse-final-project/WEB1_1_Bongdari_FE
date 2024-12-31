@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 import theme from '@/styles/theme';
+import TextArea from '@/components/textArea';
+
+export const ApplyTextArea = styled(TextArea)`
+  height: '220px';
+`;
 
 export const MessageCreateModalCss = styled.div`
   .modalInnerWrap {

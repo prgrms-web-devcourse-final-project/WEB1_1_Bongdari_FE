@@ -1,4 +1,9 @@
+import TextArea from '@/components/textArea';
 import styled from 'styled-components';
+
+export const ApplyTextArea = styled(TextArea)<{ $height?: string }>`
+  height: ${({ $height }) => $height || 'auto'};
+`;
 
 export const InputWithLabelCss = styled.div`
   color: #656565;
