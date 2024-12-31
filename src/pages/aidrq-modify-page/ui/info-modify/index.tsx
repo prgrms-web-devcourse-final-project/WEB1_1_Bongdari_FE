@@ -76,13 +76,13 @@ const InfoModify: React.FC<InfoModifyProps> = ({ id, getTitleAndFilter, voluntee
       <TextAreaContainer>
         <p>본문 내용</p>
         <TextArea
+          // TextArea 고쳐주세요!!
+          // height="500px"
           key={volunteerData.content}
           getInputText={(text) => {
             getTitleAndFilter('content', text);
           }}
-          width="100%"
-          height="500px"
-          colortype={0}
+          colortype="white"
           initialVal={volunteerData.content}></TextArea>
       </TextAreaContainer>
       <ButtonContainer>

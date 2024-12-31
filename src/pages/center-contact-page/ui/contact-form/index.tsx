@@ -85,11 +85,11 @@ const ContactForm = () => {
         <FormGroup>
           <Label>추가 전달 사항</Label>
           <TextArea
+            // TextArea 고쳐주세요!!
+            // height="390px"
             placeholder="내용을 입력해주세요."
-            colortype={0}
+            colortype="white"
             getInputText={() => console.log('입력')}
-            width="100%"
-            height="390px"
           />
         </FormGroup>
 

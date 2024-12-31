@@ -29,9 +29,9 @@ const CommunityCreateBox = ({ content_id }: { content_id?: number }) => {
       <div className="inputWrap">
         <i className="label">내용</i>
         <TextArea
-          colortype={1}
-          width="100%"
-          height="450px"
+          // TextArea 고쳐주세요!!
+          // height="450px"
+          colortype="gray"
           placeholder="내용을 입력하세요"
           value={contentText}
           getInputText={(str) => console.log(str)}

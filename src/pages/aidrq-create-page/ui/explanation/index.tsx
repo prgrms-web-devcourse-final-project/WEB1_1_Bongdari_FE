@@ -11,12 +11,12 @@ const Explanation: React.FC<ExplanationProps> = ({ getTitleAndFilter }) => {
     <Wrapper>
       <p>본문 내용</p>
       <TextArea
+        // TextArea 고쳐주세요!!
+        // height="500px"
         getInputText={(text) => {
           getTitleAndFilter('content', text);
         }}
-        colortype={0}
-        width="100%"
-        height="500px"></TextArea>
+        colortype="white"></TextArea>
     </Wrapper>
   );
 };
