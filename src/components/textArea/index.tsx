@@ -2,7 +2,7 @@ import TextAreaCss from './indexCss';
 import { useInput } from './logic/useInput';
 
 interface TextAreaProps {
-  getInputText: (inputText: string) => void; // inputText 상위전달
+  getInputText?: (inputText: string) => void; // inputText 상위전달
   colortype: 'white' | 'gray';
   disabled?: boolean;
   initialVal?: string; // input내의 초깃값
@@ -25,8 +25,8 @@ const TextArea: React.FC<TextAreaProps> = ({
   return (
     <TextAreaCss
       colortype={colortype}
-      disabled={disabled}
       value={value ?? inputText}
+      disabled={disabled}
       placeholder={placeholder}
       onChange={onChangeInput}
       onBlur={onBlur}

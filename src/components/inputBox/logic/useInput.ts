@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 interface UseInputProps {
-  getInputText: (inputText: string) => void;
+  getInputText?: (inputText: string) => void;
   initialVal: string;
   setFunc?: (inputText: string) => void;
   onEnterFunc?: () => void;
@@ -27,14 +27,14 @@ export const useInput = ({ getInputText, initialVal, setFunc, onEnterFunc }: Use
   const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       const tmp = (e.target as HTMLInputElement).value;
-      getInputText(tmp);
+      if (getInputText) getInputText(tmp);
       if (onEnterFunc) onEnterFunc();
     }
   };
 
   // input 내부 외 다른 곳 클릭시 inputText 상위로 전달
   const onBlur = () => {
-    getInputText(inputText);
+    if (getInputText) getInputText(inputText);
   };
 
   return {

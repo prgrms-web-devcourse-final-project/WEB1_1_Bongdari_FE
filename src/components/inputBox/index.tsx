@@ -2,7 +2,7 @@ import InputBoxCss from './indexCss';
 import { useInput } from './logic/useInput';
 
 interface InputCompProps {
-  getInputText: (inputText: string) => void; // inputText 상위전달
+  getInputText?: (inputText: string) => void; // inputText 상위전달
   colortype: 'white' | 'gray';
   textType?: 'text' | 'password' | 'url';
   disabled?: boolean;
