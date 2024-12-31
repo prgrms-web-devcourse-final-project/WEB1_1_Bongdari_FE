@@ -24,7 +24,7 @@ const TitleWithPagenation: React.FC<TitleWithPagenationProps> = ({ title, totPag
         <i className={`pageBtn ${currPage === 1 ? 'disabled' : ''}`} onClick={onClickPrevPage}>
           {'<'}
         </i>
-        <i className="pages">
+        <i className={`pages ${totPage === 1 ? 'disabled' : ''}`}>
           {currPage} / {totPage}
         </i>
         <i className={`pageBtn ${currPage === totPage ? 'disabled' : ''}`} onClick={onClickNextPage}>

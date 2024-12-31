@@ -17,19 +17,18 @@ export const usePersonProfile = (): usePersonProfileReturn => {
   const [profileData, setProfileData] = useState<personProfileType>();
   const myLoginId = useLoginStore((state) => state.myLoginId);
 
-  // url에 id 없고 로그인 상태라면 내 프로필 데이터 보여주기
-  const { data } = usePersonProfileQuery(userId === undefined && myLoginId ? myLoginId : (userId ?? ''));
-  // 수정필요(주영) - 가독성 이슈
-
   // 로그인 시에만 쪽지 모달 열기
   const setIsModalOpenWhenLogin = (bool: boolean) => {
     if (myLoginId) setIsModalOpen(bool);
   };
+  // url에 id 없으면 내 프로필 데이터 보여주기
+  const { data } = usePersonProfileQuery(userId ?? myLoginId ?? '');
 
-  // 프로필 데이터 fetch
   useEffect(() => {
-    if (data && !profileData) setProfileData(data.data as personProfileType);
-  }, []);
+    if (data) {
+      setProfileData(data as personProfileType);
+    }
+  }, [data]);
 
   return { userId, profileData, isModalOpen, setIsModalOpenWhenLogin };
 };
