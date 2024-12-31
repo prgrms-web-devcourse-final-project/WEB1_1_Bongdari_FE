@@ -13,8 +13,8 @@ const CommentInput = ({
   return (
     <CommentInputCss>
       <InputBox
-        colortype={0}
-        width="100%"
+        // inputBox 고쳐주세요!!
+        colortype="white"
         value={commentText}
         getInputText={setCommentText}
         setFunc={setCommentText}

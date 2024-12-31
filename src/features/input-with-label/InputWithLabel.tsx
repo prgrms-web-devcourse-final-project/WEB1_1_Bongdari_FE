@@ -37,9 +37,9 @@ const InputWithLabel: React.FC<InputWithLabelProps> = ({
       <InputWithLabelCss>
         <i className="label">닉네임</i>
         <InputBox
+          // inputBox 고쳐주세요!!
           getInputText={getInput}
-          colortype={1}
-          width="100%"
+          colortype="gray"
           initialVal={initialVal}
           placeholder={placeholder}
         />

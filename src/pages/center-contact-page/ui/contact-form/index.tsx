@@ -13,8 +13,9 @@ const ContactForm = () => {
           <FormGroup flex={1}>
             <Label>기관명</Label>
             <InputBox
-              colortype={0}
-              width="590px"
+              // inputBox 고쳐주세요!!
+              // width="590px"
+              colortype="white"
               getInputText={() => console.log('입력')}
               placeholder="기관명을 입력해주세요."
             />
@@ -22,8 +23,9 @@ const ContactForm = () => {
           <FormGroup flex={1}>
             <Label>이메일</Label>
             <InputBox
-              colortype={0}
-              width="590px"
+              // inputBox 고쳐주세요!!
+              // width="590px"
+              colortype="white"
               getInputText={() => console.log('입력')}
               placeholder="이메일을 입력해주세요."
             />
@@ -34,8 +36,9 @@ const ContactForm = () => {
           <FormGroup flex={1}>
             <Label>제출인 명</Label>
             <InputBox
-              colortype={0}
-              width="390px"
+              // inputBox 고쳐주세요!!
+              // width="390px"
+              colortype="white"
               getInputText={() => console.log('입력')}
               placeholder="제출인 명을 입력해주세요."
             />
@@ -43,8 +46,9 @@ const ContactForm = () => {
           <FormGroup flex={1}>
             <Label>지역</Label>
             <InputBox
-              colortype={0}
-              width="390px"
+              // inputBox 고쳐주세요!!
+              // width="390px"
+              colortype="white"
               getInputText={() => console.log('입력')}
               placeholder="지역을 입력해주세요."
             />
@@ -52,8 +56,9 @@ const ContactForm = () => {
           <FormGroup flex={1}>
             <Label>연락처</Label>
             <InputBox
-              colortype={0}
-              width="390px"
+              // inputBox 고쳐주세요!!
+              // width="390px"
+              colortype="white"
               getInputText={() => console.log('입력')}
               placeholder="연락처를 입력해주세요. "
             />
@@ -63,8 +68,8 @@ const ContactForm = () => {
         <FormGroup>
           <Label>주소</Label>
           <InputBox
-            colortype={0}
-            width="100%"
+            // inputBox 고쳐주세요!!
+            colortype="white"
             getInputText={() => console.log('입력')}
             placeholder="주소를 입력해주세요."
           />

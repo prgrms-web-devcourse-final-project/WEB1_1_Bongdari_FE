@@ -14,14 +14,14 @@ const AidRqCreateShared: React.FC<AidRqCreateSharedProps> = ({ getTitleAndFilter
     <Wrapper>
       <p>제목</p>
       <InputBox
+        // inputBox 고쳐주세요!!
         key={volunteerData.title}
         getInputText={(text) => {
           getTitleAndFilter('title', text);
         }}
         initialVal={volunteerData.title}
-        colortype={0}
+        colortype="white"
         placeholder="제목을 입력해주세요."
-        width="100%"
       />
       <SelectContainer
         volunteerData={volunteerData}

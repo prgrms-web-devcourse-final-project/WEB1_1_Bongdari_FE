@@ -17,17 +17,16 @@ interface UseInputReturn {
 export const useInput = ({ getInputText, initialVal, setFunc, onEnterFunc }: UseInputProps): UseInputReturn => {
   const [inputText, setInputText] = useState(initialVal);
 
-  // inputText 내부적으로 저장
+  // inputText 내부적 & 외부적으로 저장
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputText(e.target.value);
-    if (setFunc) setFunc(e.target.value);
+    setInputText(e.target.value); // 내부 저장
+    if (setFunc) setFunc(e.target.value); // 외부 저장
   };
 
   // Enter 누르면 inputText 상위로 전달
   const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       const tmp = (e.target as HTMLInputElement).value;
-      // console.log('"', tmp, '" Enter가 눌렸습니다');
       getInputText(tmp);
       if (onEnterFunc) onEnterFunc();
     }

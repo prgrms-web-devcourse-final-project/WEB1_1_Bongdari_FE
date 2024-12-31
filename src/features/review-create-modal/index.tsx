@@ -86,8 +86,8 @@ const ReviewCreateModal: React.FC<ReviewCreateModalProps> = ({
             <div>
               <span>제목</span>
               <InputBox
-                colortype={1}
-                width="100%"
+                // inputBox 고쳐주세요!!
+                colortype="gray"
                 getInputText={(text) => {
                   setFormData((prev) => ({
                     ...prev,

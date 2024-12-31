@@ -11,9 +11,9 @@ const OrgLogin = () => {
         <i className="label">아이디</i>
 
         <InputBox
-          colortype={0}
-          width="100%"
-          height="60px"
+          // inputBox 고쳐주세요!!
+          // height="60px"
+          colortype="white"
           placeholder="아이디를 입력해주세요."
           getInputText={checkId} // 필요 없는데 필수props라서 넣어줌
           setFunc={checkId}
@@ -23,9 +23,9 @@ const OrgLogin = () => {
       <div className="inputWrap">
         <i className="label">비밀번호</i>
         <InputBox
-          colortype={0}
-          width="100%"
-          height="60px"
+          // inputBox 고쳐주세요!!
+          // height="60px"
+          colortype="white"
           textType="password"
           placeholder="비밀번호를 입력해주세요."
           getInputText={checkPwd} // 필요 없는데 필수props라서 넣어줌
