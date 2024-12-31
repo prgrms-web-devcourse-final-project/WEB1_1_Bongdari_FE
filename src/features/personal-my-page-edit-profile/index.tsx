@@ -23,7 +23,8 @@ const EditProfile: React.FC<EditProfileProps> = ({ profileImg, profileNickname, 
         <InputWithLabel getInput={setNickname} initialVal={profileNickname} placeholder="닉네임을 입력하세요" />
         <InputWithLabel
           getInput={setDescripton}
-          height="280px"
+          // TextArea 고쳐주세요!!
+          // height="280px"
           initialVal={profileDescription}
           placeholder="나에 대한 설명을 입력해보세요"
           isTextArea={true}
