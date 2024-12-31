@@ -15,6 +15,7 @@ import { useAlertDialog, useConfirmDialog } from '@/store/stores/dialog/dialogSt
 
 const CommunityDetailContentBox = ({ content_id }: { content_id: number }) => {
   const { detailData, writerData, isMyContent } = useCommunityDetailContent(content_id);
+
   const { mutate: deleteCommunity } = useDeleteCommunity();
   const navigate = useNavigate();
 

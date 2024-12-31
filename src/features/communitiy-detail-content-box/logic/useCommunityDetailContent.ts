@@ -17,7 +17,7 @@ export const useCommunityDetailContent = (content_id: number): useCommunityDetai
   // 커뮤니티 상세 데이터 가져오기
   const { data: detailData } = useCommunityDetail(content_id);
   const { data: writerData } = usePersonProfileQuery(detailData?.writer_id ?? '');
-  // console.log('dataaa', detailData);
+  // console.log('불러온 데이터:', detailData); // 여기서 빈값으로 이미지가 옴
   // console.log('dataaa', writerData);
 
   // 내 콘텐츠 여부 확인

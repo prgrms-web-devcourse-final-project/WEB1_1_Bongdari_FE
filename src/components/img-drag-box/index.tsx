@@ -1,16 +1,26 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { UploadBoxContainer } from './indexCss';
+import { useAlertDialog } from '@/store/stores/dialog/dialogStore';
 
 interface UploadBoxProps {
   onFileSelect: (files: File[]) => void;
+  savedImage?: string | null;
 }
 
-const UploadBox: React.FC<UploadBoxProps> = ({ onFileSelect }) => {
+const UploadBox: React.FC<UploadBoxProps> = ({ onFileSelect, savedImage }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [previewImg, setPreviewImg] = useState<string | null>(null);
+  const { openAlert } = useAlertDialog();
 
+  // 이미지 첨부하면 브라우저에서 미리보기
+  // TODO: 미리보기에서도 용량 초과하면 경고창이 뜰 수 있게 수정해야 함
   const handleImageFile = (file: File) => {
+    // 서버에서 설정한 이미지 파일 최대 크기: 8MB
+    const MAX_FILE_SIZE = 8 * 1024 * 1024;
+    if (file && file.size > MAX_FILE_SIZE) {
+      openAlert('이미지 크기는 8MB를 초과할 수 없습니다. 다시 시도해주세요.');
+    }
     const previewImgURL = URL.createObjectURL(file);
     setPreviewImg(previewImgURL);
     onFileSelect([file]);
@@ -37,6 +47,8 @@ const UploadBox: React.FC<UploadBoxProps> = ({ onFileSelect }) => {
       const file = e.target.files[0];
       if (file.type.startsWith('image/')) {
         handleImageFile(file);
+      } else {
+        openAlert('이미지 파일만 업로드할 수 있습니다. 다시 시도해주세요.');
       }
     }
   };
@@ -49,6 +61,10 @@ const UploadBox: React.FC<UploadBoxProps> = ({ onFileSelect }) => {
       fileInput.click();
     }
   };
+
+  useEffect(() => {
+    setPreviewImg(savedImage || null);
+  }, [savedImage]);
 
   const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
