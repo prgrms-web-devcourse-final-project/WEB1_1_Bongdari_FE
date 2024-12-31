@@ -11,9 +11,10 @@ interface InputCompProps {
   value?: string; // input에 들어가는 value(변수)
   setFunc?: (inputText: string) => void; // 상위의 set함수
   onEnterFunc?: () => void;
+  className?: string;
 }
 
-const InputBox: React.FC<InputCompProps> = ({
+const InputBox = ({
   getInputText,
   colortype,
   textType = 'text',
@@ -22,7 +23,8 @@ const InputBox: React.FC<InputCompProps> = ({
   placeholder = '작성하세요.',
   value,
   setFunc,
-  onEnterFunc
+  onEnterFunc,
+  className
 }: InputCompProps) => {
   const { inputText, onChangeInput, onEnter, onBlur } = useInput({ initialVal, getInputText, setFunc, onEnterFunc });
 
@@ -36,6 +38,7 @@ const InputBox: React.FC<InputCompProps> = ({
       onChange={onChangeInput}
       onKeyDown={onEnter}
       onBlur={onBlur}
+      className={className}
     />
   );
 };

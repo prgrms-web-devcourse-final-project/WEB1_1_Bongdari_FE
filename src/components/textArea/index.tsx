@@ -9,6 +9,7 @@ interface TextAreaProps {
   placeholder?: string; // input의 placeholder
   value?: string;
   setFunc?: (inputText: string) => void;
+  className?: string;
 }
 
 const TextArea: React.FC<TextAreaProps> = ({
@@ -18,7 +19,8 @@ const TextArea: React.FC<TextAreaProps> = ({
   initialVal = '',
   placeholder = '작성하세요.',
   value,
-  setFunc
+  setFunc,
+  className
 }: TextAreaProps) => {
   const { inputText, onChangeInput, onBlur } = useInput({ initialVal, getInputText, setFunc });
 
@@ -30,6 +32,7 @@ const TextArea: React.FC<TextAreaProps> = ({
       placeholder={placeholder}
       onChange={onChangeInput}
       onBlur={onBlur}
+      className={className}
     />
   );
 };
