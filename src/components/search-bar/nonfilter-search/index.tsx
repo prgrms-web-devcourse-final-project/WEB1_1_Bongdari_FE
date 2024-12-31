@@ -23,9 +23,6 @@ const NonFilterSearchBar: React.FC<NonFilterSearchBar> = ({ getInput }) => {
     <Wrapper>
       <InputBoxContainer>
         <InputBox
-          // inputBox 고쳐주세요!!
-          // height={type ? '57px' : '47px'}
-          // borderRadius="8px"
           getInputText={getInput ?? testFunc}
           colortype="white"
           placeholder="검색어를 입력해주세요."

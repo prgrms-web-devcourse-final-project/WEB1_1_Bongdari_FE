@@ -10,7 +10,7 @@ interface AidReqDetailAdminInfoProps {
     created_at: string;
     volunteer_start_date_time: string;
     volunteer_end_date_time: string;
-    volunteer_time: string;
+    volunteer_hours: number;
     recruit_status: string;
     location: {
       address: string;
@@ -30,7 +30,7 @@ const AidReqDetailAdminInfo = ({ recruitDetailData }: AidReqDetailAdminInfoProps
       <ActivityTime
         startDateTime={recruitDetailData.volunteer_start_date_time}
         endDateTime={recruitDetailData.volunteer_end_date_time}
-        volunteerTime={recruitDetailData.volunteer_time}
+        volunteerTime={recruitDetailData.volunteer_hours}
       />
       <ActivityLocation
         address={recruitDetailData.location.address}

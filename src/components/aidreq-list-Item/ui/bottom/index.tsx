@@ -4,11 +4,11 @@ import { AidTime, RegisterDate, StartDate, Wrapper } from './indexCss';
 interface BottomProps {
   created_at: string;
   volunteer_start_date_time: string;
-  volunteer_time: string;
+  volunteer_hours: number;
 }
 
-const Bottom = ({ created_at, volunteer_start_date_time, volunteer_time }: BottomProps) => {
-  const { formatDate, formatTime } = useDateFormat();
+const Bottom = ({ created_at, volunteer_start_date_time, volunteer_hours }: BottomProps) => {
+  const { formatDate } = useDateFormat();
   return (
     <Wrapper>
       <RegisterDate>
@@ -21,8 +21,7 @@ const Bottom = ({ created_at, volunteer_start_date_time, volunteer_time }: Botto
       </StartDate>
       <AidTime>
         <p>활동 시간</p>
-        {/* 분? 단위로 보내주는지 */}
-        <p>{volunteer_time && formatTime(volunteer_time)}시간</p>
+        <p>{volunteer_hours}시간</p>
       </AidTime>
     </Wrapper>
   );

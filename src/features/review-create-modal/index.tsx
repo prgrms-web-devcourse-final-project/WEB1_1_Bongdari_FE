@@ -10,14 +10,10 @@ import { ReviewForm } from '@/shared/types/review/reviewType';
 interface ReviewCreateModalProps {
   reviewModalState: boolean;
   SetReviewModalState: (state: boolean) => void;
-  recruitBoardId: number;
+  applyId: number | undefined;
 }
 
-const ReviewCreateModal: React.FC<ReviewCreateModalProps> = ({
-  reviewModalState,
-  SetReviewModalState,
-  recruitBoardId
-}) => {
+const ReviewCreateModal: React.FC<ReviewCreateModalProps> = ({ reviewModalState, SetReviewModalState, applyId }) => {
   const [formData, setFormData] = useState<ReviewForm>({
     title: '',
     content: ''
@@ -42,7 +38,7 @@ const ReviewCreateModal: React.FC<ReviewCreateModalProps> = ({
       reviewFormData.append(
         'data',
         JSON.stringify({
-          recruit_board_id: recruitBoardId,
+          volunteer_apply_id: applyId,
           title: formData.title,
           content: formData.content
         })
@@ -86,7 +82,6 @@ const ReviewCreateModal: React.FC<ReviewCreateModalProps> = ({
             <div>
               <span>제목</span>
               <InputBox
-                // inputBox 고쳐주세요!!
                 colortype="gray"
                 getInputText={(text) => {
                   setFormData((prev) => ({
