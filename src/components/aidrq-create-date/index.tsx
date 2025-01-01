@@ -26,8 +26,11 @@ const AidRqCreateDate: React.FC<AidRqCreateDateProps> = ({ getDate, datetime }) 
 
   const handleDateSelect = (date: Date | null) => {
     setSelectedDate(date);
-    // 날짜가 선택되었을 때만 상위 컴포넌트에 알림
-    const isoDate = date ? date.toISOString().slice(0, 19) : null;
+
+    // 날짜가 선택되었을 때만 KST로 변환하여 ISO 문자열 생성
+    const isoDate = date
+      ? new Date(date.getTime() - date.getTimezoneOffset() * 60000).toISOString().slice(0, 19)
+      : null;
     getDate(isoDate);
 
     if (date && date.getHours() !== 0 && date.getMinutes() !== 0) {
@@ -40,7 +43,11 @@ const AidRqCreateDate: React.FC<AidRqCreateDateProps> = ({ getDate, datetime }) 
       <DateInfo
         disabled
         placeholder="일시를 설정해주세요."
-        value={selectedDate ? selectedDate.toISOString().slice(0, 19) : ''}></DateInfo>
+        value={
+          selectedDate
+            ? new Date(selectedDate.getTime() - selectedDate.getTimezoneOffset() * 60000).toISOString().slice(0, 19)
+            : ''
+        }></DateInfo>
       <button onClick={handleButtonClick}>
         <img src="/assets/imgs/calendar.svg" alt=""></img>
       </button>

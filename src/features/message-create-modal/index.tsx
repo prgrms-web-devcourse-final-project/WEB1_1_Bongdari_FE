@@ -1,7 +1,6 @@
-import { MessageCreateModalCss } from './indexCss';
+import { ApplyTextArea, MessageCreateModalCss } from './indexCss';
 import { useSendMail } from './logic/useSendMail';
 import InputBox from '@/components/inputBox';
-import TextArea from '@/components/textArea';
 import Modal from '@/components/modal';
 import { useAlertDialog } from '@/store/stores/dialog/dialogStore'; // AlertDialog import 추가
 import Button from '@/components/button';
@@ -36,8 +35,7 @@ const MessageCreateModal: React.FC<MessageCreateModalProps> = ({ user_id, isModa
           <div className="inputWrap">
             <i>제목</i>
             <InputBox
-              colortype={1}
-              width="100%"
+              colortype="gray"
               placeholder="제목을 입력해주세요"
               getInputText={(txt) => checkTitle(txt)}
               setFunc={(txt) => checkTitle(txt)}
@@ -45,10 +43,8 @@ const MessageCreateModal: React.FC<MessageCreateModalProps> = ({ user_id, isModa
           </div>
           <div className="inputWrap">
             <i>내용</i>
-            <TextArea
-              colortype={1}
-              width="100%"
-              height="220px"
+            <ApplyTextArea
+              colortype="gray"
               placeholder="내용을 입력해주세요"
               getInputText={(txt) => checkContent(txt)}
               setFunc={(txt) => checkContent(txt)}

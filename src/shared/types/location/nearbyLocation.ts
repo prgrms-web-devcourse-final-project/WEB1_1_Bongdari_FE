@@ -52,7 +52,7 @@ export interface Activity {
   volunteer_start_date_time: string;
   volunteer_end_date_time: string;
   volunteer_category: VolunteerType;
-  volunteer_time: string;
+  volunteer_hours: number;
   admitted: boolean;
   img_url: string;
   center: Center;

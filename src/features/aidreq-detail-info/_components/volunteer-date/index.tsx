@@ -24,7 +24,7 @@ const VolunteerDate: React.FC<AidRqDetailCenterProfileProps> = ({ data }) => {
         </div>
         <div>
           <p>
-            활동시간 <span>{data.volunteer_time.split(':')[0].replace('T', '')}</span> 시간 입니다.
+            활동시간 <span>{data.volunteer_hours}</span> 시간 입니다.
           </p>
         </div>
       </Container>

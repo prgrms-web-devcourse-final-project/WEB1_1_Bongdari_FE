@@ -13,10 +13,17 @@ const AlertItem: React.FC<AlertItemProps> = ({ item, singleRead, fetchNotificati
 
   return (
     <Wrapper
-      onClick={() => {
-        if (item.type === 'VOLUNTEER_APPLY_STATUS_CHANGE' || item.type === 'VOLUNTEER_REVIEW_REQUEST')
+      onClick={async () => {
+        if (
+          item.type === 'VOLUNTEER_APPLY_STATUS_CHANGE' ||
+          item.type === 'VOLUNTEER_REVIEW_REQUEST' ||
+          item.type === 'INTEREST_CENTER_CREATE_RECRUIT_BOARD'
+        )
           navigate(`/aidrqdetail/${item.related_id}`);
-        else if (item.type === 'NOTE_BLAH_BLAH') navigate(`/mypage`);
+        else if (item.type === 'COMMENT_ADDED') navigate(`/community/${item.related_id}`);
+        else if (item.type === 'VOLUNTEER_APPLY') navigate(`/mypage/adminaidreqlist/${item.related_id}`);
+        await singleRead(item.id);
+        await fetchNotifications();
       }}>
       <p>{item.type}</p>
       <p>{item.title}</p>

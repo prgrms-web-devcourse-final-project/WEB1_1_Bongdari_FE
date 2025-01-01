@@ -8,7 +8,12 @@ export const ReviewListCss = styled.div`
     gap: 10px;
   }
   .noData {
+    height: 200px;
     width: 100%;
+    border: 1px dashed gray;
+    border-radius: 13px;
     text-align: center;
+    display: block;
+    padding-top: 8%;
   }
 `;

@@ -32,5 +32,9 @@ export const Top = styled.div`
 
   & > span {
     font-size: 14px;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 `;

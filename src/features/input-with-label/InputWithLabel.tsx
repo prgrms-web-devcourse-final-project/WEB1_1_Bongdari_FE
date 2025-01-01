@@ -1,10 +1,10 @@
 import InputBox from '@/components/inputBox';
-import TextArea from '@/components/textArea';
-import { InputWithLabelCss } from './InputWithLabelCss';
+// import TextArea from '@/components/textArea';
+import { ApplyTextArea, InputWithLabelCss } from './InputWithLabelCss';
 
 interface InputWithLabelProps {
   getInput: (inputText: string) => void;
-  height?: string;
+  $height?: string;
   initialVal?: string;
   placeholder?: string;
 
@@ -12,7 +12,7 @@ interface InputWithLabelProps {
 }
 const InputWithLabel: React.FC<InputWithLabelProps> = ({
   getInput,
-  height,
+  $height,
   initialVal,
   placeholder,
 
@@ -22,11 +22,10 @@ const InputWithLabel: React.FC<InputWithLabelProps> = ({
     return (
       <InputWithLabelCss>
         <i className="label">설명</i>
-        <TextArea
+        <ApplyTextArea
+          $height={$height}
           getInputText={getInput}
-          colortype={1}
-          width="100%"
-          height={height}
+          colortype="gray"
           initialVal={initialVal}
           placeholder={placeholder}
         />
@@ -36,13 +35,7 @@ const InputWithLabel: React.FC<InputWithLabelProps> = ({
     return (
       <InputWithLabelCss>
         <i className="label">닉네임</i>
-        <InputBox
-          getInputText={getInput}
-          colortype={1}
-          width="100%"
-          initialVal={initialVal}
-          placeholder={placeholder}
-        />
+        <InputBox getInputText={getInput} colortype="gray" initialVal={initialVal} placeholder={placeholder} />
       </InputWithLabelCss>
     );
   }

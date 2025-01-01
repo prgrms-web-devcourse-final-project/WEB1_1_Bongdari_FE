@@ -10,7 +10,12 @@ export const PMPGTopCss = styled.div`
   }
 
   .noData {
+    height: 600px;
     width: 100%;
+    border: 1px dashed gray;
+    border-radius: 13px;
     text-align: center;
+    display: block;
+    padding-top: 15%;
   }
 `;

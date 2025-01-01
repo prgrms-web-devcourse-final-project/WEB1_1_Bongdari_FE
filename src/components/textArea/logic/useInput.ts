@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 interface UseInputProps {
-  getInputText: (inputText: string) => void;
+  getInputText?: (inputText: string) => void;
   initialVal: string;
   setFunc?: (inputText: string) => void;
 }
@@ -23,7 +23,7 @@ export const useInput = ({ getInputText, initialVal, setFunc }: UseInputProps): 
 
   // input 내부 외 다른 곳 클릭시 inputText 상위로 전달
   const onBlur = () => {
-    getInputText(inputText);
+    if (getInputText) getInputText(inputText);
   };
 
   return {

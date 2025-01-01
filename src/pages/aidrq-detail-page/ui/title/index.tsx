@@ -3,12 +3,14 @@ import { CreatedAt, LabelBox, TitleBox, Wrapper } from './indexCss';
 import AidRqCertifiedLabel from '@/components/label/AidRqCertifiedLabel';
 import AidRqStateLabel from '@/components/label/AidRqStateLabel';
 import { AidRqDetailType } from '@/shared/types/aidrq-detail/aidrqDetailType';
+import useDateFormat from '@/shared/hooks/useDateFormat';
 
 interface AidRqDetailCenterProfileProps {
   data: AidRqDetailType;
 }
 
 const Title: React.FC<AidRqDetailCenterProfileProps> = ({ data }) => {
+  const { formatDate } = useDateFormat();
   return (
     <Wrapper>
       <LabelBox>
@@ -19,7 +21,7 @@ const Title: React.FC<AidRqDetailCenterProfileProps> = ({ data }) => {
         <h2>{data.title}</h2>
         <AidRqStateLabel state="모집중"></AidRqStateLabel>
       </TitleBox>
-      <CreatedAt>등록 일자 : {data.created_at}</CreatedAt>
+      <CreatedAt>등록 일자 : {formatDate(data.created_at)}</CreatedAt>
     </Wrapper>
   );
 };

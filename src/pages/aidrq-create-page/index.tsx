@@ -10,6 +10,7 @@ import { VolunteerType, Location } from '@/shared/types/aidrq-create-type/AidRqC
 import { useNavigate } from 'react-router-dom';
 import { usePostAidRq } from '@/store/queries/aidreq-control-center-query/usePostAidRq';
 import { useAlertDialog, useConfirmDialog } from '@/store/stores/dialog/dialogStore';
+import VolunteerHour from './ui/volunteer-hour';
 
 const AidRqCreatePage = () => {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ const AidRqCreatePage = () => {
     recruitment_count: 0,
     volunteer_start_date_time: '',
     volunteer_end_date_time: '',
+    volunteer_hours: 0,
     volunteer_category: '',
     admitted: false,
     location: {
@@ -75,6 +77,7 @@ const AidRqCreatePage = () => {
           getDate={(date) => {
             getTitleAndFilter('volunteer_end_date_time', date ? date.toLocaleString() : '');
           }}></VolunteerDate>
+        <VolunteerHour getTitleAndFilter={getTitleAndFilter}></VolunteerHour>
       </FourthLine>
       <Explanation getTitleAndFilter={getTitleAndFilter}></Explanation>
       <ButtonContainer>

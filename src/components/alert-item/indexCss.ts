@@ -12,6 +12,7 @@ export const Wrapper = styled.div`
 
   &:hover {
     border: 1px solid rgba(0, 0, 0, 0.8);
+    cursor: pointer;
   }
 
   & > p:nth-of-type(1) {

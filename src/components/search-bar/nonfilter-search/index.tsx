@@ -7,7 +7,9 @@ interface NonFilterSearchBar {
   getInput?: (text: string) => void;
 }
 
-const NonFilterSearchBar: React.FC<NonFilterSearchBar> = ({ type, getInput }) => {
+// inputBox 고쳐주세요!!
+// const NonFilterSearchBar: React.FC<NonFilterSearchBar> = ({ type, getInput }) => {
+const NonFilterSearchBar: React.FC<NonFilterSearchBar> = ({ getInput }) => {
   const [word, setWord] = useState<string>('');
   const onClickGetInput = () => {
     if (getInput) getInput(word);
@@ -22,10 +24,7 @@ const NonFilterSearchBar: React.FC<NonFilterSearchBar> = ({ type, getInput }) =>
       <InputBoxContainer>
         <InputBox
           getInputText={getInput ?? testFunc}
-          width="100%"
-          height={type ? '57px' : '47px'}
-          borderRadius="8px"
-          colortype={0}
+          colortype="white"
           placeholder="검색어를 입력해주세요."
           setFunc={setWord}
         />
