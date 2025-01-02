@@ -24,6 +24,7 @@ export const CommentCss = styled.div`
   }
   .replyInput .content {
     background-color: #f9f9f9;
+    padding: 12px 0 0 12px;
   }
 
   .writerId {
