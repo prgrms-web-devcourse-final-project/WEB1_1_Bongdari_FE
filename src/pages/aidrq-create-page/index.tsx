@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { usePostAidRq } from '@/store/queries/aidreq-control-center-query/usePostAidRq';
 import { useAlertDialog, useConfirmDialog } from '@/store/stores/dialog/dialogStore';
 import VolunteerHour from './ui/volunteer-hour';
+import { validateVolunteerData } from './logic/validateVolunteerData';
 
 const AidRqCreatePage = () => {
   const navigate = useNavigate();
@@ -42,6 +43,13 @@ const AidRqCreatePage = () => {
   };
 
   const handleSubmit = async () => {
+    const errors = validateVolunteerData(volunteerData);
+
+    if (errors.length > 0) {
+      openAlert(errors[0]);
+      return;
+    }
+
     try {
       await postMutation.mutateAsync({ volunteerData });
       openAlert(`작성이 성공적으로 완료되었습니다.`);

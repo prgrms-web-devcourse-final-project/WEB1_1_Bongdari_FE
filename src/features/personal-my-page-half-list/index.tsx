@@ -32,7 +32,7 @@ const HalfList: React.FC<HalfListProps> = ({ listType }) => {
               {isMyVolunteerType(myData) &&
                 myData.map((v, i) => {
                   return (
-                    <Link to={`/aidrqdetail/${v.id}`} key={i}>
+                    <Link to={`/aidrqdetail/${v.recruit_board.id}`} key={i}>
                       <LongListItem content_id={v.id.toString()} mainText={v.recruit_board.title} />
                     </Link>
                   );

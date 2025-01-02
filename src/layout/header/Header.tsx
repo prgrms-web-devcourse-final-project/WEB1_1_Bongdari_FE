@@ -127,14 +127,13 @@ export default function Header() {
           {isLoggedIn && (
             <LogoutBtn
               onClick={async () => {
-                if (loginType === 'ROLE_CENTER') {
+                try {
                   clearLoginInfo();
-                  const response = await centerLogout();
+                  const response = await (loginType === 'ROLE_CENTER' ? centerLogout() : personLogout());
                   console.log(response);
-                } else if (loginType === 'ROLE_VOLUNTEER') {
-                  clearLoginInfo();
-                  const response = await personLogout();
-                  console.log(response);
+                  window.location.reload();
+                } catch (error) {
+                  console.error('로그아웃 실패:', error);
                 }
               }}>
               로그아웃
