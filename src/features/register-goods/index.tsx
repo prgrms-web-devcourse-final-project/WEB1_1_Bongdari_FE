@@ -6,7 +6,6 @@ import RegisterBar from './_components/register-bar';
 import useHandleItem from './logic/useAddItem';
 import type { centerPreferItemType } from '@/shared/types/center-profile/centerProfile';
 import { usePreferItem } from '@/store/queries/center-mypage/usePreferItems';
-import { useQuery } from '@tanstack/react-query';
 import { useAlertDialog } from '@/store/stores/dialog/dialogStore';
 
 interface RegisterGoodsProps {
@@ -16,17 +15,7 @@ interface RegisterGoodsProps {
 
 const RegisterGoods = ({ name, preferData }: RegisterGoodsProps) => {
   const { addItem, isLoading } = usePreferItem();
-  const { data: preferItems } = useQuery({
-    queryKey: ['preferItems'],
-    initialData: preferData,
-    staleTime: 1000 * 60 * 5,
-    refetchOnWindowFocus: false
-    // refetchOnMount: true
-  });
-
-  const { goodsList, currentInput, setCurrentInput, handleKeyPress, handleDeleteGoods, addGoodsToList } =
-    useHandleItem(preferItems);
-
+  const { currentInput, setCurrentInput, handleKeyPress, handleDeleteGoods } = useHandleItem();
   const { openAlert } = useAlertDialog();
 
   const handleAdd = async (itemName: string) => {
@@ -40,14 +29,7 @@ const RegisterGoods = ({ name, preferData }: RegisterGoodsProps) => {
     }
 
     addItem(itemName, {
-      onSuccess: (response) => {
-        // 새 아이템을 로컬 상태에 추가 -> 즉시 ui에 반영하기 위해
-        const newItem: centerPreferItemType = {
-          id: response.id,
-          centerId: response.centerId,
-          itemName: response.itemName
-        };
-        addGoodsToList(newItem);
+      onSuccess: () => {
         setCurrentInput('');
       },
       onError: (error) => {
@@ -70,7 +52,7 @@ const RegisterGoods = ({ name, preferData }: RegisterGoodsProps) => {
         </Tooltip>
       </RegisterTitleSection>
       <GoodsContainer>
-        {goodsList.map((item) => (
+        {preferData.map((item) => (
           <GoodsItem key={item.id} prefer_item_id={item.id} item_name={item.itemName} onDelete={handleDeleteGoods} />
         ))}
       </GoodsContainer>
