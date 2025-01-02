@@ -62,3 +62,21 @@ export const usePutCommunity = (options?: {
     }
   });
 };
+
+// 커뮤니티 삭제
+const deleteCommunity = async (id: number) => {
+  const res = await axiosInstance.delete(`/api/community-board/${id}`);
+  return res.data;
+};
+
+export const useDeleteCommunity = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (id: number) => deleteCommunity(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['communityDetail'] });
+      queryClient.invalidateQueries({ queryKey: ['communityList'] });
+    }
+  });
+};

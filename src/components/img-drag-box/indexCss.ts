@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const UploadBoxContainer = styled.div<{ isDragging: boolean }>`
   width: 100%;
-  height: 200px;
+  min-height: 200px;
   border: 2px dashed ${(props) => (props.isDragging ? '#4a90e2' : '#ccc')};
   border-radius: 8px;
   display: flex;
@@ -11,6 +11,7 @@ export const UploadBoxContainer = styled.div<{ isDragging: boolean }>`
   cursor: pointer;
   transition: all 0.2s ease;
   background-color: ${(props) => (props.isDragging ? 'rgba(74, 144, 226, 0.1)' : '#f8f8f8')};
+  overflow: hidden;
 
   label {
     width: 100%;
@@ -30,5 +31,10 @@ export const UploadBoxContainer = styled.div<{ isDragging: boolean }>`
     text-align: center;
     color: #666;
     margin: 5px 0;
+  }
+
+  img {
+    width: 100%;
+    object-fit: cover;
   }
 `;

@@ -5,9 +5,10 @@ import TextArea from '@/components/textArea';
 import UploadBox from '@/components/img-drag-box';
 
 const CommunityCreateBox = ({ content_id }: { content_id?: number }) => {
-  const { titleText, setTitleText, contentText, setContentText, handleFileSelect, onClickPost } = useCreateCommunity({
-    content_id
-  });
+  const { titleText, setTitleText, contentText, setContentText, handleFileSelect, onClickPost, imageURL } =
+    useCreateCommunity({
+      content_id
+    });
 
   return (
     <CommunityCreateBoxCss>
@@ -24,7 +25,7 @@ const CommunityCreateBox = ({ content_id }: { content_id?: number }) => {
       </div>
       <div className="inputWrap">
         <i className="label">이미지</i>
-        <UploadBox onFileSelect={handleFileSelect} />
+        <UploadBox onFileSelect={handleFileSelect} savedImage={imageURL} />
       </div>
       <div className="inputWrap">
         <i className="label">내용</i>

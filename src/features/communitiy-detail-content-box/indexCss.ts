@@ -9,6 +9,13 @@ export const ApplyButton = styled(Button)`
   border-radius: 13px;
 `;
 
+export const DeleteCommunityButton = styled(Button)`
+  width: 220px;
+  height: 50px;
+  font-size: ${theme.fontSize.eighthSize};
+  border-radius: 13px;
+`;
+
 export const CommunityDetailContentBoxCss = styled.div`
   .noData {
     width: 100%;
@@ -44,4 +51,24 @@ export const CommunityDetailContentBoxCss = styled.div`
     text-align: center;
     margin-top: 50px;
   }
+`;
+
+export const CommunityImageContainer = styled.div`
+  background-color: ${theme.box.section.backgroundColor};
+  border: ${theme.box.section.border};
+  border-radius: ${theme.box.section.borderRadius};
+  margin: 10px 0;
+  overflow: hidden;
+`;
+
+export const CommunityImage = styled.img`
+  width: 100%;
+  object-fit: cover;
+`;
+
+export const EditDeleteBtnCon = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
 `;
