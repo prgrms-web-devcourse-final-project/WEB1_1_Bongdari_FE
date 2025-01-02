@@ -11,10 +11,10 @@ interface AidRqCreateDateProps {
 const AidRqCreateDate: React.FC<AidRqCreateDateProps> = ({ getDate, datetime }) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   useEffect(() => {
-    if (!datetime) {
-      setSelectedDate(new Date());
-    } else {
+    if (datetime) {
       setSelectedDate(new Date(datetime));
+    } else {
+      setSelectedDate(null);
     }
   }, [datetime]);
 
