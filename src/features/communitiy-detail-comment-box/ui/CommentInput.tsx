@@ -15,7 +15,7 @@ const CommentInput = ({
       <InputBox
         colortype="white"
         value={commentText}
-        getInputText={setCommentText}
+        // getInputText={setCommentText}
         setFunc={setCommentText}
         onEnterFunc={onEventPost}
       />
