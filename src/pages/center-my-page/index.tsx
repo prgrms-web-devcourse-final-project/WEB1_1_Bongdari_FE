@@ -17,8 +17,6 @@ const CenterMyPage = () => {
   if (error) return <div>에러 발생: ${error.message}</div>;
   if (!data) return null;
 
-  // console.log('데이터다!', data);
-
   return (
     <PageWrapper>
       <EditCenterProfile data={data} />
