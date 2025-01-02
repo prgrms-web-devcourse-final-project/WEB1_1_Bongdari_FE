@@ -2,6 +2,7 @@ import { useRanking } from '@/store/queries/main-page-common-query/useFetchRanki
 import { Bottom, Title, Top, Wrapper } from './indexCss';
 import RankItem from './ui/rank-item';
 import { RankingDataType } from '@/shared/types/ranking-data/RankingDataType';
+import TabButtonGroup from '@/components/tab-button';
 
 const Ranking = () => {
   const { data, isLoading, error } = useRanking();
@@ -13,7 +14,15 @@ const Ranking = () => {
   return (
     <Wrapper>
       <Top>
-        <Title>이주의 봉사왕은?</Title>
+        <Title>봉사왕을 소개합니다!</Title>
+        <TabButtonGroup
+          tabs={[{ label: '주단위' }, { label: '월단위' }, { label: '전체' }]}
+          initialActiveTab="주단위"
+          width="80px"
+          height="35px"
+          fontSize="14px"
+          borderRadius="8px"
+        />
       </Top>
       <Bottom>
         {rankingList.map((item, index) => (
