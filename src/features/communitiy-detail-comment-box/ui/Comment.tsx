@@ -4,6 +4,7 @@ import useDateFormat from '@/shared/hooks/useDateFormat';
 import { useComment } from './logic/useComment';
 import CommentReplyInput from './CommentReplyInput';
 import { useAlertDialog } from '@/store/stores/dialog/dialogStore';
+import { useLoginStore } from '@/store/stores/login/loginStore';
 
 const Comment = ({
   id,
@@ -37,6 +38,7 @@ const Comment = ({
     onClickEditComment,
     onClickDeleteComment
   } = useComment({ content, content_id, comment_id: id, writer_nickname, login_name });
+  const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
 
   const { formatDateTime } = useDateFormat();
   const { openAlert } = useAlertDialog();
@@ -66,10 +68,12 @@ const Comment = ({
           />
           <div className="commentInnerWrap">
             <i className="createdDate">{formatDateTime(updated_at)}</i>
-            <i className="replyBtn" onClick={() => setIsAddReply(true)}>
-              댓글달기
-            </i>
-            {isMyComment ? (
+            {isLoggedIn && (
+              <i className="replyBtn" onClick={() => setIsAddReply(true)}>
+                댓글달기
+              </i>
+            )}
+            {isLoggedIn && isMyComment ? (
               !isEditState ? (
                 <>
                   <i className="editBtn" onClick={() => setIsEditState(true)}>
@@ -126,7 +130,7 @@ const Comment = ({
         />
         <div className="commentInnerWrap">
           <i className="createdDate">{formatDateTime(updated_at)}</i>
-          {isMyComment ? (
+          {isLoggedIn && isMyComment ? (
             <i className="deleteBtn" onClick={handleDeleteClick}>
               삭제하기
             </i>
