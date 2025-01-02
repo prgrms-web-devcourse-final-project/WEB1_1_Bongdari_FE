@@ -18,6 +18,9 @@ const EditProfile: React.FC<EditProfileProps> = ({ profileImg, profileNickname, 
     <EditProfileCss>
       <section className="imgSection">
         <EditProfileImg profileImg={profileImg} setImg={setImg} />
+        <div className="editBtnWrap">
+          <ApplyButton label="수정하기" type="blue" onClick={onClickEditMyProfile} />
+        </div>
       </section>
       <section className="inputSection">
         <InputWithLabel getInput={setNickname} initialVal={profileNickname} placeholder="닉네임을 입력하세요" />
