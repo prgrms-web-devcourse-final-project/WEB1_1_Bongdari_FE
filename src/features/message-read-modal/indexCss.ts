@@ -1,3 +1,4 @@
+import Button from '@/components/button';
 import theme from '@/styles/theme';
 import styled from 'styled-components';
 
@@ -100,4 +101,12 @@ export const NickName = styled.p`
 export const GloveImg = styled.img`
   width: 24px;
   height: 24px;
+`;
+
+export const GoToProfileButton = styled(Button)`
+  width: 221px;
+  height: 53px;
+  font-size: ${theme.fontSize.eighthSize};
+  font-weight: 600;
+  border-radius: 13px;
 `;

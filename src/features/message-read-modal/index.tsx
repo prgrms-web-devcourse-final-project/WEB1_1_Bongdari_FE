@@ -2,6 +2,7 @@ import Modal from '@/components/modal';
 import {
   CreatedAt,
   GloveImg,
+  GoToProfileButton,
   ImgWrapper,
   MessageContent,
   MessageTitle,
@@ -16,7 +17,6 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { useApplicantDetail, useMessageDetail } from '@/store/queries/center-mypage/useMessage';
 import useDateFormat from '@/shared/hooks/useDateFormat';
-import Button from '@/components/button';
 
 interface NoteModalProps {
   handleModalClose: () => void;
@@ -37,10 +37,6 @@ const MessageReadModal = ({ handleModalClose, noteId, type = 'center' }: NoteMod
   if (!messageDetail) {
     return null;
   }
-
-  // console.log('noteId:', noteId);
-  // console.log('messageDetail:', messageDetail);
-  // console.log('profileDetail:', profileDetail);
 
   return (
     <Modal variant="small" isOpen onClose={handleModalClose}>
@@ -66,12 +62,9 @@ const MessageReadModal = ({ handleModalClose, noteId, type = 'center' }: NoteMod
                 ''
               )}
             </ProfileInfo>
-            <Button
+            <GoToProfileButton
               label="프로필 확인하기"
-              // width="221px"
-              // height="53px"
-              // fontSize={theme.fontSize.eighthSize}
-              // fontWeight="600"
+              type="blue"
               onClick={() => {
                 if (type === 'center') navigate(`/profile/${messageDetail.sender_id}`);
                 else navigate(`/centerprofile/${messageDetail.sender_id}`);

@@ -2,6 +2,7 @@ import Modal from '@/components/modal';
 import {
   CreatedAt,
   GloveImg,
+  GoToProfileButton,
   ImgWrapper,
   ModalContentWrapper,
   NickName,
@@ -18,7 +19,6 @@ import {
 import { useNavigate } from 'react-router-dom';
 import useDateFormat from '@/shared/hooks/useDateFormat';
 import { useGetReviewById } from '@/store/queries/center-mypage/useReview';
-import Button from '@/components/button';
 import { usePersonProfileQuery } from '@/store/queries/volunteer-profile/useFetchPersonProfile';
 
 interface ReviewModalProps {
@@ -62,12 +62,9 @@ const ReviewReadModal = ({ handleCloseReviewModal, reviewId }: ReviewModalProps)
               <NickName>{volunteerData.nickname}</NickName>
               <GloveImg src={`/assets/imgs/mitten-${volunteerData?.tier?.toLowerCase()}.svg`} alt="tierGlove" />
             </ProfileInfo>
-            <Button
+            <GoToProfileButton
               label="프로필 확인하기"
-              // width="221px"
-              // height="53px"
-              // fontSize={theme.fontSize.eighthSize}
-              // fontWeight="600"
+              type="blue"
               onClick={() => {
                 navigate(`/profile/${volunteerData.volunteer_id}`);
               }}
@@ -80,13 +77,3 @@ const ReviewReadModal = ({ handleCloseReviewModal, reviewId }: ReviewModalProps)
 };
 
 export default ReviewReadModal;
-
-// const ReviewReadModal = () => {
-//   return (
-//     <>
-//       <p>하하하</p>
-//     </>
-//   );
-// };
-
-// export default ReviewReadModal;
