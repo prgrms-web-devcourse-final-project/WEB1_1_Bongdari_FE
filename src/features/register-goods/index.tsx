@@ -7,7 +7,6 @@ import useHandleItem from './logic/useAddItem';
 import type { centerPreferItemType } from '@/shared/types/center-profile/centerProfile';
 import { usePreferItem } from '@/store/queries/center-mypage/usePreferItems';
 import { useAlertDialog } from '@/store/stores/dialog/dialogStore';
-// import { useQuery } from '@tanstack/react-query';
 
 interface RegisterGoodsProps {
   name: string;
