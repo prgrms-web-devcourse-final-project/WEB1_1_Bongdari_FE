@@ -23,6 +23,7 @@ import { useLoginStore } from '@/store/stores/login/loginStore';
 import CenterContactPage from '@/pages/center-contact-page';
 import LoginErrorPage from '@/pages/error-page/login-error-page';
 import NotFoundPage from '@/pages/error-page/not-found-page';
+import SignupPage from '@/pages/signup-page';
 
 const MyPage = () => {
   const loginType = useLoginStore((state) => state.loginType);
@@ -103,6 +104,10 @@ const routes: RouteObject[] = [
       {
         path: '/login',
         element: <LoginPage />
+      },
+      {
+        path: '/signup',
+        element: <SignupPage />
       },
       {
         path: '/profile',

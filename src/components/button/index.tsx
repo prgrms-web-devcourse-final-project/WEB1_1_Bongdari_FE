@@ -8,6 +8,7 @@ interface ButtonProps {
   buttonType?: 'button' | 'submit' | 'reset';
   className?: string;
   children?: React.ReactNode;
+  isActive?: boolean;
 }
 
 const Button = ({
@@ -17,10 +18,17 @@ const Button = ({
   type = 'blue',
   buttonType = 'button',
   className,
-  children
+  children,
+  isActive
 }: ButtonProps) => {
   return (
-    <ButtonComponent onClick={onClick} disabled={disabled} $type={type} type={buttonType} className={className}>
+    <ButtonComponent
+      onClick={onClick}
+      disabled={disabled}
+      $type={type}
+      type={buttonType}
+      className={className}
+      $isActive={isActive}>
       {children}
       <span>{label}</span>
     </ButtonComponent>
