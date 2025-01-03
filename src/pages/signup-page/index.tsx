@@ -13,10 +13,10 @@ import {
 
 const SignupPage = () => {
   const [activeTab, setActiveTab] = useState('봉사자');
-  const [idCheck, setIdCheck] = useState<'success' | 'error' | null>(null);
-  const [id, setId] = useState('');
-  const [pw, setPw] = useState('');
-  const [confirmPw, setConfirmPw] = useState('');
+  const [idCheck] = useState<'success' | 'error' | null>(null);
+  const [id] = useState('');
+  const [pw] = useState('');
+  const [confirmPw] = useState('');
 
   // TODO: API 생성되면 id 받아서 유효성 검사 거치는 로직 추가해주세요.
 
