@@ -39,11 +39,13 @@ export default function LoginPage() {
       </CommonLoginSection>
 
       <SocialLoginSection>
-        <NaverLoginButton label="네이버로 시작하기" onClick={() => console.log('네이버로그인버튼클릭릭')}>
+        <NaverLoginButton onClick={() => console.log('네이버로그인버튼클릭릭')}>
           <img src="/assets/imgs/naver.svg" alt="네이버소셜로그인버튼" />
+          네이버로 시작하기
         </NaverLoginButton>
-        <KakaoLoginButton label="카카오로 시작하기" onClick={() => console.log('카카오로그인버튼클릭릭')}>
+        <KakaoLoginButton onClick={() => console.log('카카오로그인버튼클릭릭')}>
           <img src="/assets/imgs/kakao.svg" alt="카카오소셜로그인버튼" />
+          카카오로 시작하기
         </KakaoLoginButton>
         <p>소셜로그인은 봉사자로만 회원가입이 가능하다는 것을 알려주는 문구</p>
       </SocialLoginSection>

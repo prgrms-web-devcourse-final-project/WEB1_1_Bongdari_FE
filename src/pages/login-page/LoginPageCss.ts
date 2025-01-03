@@ -67,7 +67,7 @@ export const LoginButton = styled(Button)`
   border-radius: 10px;
 `;
 
-export const NaverLoginButton = styled(Button)`
+export const NaverLoginButton = styled.button`
   gap: 10px;
   display: flex;
   justify-content: center;
@@ -78,9 +78,11 @@ export const NaverLoginButton = styled(Button)`
   color: white;
   border-radius: 12px;
   font-size: ${theme.fontSize.seventhSize};
+  cursor: pointer;
+  border: none;
 `;
 
-export const KakaoLoginButton = styled(Button)`
+export const KakaoLoginButton = styled.button`
   gap: 10px;
   display: flex;
   justify-content: center;
@@ -91,4 +93,6 @@ export const KakaoLoginButton = styled(Button)`
   color: #3a2929;
   border-radius: 12px;
   font-size: ${theme.fontSize.seventhSize};
+  cursor: pointer;
+  border: none;
 `;
