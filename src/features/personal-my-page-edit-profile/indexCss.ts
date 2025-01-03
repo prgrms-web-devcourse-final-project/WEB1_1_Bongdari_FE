@@ -12,25 +12,32 @@ export const ApplyButton = styled(Button)`
 `;
 
 export const EditProfileCss = styled.div`
-  background-color: ${Theme.box.section.backgroundColor};
-  border: ${Theme.box.section.border};
-  border-radius: ${Theme.box.section.borderRadius};
-  width: 100%;
-  height: 600px;
   display: grid;
   grid-template-columns: 1fr 2fr;
-  padding: 65px 100px;
+  grid-column-gap: 10px;
 
+  .imgSection {
+    background-color: ${Theme.box.section.backgroundColor};
+    border: ${Theme.box.section.border};
+    border-radius: ${Theme.box.section.borderRadius};
+    width: 100%;
+    height: 600px;
+    padding: 65px 100px;
+    position: relative;
+  }
   .imgSection > img {
     width: 244px;
     height: 244px;
     border-radius: 244px;
     background-color: #b3b3b3;
+    padding-bottom: 500px;
 
     object-fit: cover;
   }
-  .imgSection {
-    position: relative;
+  .imgSection .editBtnWrap {
+    width: 100%;
+    text-align: center;
+    margin-top: 150px;
   }
   .changeImgBtn {
     color: white;
@@ -50,7 +57,12 @@ export const EditProfileCss = styled.div`
   }
 
   .inputSection {
-    padding: 20px 0 0 10%;
+    background-color: ${Theme.box.section.backgroundColor};
+    border: ${Theme.box.section.border};
+    border-radius: ${Theme.box.section.borderRadius};
+    width: 100%;
+    height: 600px;
+    padding: 65px 100px;
   }
   .inputSection .editBtnWrap {
     display: flex;
