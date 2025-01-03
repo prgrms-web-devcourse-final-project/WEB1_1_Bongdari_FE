@@ -76,6 +76,7 @@ export const TabButton = styled(Button)<{ isActive?: boolean }>`
   flex: 1;
   height: 53px;
   border-radius: 10px;
+  font-size: ${theme.fontSize.seventhSize};
 `;
 
 export const ValidationMessage = styled.p<{ $isSuccess?: boolean }>`
