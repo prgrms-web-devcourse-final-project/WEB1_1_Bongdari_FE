@@ -27,11 +27,13 @@ const buttonTypes = {
     border: 1px solid ${theme.pointColor.Regular};
 
     &:hover {
+      background-color: #d9e8fa;
       border: 1px solid ${theme.pointColor.event};
       color: ${theme.pointColor.event};
     }
 
     &:active {
+      background-color: #d9e8fa;
       border: 1px solid ${theme.pointColor.clicked};
       color: ${theme.pointColor.clicked};
     }
@@ -43,12 +45,20 @@ const buttonTypes = {
   `
 };
 
-const ButtonComponent = styled.button<{ $type: 'blue' | 'white' }>`
+const ButtonComponent = styled.button<{ $type: 'blue' | 'white'; $isActive?: boolean }>`
   transition: 0.3s;
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   pointer-events: ${({ disabled }) => (disabled ? 'none' : 'auto')};
 
   ${({ $type }) => buttonTypes[$type]}
+
+  ${({ $isActive }) =>
+    $isActive &&
+    css`
+      background-color: #d9e8fa !important;
+      border: 1px solid ${theme.pointColor.Regular} !important;
+      color: ${theme.pointColor.Regular} !important;
+    `}
 `;
 
 export default ButtonComponent;

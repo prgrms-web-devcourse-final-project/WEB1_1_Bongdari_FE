@@ -5,15 +5,32 @@ interface ButtonProps {
   label?: string;
   disabled?: boolean;
   type?: 'blue' | 'white';
+  buttonType?: 'button' | 'submit' | 'reset';
   className?: string;
   children?: React.ReactNode;
+  isActive?: boolean;
 }
 
-const Button = ({ onClick = () => {}, label, disabled = false, type = 'blue', className, children }: ButtonProps) => {
+const Button = ({
+  onClick = () => {},
+  label,
+  disabled = false,
+  type = 'blue',
+  buttonType = 'button',
+  className,
+  children,
+  isActive
+}: ButtonProps) => {
   return (
-    <ButtonComponent onClick={onClick} disabled={disabled} $type={type} className={className}>
-      <span>{label}</span>
+    <ButtonComponent
+      onClick={onClick}
+      disabled={disabled}
+      $type={type}
+      type={buttonType}
+      className={className}
+      $isActive={isActive}>
       {children}
+      <span>{label}</span>
     </ButtonComponent>
   );
 };
