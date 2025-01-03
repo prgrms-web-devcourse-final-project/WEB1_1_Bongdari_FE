@@ -38,7 +38,7 @@ export const IDWrapper = styled.div`
   align-items: flex-end;
 
   & > div {
-    flex: 1; // 남은 공간 모두 차지
+    flex: 1;
   }
 
   & > div > label {
@@ -81,6 +81,6 @@ export const TabButton = styled(Button)<{ isActive?: boolean }>`
 
 export const ValidationMessage = styled.p<{ $isSuccess?: boolean }>`
   font-size: ${theme.fontSize.ninthSize};
-  color: ${({ $isSuccess }) => ($isSuccess ? '#2D8E39' : '#FF0000')}; // 성공시 초록색
+  color: ${({ $isSuccess }) => ($isSuccess ? '#2D8E39' : '#FF0000')};
   margin: 0 0 0 8px;
 `;
