@@ -128,4 +128,5 @@ export const SectionBox = styled.ul`
 
 export const DetailItem = styled.li`
   display: flex;
+  align-items: center;
 `;
