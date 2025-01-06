@@ -6,4 +6,5 @@ export const Wrapper = styled.ul`
   flex-wrap: wrap;
   max-width: 1200px;
   width: 90%;
+  margin: auto;
 `;
