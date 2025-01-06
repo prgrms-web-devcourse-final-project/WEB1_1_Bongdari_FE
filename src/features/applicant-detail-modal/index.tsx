@@ -83,10 +83,10 @@ const ApplicantDetailModal: React.FC<ApplicantDetailModalProps> = ({ handleOpenD
               <Key>전화번호</Key>
               <Value>{applicantDetail.detail.contact_number}</Value>
             </DetailItem>
-            <DetailItem>
+            {/* <DetailItem>
               <Key>이메일</Key>
               <Value>{applicantDetail.detail.email}</Value>
-            </DetailItem>
+            </DetailItem> */}
           </SectionBox>
         </ScrollSection>
       </ModalWrapper>
