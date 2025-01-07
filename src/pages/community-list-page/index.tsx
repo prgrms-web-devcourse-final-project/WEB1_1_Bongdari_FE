@@ -10,7 +10,7 @@ export default function CommunityListPage() {
     <Wrapper>
       <div className="innerWrap">
         <i className="title">커뮤니티</i>
-        <NonFilterSearchBar type={true} getInput={setSearchWord} />
+        <NonFilterSearchBar getInput={setSearchWord} />
         <CommuntiyList searchWord={searchWord} />
       </div>
     </Wrapper>

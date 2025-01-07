@@ -23,6 +23,12 @@ const CommunityInfoCss = styled.div`
     white-space: nowrap;
     text-overflow: ellipsis;
   }
+
+  @media (max-width: 1000px) {
+    .writer {
+      display: none;
+    }
+  }
 `;
 
 export default CommunityInfoCss;

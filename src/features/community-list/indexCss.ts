@@ -8,6 +8,10 @@ export const ApplyButton = styled(Button)`
   font-size: ${theme.fontSize.seventhSize};
   font-weight: 600;
   border-radius: 13px;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 
 export const CommuntiyListCss = styled.div`
@@ -66,5 +70,17 @@ export const CommuntiyListCss = styled.div`
     position: absolute;
     right: 0;
     bottom: 0;
+
+    @media (max-width: 1000px) {
+      position: relative;
+      width: 100%;
+      margin-top: 80px;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .listHeader {
+      display: none;
+    }
   }
 `;
