@@ -51,6 +51,16 @@ export const CommunityDetailContentBoxCss = styled.div`
     text-align: center;
     margin-top: 50px;
   }
+
+  @media (max-width: 1000px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .content {
+      width: 100%;
+    }
+  }
 `;
 
 export const CommunityImageContainer = styled.div`
@@ -71,4 +81,15 @@ export const EditDeleteBtnCon = styled.div`
   justify-content: center;
   align-items: center;
   gap: 5px;
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    width: 100%;
+    & > * {
+      width: 100%;
+    }
+    & > * > * {
+      width: 100%;
+    }
+  }
 `;

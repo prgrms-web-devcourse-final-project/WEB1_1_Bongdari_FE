@@ -7,6 +7,11 @@ export const ApplyButton = styled(Button)`
   height: 50px;
   font-size: ${theme.fontSize.eighthSize};
   border-radius: 13px;
+
+  @media (max-width: 1000px) {
+    width: 200px;
+    height: 40px;
+  }
 `;
 
 export const WriterProfileBoxCss = styled.div`
@@ -43,5 +48,12 @@ export const WriterProfileBoxCss = styled.div`
     height: ${theme.fontSize.fourthSize};
     object-fit: contain;
     transform: rotateZ(30deg);
+  }
+
+  @media (max-width: 1000px) {
+    height: 200px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
   }
 `;

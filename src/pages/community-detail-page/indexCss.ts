@@ -1,4 +1,3 @@
-// import theme from '@/styles/theme';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
@@ -6,8 +5,9 @@ export const Wrapper = styled.div`
   width: 90%;
   margin: 0 auto;
   padding: 250px 0;
+
   .innerWrap {
-    /* border: 1px solid red; */
+    border: 1px solid red;
     display: flex;
     flex-direction: column;
     align-items: center;
