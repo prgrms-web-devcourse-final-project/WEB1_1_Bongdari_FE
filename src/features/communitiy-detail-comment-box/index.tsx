@@ -12,7 +12,7 @@ const CommunityDetailCommentBox = ({ content_id }: { content_id: number }) => {
   return (
     <CommunityDetailCommentBoxCss>
       <i className="title">{`댓글 (${commentCount})`}</i>
-      {!isLoggedIn && (
+      {isLoggedIn && (
         <CommentInput commentText={commentText} setCommentText={setCommentText} onEventPost={onEventPost} />
       )}
       <div className="commentWrap">
