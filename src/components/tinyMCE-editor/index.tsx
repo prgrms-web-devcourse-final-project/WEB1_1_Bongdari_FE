@@ -40,7 +40,7 @@ export const TinyMceContainer = ({
         // onEditorChange={handleEditorChange}
         // value={htmlContent}
         init={{
-          height: 1000,
+          height: 800,
           menubar: false,
           file_picker_types: 'image', // file_picker_callback이 가능한 파일 종류 선택(media, file, image)
           automatic_uploads: true, // drag & drop
