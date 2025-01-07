@@ -1,9 +1,9 @@
-import CurrentRecruit from './_components/current-recruit';
-import Location from './_components/location';
-import RecruitDate from './_components/recruit-date';
-import VolunteerDate from './_components/volunteer-date';
 import { InfoFirstLine, InfoSecondLine, Wrapper } from './indexCss';
 import { AidRqDetailType } from '@/shared/types/aidrq-detail/aidrqDetailType';
+import CurrentRecruit from '@/components/aidreq-detail-info/current-recruit';
+import RecruitDate from '@/components/aidreq-detail-info/recruit-date';
+import Location from '@/components/aidreq-detail-info/location';
+import VolunteerDate from '@/components/aidreq-detail-info/volunteer-date';
 
 interface AidRqDetailCenterProfileProps {
   data: AidRqDetailType;
