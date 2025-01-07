@@ -8,4 +8,8 @@ export const ProfileImg = styled.div<{ imgurl: string }>`
   height: 120px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 100px;
+
+  @media (max-width: 1000px) {
+    display: none;
+  }
 `;

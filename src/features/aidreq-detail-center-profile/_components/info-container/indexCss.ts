@@ -4,6 +4,10 @@ export const Wrapper = styled.div`
   padding: 0 60px;
   flex: 1;
   position: relative;
+
+  @media (max-width: 1000px) {
+    padding-left: 0;
+  }
 `;
 
 export const Title = styled.p`
