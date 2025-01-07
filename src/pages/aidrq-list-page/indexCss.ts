@@ -9,4 +9,8 @@ export const Title = styled.p`
   font-size: ${theme.fontSize.thirdSize};
   font-weight: 700;
   text-align: center;
+
+  @media (max-width: 1000px) {
+    font-size: 20px;
+  }
 `;
