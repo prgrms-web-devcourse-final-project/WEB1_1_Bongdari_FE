@@ -1,8 +1,9 @@
 import { ApplyButton, CommunityCreateBoxCss } from './indexCss';
 import { useCreateCommunity } from './logic/useCreateCommunity';
 import InputBox from '@/components/inputBox';
-import TextArea from '@/components/textArea';
+// import TextArea from '@/components/textArea';
 import UploadBox from '@/components/img-drag-box';
+import { TinyMceContainer } from '@/components/tinyMCE-editor';
 
 const CommunityCreateBox = ({ content_id }: { content_id?: number }) => {
   const { titleText, setTitleText, contentText, setContentText, handleFileSelect, onClickPost, imageURL } =
@@ -24,12 +25,12 @@ const CommunityCreateBox = ({ content_id }: { content_id?: number }) => {
         />
       </div>
       <div className="inputWrap">
-        <i className="label">이미지</i>
+        <i className="label">대표사진</i>
         <UploadBox onFileSelect={handleFileSelect} savedImage={imageURL} />
       </div>
       <div className="inputWrap">
         <i className="label">내용</i>
-        <TextArea
+        {/* <TextArea
           // TextArea 고쳐주세요!!
           // height="450px"
           colortype="gray"
@@ -37,7 +38,8 @@ const CommunityCreateBox = ({ content_id }: { content_id?: number }) => {
           value={contentText}
           getInputText={(str) => console.log(str)}
           setFunc={setContentText}
-        />
+        /> */}
+        <TinyMceContainer htmlContent={contentText} setHtmlContent={setContentText} />
       </div>
 
       <div className="btnWrap">
