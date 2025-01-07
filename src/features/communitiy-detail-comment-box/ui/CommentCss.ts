@@ -11,6 +11,10 @@ export const CommentCss = styled.div`
     /* border: 1px solid red; */
   }
 
+  @media (max-width: 1000px) {
+    padding: 18px 30px;
+  }
+
   .mainCommentWrap {
     padding: 15px 0 10px;
   }
