@@ -31,7 +31,12 @@ const VolunteerDetailInfoPage = () => {
         </div>
         <div>
           <label htmlFor="volunteerGender">성별</label>
-          <Select text="성별을 선택해주세요." data={genderOptions} getSelectedOption={handleGenderSelect} />
+          <Select
+            text="성별을 선택해주세요."
+            data={genderOptions}
+            getSelectedOption={handleGenderSelect}
+            width="100%"
+          />
         </div>
         <SubmitButton label="입력하기" type="blue" />
       </DetailInfoForm>
