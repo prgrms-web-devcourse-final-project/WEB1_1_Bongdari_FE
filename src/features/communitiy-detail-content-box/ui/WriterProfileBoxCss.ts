@@ -55,5 +55,6 @@ export const WriterProfileBoxCss = styled.div`
     flex-direction: column;
     justify-content: center;
     gap: 30px;
+    border-radius: 25px;
   }
 `;

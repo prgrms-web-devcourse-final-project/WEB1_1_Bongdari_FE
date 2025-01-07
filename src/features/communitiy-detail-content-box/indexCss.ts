@@ -27,6 +27,10 @@ export const CommunityDetailContentBoxCss = styled.div`
     font-weight: 700;
     display: blocK;
     padding-bottom: 50px;
+
+    @media (max-width: 1000px) {
+      padding-bottom: 20px;
+    }
   }
 
   .modifiedDate {
@@ -34,13 +38,17 @@ export const CommunityDetailContentBoxCss = styled.div`
     color: #696969;
     display: block;
     padding-bottom: 30px;
+
+    @media (max-width: 1000px) {
+      padding-bottom: 70px;
+    }
   }
 
   .content {
     background-color: ${theme.box.section.backgroundColor};
     border: ${theme.box.section.border};
     border-radius: ${theme.box.section.borderRadius};
-    padding: 50px 120px;
+    padding: 50px 40px;
     margin: 10px 0;
 
     font-size: ${theme.fontSize.seventhSize};
@@ -49,7 +57,7 @@ export const CommunityDetailContentBoxCss = styled.div`
   .btnWrap {
     width: 100%;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 10px;
   }
 
   @media (max-width: 1000px) {
