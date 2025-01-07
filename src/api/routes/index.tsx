@@ -25,6 +25,9 @@ import LoginErrorPage from '@/pages/error-page/login-error-page';
 import NotFoundPage from '@/pages/error-page/not-found-page';
 import SignupPage from '@/pages/signup-page';
 
+import CenterDetailInfoPage from '@/pages/detail-info-page/center';
+import VolunteerDetailInfoPage from '@/pages/detail-info-page/volunteer';
+
 const MyPage = () => {
   const loginType = useLoginStore((state) => state.loginType);
 
@@ -108,6 +111,16 @@ const routes: RouteObject[] = [
       {
         path: '/signup',
         element: <SignupPage />
+      },
+      {
+        // TODO: 추후 라우팅 통합할 예정
+        path: '/center-detail',
+        element: <CenterDetailInfoPage />
+      },
+      {
+        // TODO: 추후 라우팅 통합할 예정
+        path: '/volunteer-detail',
+        element: <VolunteerDetailInfoPage />
       },
       {
         path: '/profile',

@@ -16,6 +16,11 @@ export const handleLoginCenter = async (id: string, pwd: string) => {
       }
     });
 
+    // 토큰 확인 --------------------------------------------------------------
+    console.log('응답헤더더', response.headers);
+    console.log('Authorization Header:', response.headers['authorization']);
+    // ------------------------------------------------------------------------
+
     return response.data;
   } catch (error) {
     console.error('Login failed:', error);
