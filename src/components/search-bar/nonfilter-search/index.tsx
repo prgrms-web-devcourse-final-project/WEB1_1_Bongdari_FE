@@ -3,12 +3,9 @@ import InputBox from '@/components/inputBox';
 import { useState } from 'react';
 
 interface NonFilterSearchBar {
-  type: boolean;
   getInput?: (text: string) => void;
 }
 
-// inputBox 고쳐주세요!!
-// const NonFilterSearchBar: React.FC<NonFilterSearchBar> = ({ type, getInput }) => {
 const NonFilterSearchBar: React.FC<NonFilterSearchBar> = ({ getInput }) => {
   const [word, setWord] = useState<string>('');
   const onClickGetInput = () => {

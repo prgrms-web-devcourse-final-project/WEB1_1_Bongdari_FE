@@ -47,5 +47,11 @@ const LongListItemCss = styled.div`
   &:hover {
     // TODO: hover시 디자인 변경사항 있다면 적용하기.
   }
+
+  @media (max-width: 1000px) {
+    .numbering {
+      display: none;
+    }
+  }
 `;
 export default LongListItemCss;
