@@ -10,6 +10,10 @@ export const Wrapper = styled.div`
   & > div:nth-of-type(1) {
     padding: 50px;
     border-bottom: 1px solid #d1d1d1;
+
+    @media (max-width: 1000px) {
+      padding: 30px;
+    }
   }
 `;
 
@@ -23,4 +27,8 @@ export const RecruitCount = styled.p`
   height: 82px;
   line-height: 82px;
   padding-left: 50px;
+
+  @media (max-width: 1000px) {
+    padding-left: 30px;
+  }
 `;

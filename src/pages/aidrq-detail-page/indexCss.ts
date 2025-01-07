@@ -19,10 +19,16 @@ export const ButtonBox = styled.div<{ presentstate: PresentResponse | null; recs
   align-items: center;
   padding-top: 100px;
   gap: 10px;
+  width: 220px;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+    flex-direction: column;
+  }
 `;
 
 export const ReviewBtn = styled(Button)`
-  width: 220px;
+  width: 100%;
   height: 53px;
   border-radius: 13px;
   font-size: 14px;
@@ -30,7 +36,7 @@ export const ReviewBtn = styled(Button)`
 `;
 
 export const ApplyBtn = styled(Button)`
-  width: 220px;
+  width: 100%;
   height: 53px;
   border-radius: 13px;
   font-size: 14px;

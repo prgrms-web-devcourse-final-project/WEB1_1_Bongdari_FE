@@ -18,7 +18,14 @@ export const TitleBox = styled.div`
 
   & > h2 {
     font-size: 36px;
+    line-height: 46px;
     font-weight: 700;
+    flex: 1;
+
+    @media (max-width: 1000px) {
+      font-size: 24px;
+      line-height: 30px;
+    }
   }
 `;
 
