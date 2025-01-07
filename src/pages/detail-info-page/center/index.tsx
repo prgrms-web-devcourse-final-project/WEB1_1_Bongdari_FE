@@ -22,7 +22,6 @@ const CenterDetailInfoPage = () => {
           <label htmlFor="centerSiteAddress">사이트주소</label>
           <InputBox colortype="white" textType="url" placeholder="사이트 주소를 입력해주세요." />
         </div>
-
         <SubmitButton label="입력하기" type="blue" />
       </DetailInfoForm>
     </PageWrapper>
