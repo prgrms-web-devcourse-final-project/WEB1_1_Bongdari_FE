@@ -8,7 +8,7 @@ import { useAlertDialog } from '@/store/stores/dialog/dialogStore';
 interface useCreateCommunityReturn {
   titleText: string;
   setTitleText: (text: string) => void;
-  contentText: string;
+  contentText: string | undefined;
   setContentText: (text: string) => void;
   handleFileSelect: (files: File[]) => void;
   onClickPost: () => void;
@@ -37,13 +37,13 @@ export const useCreateCommunity = ({ content_id }: { content_id?: number }): use
       navigate(`/community/${content_id}`);
     },
     onError: (error) => {
-      console.error('커뮤니티 수정 중 오류가 발생했습니다.', error);
+      console.error('커뮤니티 글 수정 중 오류가 발생했습니다.', error);
       openAlert('글 수정 중 오류가 발생했습니다. 다시 시도해주세요.');
     }
   });
 
   const [titleText, setTitleText] = useState<string>('');
-  const [contentText, setContentText] = useState<string>('');
+  const [contentText, setContentText] = useState<string>();
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [imageURL, setImageURL] = useState<string | null>(null);
   const [isMyContent, setIsMyContent] = useState<boolean>(false);
@@ -59,12 +59,13 @@ export const useCreateCommunity = ({ content_id }: { content_id?: number }): use
 
   // 글 작성 완료
   const onClickPost = async () => {
+    console.log('final content:', contentText);
     // 유효성 검사 추가 (제목, 컨텐츠는 꼭 필요하므로)
     if (!titleText.trim()) {
       openAlert('제목을 입력해주세요.');
       return;
     }
-    if (!contentText.trim()) {
+    if (!contentText?.trim()) {
       openAlert('내용을 입력해주세요.');
       return;
     }
