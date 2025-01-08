@@ -7,6 +7,10 @@ export const ApplyButton = styled(Button)`
   height: 50px;
   font-size: ${theme.fontSize.eighthSize};
   border-radius: 13px;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 
 export const CommunityCreateBoxCss = styled.div`
