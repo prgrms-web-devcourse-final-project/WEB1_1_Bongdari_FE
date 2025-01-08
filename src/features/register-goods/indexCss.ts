@@ -8,6 +8,10 @@ export const SectionBox = styled.div`
   width: 100%;
   padding: 58px 100px 84px 80px;
   margin: auto;
+
+  @media (max-width: 1000px) {
+    padding: 34px 20px 44px 20px;
+  }
 `;
 
 export const ResisterTitle = styled.p`
@@ -39,4 +43,8 @@ export const GoodsContainer = styled.div`
   gap: 14px;
   justify-content: flex-start;
   padding-bottom: 40px;
+
+  @media (max-width: 1000px) {
+    gap: 11px;
+  }
 `;

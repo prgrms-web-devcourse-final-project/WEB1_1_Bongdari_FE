@@ -50,7 +50,9 @@ const MessageSet = () => {
         <List>
           {messages?.content?.map((message: MessageItem) => (
             <ListItem key={message.id} onClick={() => handleItemClick(message)}>
-              <ListItemTitle $isRead={message.is_read}>{message.title}</ListItemTitle>
+              <ListItemTitle $isRead={message.is_read}>
+                {message.title.length > 10 ? `${message.title.slice(0, 10)}...` : message.title}
+              </ListItemTitle>
               <StateBox>
                 {!message.is_read && <MessageLabel />}
                 <Author>{message.sender_name}</Author>

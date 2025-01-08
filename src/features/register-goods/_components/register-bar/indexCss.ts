@@ -5,6 +5,10 @@ import styled from 'styled-components';
 export const RegisterBarContainer = styled.div`
   display: flex;
   gap: 16px;
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+  }
 `;
 
 export const RegisterButton = styled(Button)`
@@ -14,12 +18,17 @@ export const RegisterButton = styled(Button)`
   font-size: ${theme.fontSize.eighthSize};
   font-weight: 600;
   transition: 0.3s;
+
+  @media (max-width: 1000px) {
+    margin: auto;
+    width: 100%;
+  }
 `;
 
 export const RegisterInput = styled.input`
-  box-sizing: border-box;
   outline: none;
-  width: 776px;
+  max-width: 776px;
+  width: 100%;
   height: 53px;
   padding: 15px;
   border: none;
@@ -36,5 +45,10 @@ export const RegisterInput = styled.input`
   &:focus-within {
     background-color: ${theme.inputGray.variants.focused.backgroundColor};
     border: none;
+  }
+
+  @media (max-width: 1000px) {
+    width: 100%;
+    margin: auto;
   }
 `;

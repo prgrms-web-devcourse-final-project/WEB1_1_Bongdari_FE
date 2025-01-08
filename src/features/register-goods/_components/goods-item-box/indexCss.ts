@@ -9,8 +9,8 @@ export const GoodsItemBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 182px;
-  gap: 5px;
+  padding: 15px 16px 15px 22px;
+  gap: 23px;
 `;
 
 export const GoodsTitle = styled.p`

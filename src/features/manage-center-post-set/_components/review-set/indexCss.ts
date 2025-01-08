@@ -14,12 +14,24 @@ export const TitleContainer = styled.div`
   align-items: center;
   border-bottom: 1px solid #000000;
   padding-bottom: 30px;
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    gap: 22px;
+  }
 `;
 
 export const ReviewSetTitle = styled.p`
   font-size: ${theme.fontSize.fourthSize};
   font-weight: 600;
   cursor: default;
+
+  @media (max-width: 1000px) {
+    font-size: ${theme.fontSize.sixthSize};
+    font-weight: 600;
+    margin-right: auto;
+    padding-left: 4px;
+  }
 `;
 
 export const ReviewListCss = styled.ul`

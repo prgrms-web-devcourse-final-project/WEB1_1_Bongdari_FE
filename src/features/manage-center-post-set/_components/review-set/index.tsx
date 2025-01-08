@@ -32,8 +32,6 @@ const ReviewSet = ({ centerId }: ReviewSetProps) => {
 
   const { data: reviews } = useGetCenterReviews(centerId, page, category ? aidrqCategoryMapping[category] : undefined);
 
-  // console.log('기고나리뷰', reviews);
-
   const handleSelectedOption = (selectOption: string) => {
     setCategory(selectOption === '전체' ? '' : selectOption);
   };
@@ -41,7 +39,7 @@ const ReviewSet = ({ centerId }: ReviewSetProps) => {
   const handleReviewModal = (review: Review) => {
     setSelectedReviewId(review.id);
     setOpenReviewModal(true);
-    console.log('States after update:', { selectedReviewId: review.id, openReviewModal: true });
+    // console.log('States after update:', { selectedReviewId: review.id, openReviewModal: true });
   };
 
   const handleCloseReviewModal = () => {
@@ -68,10 +66,7 @@ const ReviewSet = ({ centerId }: ReviewSetProps) => {
         </Stack>
       </Wrapper>
       {openReviewModal && (
-        <ReviewReadModal
-          handleCloseReviewModal={handleCloseReviewModal}
-          reviewId={selectedReviewId} // 리뷰 ID 전달
-        />
+        <ReviewReadModal handleCloseReviewModal={handleCloseReviewModal} reviewId={selectedReviewId} />
       )}
     </>
   );

@@ -15,11 +15,22 @@ export const CenterProfileTitle = styled.h1`
   font-weight: 600;
   width: 100%;
   cursor: default;
+
+  @media (max-width: 1000px) {
+    font-size: ${theme.fontSize.fifthSize};
+    font-weight: 700;
+    text-align: center;
+  }
 `;
 
 export const ProfileEditWrapper = styled.div`
   display: flex;
   gap: 29px;
+
+  @media (max-width: 1000px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const FormSection = styled.div`
@@ -55,4 +66,9 @@ export const ProfileSection = styled.section`
   gap: 213px;
   align-items: center;
   padding: 75px 110px 42px 110px;
+
+  @media (max-width: 1000px) {
+    gap: 36px;
+    padding: 40px 122px 43px 122px;
+  }
 `;
