@@ -60,6 +60,10 @@ export const StateBox = styled.div`
   justify-content: center;
   align-items: center;
   gap: 27px;
+
+  @media (max-width: 1000px) {
+    gap: 1rem;
+  }
 `;
 
 export const CustomPagination = styled(Pagination)`
