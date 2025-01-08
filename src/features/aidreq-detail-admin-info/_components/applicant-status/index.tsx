@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { EmptyButton, SectionBox3, Title } from '../../indexCss';
-import { UserBox, UserIcon, VolunteerSubTitle, VolunteerTitle, VolunteerTitleBox } from './indexCss';
+import { StatusWrapper, UserBox, UserIcon, VolunteerSubTitle, VolunteerTitle, VolunteerTitleBox } from './indexCss';
 
 interface ApplicantStatusProps {
   title: string;
@@ -10,7 +10,7 @@ const ApplicantStatus = ({ title, recruitStatus }: ApplicantStatusProps) => {
   const { id } = useParams();
   const navigate = useNavigate();
   return (
-    <div>
+    <StatusWrapper>
       <Title>지원자 현황</Title>
       <SectionBox3>
         <UserBox>
@@ -30,7 +30,7 @@ const ApplicantStatus = ({ title, recruitStatus }: ApplicantStatusProps) => {
           type="white"
         />
       </SectionBox3>
-    </div>
+    </StatusWrapper>
   );
 };
 

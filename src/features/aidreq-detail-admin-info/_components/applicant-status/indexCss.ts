@@ -1,6 +1,10 @@
 import theme from '@/styles/theme';
 import styled from 'styled-components';
 
+export const StatusWrapper = styled.div`
+  padding: 20px 0;
+`;
+
 export const UserBox = styled.div`
   border: 1px solid #e4e4e4;
   border-radius: 15px;

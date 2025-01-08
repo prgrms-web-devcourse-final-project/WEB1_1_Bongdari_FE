@@ -8,23 +8,6 @@ export const Wrapper = styled.div`
   gap: 11px;
 `;
 
-export const SectionBox = styled.div`
-  border: ${theme.box.section.border};
-  border-radius: ${theme.box.section.borderRadius};
-  background-color: ${theme.box.section.backgroundColor};
-  margin: 20px 0 29px 0;
-  max-height: 153px;
-`;
-
-export const SectionBox2 = styled.div`
-  border: ${theme.box.section.border};
-  border-radius: ${theme.box.section.borderRadius};
-  background-color: ${theme.box.section.backgroundColor};
-  margin: 20px 0 29px 0;
-  display: flex;
-  max-height: 153px;
-`;
-
 export const SectionBox3 = styled.div`
   border: ${theme.box.section.border};
   border-radius: ${theme.box.section.borderRadius};
