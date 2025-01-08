@@ -13,9 +13,10 @@ interface InfoModifyProps {
   id: string;
   getTitleAndFilter: (key: keyof VolunteerType, value: string | number | boolean) => void;
   volunteerData: VolunteerType | null;
+  createdAt: string;
 }
 
-const InfoModify: React.FC<InfoModifyProps> = ({ id, getTitleAndFilter, volunteerData }) => {
+const InfoModify: React.FC<InfoModifyProps> = ({ id, getTitleAndFilter, volunteerData, createdAt }) => {
   const { openConfirm } = useConfirmDialog();
   const { openAlert } = useAlertDialog();
 
@@ -37,7 +38,7 @@ const InfoModify: React.FC<InfoModifyProps> = ({ id, getTitleAndFilter, voluntee
 
   const handleUpdateInfoDialog = async () => {
     openConfirm(`정보를 수정하시겠습니까?`, async () => {
-      const errors = validateVolunteerData(changedRegular);
+      const errors = validateVolunteerData(changedRegular, createdAt);
 
       if (errors.length > 0) {
         openAlert(errors[0]);

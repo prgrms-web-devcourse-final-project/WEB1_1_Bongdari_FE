@@ -21,7 +21,6 @@ const AidRqModifyPage = () => {
     if (initialData) {
       setEditedData(initialData.data);
     }
-    console.log(initialData);
   }, [initialData]);
 
   const getTitleAndFilter = (key: keyof VolunteerType, value: Location | string | number | boolean) => {
@@ -38,7 +37,11 @@ const AidRqModifyPage = () => {
     <Wrapper>
       <Title>도움요청 글 수정</Title>
       <LocationModify id={id} getTitleAndFilter={getTitleAndFilter} volunteerData={editedData}></LocationModify>
-      <InfoModify id={id} getTitleAndFilter={getTitleAndFilter} volunteerData={editedData}></InfoModify>
+      <InfoModify
+        id={id}
+        getTitleAndFilter={getTitleAndFilter}
+        volunteerData={editedData}
+        createdAt={initialData?.data?.created_at}></InfoModify>
     </Wrapper>
   );
 };

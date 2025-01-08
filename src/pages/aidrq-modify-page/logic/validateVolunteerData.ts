@@ -11,7 +11,7 @@ interface ChangedRegularData {
 }
 
 //유효성 검사
-export const validateVolunteerData = (data: ChangedRegularData) => {
+export const validateVolunteerData = (data: ChangedRegularData, createdAt: string) => {
   const errors = [];
 
   if (!data.title) {
@@ -42,13 +42,13 @@ export const validateVolunteerData = (data: ChangedRegularData) => {
   if (data.volunteer_start_date_time && data.volunteer_end_date_time) {
     const startDate = new Date(data.volunteer_start_date_time);
     const endDate = new Date(data.volunteer_end_date_time);
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    tomorrow.setHours(0, 0, 0, 0);
+    const createdDate = new Date(createdAt);
+    createdDate.setDate(createdDate.getDate() + 1);
+    createdDate.setHours(0, 0, 0, 0);
 
     // 시작일이 내일 이전인지 검사
-    if (startDate < tomorrow) {
-      errors.push('시작일은 내일 이후여야 합니다.');
+    if (startDate < createdDate) {
+      errors.push('시작일은 모집글 등록일 이후여야 합니다.');
     }
 
     // 종료일이 시작일보다 이른지 검사
