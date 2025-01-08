@@ -16,6 +16,10 @@ export const PageWrapper = styled.div`
   }
 `;
 
+export const TabButtonWrapper = styled.div`
+  width: 100%;
+`;
+
 export const Title = styled.p`
   font-size: ${theme.fontSize.secondSize};
   font-weight: 700;
