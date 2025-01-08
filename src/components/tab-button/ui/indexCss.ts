@@ -70,6 +70,11 @@ const TabButtonComponent = styled.button<{
         color: ${theme.tabMenu.variants.clicked.color};
       `}
   }
+
+  @media (max-width: 1000px) {
+    width: 120px;
+    height: 43px;
+  }
 `;
 
 export default TabButtonComponent;
