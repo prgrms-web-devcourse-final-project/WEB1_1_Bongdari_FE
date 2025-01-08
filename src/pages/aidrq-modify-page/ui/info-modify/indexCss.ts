@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import theme from '@/styles/theme';
 import Button from '@/components/button';
+import TextArea from '@/components/textArea';
 
 export const Wrapper = styled.div`
   margin-top: 10px;
@@ -71,6 +72,10 @@ export const TextAreaContainer = styled.div`
     font-size: 12px;
     padding-bottom: 10px;
   }
+`;
+
+export const ModifyTextArea = styled(TextArea)`
+  height: 500px;
 `;
 
 export const ButtonContainer = styled.div`
