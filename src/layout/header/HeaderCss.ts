@@ -39,6 +39,10 @@ export const Menu = styled.ul`
   gap: 1rem;
   height: 80%;
 
+  @media (max-width: 1000px) {
+    gap: 0px;
+  }
+
   & > .link {
     text-decoration: none;
     height: 100%;
@@ -53,12 +57,29 @@ export const Menu = styled.ul`
       align-items: center;
       border-radius: 5px;
 
+      @media (max-width: 1000px) {
+        display: none;
+      }
+
       &:hover {
         color: #2382ff;
         background-color: #e9f2ff;
         cursor: pointer;
       }
     }
+  }
+`;
+
+export const Hamburger = styled.div`
+  display: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  @media (max-width: 1000px) {
+    display: block;
+    margin-left: 10px;
   }
 `;
 
@@ -110,6 +131,10 @@ export const LoginBtn = styled.button`
     border: 1px solid #2382ff;
     cursor: pointer;
   }
+
+  @media (max-width: 1000px) {
+    margin-right: 10px;
+  }
 `;
 
 export const LogoutBtn = styled.button`
@@ -122,6 +147,10 @@ export const LogoutBtn = styled.button`
   &:hover {
     border: 1px solid #2382ff;
     cursor: pointer;
+  }
+
+  @media (max-width: 1000px) {
+    margin-right: 10px;
   }
 `;
 

@@ -6,6 +6,7 @@ import {
   AlertBox,
   AlertPositioning,
   Contents,
+  Hamburger,
   LoginBtn,
   Logo,
   LogoutBtn,
@@ -19,6 +20,7 @@ import { AlertType } from '@/shared/types/alert-type/AlertType';
 import axiosInstance from '@/api/apis';
 import { centerLogout } from '@/store/queries/logout-query/useCenterLogout';
 import { personLogout } from '@/store/queries/logout-query/useVolunteerLogout';
+import RightMenu from '@/components/right-menu';
 
 export default function Header() {
   const [alertState, setAlertState] = useState(false);
@@ -26,6 +28,8 @@ export default function Header() {
   const clearLoginInfo = useLoginStore((state) => state.clearLoginInfo);
   const loginType = useLoginStore((state) => state.loginType);
   const navigate = useNavigate();
+
+  const [rightMenuState, setRightMenuState] = useState(false);
 
   const [notifications, setNotifications] = useState<AlertType[]>([]);
   const alertRef = useRef<HTMLDivElement>(null); // ref 추가
@@ -167,6 +171,16 @@ export default function Header() {
               <li>마이페이지</li>
             </Link>
           )}
+          <Hamburger
+            onClick={() => {
+              setRightMenuState(rightMenuState ? false : true);
+            }}>
+            <img src="/assets/imgs/menu-bar.svg"></img>
+          </Hamburger>
+          <RightMenu
+            setRightMenuState={setRightMenuState}
+            rightMenuState={rightMenuState}
+            isLoggedIn={isLoggedIn}></RightMenu>
         </Menu>
       </Contents>
       <StyledToastContainer />
