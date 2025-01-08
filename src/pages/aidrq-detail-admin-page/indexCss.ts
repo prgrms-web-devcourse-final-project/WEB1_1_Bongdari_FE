@@ -8,4 +8,8 @@ export const PageWrapper = styled.div`
   margin: 0 auto;
   padding: 250px 0;
   gap: 26px;
+
+  @media (max-width: 1000px) {
+    width: 90%;
+  }
 `;

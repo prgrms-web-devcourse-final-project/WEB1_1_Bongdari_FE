@@ -11,11 +11,19 @@ export const TitleContainer = styled.div`
   align-items: center;
   padding: 20px 0 70px 0;
   gap: 42px;
+
+  @media (max-width: 1000px) {
+    padding: 20px 0 32px 0;
+  }
 `;
 
 export const ContentTitle = styled.p`
   font-size: ${theme.fontSize.firstSize};
   font-weight: 700;
+
+  @media (max-width: 1000px) {
+    font-size: ${theme.fontSize.fourthSize};
+  }
 `;
 
 export const CurrentEdit = styled.p`
