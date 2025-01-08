@@ -7,7 +7,6 @@ import {
   EditItem_TextArea,
   EditLabel,
   ErrorMessage,
-  EditProfileSectionButtonContainer,
   ProfileSection2,
   Input,
   InputWrapper,
@@ -79,9 +78,7 @@ const EditProfileForm = ({
             {centerURL && !validURL && <ErrorMessage>⚠️ 올바른 URL 형식이 아닙니다.</ErrorMessage>}
           </InputWrapper>
         </EditItem>
-        <EditProfileSectionButtonContainer>
-          <EditProfileSectionButton label="수정하기" type="blue" onClick={() => console.log('연락처, 사이트 수정')} />
-        </EditProfileSectionButtonContainer>
+        <EditProfileSectionButton label="수정하기" type="blue" onClick={() => console.log('연락처, 사이트 수정')} />
       </ProfileSection1>
       <ProfileSection2>
         <EditItem>
@@ -109,9 +106,7 @@ const EditProfileForm = ({
             />
           </TextAreaWrapper>
         </EditItem_TextArea>
-        <EditProfileSectionButtonContainer>
-          <EditProfileSectionButton label="수정하기" type="blue" onClick={() => console.log('기관명, 설명 수정')} />
-        </EditProfileSectionButtonContainer>
+        <EditProfileSectionButton label="수정하기" type="blue" onClick={() => console.log('기관명, 설명 수정')} />
       </ProfileSection2>
     </EditFormWrapper>
   );

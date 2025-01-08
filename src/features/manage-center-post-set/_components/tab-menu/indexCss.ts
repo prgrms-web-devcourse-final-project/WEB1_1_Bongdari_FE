@@ -9,8 +9,8 @@ interface TabMenuItemProps {
 export const TabMenuContainer = styled.div`
   max-width: 183px;
   width: 20%;
-  flex-direction: column;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: start;
   gap: 6px;
@@ -18,6 +18,12 @@ export const TabMenuContainer = styled.div`
   border: ${theme.box.section.border};
   border-radius: ${theme.box.section.borderRadius};
   background-color: ${theme.box.section.backgroundColor};
+
+  @media (max-width: 1000px) {
+    max-width: 100%;
+    width: 100%;
+    flex-direction: row;
+  }
 `;
 
 export const TabMenuItem = styled.button<TabMenuItemProps>`
@@ -40,5 +46,10 @@ export const TabMenuItem = styled.button<TabMenuItemProps>`
 
   &:active {
     color: ${theme.pointColor.clicked};
+  }
+
+  @media (max-width: 1000px) {
+    text-align: center;
+    padding: 18px 3px;
   }
 `;
