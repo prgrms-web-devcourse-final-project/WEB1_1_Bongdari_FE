@@ -8,6 +8,11 @@ export const UploadContainer = styled.div`
   gap: 10px;
   width: 244px;
   height: 244px;
+
+  @media (max-width: 1000px) {
+    width: 133px;
+    height: 133px;
+  }
 `;
 
 export const ImageCircle = styled.div`
@@ -46,6 +51,11 @@ export const UploadButton = styled.label`
   bottom: 1rem;
   padding-bottom: 5px;
   z-index: 1;
+
+  @media (max-width: 1000px) {
+    width: 45px;
+    height: 45px;
+  }
 
   span {
     display: flex;

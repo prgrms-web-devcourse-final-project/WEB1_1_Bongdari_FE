@@ -12,5 +12,10 @@ export const Wrapper = styled.div`
     font-weight: 700;
     padding-bottom: 20px;
     display: block;
+
+    @media (max-width: 1000px) {
+      text-align: center;
+      margin-bottom: 30px;
+    }
   }
 `;

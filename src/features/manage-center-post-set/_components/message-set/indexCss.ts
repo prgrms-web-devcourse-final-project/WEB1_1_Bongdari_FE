@@ -16,6 +16,11 @@ export const NoteSetTitle = styled.p`
   font-size: ${theme.fontSize.fourthSize};
   font-weight: 600;
   padding-bottom: 37px;
+
+  @media (max-width: 1000px) {
+    font-size: ${theme.fontSize.sixthSize};
+    padding-left: 4px;
+  }
 `;
 
 export const List = styled.ul`
@@ -34,6 +39,10 @@ export const ListItem = styled.li`
   align-items: center;
   padding: 28px 40px;
   cursor: pointer;
+
+  @media (max-width: 1000px) {
+    padding: 28px 18px;
+  }
 `;
 
 export const ListItemTitle = styled.p<ListItemProps>`
@@ -51,6 +60,10 @@ export const StateBox = styled.div`
   justify-content: center;
   align-items: center;
   gap: 27px;
+
+  @media (max-width: 1000px) {
+    gap: 1rem;
+  }
 `;
 
 export const CustomPagination = styled(Pagination)`

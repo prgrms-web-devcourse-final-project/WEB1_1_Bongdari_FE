@@ -18,6 +18,10 @@ export const ProfileSection1 = styled.section`
   padding: 56px 134px 46px 46px;
   width: 100%;
   gap: 14px;
+
+  @media (max-width: 1000px) {
+    padding: 26px 34px 30px 26px;
+  }
 `;
 
 export const ProfileSection2 = styled.section`
@@ -30,6 +34,10 @@ export const ProfileSection2 = styled.section`
   padding: 33px 133px 42px 57px;
   width: 100%;
   gap: 12px;
+
+  @media (max-width: 1000px) {
+    padding: 26px 34px 30px 26px;
+  }
 `;
 
 export const EditItem = styled.div`
@@ -118,15 +126,15 @@ export const CenterIntroTextArea = styled.textarea`
   }
 `;
 
-export const EditProfileSectionButtonContainer = styled.div`
-  display: flex;
-  justify-content: end;
-  padding-top: 20px;
-`;
 export const EditProfileSectionButton = styled(Button)`
   width: 111px;
   height: 37px;
   border-radius: 13px;
   font-weight: 600;
   font-size: ${theme.fontSize.eighthSize};
+  margin-left: auto;
+
+  @media (max-width: 1000px) {
+    margin: 40px auto 0;
+  }
 `;

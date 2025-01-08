@@ -29,14 +29,31 @@ export const ThirdLine = styled.div`
   gap: 20px;
 
   & > div:nth-of-type(1) {
-    width: 20%;
+    width: 50%;
   }
 
   & > div:nth-of-type(2) {
     flex: 1;
   }
 
-  & > div:nth-of-type(3) {
+  & > div {
+    & > p {
+      font-size: 12px;
+      padding-bottom: 10px;
+    }
+  }
+`;
+
+export const FourthLine = styled.div`
+  padding-top: 16px;
+  display: flex;
+  gap: 20px;
+
+  & > div:nth-of-type(1) {
+    width: 50%;
+  }
+
+  & > div:nth-of-type(2) {
     flex: 1;
   }
 
