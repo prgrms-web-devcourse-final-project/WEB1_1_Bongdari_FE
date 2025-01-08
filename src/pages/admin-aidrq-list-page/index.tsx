@@ -1,6 +1,6 @@
 import FilterSearchBar from '@/components/search-bar/filter-search';
 import WriteAidReqButtonComponent from '@/components/write-aidreq-button';
-import { PageWrapper, Title } from './indexCss';
+import { PageWrapper, TabButtonWrapper, Title } from './indexCss';
 import TabButtonGroup from '@/components/tab-button';
 import AidRqAdminListWrapper from './_components/aidrqlistadmin-wrapper';
 import useAdminSearchStore from '@/store/stores/admin-search/searchStore';
@@ -33,10 +33,12 @@ const AdminAidRqListPage = () => {
       <Title>내가 등록한 도움요청 글</Title>
       <WriteAidReqButtonComponent />
       <FilterSearchBar searchAidRequests={searchAidRequests} />
-      <TabButtonGroup
-        onTabChange={handleTabChange}
-        tabs={[{ label: '모집중' }, { label: '모집완료' }, { label: '모집종료' }]}
-      />
+      <TabButtonWrapper>
+        <TabButtonGroup
+          onTabChange={handleTabChange}
+          tabs={[{ label: '모집중' }, { label: '모집완료' }, { label: '모집종료' }]}
+        />
+      </TabButtonWrapper>
       <AidRqAdminListWrapper centerId={centerId} />
     </PageWrapper>
   );
