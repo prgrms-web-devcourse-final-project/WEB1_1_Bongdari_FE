@@ -1,16 +1,15 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { ApplyButton, CommuntiyListCss } from './indexCss';
+import { ApplyButton, CommuntiyListCss, LoadingCss, ErrorCss } from './indexCss';
 import LongListItem from '@/components/long-list-item';
 import CustomPagination from '@/features/custom-pagnation';
 import { useLoginStore } from '@/store/stores/login/loginStore';
-import { useCommunityList } from '@/store/queries/community-list-common-query/useCommunityList';
+import { useCommunityList } from './logic/useCommunityList';
 
-const CommuntiyList = ({ searchWord }: { searchWord: string }) => {
-  const { listData, totPage, currPage, setCurrPage } = useCommunityList({
-    searchWord
-  });
+const CommuntiyList = () => {
+  const { listData, totPage, currPage, isLoading, error } = useCommunityList();
   const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
   const navigate = useNavigate();
+
   return (
     <CommuntiyListCss>
       <div className="listHeader">
@@ -22,6 +21,8 @@ const CommuntiyList = ({ searchWord }: { searchWord: string }) => {
         </div>
       </div>
       <div className="listWrap">
+        {isLoading ? <LoadingCss>Loading...</LoadingCss> : ''}
+        {error ? <ErrorCss>{error.message}</ErrorCss> : ''}
         {listData?.map((v, i) => (
           <Link key={i} to={`/community/${v.id}`}>
             <LongListItem
@@ -34,7 +35,7 @@ const CommuntiyList = ({ searchWord }: { searchWord: string }) => {
           </Link>
         ))}
       </div>
-      <CustomPagination totPage={totPage} currPage={currPage} setCurrPage={setCurrPage} />
+      <CustomPagination totPage={totPage} currPage={currPage} />
       <div className="btnWrap">
         {isLoggedIn ? (
           <ApplyButton

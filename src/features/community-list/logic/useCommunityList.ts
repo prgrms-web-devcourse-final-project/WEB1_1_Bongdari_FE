@@ -1,44 +1,44 @@
-// import { communityListType } from '@/shared/types/community-type/CommuntiyTypes';
-// import { fetchCommunityList } from '@/store/queries/community-list-common-query/useCommunityList';
-// import { useEffect, useState } from 'react';
+import { communityListType } from '@/shared/types/community-type/CommuntiyTypes';
+import { useCommunityListQuery } from '@/store/queries/community-list-common-query/useCommunityList';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
-// interface useCommunityListReturn {
-//   listData: communityListType[] | undefined;
-//   totPage: number;
-//   currPage: number;
-//   setCurrPage: (page: number) => void;
-// }
+interface useCommunityListReturn {
+  listData: communityListType[] | undefined;
+  totPage: number;
+  currPage: number;
+  isLoading: boolean;
+  error: Error | null;
+}
 
-// export const useCommunityList = ({ searchWord }: { searchWord: string }): useCommunityListReturn => {
-//   const [listData, setListData] = useState<communityListType[] | undefined>();
-//   const [totPage, setTotPage] = useState<number>(1);
-//   const [currPage, setCurrPage] = useState<number>(1);
+export const useCommunityList = (): useCommunityListReturn => {
+  const [listData, setListData] = useState<communityListType[] | undefined>();
+  const [totPage, setTotPage] = useState<number>(1);
+  const [currPage, setCurrPage] = useState<number>(1);
+  const [searchWord, setSearchWord] = useState('');
+  const [searchParams] = useSearchParams(); // url의 querystring이 변경되면 자동 업데이트됨
 
-//   // 검색 또는 page 넘김 시 데이터 fetch
-//   useEffect(() => {
-//     console.log('searching', searchWord);
-//     const fetchData = async () => {
-//       const data = await fetchCommunityList(searchWord, currPage - 1);
-//       if (data) {
-//         // setListData(data.content as communityListType[]); // data.content를 communityListType[]로 지정
-//         setListData(data.content.flat() as communityListType[]);
-//       }
-//     };
-//     fetchData();
-//   }, [currPage, searchWord]);
+  const { data: rawData, isLoading, error } = useCommunityListQuery({ searchWord, currPage });
 
-//   // 첫 데이터 불러오기
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       const data = await fetchCommunityList(searchWord);
-//       if (data && !listData) {
-//         // setListData(data.content as communityListType[]); // data.content를 communityListType[]로 지정
-//         setListData(data.content.flat() as communityListType[]);
-//         setTotPage(data.totalPages);
-//       }
-//     };
-//     fetchData();
-//   }, []);
+  // Update currPage and searchWord when searchParams changes
+  useEffect(() => {
+    setCurrPage(parseInt(searchParams.get('page') ?? '1'));
+    setSearchWord(searchParams.get('search') || '');
+  }, [searchParams]);
 
-//   return { listData, totPage, currPage, setCurrPage };
-// };
+  // Update listData and totPage when rawData changes
+  useEffect(() => {
+    if (rawData) {
+      setListData(rawData.content.flat());
+      setTotPage(rawData.totalPages ?? 1);
+    }
+  }, [rawData]);
+
+  return {
+    listData,
+    totPage,
+    currPage,
+    isLoading,
+    error: error as Error | null
+  };
+};
