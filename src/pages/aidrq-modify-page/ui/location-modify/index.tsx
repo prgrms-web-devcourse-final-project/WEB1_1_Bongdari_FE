@@ -23,11 +23,12 @@ const LocationModify: React.FC<LocationModifyProps> = ({ id, getTitleAndFilter, 
     ...volunteerData.location
   };
 
-  const handleUpdateLocationDialog = () => {
-    openConfirm(`장소를 수정하시겠습니까?`, () => {
+  const handleUpdateLocationDialog = async () => {
+    openConfirm(`장소를 수정하시겠습니까?`, async () => {
       try {
-        updateLocation(id, changedLocation);
+        await updateLocation(id, changedLocation);
         openAlert(`장소가 수정되었습니다.`);
+        window.location.href = '/mypage/adminaidreqlist';
       } catch (error) {
         openAlert('수정 중 오류가 발생했습니다. 다시 시도해주세요.');
         console.error('수정오류', error);
