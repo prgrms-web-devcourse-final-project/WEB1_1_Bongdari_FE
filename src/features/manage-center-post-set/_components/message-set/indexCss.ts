@@ -19,6 +19,7 @@ export const NoteSetTitle = styled.p`
 
   @media (max-width: 1000px) {
     font-size: ${theme.fontSize.sixthSize};
+    padding-left: 4px;
   }
 `;
 

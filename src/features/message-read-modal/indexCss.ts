@@ -9,7 +9,6 @@ export const ModalContentWrapper = styled.div`
   height: 100%;
   justify-content: space-around;
   margin: auto;
-  /* padding: 58px 68px 31px 77px; */
   padding: 1rem;
 `;
 
