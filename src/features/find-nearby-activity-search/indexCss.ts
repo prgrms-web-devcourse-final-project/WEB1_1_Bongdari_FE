@@ -7,6 +7,12 @@ export const SearchBox = styled.div`
   width: 90%;
   height: 100vh;
   padding: 1rem;
+
+  @media (max-width: 1000px) {
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 export const ScrollSection = styled.div`
@@ -43,6 +49,10 @@ export const SearchBarComponent = styled.div`
   padding: 17px 0 25px 0;
   display: flex;
   gap: 5px;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 
 export const Wrapper = styled.ul`
