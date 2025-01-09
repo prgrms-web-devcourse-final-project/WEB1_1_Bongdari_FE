@@ -17,24 +17,28 @@ const ProfileInfoBox: React.FC<ProfileInfoBoxProps> = (props) => {
     return (
       <ProfileInfoBoxCss id={volunteer_id}>
         <p className="blueTitle">상세정보</p>
-        <p className="info">
-          <i className="label">닉네임</i>
-          <i className="data">{nickname}</i>
-        </p>
-        <p className="info">
-          <i className="label rightLabel">총 봉사 시간</i>
-          <i className="data">{total_volunteer_hours}시간</i>
-        </p>
-        <p className="info">
-          <i className="label">등급</i>
-          <img src={`/assets/imgs/mitten-${tier.toLowerCase()}.svg`} className="data" />
-        </p>
-        <p className="info">
-          <i className="label rightLabel">총 봉사 횟수</i>
-          <i className="data">{total_volunteer_count}회</i>
-        </p>
+        <div className="leftInfoWrap">
+          <p className="info">
+            <i className="label volunteer">닉네임</i>
+            <i className="data">{nickname}</i>
+          </p>
+          <p className="info">
+            <i className="label volunteer">등급</i>
+            <img src={`/assets/imgs/mitten-${tier.toLowerCase()}.svg`} className="data" />
+          </p>
+        </div>
+        <div className="rightInfoWrap">
+          <p className="info">
+            <i className="label rightLabel volunteer">총 봉사 시간</i>
+            <i className="data">{total_volunteer_hours}시간</i>
+          </p>
+          <p className="info">
+            <i className="label rightLabel volunteer">총 봉사 횟수</i>
+            <i className="data">{total_volunteer_count}회</i>
+          </p>
+        </div>
         <p className="info wide">
-          <i className="label ">설명</i>
+          <i className="label volunteer">설명</i>
           <i className="data">{introduce}</i>
         </p>
       </ProfileInfoBoxCss>

@@ -15,7 +15,7 @@ export const ProfileInfoBoxCss = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto auto auto;
   grid-auto-rows: 50px;
-  grid-gap: 25px; // 간격 추가
+  grid-gap: 10px; // 간격 추가
   padding: 40px 30px; // 여백 추가
 
   .blueTitle {
@@ -26,17 +26,26 @@ export const ProfileInfoBoxCss = styled.div`
     margin-bottom: 30px;
   }
 
+  .leftInfoWrap,
+  .rightInfoWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
   .info {
+    /* border: 1px solid red; */
     line-height: ${theme.fontSize.fourthSize};
     display: flex;
+    justify-content: start;
     min-height: 40px;
-    margin-bottom: 8px;
   }
   .info.wide {
     grid-column: 1 / -1;
   }
 
   .label {
+    /* border: 1px solid red; */
     display: inline-block;
     color: #282828;
     font-weight: 600;
@@ -45,6 +54,9 @@ export const ProfileInfoBoxCss = styled.div`
   }
   .rightLabel {
     width: 80px;
+  }
+  .rightLabel.volunteer {
+    width: 150px;
   }
 
   .data {
@@ -59,7 +71,13 @@ export const ProfileInfoBoxCss = styled.div`
     object-fit: contain;
     transform: rotateZ(30deg);
   }
+
+  .info.wide .label {
+    /* border: 1px solid red; */
+    margin-right: 0;
+  }
   .info.wide .data {
+    /* border: 1px solid red; */
     color: #858585;
   }
 
@@ -70,15 +88,21 @@ export const ProfileInfoBoxCss = styled.div`
 
     max-width: none;
     width: 100%;
-    /* grid-gap: 15px; // 간격 추가 */
     padding: 30px 25px; // 여백 추가
 
+    .leftInfoWrap,
+    .rightInfoWrap {
+      display: block;
+    }
+
     .info {
-      /* border: 1px solid red; */
       margin-bottom: 0px;
     }
-    .label {
-      min-width: 50px;
+    .info.wide .label {
+      margin-right: 10px;
+    }
+    .label.volunteer {
+      width: 110px;
     }
   }
 `;

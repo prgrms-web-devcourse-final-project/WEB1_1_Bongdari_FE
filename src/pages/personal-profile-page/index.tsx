@@ -13,15 +13,9 @@ const PersonalProfilePage = () => {
   } else {
     return (
       <Wrapper>
-        <div className="innerWrap">
-          <ProfileImgBox type="person" {...profileData} setIsModalOpen={setIsModalOpenWhenLogin} />
-          <ProfileInfoBox type="person" {...profileData} />
-          <MessageCreateModal
-            user_id={userId || ''}
-            isModalOpen={isModalOpen}
-            setIsModalOpen={setIsModalOpenWhenLogin}
-          />
-        </div>
+        <ProfileImgBox type="person" {...profileData} setIsModalOpen={setIsModalOpenWhenLogin} />
+        <ProfileInfoBox type="person" {...profileData} />
+        <MessageCreateModal user_id={userId || ''} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpenWhenLogin} />
       </Wrapper>
     );
   }
