@@ -15,7 +15,7 @@ export const myPresentStatus = async (
     if (response.data.code === 200) {
       setPresentState(response.data.data);
     } else if (response.data.code === 210) {
-      setPresentState({ id: 0, status: 'none', attended: false });
+      setPresentState({ id: 0, status: 'none', attended: false, is_reviewed: false });
     }
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {

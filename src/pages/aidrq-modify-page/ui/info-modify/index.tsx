@@ -1,8 +1,15 @@
 import AidRqCreateShared from '@/features/aidrq-create-shared-part';
-import { ButtonContainer, TextAreaContainer, ThirdLine, Wrapper, ModifyInfoBtn, FourthLine } from './indexCss';
+import {
+  ButtonContainer,
+  TextAreaContainer,
+  ThirdLine,
+  Wrapper,
+  ModifyInfoBtn,
+  FourthLine,
+  ModifyTextArea
+} from './indexCss';
 import AidRqCreateRecruitPopulation from '@/components/aidrq-create-recruit-population';
 import AidRqCreateDate from '@/components/aidrq-create-date';
-import TextArea from '@/components/textArea';
 import { VolunteerType } from '@/shared/types/aidrq-create-type/AidRqCreateType';
 import { updateRegular } from '@/store/queries/aidreq-control-center-query/useModifyAidRqRegular';
 import { useAlertDialog, useConfirmDialog } from '@/store/stores/dialog/dialogStore';
@@ -101,15 +108,13 @@ const InfoModify: React.FC<InfoModifyProps> = ({ id, getTitleAndFilter, voluntee
       </FourthLine>
       <TextAreaContainer>
         <p>본문 내용</p>
-        <TextArea
-          // TextArea 고쳐주세요!!
-          // height="500px"
+        <ModifyTextArea
           key={volunteerData.content}
           getInputText={(text) => {
             getTitleAndFilter('content', text);
           }}
           colortype="white"
-          initialVal={volunteerData.content}></TextArea>
+          initialVal={volunteerData.content}></ModifyTextArea>
       </TextAreaContainer>
       <ButtonContainer>
         <ModifyInfoBtn
