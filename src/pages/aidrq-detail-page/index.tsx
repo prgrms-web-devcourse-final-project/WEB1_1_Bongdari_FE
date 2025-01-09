@@ -74,7 +74,7 @@ const AidRqDetailPage = () => {
             }}
             label="리뷰쓰기"
             type="white"
-            disabled={!presentState?.attended}></ReviewBtn>
+            disabled={!presentState?.attended || presentState?.is_reviewed}></ReviewBtn>
           <ApplyBtn
             onClick={() => {
               if (presentState?.status === 'none' && data.recruit_status === 'RECRUITING') {
