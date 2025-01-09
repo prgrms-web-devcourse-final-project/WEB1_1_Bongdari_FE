@@ -1,4 +1,4 @@
-import { handleLoginCenter } from '@/store/queries/login-query/useNormalLogin';
+import { handleLogin } from '@/store/queries/login-query/useNormalLogin';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // import { useLoginStore } from '@/store/stores/login/loginStore';
@@ -13,7 +13,7 @@ interface useOrgLoginReturn {
   onClickFirstVisit: () => void;
 }
 
-export const useOrgLogin = (): useOrgLoginReturn => {
+export const useLogin = (): useOrgLoginReturn => {
   // const setLoginInfo = useLoginStore((state) => state.setLoginInfo);
 
   const navigate = useNavigate();
@@ -25,8 +25,7 @@ export const useOrgLogin = (): useOrgLoginReturn => {
   // id formatCheck
   const checkId = (id: string) => {
     setId(id);
-    if (id.length < 4 || id.length > 20) setIdErr('4자 이상 20자 이하로 작성해주세요');
-    else if (!/^[a-zA-Z0-9_]+$/.test(id)) setIdErr('알파벳, 숫자, _ 등만 가능합니다');
+    if (id.length < 4 || id.length > 50) setIdErr('4자 이상 50자 이하로 작성해주세요');
     else if (!/^[a-zA-Z]/.test(id)) setIdErr('id의 첫 문자는 알파벳으로 설정해주세요');
     else setIdErr('');
   };
@@ -44,13 +43,21 @@ export const useOrgLogin = (): useOrgLoginReturn => {
   const onClickLogin = async () => {
     if (idErr !== '' || pwdErr !== '') console.log('id와 pwd 형식을 확인해주세요.');
     else {
-      console.log(id, pwd, '로그인시도');
-
       try {
-        const response = await handleLoginCenter(id, pwd);
-        console.log(response);
-        // setLoginInfo('centertestid', 'center');
-        navigate('/main');
+        //현재 -> 토큰을 그대로 받아서 session에 넣고 사용
+        //나중 -> 쿠키에 단기토큰 넣고 그거로 token을 가져오는 api호출 후, session에 넣고 사용
+        const response = await handleLogin(id, pwd);
+        const token = response.headers['authorization'];
+
+        //token을 세션스토리지에 저장
+        sessionStorage.setItem('token', token);
+
+        // // setLoginInfo('centertestid', 'center');
+        navigate('/main', {
+          state: {
+            token: token
+          }
+        });
       } catch (error) {
         console.error('Login failed:', error);
       }

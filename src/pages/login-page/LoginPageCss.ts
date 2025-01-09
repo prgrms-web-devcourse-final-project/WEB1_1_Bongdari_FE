@@ -22,7 +22,7 @@ export const CommonLoginSection = styled.section`
   flex-direction: column;
 
   & > form {
-    padding: 30px 0 38px 0;
+    padding-top: 30px;
   }
 
   & > form > div > label {
@@ -47,6 +47,16 @@ export const CommonLoginSection = styled.section`
   }
 `;
 
+export const ErrorSpan = styled.span`
+  font-size: ${Theme.fontSize.ninthSize};
+  color: red;
+  opacity: 0.6;
+  padding: 0 15px 10px;
+  text-align: end;
+  width: 100%;
+  display: inline-block;
+`;
+
 export const SocialLoginSection = styled.section`
   display: flex;
   flex-direction: column;
@@ -65,6 +75,7 @@ export const LoginButton = styled(Button)`
   color: white;
   font-size: ${theme.fontSize.seventhSize};
   border-radius: 10px;
+  margin-top: 38px;
 `;
 
 export const NaverLoginButton = styled.button`
