@@ -22,6 +22,7 @@ export const ProfilePreferItemBoxCss = styled.div`
 
   .preferItemWrap {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
   }
   .preferItemWrap .preferItem {
@@ -33,5 +34,10 @@ export const ProfilePreferItemBoxCss = styled.div`
     border-radius: ${theme.box.section.borderRadius};
 
     padding: 12px 20px;
+  }
+
+  @media (max-width: 1000px) {
+    max-width: none;
+    width: 100%;
   }
 `;

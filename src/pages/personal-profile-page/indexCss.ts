@@ -1,18 +1,19 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
+  margin: auto;
   padding: 250px 0;
+  width: 90%;
+  max-width: 1200px;
 
-  .innerWrap {
-    display: flex;
-    gap: 15px;
-    width: 90%;
-    max-width: 1200px;
+  display: flex;
+  gap: 15px;
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
   }
 
-  .innerWrap > * {
+  & > * {
     margin: 0 auto auto;
   }
 
