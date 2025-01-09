@@ -21,6 +21,10 @@ export const Box = styled.div<{ width: string; height: string; isOpen: boolean }
     cursor: pointer;
     border: 1px solid #62a6ff;
   }
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 
 export const Arrow = styled.div`

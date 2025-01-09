@@ -84,3 +84,6 @@ export const CommuntiyListCss = styled.div`
     }
   }
 `;
+
+export const LoadingCss = styled.div``;
+export const ErrorCss = styled.div``;

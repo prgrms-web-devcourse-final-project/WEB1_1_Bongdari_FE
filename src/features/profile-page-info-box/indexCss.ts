@@ -26,25 +26,37 @@ export const ProfileInfoBoxCss = styled.div`
     margin-bottom: 30px;
   }
 
+  .leftInfoWrap,
+  .rightInfoWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
   .info {
+    /* border: 1px solid red; */
     line-height: ${theme.fontSize.fourthSize};
     display: flex;
+    justify-content: start;
     min-height: 40px;
-    margin-bottom: 8px;
   }
   .info.wide {
     grid-column: 1 / -1;
   }
 
   .label {
+    /* border: 1px solid red; */
     display: inline-block;
     color: #282828;
     font-weight: 600;
     margin-right: 10px;
-    min-width: 90px;
+    width: 80px;
   }
   .rightLabel {
-    width: 90px;
+    width: 80px;
+  }
+  .rightLabel.volunteer {
+    width: 150px;
   }
 
   .data {
@@ -59,7 +71,38 @@ export const ProfileInfoBoxCss = styled.div`
     object-fit: contain;
     transform: rotateZ(30deg);
   }
+
+  .info.wide .label {
+    /* border: 1px solid red; */
+    margin-right: 0;
+  }
   .info.wide .data {
+    /* border: 1px solid red; */
     color: #858585;
+  }
+
+  @media (max-width: 1000px) {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+
+    max-width: none;
+    width: 100%;
+    padding: 30px 25px; // 여백 추가
+
+    .leftInfoWrap,
+    .rightInfoWrap {
+      display: block;
+    }
+
+    .info {
+      margin-bottom: 0px;
+    }
+    .info.wide .label {
+      margin-right: 10px;
+    }
+    .label.volunteer {
+      width: 110px;
+    }
   }
 `;

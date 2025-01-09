@@ -15,7 +15,8 @@ export const ProfileImgBoxCss = styled.div`
   max-width: 460px;
   width: 100%;
   min-width: 400px;
-  height: 480px;
+  min-height: 480px;
+  height: 100%;
 
   background-color: ${theme.box.section.backgroundColor};
   border: ${theme.box.section.border};
@@ -28,6 +29,11 @@ export const ProfileImgBoxCss = styled.div`
   align-items: center;
 
   position: relative;
+
+  @media (max-width: 1000px) {
+    max-width: none;
+    width: 100%;
+  }
 
   & > img {
     background-color: #b3b3b3;

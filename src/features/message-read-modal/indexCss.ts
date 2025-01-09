@@ -10,12 +10,26 @@ export const ModalContentWrapper = styled.div`
   justify-content: space-around;
   margin: auto;
   padding: 1rem;
+  overflow: hidden;
+
+  @media (max-width: 1000px) {
+    justify-content: flex-start;
+    align-items: stretch;
+    height: 100%;
+  }
 `;
 
 export const ScrollSection = styled.div`
-  max-height: 100%;
+  height: 100%;
   overflow-y: auto; // 세로 스크롤
-  padding: 50px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  @media (max-width: 1000px) {
+    padding: 2rem 1rem;
+  }
 
   &::-webkit-scrollbar {
     width: 8px;
@@ -46,6 +60,10 @@ export const MessageTitle = styled.h1`
   font-size: ${theme.fontSize.fourthSize};
   font-weight: 600;
   cursor: default;
+
+  @media (max-width: 1000px) {
+    font-size: ${theme.fontSize.sixthSize};
+  }
 `;
 
 export const CreatedAt = styled.p`
@@ -60,6 +78,10 @@ export const MessageContent = styled.div`
   line-height: 1.2;
   padding: 39px 0 34px 0;
   cursor: default;
+
+  @media (max-width: 1000px) {
+    font-size: ${theme.fontSize.eighthSize};
+  }
 `;
 
 export const ProfileBox = styled.div`
@@ -69,11 +91,22 @@ export const ProfileBox = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 24px 31px 23px 35px;
+  margin-top: auto;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+    flex-direction: column;
+    gap: 29px;
+  }
 `;
 
 export const ProfileInfo = styled.div`
   display: flex;
   align-items: center;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 
 export const ImgWrapper = styled.div`
@@ -95,6 +128,10 @@ export const NickName = styled.p`
   font-weight: 600;
   padding: 0 14px 0 24px;
   cursor: default;
+
+  @media (max-width: 1000px) {
+    padding: 0 14px;
+  }
 `;
 
 export const GloveImg = styled.img`
@@ -108,4 +145,9 @@ export const GoToProfileButton = styled(Button)`
   font-size: ${theme.fontSize.eighthSize};
   font-weight: 600;
   border-radius: 13px;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+    height: 40px;
+  }
 `;

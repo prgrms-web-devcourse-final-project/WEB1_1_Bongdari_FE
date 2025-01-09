@@ -20,7 +20,6 @@ export const TitleBox = styled.div`
     font-size: 36px;
     line-height: 46px;
     font-weight: 700;
-    flex: 1;
 
     @media (max-width: 1000px) {
       font-size: 24px;
