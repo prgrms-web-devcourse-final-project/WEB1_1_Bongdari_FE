@@ -10,6 +10,20 @@ const colors = {
   gray: ''
 };
 
+export const defaultPageCss = {
+  topPadding: `
+  padding: 250px 0;
+
+  @media (max-width:1000px) {
+    padding: 100px 0;
+  }`,
+
+  widthAndMargin: `
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;`
+};
+
 /** 검정 배경 */
 export const darkTheme = {
   color: '#000000',
@@ -206,6 +220,7 @@ const size = {
 };
 
 const theme = {
+  defaultPageCss,
   pointColor,
   colors,
   mediaSize,
