@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // import { useLoginStore } from '@/store/stores/login/loginStore';
 
-interface useOrgLoginReturn {
+interface useReturn {
   idErr: string;
   pwdErr: string;
   checkId: (id: string) => void;
@@ -13,7 +13,7 @@ interface useOrgLoginReturn {
   onClickFirstVisit: () => void;
 }
 
-export const useLogin = (): useOrgLoginReturn => {
+export const useLogin = (): useReturn => {
   // const setLoginInfo = useLoginStore((state) => state.setLoginInfo);
 
   const navigate = useNavigate();
