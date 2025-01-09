@@ -3,6 +3,5 @@ import styled from 'styled-components';
 // import theme from '@/styles/theme';
 
 export const Wrapper = styled.div`
-  ${theme.defaultPageCss.topPadding}
-  ${theme.defaultPageCss.widthAndMargin}
+  ${theme.defaultPageCss.defaultPageCss}
 `;

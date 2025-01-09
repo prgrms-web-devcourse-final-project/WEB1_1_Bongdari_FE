@@ -11,17 +11,15 @@ const colors = {
 };
 
 export const defaultPageCss = {
-  topPadding: `
-  padding: 250px 0;
+  defaultPageCss: `
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 250px 0;
 
   @media (max-width:1000px) {
     padding: 100px 0;
-  }`,
-
-  widthAndMargin: `
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;`
+  }`
 };
 
 /** 검정 배경 */
