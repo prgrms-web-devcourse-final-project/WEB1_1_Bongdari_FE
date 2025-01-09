@@ -15,7 +15,7 @@ export const ProfileInfoBoxCss = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto auto auto;
   grid-auto-rows: 50px;
-  grid-gap: 10px; // 간격 추가
+  grid-gap: 25px; // 간격 추가
   padding: 40px 30px; // 여백 추가
 
   .blueTitle {
@@ -41,10 +41,10 @@ export const ProfileInfoBoxCss = styled.div`
     color: #282828;
     font-weight: 600;
     margin-right: 10px;
-    min-width: 90px;
+    width: 80px;
   }
   .rightLabel {
-    width: 90px;
+    width: 80px;
   }
 
   .data {
@@ -61,5 +61,24 @@ export const ProfileInfoBoxCss = styled.div`
   }
   .info.wide .data {
     color: #858585;
+  }
+
+  @media (max-width: 1000px) {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+
+    max-width: none;
+    width: 100%;
+    /* grid-gap: 15px; // 간격 추가 */
+    padding: 30px 25px; // 여백 추가
+
+    .info {
+      /* border: 1px solid red; */
+      margin-bottom: 0px;
+    }
+    .label {
+      min-width: 50px;
+    }
   }
 `;

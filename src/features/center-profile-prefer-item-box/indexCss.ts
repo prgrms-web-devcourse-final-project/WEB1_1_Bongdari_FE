@@ -34,4 +34,8 @@ export const ProfilePreferItemBoxCss = styled.div`
 
     padding: 12px 20px;
   }
+  @media (max-width: 1000px) {
+    max-width: none;
+    width: 100%;
+  }
 `;

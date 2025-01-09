@@ -11,4 +11,8 @@ export const CPPGReviewListCss = styled.div`
     width: 100%;
     text-align: center;
   }
+
+  @media (max-width: 1000px) {
+    padding: 50px 40px;
+  }
 `;

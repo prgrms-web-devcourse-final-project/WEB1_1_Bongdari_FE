@@ -11,11 +11,9 @@ const CenterProfilePage = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   return (
     <Wrapper>
-      <div className="innerWrap">
-        <CPPGTop setIsModalOpen={setIsModalOpen} />
-        <CPPGReviewList />
-        <MessageCreateModal user_id={center_id || ''} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
-      </div>
+      <CPPGTop setIsModalOpen={setIsModalOpen} />
+      <CPPGReviewList center_id={center_id || ''} />
+      <MessageCreateModal user_id={center_id || ''} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
     </Wrapper>
   );
 };
