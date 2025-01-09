@@ -23,7 +23,10 @@ const RecruitDate: React.FC<AidRqDetailCenterProfileProps> = ({ data }) => {
 
   return (
     <Wrapper>
-      <h2>접수기간</h2>
+      <div>
+        <h2>접수기간</h2>
+        <p>접수는 봉사활동 시작일 하루 전에 자동으로 마감됩니다.</p>
+      </div>
       <Container>
         <div>
           <p>

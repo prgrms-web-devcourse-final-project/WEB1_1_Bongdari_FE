@@ -6,6 +6,11 @@ export const Wrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 11px;
+
+  @media (max-width: 1000px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const SectionBox3 = styled.div`
@@ -18,12 +23,21 @@ export const SectionBox3 = styled.div`
   max-height: 153px;
   justify-content: space-around;
   align-items: center;
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    padding: 35px 52px 22px 52px;
+  }
 `;
 
 export const Title = styled.p`
   font-size: ${theme.fontSize.fourthSize};
   font-weight: 700;
   padding-left: 8px;
+
+  @media (max-width: 1000px) {
+    font-size: ${theme.fontSize.sixthSize};
+  }
 `;
 
 export const DateInfoWrap = styled.div`
