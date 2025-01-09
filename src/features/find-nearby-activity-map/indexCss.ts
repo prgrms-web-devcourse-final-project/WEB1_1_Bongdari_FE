@@ -19,6 +19,16 @@ export const LocationButtonBox = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 40%;
+
+  @media (max-width: 1000px) {
+    bottom: 100px;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    justify-content: center;
+    width: 100%;
+    gap: 1rem;
+  }
 `;
 
 export const MyLocationButton = styled.button`
@@ -33,6 +43,16 @@ export const MyLocationButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 1000px) {
+    width: 46px;
+    height: 46px;
+
+    & > img {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
 `;
 
 export const NearbyButton = styled(Button)`
@@ -54,6 +74,13 @@ export const NearbyButton = styled(Button)`
     color: ${theme.pointColor.clicked};
     border: 1px solid ${theme.pointColor.clicked};
     background-color: #d9e8fa;
+  }
+
+  @media (max-width: 1000px) {
+    width: 220px;
+    height: 44px;
+    border-radius: 18px;
+    font-size: ${theme.fontSize.eighthSize};
   }
 `;
 

@@ -15,3 +15,10 @@ export const MapWrapper = styled.div`
   display: flex;
   width: 100%;
 `;
+
+export const SearchContainer = styled.div`
+  width: 400px;
+  background-color: white;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+`;
