@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { MapWrapper, PageWrapper, SearchContainer } from './indexCss';
+import { MapWrapper, PageWrapper } from './indexCss';
 import FindNearByActivityMap from '@/features/find-nearby-activity-map';
 import FindNearByActivitySearch from '@/features/find-nearby-activity-search';
 import type { Activity } from '@/shared/types/location/nearbyLocation';
@@ -62,9 +62,10 @@ const FindNearByActivityPage = () => {
             <FindNearByActivitySearch activities={activities} isLoading={isLoading} onSearch={handleSearch} />
           </BottomSheet>
         ) : (
-          <SearchContainer>
-            <FindNearByActivitySearch activities={activities} isLoading={isLoading} onSearch={handleSearch} />
-          </SearchContainer>
+          // <SearchContainer>
+          //   <FindNearByActivitySearch activities={activities} isLoading={isLoading} onSearch={handleSearch} />
+          // </SearchContainer>
+          <FindNearByActivitySearch activities={activities} isLoading={isLoading} onSearch={handleSearch} />
         )}
 
         <FindNearByActivityMap

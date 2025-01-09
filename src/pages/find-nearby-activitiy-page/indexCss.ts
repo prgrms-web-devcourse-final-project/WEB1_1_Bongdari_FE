@@ -16,9 +16,9 @@ export const MapWrapper = styled.div`
   width: 100%;
 `;
 
-export const SearchContainer = styled.div`
-  width: 400px;
-  background-color: white;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  z-index: 1;
-`;
+// export const SearchContainer = styled.div`
+//   width: 35%;
+//   background-color: white;
+//   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+//   z-index: 1;
+// `;
