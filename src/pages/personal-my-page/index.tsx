@@ -12,12 +12,10 @@ const PersonalMyPage = () => {
   } else {
     return (
       <Wrapper>
-        <div className="innerWrap">
-          <PMPGTop />
-          <PMPGHalfLists />
-          <InterestCenterList />
-          <ReviewList />
-        </div>
+        <PMPGTop />
+        <PMPGHalfLists />
+        <InterestCenterList />
+        <ReviewList />
       </Wrapper>
     );
   }
