@@ -20,7 +20,6 @@ const usePostCode = ({ onSaveAddress }: UsePostCodeProps) => {
             resolve(result);
           } else {
             reject(new Error('주소 검색에 실패했습니다.'));
-            openAlert('주소 검색에 실패했습니다.');
           }
         });
       });
@@ -61,6 +60,8 @@ const usePostCode = ({ onSaveAddress }: UsePostCodeProps) => {
 
     if (location) {
       onSaveAddress(location);
+    } else {
+      openAlert('해당 주소의 좌표를 찾을 수 없습니다. 다른 주소를 선택하고 본문에 자세한 주소를 입력해주세요.');
     }
   };
 
