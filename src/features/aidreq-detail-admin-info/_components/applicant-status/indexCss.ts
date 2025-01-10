@@ -5,6 +5,13 @@ export const StatusWrapper = styled.div`
   padding: 20px 0;
 `;
 
+export const InfoSec = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+`;
+
 export const UserBox = styled.div`
   border: 1px solid #e4e4e4;
   border-radius: 15px;

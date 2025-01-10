@@ -26,7 +26,9 @@ export const SectionBox3 = styled.div`
 
   @media (max-width: 1000px) {
     flex-direction: column;
+    gap: 1rem;
     padding: 35px 52px 22px 52px;
+    max-height: 100%;
   }
 `;
 
@@ -78,4 +80,10 @@ export const EmptyButton = styled(Button)`
   font-size: ${theme.fontSize.eighthSize};
   font-weight: 600;
   transition: 0.3s;
+
+  @media (max-width: 1000px) {
+    width: 261px;
+    height: 50px;
+    border-radius: 12px;
+  }
 `;
