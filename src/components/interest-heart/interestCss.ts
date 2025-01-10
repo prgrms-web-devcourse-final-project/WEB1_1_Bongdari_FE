@@ -34,4 +34,8 @@ export const InterestHeartBtnCss = styled.button<InterestHeartBtnCssProps>`
     height: 23px;
     padding-top: 5px;
   }
+
+  @media (max-width: 1000px) {
+    right: 0;
+  }
 `;

@@ -1,10 +1,8 @@
+import theme from '@/styles/theme';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  margin: auto;
-  padding: 250px 0;
-  width: 90%;
-  max-width: 1200px;
+  ${theme.defaultPageCss.defaultPageCss}
 
   display: flex;
   gap: 15px;

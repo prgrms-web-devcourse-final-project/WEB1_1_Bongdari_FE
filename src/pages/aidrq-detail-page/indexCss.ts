@@ -19,7 +19,8 @@ export const ButtonBox = styled.div<{ presentstate: PresentResponse | null; recs
   align-items: center;
   padding-top: 100px;
   gap: 10px;
-  width: 220px;
+  width: 440px;
+  margin: auto;
 
   @media (max-width: 1000px) {
     width: 100%;
