@@ -1,6 +1,10 @@
 import theme from '@/styles/theme';
 import styled from 'styled-components';
 
+export const Wrapper = styled.div`
+  padding-left: 10px;
+`;
+
 export const LabelContainer = styled.div`
   display: flex;
   gap: 5px;
@@ -29,4 +33,5 @@ export const ContentTitle = styled.p`
 export const CurrentEdit = styled.p`
   font-size: ${theme.fontSize.eighthSize};
   color: #696969;
+  padding-bottom: 24px;
 `;
