@@ -10,13 +10,27 @@ import {
   Wrapper
 } from './LoginPageCss';
 import { useLogin } from './logic/useLogin';
+import { useAlertDialog } from '@/store/stores/dialog/dialogStore';
 
 export default function LoginPage() {
   const { idErr, pwdErr, checkId, checkPwd, onClickLogin } = useLogin();
+  const { openAlert } = useAlertDialog();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    onClickLogin();
+    try {
+      await onClickLogin();
+      openAlert('로그인이 성공적으로 완료되었습니다.');
+    } catch (error) {
+      if (error instanceof Error) {
+        if (error.message === 'id와 pwd 형식을 확인해주세요.') {
+          openAlert(error.message);
+        } else {
+          openAlert('로그인 중 오류가 발생했습니다. 다시 시도해주세요.');
+        }
+        console.error('로그인 실패:', error);
+      }
+    }
   };
 
   // 소셜 로그인 핸들러
