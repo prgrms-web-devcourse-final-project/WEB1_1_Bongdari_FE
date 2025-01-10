@@ -83,7 +83,7 @@ export const Hamburger = styled.div`
   }
 `;
 
-export const AlertBox = styled.li<{ hasNotifications?: boolean }>`
+export const AlertBox = styled.li<{ $hasNotifications?: boolean }>`
   width: 50px;
   height: 100%;
   display: flex;
@@ -99,8 +99,8 @@ export const AlertBox = styled.li<{ hasNotifications?: boolean }>`
     cursor: pointer;
   }
 
-  ${({ hasNotifications }) =>
-    hasNotifications &&
+  ${({ $hasNotifications }) =>
+    $hasNotifications &&
     `
     &::after {
       content: '';
