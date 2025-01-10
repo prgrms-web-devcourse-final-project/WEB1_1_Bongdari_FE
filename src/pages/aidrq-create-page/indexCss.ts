@@ -12,18 +12,31 @@ export const Title = styled.div`
   font-size: 32px;
   font-weight: 600;
   padding-bottom: 40px;
+
+  @media (max-width: 1000px) {
+    font-size: 20px;
+    text-align: center;
+  }
 `;
 
 export const ThirdLine = styled.div`
   display: flex;
   gap: 20px;
   padding-top: 16px;
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+  }
 `;
 
 export const FourthLine = styled.div`
   display: flex;
   gap: 20px;
   padding-top: 16px;
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+  }
 `;
 
 export const ButtonContainer = styled.div`
@@ -39,4 +52,10 @@ export const WriteAidRqBtn = styled(Button)`
   border-radius: 12px;
   font-size: 14px;
   font-weight: 600;
+  transition-property: color, background-color;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+    height: 50px;
+  }
 `;

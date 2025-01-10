@@ -41,12 +41,10 @@ export const DateInfo = styled.input`
 
 export const DatePickerWrapper = styled.div`
   position: absolute;
+  z-index: 9;
   top: 0;
   right: 0;
   .react-datepicker__day--selected {
     background-color: #0066ff;
-  }
-  .react-datepicker__time-container {
-    width: 100px;
   }
 `;
