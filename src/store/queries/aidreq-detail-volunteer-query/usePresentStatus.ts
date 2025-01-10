@@ -19,7 +19,7 @@ export const myPresentStatus = async (
     }
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
-      console.log('지원상태 불러오기 에러', error);
+      console.error('지원상태 불러오기 에러', error);
     }
     throw error;
   }
