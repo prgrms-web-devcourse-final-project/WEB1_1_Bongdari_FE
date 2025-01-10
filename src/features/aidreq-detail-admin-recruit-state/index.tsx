@@ -238,10 +238,10 @@ const AdminReqDetailAdminRecruitState = ({
           <FinishedButton isActive={activeState === '종료'}>
             <img src="/assets/imgs/recruit-completed.svg" alt="종료"></img>
           </FinishedButton>
-          <StateText>
-            현재 <NumberOfPeople> {total} </NumberOfPeople>명이 지원했습니다.
-          </StateText>
         </RecruitStateButtonContainer>
+        <StateText>
+          현재 <NumberOfPeople> {total} </NumberOfPeople>명이 지원했습니다.
+        </StateText>
       </StateContainer>
       <ButtonBox>
         <ApplyButton

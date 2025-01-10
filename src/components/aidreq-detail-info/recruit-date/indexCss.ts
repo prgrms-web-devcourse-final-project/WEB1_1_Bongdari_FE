@@ -4,10 +4,33 @@ import theme from '@/styles/theme';
 export const Wrapper = styled.div`
   flex: 1;
 
-  & > h2 {
+  & > div {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  & > div > h2 {
     font-size: 24px;
     font-weight: 700;
     padding: 20px 0;
+  }
+
+  & > div > p {
+    font-size: ${theme.fontSize.eighthSize};
+    color: #8d8d8d;
+    display: inline-block;
+    margin-top: auto;
+    padding-bottom: 10px;
+  }
+
+  @media (max-width: 1000px) {
+    & > div > h2 {
+      font-size: ${theme.fontSize.sixthSize};
+    }
+
+    & > div > p {
+      font-size: ${theme.fontSize.ninthSize};
+    }
   }
 `;
 

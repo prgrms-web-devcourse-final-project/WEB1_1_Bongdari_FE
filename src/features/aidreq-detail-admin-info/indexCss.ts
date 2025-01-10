@@ -6,23 +6,11 @@ export const Wrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 11px;
-`;
 
-export const SectionBox = styled.div`
-  border: ${theme.box.section.border};
-  border-radius: ${theme.box.section.borderRadius};
-  background-color: ${theme.box.section.backgroundColor};
-  margin: 20px 0 29px 0;
-  max-height: 153px;
-`;
-
-export const SectionBox2 = styled.div`
-  border: ${theme.box.section.border};
-  border-radius: ${theme.box.section.borderRadius};
-  background-color: ${theme.box.section.backgroundColor};
-  margin: 20px 0 29px 0;
-  display: flex;
-  max-height: 153px;
+  @media (max-width: 1000px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const SectionBox3 = styled.div`
@@ -35,12 +23,23 @@ export const SectionBox3 = styled.div`
   max-height: 153px;
   justify-content: space-around;
   align-items: center;
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 35px 52px 22px 52px;
+    max-height: 100%;
+  }
 `;
 
 export const Title = styled.p`
   font-size: ${theme.fontSize.fourthSize};
   font-weight: 700;
   padding-left: 8px;
+
+  @media (max-width: 1000px) {
+    font-size: ${theme.fontSize.sixthSize};
+  }
 `;
 
 export const DateInfoWrap = styled.div`
@@ -81,4 +80,10 @@ export const EmptyButton = styled(Button)`
   font-size: ${theme.fontSize.eighthSize};
   font-weight: 600;
   transition: 0.3s;
+
+  @media (max-width: 1000px) {
+    width: 261px;
+    height: 50px;
+    border-radius: 12px;
+  }
 `;
