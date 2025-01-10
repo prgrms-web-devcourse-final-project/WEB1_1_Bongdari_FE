@@ -1,5 +1,6 @@
 import { useDaumPostcodePopup } from 'react-daum-postcode';
 import type { KakaoAddress, PostcodeData, Location } from '../types/location/activityLocation';
+import { useAlertDialog } from '@/store/stores/dialog/dialogStore';
 
 interface UsePostCodeProps {
   onSaveAddress: (location: Location) => void;
@@ -7,6 +8,7 @@ interface UsePostCodeProps {
 
 const usePostCode = ({ onSaveAddress }: UsePostCodeProps) => {
   const open = useDaumPostcodePopup();
+  const { openAlert } = useAlertDialog();
 
   const convertAddressToCoords = async (address: string): Promise<Location | undefined> => {
     try {
@@ -31,7 +33,7 @@ const usePostCode = ({ onSaveAddress }: UsePostCodeProps) => {
         longitude: coordinates.getLng()
       };
 
-      console.log('변환된 위치 정보:', location);
+      // console.log('변환된 위치 정보:', location);
       return location;
     } catch (err) {
       console.error('좌표 변환 중 오류 발생:', err);
@@ -58,6 +60,8 @@ const usePostCode = ({ onSaveAddress }: UsePostCodeProps) => {
 
     if (location) {
       onSaveAddress(location);
+    } else {
+      openAlert('해당 주소의 좌표를 찾을 수 없습니다. 다른 주소를 선택하고 본문에 자세한 주소를 입력해주세요.');
     }
   };
 

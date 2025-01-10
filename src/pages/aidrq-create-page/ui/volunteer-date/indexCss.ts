@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  width: 50%;
+  width: 52%;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 
   & > p {
     font-size: 12px;
