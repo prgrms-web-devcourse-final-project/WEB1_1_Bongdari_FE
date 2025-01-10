@@ -67,6 +67,13 @@ export const ProfileSection = styled.section`
   align-items: center;
   padding: 75px 110px 42px 110px;
 
+  &.noData {
+    border-radius: 13px;
+    border: 1px dashed gray;
+    height: 100%;
+    padding-top: 25%;
+  }
+
   @media (max-width: 1000px) {
     gap: 36px;
     padding: 40px 122px 43px 122px;
