@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
+import { EventSourcePolyfill } from 'event-source-polyfill';
 
 import {
   AlertBox,
@@ -62,11 +63,14 @@ export default function Header() {
 
   //알림 Event 로직
   useEffect(() => {
-    let eventSource: EventSource;
+    let eventSource: EventSourcePolyfill;
 
     const connectSSE = () => {
-      eventSource = new EventSource(`${import.meta.env.VITE_APP_BASE_URL}/api/sse/subscribe`, {
-        withCredentials: true
+      const token = sessionStorage.getItem('token');
+      eventSource = new EventSourcePolyfill(`${import.meta.env.VITE_APP_BASE_URL}/api/sse/subscribe`, {
+        headers: {
+          Authorization: `${token}`
+        }
       });
 
       // 연결 성공 시 호출되는 핸들러 추가
@@ -151,7 +155,7 @@ export default function Header() {
             )}
           </AlertPositioning>
           <AlertBox
-            hasNotifications={notifications.length > 0}
+            $hasNotifications={notifications.length > 0}
             onClick={() => {
               setAlertState((prev) => !prev);
             }}>
