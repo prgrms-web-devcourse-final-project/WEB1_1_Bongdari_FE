@@ -26,6 +26,10 @@ export const Top = styled.div`
 export const Title = styled.p`
   font-size: 32px;
   font-weight: 600;
+
+  @media (max-width: 1000px) {
+    font-size: 20px;
+  }
 `;
 
 export const Bottom = styled.div`

@@ -11,4 +11,9 @@ export const Wrapper = styled.div`
 export const RankAndCommu = styled.div`
   display: flex;
   gap: 16px;
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    gap: 100px;
+  }
 `;
