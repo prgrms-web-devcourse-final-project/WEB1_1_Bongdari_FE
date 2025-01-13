@@ -1,7 +1,6 @@
 import { Stack } from '@mui/material';
-import { CustomPagination, EmptyStateText } from './indexCss';
+import { CustomPagination, EmptyStateText, PageWrapper } from './indexCss';
 import ApplicantStatusTitle from './ui/title';
-import { PageWrapper } from '../admin-aidrq-list-page/indexCss';
 import ApplicantList from '@/features/applicant-list';
 import { useLocation, useParams } from 'react-router-dom';
 import { useVolunteerApplies } from '@/store/queries/aidreq-detail-admin-query/useApplicant';

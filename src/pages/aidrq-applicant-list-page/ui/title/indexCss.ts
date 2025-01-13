@@ -17,4 +17,9 @@ export const Title = styled.h1`
   font-weight: 700;
   width: 100%;
   cursor: default;
+
+  @media (max-width: 1000px) {
+    font-size: ${theme.fontSize.fifthSize};
+    text-align: center;
+  }
 `;

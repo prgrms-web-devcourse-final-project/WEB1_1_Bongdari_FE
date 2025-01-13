@@ -29,6 +29,13 @@ export const CustomPagination = styled(Pagination)`
   }
 `;
 
+export const PageWrapper = styled.div`
+  ${theme.defaultPageCss.defaultPageCss}
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+`;
+
 export const EmptyStateText = styled.p`
   font-size: ${(props) => props.theme.fontSize.sixthSize};
   color: ${(props) => props.theme.colors.gray3};

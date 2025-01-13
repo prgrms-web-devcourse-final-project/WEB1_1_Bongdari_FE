@@ -8,6 +8,10 @@ export const ApplicantListItemWrapper = styled.li`
   border: ${theme.box.section.border};
   border-radius: ${theme.box.section.borderRadius};
   background-color: ${theme.box.section.backgroundColor};
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 
 export const ProfileWrapper = styled.div`
@@ -16,6 +20,10 @@ export const ProfileWrapper = styled.div`
   gap: 45px;
   padding: 32px 31px 20px 31px;
   border-bottom: 1px solid #dedede;
+
+  @media (max-width: 1000px) {
+    align-items: center;
+  }
 `;
 
 export const ProfileImgWrapper = styled.div`
@@ -74,6 +82,10 @@ export const EmptyButton = styled(Button)`
   border-radius: 13px;
   font-size: ${theme.fontSize.eighthSize};
   font-weight: 600;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 
 export const ButtonGroup = styled.div`
@@ -89,6 +101,10 @@ export const RejectButton = styled(Button)`
   border-radius: 13px;
   font-size: ${theme.fontSize.eighthSize};
   font-weight: 600;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 
 export const ApproveButton = styled(Button)`
@@ -97,4 +113,8 @@ export const ApproveButton = styled(Button)`
   border-radius: 13px;
   font-size: ${theme.fontSize.eighthSize};
   font-weight: 600;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 `;
