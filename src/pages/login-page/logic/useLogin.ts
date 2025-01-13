@@ -41,7 +41,7 @@ export const useLogin = (): useReturn => {
     console.log('계정찾기 페이지로 이동');
   };
   const onClickLogin = async () => {
-    if (idErr !== '' || pwdErr !== '') console.log('id와 pwd 형식을 확인해주세요.');
+    if (idErr !== '' || pwdErr !== '') throw new Error('id와 pwd 형식을 확인해주세요.');
     else {
       try {
         //현재 -> 토큰을 그대로 받아서 session에 넣고 사용
@@ -60,6 +60,7 @@ export const useLogin = (): useReturn => {
         });
       } catch (error) {
         console.error('Login failed:', error);
+        throw error;
       }
     }
   };

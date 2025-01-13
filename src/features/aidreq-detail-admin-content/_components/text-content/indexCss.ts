@@ -8,6 +8,10 @@ export const TextContentContainer = styled.div`
   background-color: ${theme.box.section.backgroundColor};
   padding: 60px 0 0 0;
   min-height: 515px;
+
+  @media (max-width: 1000px) {
+    padding: 25px 0 0 0;
+  }
 `;
 
 export const Content = styled.p`
@@ -16,6 +20,10 @@ export const Content = styled.p`
   min-height: 437px;
   border-bottom: 1px solid #d1d1d1;
   padding: 0 64px;
+
+  @media (max-width: 1000px) {
+    padding: 0 25px;
+  }
 `;
 
 export const ExpectedRecruit = styled.p`
@@ -23,4 +31,8 @@ export const ExpectedRecruit = styled.p`
   color: #292929;
   padding: 32px 64px;
   font-weight: 500;
+
+  @media (max-width: 1000px) {
+    padding: 25px;
+  }
 `;

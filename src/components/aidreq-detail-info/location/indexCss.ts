@@ -9,6 +9,12 @@ export const Wrapper = styled.div`
     font-weight: 700;
     padding: 20px 0;
   }
+
+  @media (max-width: 1000px) {
+    & > h2 {
+      font-size: ${theme.fontSize.sixthSize};
+    }
+  }
 `;
 
 export const Container = styled.div`

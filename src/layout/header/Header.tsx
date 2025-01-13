@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
+import { EventSourcePolyfill } from 'event-source-polyfill';
 
 import {
   AlertBox,
@@ -18,15 +19,13 @@ import Alert from '@/features/alert';
 import { useLoginStore } from '@/store/stores/login/loginStore';
 import { AlertType } from '@/shared/types/alert-type/AlertType';
 import axiosInstance from '@/api/apis';
-import { centerLogout } from '@/store/queries/logout-query/useCenterLogout';
-import { personLogout } from '@/store/queries/logout-query/useVolunteerLogout';
 import RightMenu from '@/components/right-menu';
+import { commonLogout } from '@/store/queries/logout-query/useCommonLogout';
 
 export default function Header() {
   const [alertState, setAlertState] = useState(false);
   const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
   const clearLoginInfo = useLoginStore((state) => state.clearLoginInfo);
-  const loginType = useLoginStore((state) => state.loginType);
   const navigate = useNavigate();
 
   const [rightMenuState, setRightMenuState] = useState(false);
@@ -62,11 +61,14 @@ export default function Header() {
 
   //알림 Event 로직
   useEffect(() => {
-    let eventSource: EventSource;
+    let eventSource: EventSourcePolyfill;
 
     const connectSSE = () => {
-      eventSource = new EventSource(`${import.meta.env.VITE_APP_BASE_URL}/api/sse/subscribe`, {
-        withCredentials: true
+      const token = sessionStorage.getItem('token');
+      eventSource = new EventSourcePolyfill(`${import.meta.env.VITE_APP_BASE_URL}/api/sse/subscribe`, {
+        headers: {
+          Authorization: `${token}`
+        }
       });
 
       // 연결 성공 시 호출되는 핸들러 추가
@@ -133,8 +135,7 @@ export default function Header() {
               onClick={async () => {
                 try {
                   clearLoginInfo();
-                  const response = await (loginType === 'ROLE_CENTER' ? centerLogout() : personLogout());
-                  console.log(response);
+                  await commonLogout();
                   window.location.reload();
                 } catch (error) {
                   console.error('로그아웃 실패:', error);
@@ -151,7 +152,7 @@ export default function Header() {
             )}
           </AlertPositioning>
           <AlertBox
-            hasNotifications={notifications.length > 0}
+            $hasNotifications={notifications.length > 0}
             onClick={() => {
               setAlertState((prev) => !prev);
             }}>

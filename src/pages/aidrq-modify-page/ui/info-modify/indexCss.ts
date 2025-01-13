@@ -11,6 +11,10 @@ export const Wrapper = styled.div`
   background-color: white;
   padding: 50px;
 
+  @media (max-width: 1000px) {
+    padding: 50px 20px;
+  }
+
   & > button {
     width: 220px;
     height: 53px;
@@ -29,8 +33,16 @@ export const ThirdLine = styled.div`
   display: flex;
   gap: 20px;
 
+  @media (max-width: 1000px) {
+    flex-direction: column;
+  }
+
   & > div:nth-of-type(1) {
     width: 50%;
+
+    @media (max-width: 1000px) {
+      width: 100%;
+    }
   }
 
   & > div:nth-of-type(2) {
@@ -50,8 +62,16 @@ export const FourthLine = styled.div`
   display: flex;
   gap: 20px;
 
+  @media (max-width: 1000px) {
+    flex-direction: column;
+  }
+
   & > div:nth-of-type(1) {
     width: 50%;
+
+    @media (max-width: 1000px) {
+      width: 100%;
+    }
   }
 
   & > div:nth-of-type(2) {
@@ -91,4 +111,9 @@ export const ModifyInfoBtn = styled(Button)`
   font-weight: 600;
   border-radius: 12px;
   font-size: 14px;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+    height: 50px;
+  }
 `;
