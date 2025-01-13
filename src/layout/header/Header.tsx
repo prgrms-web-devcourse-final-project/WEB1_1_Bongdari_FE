@@ -19,15 +19,13 @@ import Alert from '@/features/alert';
 import { useLoginStore } from '@/store/stores/login/loginStore';
 import { AlertType } from '@/shared/types/alert-type/AlertType';
 import axiosInstance from '@/api/apis';
-import { centerLogout } from '@/store/queries/logout-query/useCenterLogout';
-import { personLogout } from '@/store/queries/logout-query/useVolunteerLogout';
 import RightMenu from '@/components/right-menu';
+import { commonLogout } from '@/store/queries/logout-query/useCommonLogout';
 
 export default function Header() {
   const [alertState, setAlertState] = useState(false);
   const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
   const clearLoginInfo = useLoginStore((state) => state.clearLoginInfo);
-  const loginType = useLoginStore((state) => state.loginType);
   const navigate = useNavigate();
 
   const [rightMenuState, setRightMenuState] = useState(false);
@@ -137,8 +135,7 @@ export default function Header() {
               onClick={async () => {
                 try {
                   clearLoginInfo();
-                  const response = await (loginType === 'ROLE_CENTER' ? centerLogout() : personLogout());
-                  console.log(response);
+                  await commonLogout();
                   window.location.reload();
                 } catch (error) {
                   console.error('로그아웃 실패:', error);
