@@ -37,4 +37,20 @@ export const InterestCenterBoxCss = styled.div`
     font-size: ${Theme.fontSize.seventhSize};
     font-weight: 400;
   }
+
+  @media (max-width: 1000px) {
+    width: 100%;
+    height: 55px;
+    display: block;
+
+    & > img {
+      display: none;
+    }
+    & > p {
+      line-height: 55px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
 `;

@@ -19,4 +19,7 @@ export const HalfListCss = styled.div`
 
     grid-auto-rows: 70px; /* 각 행의 기본 높이 */
   }
+
+  @media (max-width: 1000px) {
+  }
 `;
