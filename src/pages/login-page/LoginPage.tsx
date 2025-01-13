@@ -11,6 +11,7 @@ import {
 } from './LoginPageCss';
 import { useLogin } from './logic/useLogin';
 import { useAlertDialog } from '@/store/stores/dialog/dialogStore';
+import { handleKakaoLogin, handleNaverLogin } from './logic/useSocialLogin';
 
 export default function LoginPage() {
   const { idErr, pwdErr, checkId, checkPwd, onClickLogin } = useLogin();
@@ -31,15 +32,6 @@ export default function LoginPage() {
         console.error('로그인 실패:', error);
       }
     }
-  };
-
-  // 소셜 로그인 핸들러
-  const handleNaverLogin = () => {
-    window.location.href = `${import.meta.env.VITE_APP_BASE_URL}/oauth2/authorization/naver`;
-  };
-
-  const handleKakaoLogin = () => {
-    console.log('카카오 로그인 시도');
   };
 
   return (
