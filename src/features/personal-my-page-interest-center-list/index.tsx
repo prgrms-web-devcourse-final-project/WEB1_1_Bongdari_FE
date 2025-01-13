@@ -5,7 +5,8 @@ import InterestCenterBox from './_component/InterestCenterBox';
 import { Link } from 'react-router-dom';
 
 const InterestCenterList = () => {
-  const { interestCenterData, containerRef, totPage, currPage, setCurrPage } = useMyInterestCenter();
+  const { interestCenterData, chunckInterestCenterData, containerRef, containerWidth, totPage, currPage, setCurrPage } =
+    useMyInterestCenter();
 
   if (!interestCenterData || interestCenterData.length === 0) {
     // if (true) {
@@ -22,11 +23,21 @@ const InterestCenterList = () => {
         <TitleWithPagenation title="내 관심 기관" totPage={totPage} currPage={currPage} setCurrPage={setCurrPage} />
         <div className="listShowWrap" ref={containerRef}>
           <div className="listInnerWrap">
-            {interestCenterData?.map((v, i) => (
-              <Link to={`/centerprofile/${v.center_id}`}>
-                <InterestCenterBox key={i} orgName={v.center_name} orgImg={v.img_url} />
-              </Link>
-            ))}
+            {containerWidth <= 884 && chunckInterestCenterData
+              ? chunckInterestCenterData.map((chunk, chunkIdx) => (
+                  <div className="chunkList" key={chunkIdx}>
+                    {chunk.map((v, i) => (
+                      <Link to={`/centerprofile/${v.center_id}`}>
+                        <InterestCenterBox key={i} orgName={v.center_name} orgImg={v.img_url} />
+                      </Link>
+                    ))}
+                  </div>
+                ))
+              : interestCenterData?.map((v, i) => (
+                  <Link to={`/centerprofile/${v.center_id}`}>
+                    <InterestCenterBox key={i} orgName={v.center_name} orgImg={v.img_url} />
+                  </Link>
+                ))}
           </div>
         </div>
       </InterestCenterListCss>

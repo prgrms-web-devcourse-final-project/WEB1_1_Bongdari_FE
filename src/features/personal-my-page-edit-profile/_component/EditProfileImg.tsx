@@ -41,10 +41,12 @@ const EditProfileImg = ({ profileImg, setImg }: { profileImg?: string; setImg: (
 
   return (
     <EditProfileImgCss>
-      <img src={imgUrl || '/assets/imgs/no-img-person.svg'} />
-      <label htmlFor="file" className="changeImgBtn">
-        +
-      </label>
+      <div className="profileWrap">
+        <img className="profileImg" src={imgUrl || '/assets/imgs/no-img-person.svg'} />
+        <label className="changeImgBtn" htmlFor="file">
+          <img src="/assets/imgs/plus.svg" />
+        </label>
+      </div>
       <input
         id="file"
         type="file"

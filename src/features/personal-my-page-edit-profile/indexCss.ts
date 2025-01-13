@@ -9,6 +9,23 @@ export const ApplyButton = styled(Button)`
   font-size: ${Theme.fontSize.eighthSize};
   font-weight: 500;
   border-radius: 13px;
+
+  @media (max-width: 1000px) {
+  }
+`;
+
+export const ApplyButton2 = styled(Button)`
+  width: 220px;
+  height: 50px;
+
+  font-size: ${Theme.fontSize.eighthSize};
+  font-weight: 500;
+  border-radius: 13px;
+
+  @media (max-width: 1000px) {
+    width: 120px;
+    height: 37px;
+  }
 `;
 
 export const EditProfileCss = styled.div`
@@ -39,22 +56,6 @@ export const EditProfileCss = styled.div`
     text-align: center;
     margin-top: 150px;
   }
-  .changeImgBtn {
-    color: white;
-    background-color: ${Theme.pointColor.Regular};
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    font-size: 30px;
-    line-height: 30px;
-    text-align: center;
-    cursor: pointer;
-
-    position: absolute;
-    left: 188px;
-    top: 188px;
-  }
 
   .inputSection {
     background-color: ${Theme.box.section.backgroundColor};
@@ -62,11 +63,40 @@ export const EditProfileCss = styled.div`
     border-radius: ${Theme.box.section.borderRadius};
     width: 100%;
     height: 600px;
-    padding: 65px 100px;
+    padding: 65px 50px;
   }
   .inputSection .editBtnWrap {
     display: flex;
     justify-content: end;
-    margin-top: 70px;
+    margin-top: 110px;
+  }
+
+  @media (max-width: 1000px) {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .imgSection {
+      height: auto;
+      padding: 50px 40px;
+    }
+    .imgSection > * {
+      text-align: center;
+    }
+    .imgSection .editBtnWrap {
+      margin-top: 80px;
+    }
+
+    .inputSection {
+      height: auto;
+      padding: 40px 40px;
+    }
+    .inputSection > * {
+      text-align: center;
+    }
+    .inputSection .editBtnWrap {
+      display: block;
+      margin-top: 50px;
+    }
   }
 `;

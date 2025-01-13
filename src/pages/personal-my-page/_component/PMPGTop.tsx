@@ -4,6 +4,7 @@ import EditProfile from '@/features/personal-my-page-edit-profile';
 
 const PMPGTop = () => {
   const { profileData } = useMyProfileData();
+  // const profileData = { detail: { name: '주영' }, img_url: '', nickname: 'ww', introduce: '하이하이' };
 
   if (!profileData) {
     // 로그인한 profile이 없을 경우
