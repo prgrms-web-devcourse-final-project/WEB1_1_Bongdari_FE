@@ -22,7 +22,8 @@ export const useSendMail = ({ user_id, setIsModalOpen }: UseSendEmailProps): Use
   const [resMsg, setResMsg] = useState<string>('쪽지가 성공적으로 전송되었습니다.');
   const loginType = useLoginStore((state) => state.loginType);
 
-  const { mutate: postMessage, error } = usePostMessage();
+  // const { mutate: postMessage, error, isError } = usePostMessage();
+  const { mutate: postMessage, isError } = usePostMessage();
 
   const checkErr = () => {
     if (mailTitle === '') setErrMsg('제목이 비어있습니다');
@@ -53,7 +54,8 @@ export const useSendMail = ({ user_id, setIsModalOpen }: UseSendEmailProps): Use
     };
 
     postData();
-    if (error) setResMsg('쪽지 전송 중 오류가 발생했습니다.');
+    // if (error) console.log('eeeeeeeee', error.response.data.detail); // 응답의 메시지 사용하려면 error의 타입 정의 필요
+    if (isError) setResMsg('쪽지 전송 중 오류가 발생했습니다.');
 
     setIsModalOpen(false);
   };
