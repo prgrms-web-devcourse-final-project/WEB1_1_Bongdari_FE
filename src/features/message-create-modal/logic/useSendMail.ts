@@ -12,15 +12,17 @@ interface UseSendEmailReturn {
   checkContent: (txt: string) => void;
   checkSend: () => void;
   errMsg: string;
+  resMsg: string;
 }
 
 export const useSendMail = ({ user_id, setIsModalOpen }: UseSendEmailProps): UseSendEmailReturn => {
   const [mailTitle, setMailTitle] = useState<string>('');
   const [mailContent, setMailContent] = useState<string>('');
   const [errMsg, setErrMsg] = useState<string>('');
+  const [resMsg, setResMsg] = useState<string>('쪽지가 성공적으로 전송되었습니다.');
   const loginType = useLoginStore((state) => state.loginType);
 
-  const { mutate: postMessage } = usePostMessage();
+  const { mutate: postMessage, error } = usePostMessage();
 
   const checkErr = () => {
     if (mailTitle === '') setErrMsg('제목이 비어있습니다');
@@ -43,17 +45,16 @@ export const useSendMail = ({ user_id, setIsModalOpen }: UseSendEmailProps): Use
 
   const sendMail = (user_id: string, mailTitle: string, mailContent: string) => {
     const postData = async () => {
-      if (loginType === 'ROLE_VOLUNTEER')
+      if (loginType === 'ROLE_VOLUNTEER') {
         postMessage({ from: 'volunteer', receiver_id: user_id, title: mailTitle, content: mailContent });
-      else if (loginType === 'ROLE_CENTER')
+      } else if (loginType === 'ROLE_CENTER') {
         postMessage({ from: 'center', receiver_id: user_id, title: mailTitle, content: mailContent });
+      }
     };
-    if (!loginType) console.error('Err: 로그인 상태가 아닙니다');
-    else {
-      postData();
-    }
 
-    // 수정필요(주영): '메세지가 전송되었습니다'라고 하는 토스트msg 같은거 띄우면 좋을 듯
+    postData();
+    if (error) setResMsg('쪽지 전송 중 오류가 발생했습니다.');
+
     setIsModalOpen(false);
   };
 
@@ -61,6 +62,7 @@ export const useSendMail = ({ user_id, setIsModalOpen }: UseSendEmailProps): Use
     checkTitle,
     checkContent,
     checkSend,
-    errMsg
+    errMsg,
+    resMsg
   };
 };
