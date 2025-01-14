@@ -1,9 +1,26 @@
 import styled from 'styled-components';
 import theme from '@/styles/theme';
+import Button from '@/components/button';
 import TextArea from '@/components/textArea';
 
+export const ApplyButton = styled(Button)`
+  width: 220px;
+  height: 50px;
+  border-radius: 13px;
+  font-weight: 600;
+  font-size: ${theme.fontSize.eighthSize};
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
+`;
+
 export const ApplyTextArea = styled(TextArea)`
-  height: '220px';
+  height: 220px;
+
+  @media (max-width: 1000px) {
+    height: 200px;
+  }
 `;
 
 export const MessageCreateModalCss = styled.div`
@@ -42,5 +59,17 @@ export const MessageCreateModalCss = styled.div`
     font-weight: 500;
     color: red;
     opacity: 0.8;
+  }
+
+  @media (max-width: 1000px) {
+    .btnWrap {
+      display: block;
+    }
+    .btnWrap .checkErr {
+      width: 100%;
+      display: block;
+      text-align: right;
+      padding-bottom: 10px;
+    }
   }
 `;
