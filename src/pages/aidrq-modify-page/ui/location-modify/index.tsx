@@ -23,7 +23,24 @@ const LocationModify: React.FC<LocationModifyProps> = ({ id, getTitleAndFilter, 
     ...volunteerData.location
   };
 
+  //시작일 이전에만 수정이 가능하도록 로직 추가
+  const isModificationAllowed = () => {
+    if (!volunteerData.volunteer_start_date_time) return true;
+
+    const startDate = new Date(volunteerData.volunteer_start_date_time);
+    startDate.setHours(0, 0, 0, 0); // 해당 날짜의 00시 00분으로 설정
+
+    const currentDate = new Date();
+
+    return currentDate < startDate;
+  };
+
   const handleUpdateLocationDialog = async () => {
+    if (!isModificationAllowed()) {
+      openAlert('봉사 시작일 이후에는 장소를 수정할 수 없습니다.');
+      return;
+    }
+
     openConfirm(`장소를 수정하시겠습니까?`, async () => {
       try {
         await updateLocation(id, changedLocation);
