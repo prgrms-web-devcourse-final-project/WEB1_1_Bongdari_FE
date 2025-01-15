@@ -7,6 +7,7 @@ const ReviewBoxCss = styled.div`
   border: ${Theme.box.section.border};
   width: 100%;
   padding: 10px;
+  cursor: pointer;
 
   /* & * {
     border: 1px solid gray;
