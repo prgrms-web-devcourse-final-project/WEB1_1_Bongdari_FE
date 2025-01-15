@@ -10,10 +10,12 @@ const fetchCenterProfile = async (center_id: string) => {
   return res.data;
 };
 
-export const useCenterProfile = (center_id: string) => {
+export const useCenterProfile = (center_id: string, options = {}) => {
   return useQuery({
     queryKey: ['centerProfile'],
-    queryFn: () => fetchCenterProfile(center_id)
+    queryFn: () => fetchCenterProfile(center_id),
+    enabled: !!center_id, // 기본적으로 center_id가 있을 때만 실행
+    ...options
   });
 };
 

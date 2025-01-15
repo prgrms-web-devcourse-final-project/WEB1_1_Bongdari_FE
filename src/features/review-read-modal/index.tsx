@@ -18,9 +18,7 @@ import {
 } from './indexCss';
 import { useNavigate } from 'react-router-dom';
 import useDateFormat from '@/shared/hooks/useDateFormat';
-import { useGetReviewById } from '@/store/queries/center-mypage/useReview';
-import { usePersonProfileQuery } from '@/store/queries/volunteer-profile/useFetchPersonProfile';
-import { useCenterProfile } from '@/store/queries/center-profile-query/useFetchCenterData';
+import { useFindReview } from './logic/useFindReview';
 
 interface ReviewModalProps {
   handleCloseReviewModal: () => void;
@@ -29,58 +27,41 @@ interface ReviewModalProps {
 }
 
 const ReviewReadModal = ({ handleCloseReviewModal, reviewId, isCenterReview = true }: ReviewModalProps) => {
-  const navigate = useNavigate();
+  const { reviewData, volunteerData, centerData } = useFindReview({ isCenterReview, reviewId });
   const { formatDate } = useDateFormat();
-  const { data: reviewData, isLoading: isReviewLoading } = useGetReviewById(reviewId);
-  console.log('review data:', reviewData);
-
-  // if(isVolunteerReview) {
-  const { data: volunteerData, isLoading: isVolunteerLoading } = usePersonProfileQuery(reviewData?.volunteer_id);
-  const { data: centerData, isLoading: isCenterLoading } = useCenterProfile(reviewData?.volunteer_id);
-
-  if (isReviewLoading) return <div>로딩중...</div>;
-
-  if (isCenterReview && isVolunteerLoading) return <div>로딩중...</div>;
-  if (isCenterReview && !volunteerData) return null;
-
-  if (!isCenterReview && isCenterLoading) return <div>로딩중...</div>;
-  if (!isCenterReview && !centerData) return null;
+  const navigate = useNavigate();
 
   if (!reviewData) return null;
-
-  // console.log('reviewData', reviewData);
-  // console.log('volunteerData', volunteerData);
-
   return (
     <Modal variant="big" isOpen onClose={handleCloseReviewModal}>
       <ModalContentWrapper>
         <ScrollSection>
           <ReviewTitleBox>
-            <ReviewTitle>{reviewData.title}</ReviewTitle>
-            <CreatedAt>{formatDate(reviewData.created_at)}</CreatedAt>
+            <ReviewTitle>{reviewData?.title}</ReviewTitle>
+            <CreatedAt>{formatDate(reviewData?.created_at)}</CreatedAt>
           </ReviewTitleBox>
           <ReviewImgBox>
-            {reviewData.img_url && (
+            {reviewData?.img_url && (
               <ReviewImgBox>
-                <ReviewImg src={reviewData.img_url} alt="reviewImg" />
+                <ReviewImg src={reviewData?.img_url} alt="reviewImg" />
               </ReviewImgBox>
             )}
           </ReviewImgBox>
-          <ReviewContent>{reviewData.content}</ReviewContent>
+          <ReviewContent>{reviewData?.content}</ReviewContent>
           {isCenterReview ? (
             <ProfileBox>
               <ProfileInfo>
                 <ImgWrapper>
-                  <ProfileImg src={volunteerData.img_url || `/assets/imgs/no-img-person.svg`} alt="profileImg" />
+                  <ProfileImg src={volunteerData?.img_url || `/assets/imgs/no-img-person.svg`} alt="profileImg" />
                 </ImgWrapper>
-                <NickName>{volunteerData.nickname}</NickName>
+                <NickName>{volunteerData?.nickname}</NickName>
                 <GloveImg src={`/assets/imgs/mitten-${volunteerData?.tier?.toLowerCase()}.svg`} alt="tierGlove" />
               </ProfileInfo>
               <GoToProfileButton
                 label="프로필 확인하기"
                 type="blue"
                 onClick={() => {
-                  navigate(`/profile/${volunteerData.volunteer_id}`);
+                  navigate(`/profile/${volunteerData?.volunteer_id}`);
                 }}
               />
             </ProfileBox>
@@ -88,15 +69,15 @@ const ReviewReadModal = ({ handleCloseReviewModal, reviewId, isCenterReview = tr
             <ProfileBox>
               <ProfileInfo>
                 <ImgWrapper>
-                  <ProfileImg src={centerData.img_url || `/assets/imgs/no-img-center.svg`} alt="profileImg" />
+                  <ProfileImg src={centerData?.img_url || `/assets/imgs/no-img-center.svg`} alt="profileImg" />
                 </ImgWrapper>
-                <NickName>{centerData.nickname}</NickName>
+                <NickName>{centerData?.name}</NickName>
               </ProfileInfo>
               <GoToProfileButton
                 label="프로필 확인하기"
                 type="blue"
                 onClick={() => {
-                  navigate(`/profile/${centerData.volunteer_id}`);
+                  navigate(`/profile/${centerData?.center_id}`);
                 }}
               />
               :
