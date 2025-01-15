@@ -41,16 +41,16 @@ const Select: React.FC<SelectProps> = ({
   };
 
   return (
-    <Box ref={selectRef} width={width} height={height} isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
+    <Box ref={selectRef} width={width} height={height} $isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
       {selectedOption}
       <Arrow>
         <img src="/assets/imgs/select-arrow.svg" alt=""></img>
       </Arrow>
-      <List isOpen={isOpen}>
+      <List $isOpen={isOpen}>
         {data.map((item, index) => (
           <ListItem
             key={index}
-            isSelected={item === selectedOption}
+            $isSelected={item === selectedOption}
             onClick={(e) => {
               e.stopPropagation();
               handleOptionClick(item);
