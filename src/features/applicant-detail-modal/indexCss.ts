@@ -4,7 +4,6 @@ import styled from 'styled-components';
 export const ModalWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  /* padding: 53px 70px 72px 70px; */
   padding: 1rem;
   width: 100%;
   height: 100%;
@@ -34,6 +33,10 @@ export const ScrollSection = styled.div`
   &::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
+
+  @media (max-width: 1000px) {
+    padding: 1.3rem 1rem;
+  }
 `;
 
 export const GridBox = styled.div`
@@ -60,6 +63,10 @@ export const GridSection2 = styled.div`
     overflow: hidden;
     background-color: #d9d9d9;
   }
+
+  @media (max-width: 1000px) {
+    display: none;
+  }
 `;
 
 export const GridSection3 = styled.div`
@@ -73,6 +80,10 @@ export const SimpleProfileList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 35px;
+
+  @media (max-width: 1000px) {
+    gap: 1rem;
+  }
 `;
 
 export const SimpleItem = styled.li`
@@ -85,6 +96,11 @@ export const Title = styled.h1`
   font-size: ${theme.fontSize.fourthSize};
   font-weight: 600;
   padding-bottom: 48px;
+
+  @media (max-width: 1000px) {
+    font-size: ${theme.fontSize.sixthSize};
+    padding-bottom: 2rem;
+  }
 `;
 
 export const Key = styled.p`
@@ -124,6 +140,13 @@ export const SectionBox = styled.ul`
   padding: 33px 28px;
   gap: 27px;
   margin-top: 100px;
+
+  @media (max-width: 1000px) {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+  }
 `;
 
 export const DetailItem = styled.li`
