@@ -5,6 +5,6 @@ export const Wrapper = styled.ul`
   gap: 10px;
   flex-wrap: wrap;
   width: 1200px;
-  width: 90%;
+  width: 100%;
   margin: auto;
 `;

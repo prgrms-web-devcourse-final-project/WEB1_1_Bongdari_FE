@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import theme from '@/styles/theme';
 import Button from '@/components/button';
-import TextArea from '@/components/textArea';
+import { TinyMceContainer } from '@/components/tinyMCE-editor';
 
 export const Wrapper = styled.div`
   margin-top: 10px;
@@ -94,7 +94,7 @@ export const TextAreaContainer = styled.div`
   }
 `;
 
-export const ModifyTextArea = styled(TextArea)`
+export const ModifyTextArea = styled(TinyMceContainer)`
   height: 500px;
 `;
 
