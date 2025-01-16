@@ -10,7 +10,7 @@ interface useMyProfileDataReturn {
 export const useMyProfileData = (): useMyProfileDataReturn => {
   const [profileData, setProfileData] = useState<personProfileType>();
   const { data } = useMyProfile();
-  console.log('debugging... (profiledata):', data);
+  // console.log('debugging... (profiledata):', data);
 
   useEffect(() => {
     if (data) setProfileData(data);
