@@ -6,25 +6,25 @@ export const TitleWithPagenationCss = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  & * {
+  & > * {
     padding: 50px 10px 20px 10px;
   }
 
-  & > i:first-of-type {
+  .title {
     font-size: ${Theme.fontSize.fourthSize};
     font-weight: 600;
   }
   .pagenationWrap {
     font-size: ${Theme.fontSize.seventhSize};
-  }
-  .pageBtn {
-    cursor: pointer;
-  }
-  .disabled {
-    color: #e1e1e1;
-    cursor: default;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
   }
   .pages.disabled {
     color: rgb(175, 175, 175);
+  }
+  .svgIcon {
+    cursor: pointer;
   }
 `;
