@@ -38,16 +38,15 @@ export const useMyInterestCenter = (): useMyInterestCenterReturn => {
       if (element) {
         const width = element.getBoundingClientRect().width;
         setContainerWidth(width);
-        console.log('Initial width:', width);
+        // console.log('width:', width);
       }
     };
 
     updateWidth();
 
     // 약간의 지연 후 한번 더 체크
-    const timeoutId = setTimeout(updateWidth, 100);
-
-    return () => clearTimeout(timeoutId);
+    // const timeoutId = setTimeout(updateWidth, 100);
+    // return () => clearTimeout(timeoutId);
   }, []);
 
   // ResizeObserver 설정
@@ -59,7 +58,7 @@ export const useMyInterestCenter = (): useMyInterestCenterReturn => {
       for (const entry of entries) {
         const newWidth = entry.contentRect.width;
         setContainerWidth(newWidth);
-        console.log('Width changed:', newWidth);
+        // console.log('newWidth:', newWidth);
       }
     });
 
@@ -81,11 +80,10 @@ export const useMyInterestCenter = (): useMyInterestCenterReturn => {
     if (!chunckInterestCenterData || !interestCenterData) return;
     if (containerWidth <= 0) return;
 
-    console.log('Calculating pages with width:', containerWidth);
-
     if (containerWidth <= 884) {
       setTotPage(chunckInterestCenterData.length || 1);
     } else {
+      // 박스 너비(160px) + gap(5px)
       const itemTotalWidth = 165 * interestCenterData.length;
       setTotPage(Math.max(1, Math.ceil(itemTotalWidth / containerWidth)));
     }
