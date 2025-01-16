@@ -37,6 +37,9 @@ const AidRqDetailPage = () => {
   const [presentState, setPresentState] = useState<PresentResponse | null>(null);
 
   useEffect(() => {
+    if (myLoginState.loginType !== 'ROLE_VOLUNTEER') {
+      return;
+    }
     myPresentStatus(setPresentState, myLoginState.myLoginId, id);
   }, []);
 

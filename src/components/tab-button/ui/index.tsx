@@ -5,6 +5,10 @@ interface TabButtonProps extends React.ComponentProps<typeof TabButtonComponent>
   label: string; // 버튼에 표시될 텍스트
   variant?: 'clicked' | 'notClicked';
   height?: string;
+  width?: string;
+  borderRadius?: string;
+  fontSize?: string;
+  fontWeight?: string;
 }
 
 const TabButton = ({
@@ -23,9 +27,9 @@ const TabButton = ({
       variant={variant}
       width={width}
       height={height}
-      borderRadius={borderRadius}
-      fontSize={fontSize}
-      fontWeight={fontWeight}>
+      $borderRadius={borderRadius}
+      $fontSize={fontSize}
+      $fontWeight={fontWeight}>
       {label}
     </TabButtonComponent>
   );
