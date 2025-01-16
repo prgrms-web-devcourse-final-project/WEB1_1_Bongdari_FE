@@ -1,8 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useLayoutEffect } from 'react';
 import { interestCenterType } from '@/shared/types/person-profile/personProfile';
 import { useMyInterestCenterQuery } from '@/store/queries/volunteer-mypage/useFetchMyData';
 
-// InterestCenterList에 쓰이는 use
 interface useMyInterestCenterReturn {
   interestCenterData: interestCenterType[] | undefined;
   chunckInterestCenterData: interestCenterType[][] | undefined;
@@ -11,6 +10,7 @@ interface useMyInterestCenterReturn {
   totPage: number;
   currPage: number;
   setCurrPage: (page: number) => void;
+  isLoading: boolean;
 }
 
 export const useMyInterestCenter = (): useMyInterestCenterReturn => {
@@ -20,6 +20,7 @@ export const useMyInterestCenter = (): useMyInterestCenterReturn => {
   const [currPage, setCurrPage] = useState<number>(1);
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState(true);
   const { data } = useMyInterestCenterQuery();
 
   const chunkArray = (array: interestCenterType[], size: number) => {
@@ -30,52 +31,63 @@ export const useMyInterestCenter = (): useMyInterestCenterReturn => {
     return result;
   };
 
-  // containter width observer
+  // useLayoutEffect를 사용하여 DOM 업데이트 전에 너비 계산
+  useLayoutEffect(() => {
+    const updateWidth = () => {
+      const element = containerRef.current;
+      if (element) {
+        const width = element.getBoundingClientRect().width;
+        setContainerWidth(width);
+        // console.log('width:', width);
+      }
+    };
+
+    updateWidth();
+
+    // 약간의 지연 후 한번 더 체크
+    // const timeoutId = setTimeout(updateWidth, 100);
+    // return () => clearTimeout(timeoutId);
+  }, []);
+
+  // ResizeObserver 설정
   useEffect(() => {
     const element = containerRef.current;
+    if (!element) return;
 
-    if (element) {
-      // ResizeObserver 생성
-      const resizeObserver = new ResizeObserver((entries) => {
-        for (const entry of entries) {
-          setContainerWidth(entry.contentRect.width); // 요소의 width 업데이트
-        }
-      });
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const newWidth = entry.contentRect.width;
+        setContainerWidth(newWidth);
+        // console.log('newWidth:', newWidth);
+      }
+    });
 
-      resizeObserver.observe(element); // 요소 관찰 시작
+    resizeObserver.observe(element);
+    return () => resizeObserver.disconnect();
+  }, []);
 
-      // 컴포넌트가 언마운트될 때 observer 해제
-      return () => {
-        resizeObserver.disconnect();
-      };
-    }
-  }, [containerRef]);
-
-  useEffect(() => {
-    console.log('width:', containerWidth);
-  }, [containerWidth]);
-
+  // 데이터 처리
   useEffect(() => {
     if (data) {
       setInterestCenterData(data);
       setChunckInterestCenterData(chunkArray(data, 6));
+      setIsLoading(false);
     }
+  }, [data]);
 
-    // 전체 페이지 수 계산 (div 너비 고려)
-    const calcPage = () => {
-      if (containerRef.current && interestCenterData) {
-        if (chunckInterestCenterData && containerWidth <= 884) {
-          setTotPage(chunckInterestCenterData?.length);
-        } else {
-          // 박스 너비(160px) + gap(5px)
-          const itemTotalWidth = 165 * interestCenterData.length;
-          setTotPage(Math.ceil(itemTotalWidth / containerWidth));
-        }
-      }
-    };
+  // totPage 계산
+  useEffect(() => {
+    if (!chunckInterestCenterData || !interestCenterData) return;
+    if (containerWidth <= 0) return;
 
-    calcPage();
-  }, [data, containerWidth, interestCenterData, chunckInterestCenterData]);
+    if (containerWidth <= 884) {
+      setTotPage(chunckInterestCenterData.length || 1);
+    } else {
+      // 박스 너비(160px) + gap(5px)
+      const itemTotalWidth = 165 * interestCenterData.length;
+      setTotPage(Math.max(1, Math.ceil(itemTotalWidth / containerWidth)));
+    }
+  }, [chunckInterestCenterData, interestCenterData, containerWidth]);
 
   return {
     interestCenterData,
@@ -84,6 +96,7 @@ export const useMyInterestCenter = (): useMyInterestCenterReturn => {
     containerWidth,
     totPage,
     currPage,
-    setCurrPage
+    setCurrPage,
+    isLoading
   };
 };
