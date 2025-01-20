@@ -136,7 +136,7 @@ export default function Header() {
                 try {
                   clearLoginInfo();
                   await commonLogout();
-                  window.location.reload();
+                  window.location.href = '/main';
                 } catch (error) {
                   console.error('로그아웃 실패:', error);
                 }
