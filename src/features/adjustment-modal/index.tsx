@@ -111,15 +111,10 @@ const AdjustmentModal = ({ setOpenAdjustmentModal }: AdjustmentModalProps) => {
               </Applicant>
             ))}
           </ApplicantList>
-          <ButtonBox>
-            <AdjustmentButton
-              label="정산하기"
-              type="blue"
-              onClick={handleSettle}
-              disabled={!hasUnsettledParticipants}
-            />
-          </ButtonBox>
         </ScrollSection>
+        <ButtonBox>
+          <AdjustmentButton label="정산하기" type="blue" onClick={handleSettle} disabled={!hasUnsettledParticipants} />
+        </ButtonBox>
       </ModalWrapper>
     </Modal>
   );
