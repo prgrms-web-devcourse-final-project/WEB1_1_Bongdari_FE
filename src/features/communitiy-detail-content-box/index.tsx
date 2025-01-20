@@ -5,7 +5,8 @@ import {
   CommunityImage,
   CommunityImageContainer,
   DeleteCommunityButton,
-  EditDeleteBtnCon
+  EditDeleteBtnCon,
+  EditorContent
 } from './indexCss';
 import { useCommunityDetailContent } from './logic/useCommunityDetailContent';
 import WriterProfileBox from './ui/WriterProfileBox';
@@ -42,35 +43,36 @@ const CommunityDetailContentBox = ({ content_id }: { content_id: number }) => {
   };
 
   if (!detailData) {
-    <CommunityDetailContentBoxCss>
-      <div className="noData">커뮤니티 데이터가 없습니다</div>
-    </CommunityDetailContentBoxCss>;
-  } else {
     return (
       <CommunityDetailContentBoxCss>
-        <i className="title">{detailData.title}</i>
-        <i className="modifiedDate">최근 수정일: {formatDate(detailData.updated_at)}</i>
-        <WriterProfileBox {...writerData} />
-        {detailData.image_url && (
-          <CommunityImageContainer>
-            <CommunityImage src={detailData.image_url} alt="detailData.image_url" />
-          </CommunityImageContainer>
-        )}
-        <div className="content">{detailData.content}</div>
-        <div className="btnWrap">
-          {isMyContent ? (
-            <EditDeleteBtnCon>
-              <Link to={`/communitycreate/${content_id}`}>
-                <ApplyButton label="수정하기" type="blue" />
-              </Link>
-              <DeleteCommunityButton label="삭제하기" type="white" onClick={handleDeleteCommunity} />
-            </EditDeleteBtnCon>
-          ) : (
-            ''
-          )}
-        </div>
+        <div className="noData">커뮤니티 데이터가 없습니다</div>
       </CommunityDetailContentBoxCss>
     );
   }
+  return (
+    <CommunityDetailContentBoxCss>
+      <i className="title">{detailData.title}</i>
+      <i className="modifiedDate">최근 수정일: {formatDate(detailData.updated_at)}</i>
+      <WriterProfileBox {...writerData} />
+      {detailData.image_url && (
+        <CommunityImageContainer>
+          <CommunityImage src={detailData.image_url} alt="detailData.image_url" />
+        </CommunityImageContainer>
+      )}
+      <EditorContent dangerouslySetInnerHTML={{ __html: detailData.content }} className="content" />; ;
+      <div className="btnWrap">
+        {isMyContent ? (
+          <EditDeleteBtnCon>
+            <Link to={`/communitycreate/${content_id}`}>
+              <ApplyButton label="수정하기" type="blue" />
+            </Link>
+            <DeleteCommunityButton label="삭제하기" type="white" onClick={handleDeleteCommunity} />
+          </EditDeleteBtnCon>
+        ) : (
+          ''
+        )}
+      </div>
+    </CommunityDetailContentBoxCss>
+  );
 };
 export default CommunityDetailContentBox;
