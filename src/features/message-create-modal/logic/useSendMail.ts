@@ -28,6 +28,7 @@ export const useSendMail = ({ user_id, setIsModalOpen }: UseSendEmailProps): Use
   const checkErr = () => {
     if (mailTitle === '') setErrMsg('제목이 비어있습니다');
     else if (mailContent === '') setErrMsg('내용이 비어있습니다');
+    else if (mailContent.length > 500) setErrMsg('쪽지 내용은 500자 이하로 작성해주세요.');
     else setErrMsg('');
   };
   const checkTitle = (txt: string) => {

@@ -2,7 +2,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import Header from './header/Header';
 import Footer from './footer/Footer';
 import { useEffect } from 'react';
-import { Wrapper } from './LayoutCss';
+import { Main, Wrapper } from './LayoutCss';
 
 export default function Layout() {
   const location = useLocation();
@@ -14,7 +14,9 @@ export default function Layout() {
   return (
     <Wrapper>
       <Header />
-      <Outlet />
+      <Main>
+        <Outlet />
+      </Main>
       <Footer />
     </Wrapper>
   );
