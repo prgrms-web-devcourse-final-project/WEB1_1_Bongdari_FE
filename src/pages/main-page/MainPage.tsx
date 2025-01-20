@@ -17,6 +17,7 @@ export default function MainPage() {
 
   const loginType = useLoginStore((state) => state.loginType);
   const setLoginInfo = useLoginStore((state) => state.setLoginInfo);
+  const clearLoginIngo = useLoginStore((state) => state.clearLoginInfo);
   const setCenterIds = useInterestStore((state) => state.setCenterIds);
 
   //단기토큰 받는거로 바뀌면, 해당 단기토큰으로 ACCESS토큰 받아오는 useEffect하나 더 필요 (쿠키에서 꺼내서 보내는거로)
@@ -27,7 +28,10 @@ export default function MainPage() {
   useEffect(() => {
     const getLoginInfo = () => {
       try {
-        if (!token) return;
+        if (!token) {
+          clearLoginIngo();
+          return;
+        }
 
         // Bearer 제거
         const actualToken = token.replace('Bearer ', '');
