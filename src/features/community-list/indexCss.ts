@@ -23,6 +23,7 @@ export const CommuntiyListCss = styled.div`
   .noData {
     width: 100%;
     text-align: center;
+    padding-top: 100px;
   }
 
   position: relative;
