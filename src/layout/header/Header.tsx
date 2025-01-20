@@ -134,8 +134,8 @@ export default function Header() {
             <LogoutBtn
               onClick={async () => {
                 try {
-                  clearLoginInfo();
                   await commonLogout();
+                  clearLoginInfo();
                   window.location.href = '/main';
                 } catch (error) {
                   console.error('로그아웃 실패:', error);
