@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 
 import MainBanner from '@/features/main-banner';
 import { RankAndCommu, Wrapper } from './MainpageCss';
@@ -12,8 +11,7 @@ import axiosInstance from '@/api/apis';
 import useInterestStore from '@/store/stores/interest-center/interestStore';
 
 export default function MainPage() {
-  const location = useLocation();
-  const token = location.state?.token;
+  const token = sessionStorage.getItem('token');
 
   const loginType = useLoginStore((state) => state.loginType);
   const setLoginInfo = useLoginStore((state) => state.setLoginInfo);

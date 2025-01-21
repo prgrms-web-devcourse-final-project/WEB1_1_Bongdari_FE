@@ -51,13 +51,7 @@ export const useLogin = (): useReturn => {
 
         //token을 세션스토리지에 저장
         sessionStorage.setItem('token', token);
-
-        // // setLoginInfo('centertestid', 'center');
-        navigate('/main', {
-          state: {
-            token: token
-          }
-        });
+        navigate('/main');
       } catch (error) {
         console.error('Login failed:', error);
         throw error;
