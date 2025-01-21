@@ -37,7 +37,7 @@ export default function MainPage() {
         // JWT 디코딩 (payload 부분)
         const payload = JSON.parse(atob(actualToken.split('.')[1]));
 
-        const USER_ID = payload.id;
+        const USER_ID = payload.userId;
         const ROLE = payload.role;
 
         if (ROLE === 'ROLE_CENTER' || ROLE === 'ROLE_VOLUNTEER') {
