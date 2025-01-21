@@ -8,9 +8,10 @@ interface ButtonGroupProps {
   id: string | undefined;
   handleAdjustmentButton: () => void;
   status: string;
+  volunteerStartDateTime: string;
 }
 
-const ButtonGroup = ({ id, handleAdjustmentButton, status }: ButtonGroupProps) => {
+const ButtonGroup = ({ id, handleAdjustmentButton, status, volunteerStartDateTime }: ButtonGroupProps) => {
   const { mutate: deleteAidRq } = useDeleteAidRq();
 
   const navigate = useNavigate();
@@ -35,6 +36,18 @@ const ButtonGroup = ({ id, handleAdjustmentButton, status }: ButtonGroupProps) =
     });
   };
 
+  //시작일 이전에만 수정이 가능하도록 로직 추가
+  const isModificationAllowed = () => {
+    if (!volunteerStartDateTime) return true;
+
+    const startDate = new Date(volunteerStartDateTime);
+    startDate.setHours(0, 0, 0, 0); // 해당 날짜의 00시 00분으로 설정
+
+    const currentDate = new Date();
+
+    return currentDate < startDate;
+  };
+
   return (
     <ButtonWrapper>
       <EditAidRqButton
@@ -45,6 +58,7 @@ const ButtonGroup = ({ id, handleAdjustmentButton, status }: ButtonGroupProps) =
         }
         label="수정하기"
         type="white"
+        disabled={!isModificationAllowed()}
       />
       <AdjustmentButton
         label="정산하기"
