@@ -1,3 +1,4 @@
+import parse from 'html-react-parser';
 import AidRqCategoryLabel from '@/components/label/AidRqCategoryLabel';
 import { Wrapper, LabelContainer, Title, Text, Center } from './indexCss';
 import AidRqCertifiedLabel from '@/components/label/AidRqCertifiedLabel';
@@ -20,7 +21,7 @@ const Top = ({ title, content, center, category, admitted }: TopProps) => {
         {admitted && <AidRqCertifiedLabel></AidRqCertifiedLabel>}
       </LabelContainer>
       <Title>{title}</Title>
-      <Text>{content}</Text>
+      <Text>{parse(content)}</Text>
       <Center>{center?.name}</Center>
     </Wrapper>
   );
