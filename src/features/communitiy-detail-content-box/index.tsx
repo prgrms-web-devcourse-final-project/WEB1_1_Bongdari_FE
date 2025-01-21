@@ -59,7 +59,7 @@ const CommunityDetailContentBox = ({ content_id }: { content_id: number }) => {
           <CommunityImage src={detailData.image_url} alt="detailData.image_url" />
         </CommunityImageContainer>
       )}
-      <EditorContent dangerouslySetInnerHTML={{ __html: detailData.content }} className="content" />; ;
+      <EditorContent dangerouslySetInnerHTML={{ __html: detailData.content }} className="content" />
       <div className="btnWrap">
         {isMyContent ? (
           <EditDeleteBtnCon>
