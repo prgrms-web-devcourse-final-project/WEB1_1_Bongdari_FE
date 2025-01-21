@@ -6,10 +6,11 @@ const fetchPersonProfile = async (volunteerId: string) => {
   return res.data;
 };
 
-export const usePersonProfileQuery = (volunteerId: string) => {
+export const usePersonProfileQuery = (volunteerId: string, options = {}) => {
   return useQuery({
     queryKey: ['volunteerProfile', volunteerId],
     queryFn: () => fetchPersonProfile(volunteerId),
-    enabled: !!volunteerId
+    enabled: !!volunteerId,
+    ...options
   });
 };

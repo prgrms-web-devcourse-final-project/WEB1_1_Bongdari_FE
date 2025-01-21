@@ -32,6 +32,10 @@ export const validateVolunteerData = (data: VolunteerType) => {
     errors.push('활동 설명을 입력해주세요.');
   }
 
+  if (data.content.length > 1000) {
+    errors.push('활동 설명은 1000자 이하로 작성해주세요.');
+  }
+
   // 날짜 검사
   if (data.volunteer_start_date_time && data.volunteer_end_date_time) {
     const startDate = new Date(data.volunteer_start_date_time);

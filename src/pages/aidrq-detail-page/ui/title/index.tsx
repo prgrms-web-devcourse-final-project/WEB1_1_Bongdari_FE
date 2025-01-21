@@ -19,7 +19,10 @@ const Title: React.FC<AidRqDetailCenterProfileProps> = ({ data }) => {
       </LabelBox>
       <TitleBox>
         <h2>{data.title}</h2>
-        <AidRqStateLabel state="모집중"></AidRqStateLabel>
+        <AidRqStateLabel
+          state={
+            data.recruit_status === 'RECRUITING' ? '모집중' : data.recruit_status === 'CLOSED' ? '모집완료' : '종료'
+          }></AidRqStateLabel>
       </TitleBox>
       <CreatedAt>등록 일자 : {formatDate(data.created_at)}</CreatedAt>
     </Wrapper>

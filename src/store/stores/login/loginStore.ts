@@ -23,13 +23,16 @@ export const useLoginStore = create(
           loginType: type,
           isLoggedIn: true
         })),
-      clearLoginInfo: () =>
+      clearLoginInfo: () => {
+        sessionStorage.removeItem('token');
+        window.history.replaceState({}, document.title);
         set((state) => ({
           ...state,
           myLoginId: null,
           loginType: null,
           isLoggedIn: false
-        }))
+        }));
+      }
     }),
     {
       name: 'login-storage',

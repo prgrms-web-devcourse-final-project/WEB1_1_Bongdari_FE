@@ -27,8 +27,8 @@ export const useHalfList = ({ listType }: useHalfListProps): useHalfListReturn =
   const { data: volunteerData } = useMyVolunteer(myLoginId ?? '', currPage);
   const { data: messageData } = useMyMessage(currPage);
   console.log();
-  console.log('debugging... (volunteerData):', volunteerData);
-  console.log('debugging... (messageData):', messageData);
+  // console.log('debugging... (volunteerData):', volunteerData);
+  // console.log('debugging... (messageData):', messageData);
 
   const onClickMyMessage = (message_id: string) => {
     console.log(message_id, '메시지 띄우기');

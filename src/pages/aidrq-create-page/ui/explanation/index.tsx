@@ -10,10 +10,9 @@ const Explanation: React.FC<ExplanationProps> = ({ getTitleAndFilter }) => {
     <Wrapper>
       <p>본문 내용</p>
       <CreateTextArea
-        getInputText={(text) => {
+        setHtmlContent={(text) => {
           getTitleAndFilter('content', text);
-        }}
-        colortype="white"></CreateTextArea>
+        }}></CreateTextArea>
     </Wrapper>
   );
 };

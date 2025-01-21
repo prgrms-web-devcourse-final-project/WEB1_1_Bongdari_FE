@@ -1,3 +1,4 @@
+import { TinyMceContainer } from '@/components/tinyMCE-editor';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
@@ -36,6 +37,10 @@ export const Contents = styled.div`
     padding-top: 10px;
     justify-content: space-between;
 
+    & > *:last-child {
+      flex: 1;
+    }
+
     & > span {
       display: inline-block;
       width: 40px;
@@ -50,6 +55,10 @@ export const Title = styled.p`
   font-size: 32px;
   font-weight: 600;
   padding-bottom: 40px;
+`;
+
+export const ReviewText = styled(TinyMceContainer)`
+  height: 500px;
 `;
 
 export const ButtonContainer = styled.section`

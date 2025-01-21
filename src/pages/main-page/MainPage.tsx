@@ -10,7 +10,6 @@ import Community from './_components/community';
 import { useLoginStore } from '@/store/stores/login/loginStore';
 import axiosInstance from '@/api/apis';
 import useInterestStore from '@/store/stores/interest-center/interestStore';
-import axios from 'axios';
 
 export default function MainPage() {
   const location = useLocation();
@@ -18,36 +17,40 @@ export default function MainPage() {
 
   const loginType = useLoginStore((state) => state.loginType);
   const setLoginInfo = useLoginStore((state) => state.setLoginInfo);
+  const clearLoginIngo = useLoginStore((state) => state.clearLoginInfo);
   const setCenterIds = useInterestStore((state) => state.setCenterIds);
 
   //단기토큰 받는거로 바뀌면, 해당 단기토큰으로 ACCESS토큰 받아오는 useEffect하나 더 필요 (쿠키에서 꺼내서 보내는거로)
 
-  /////////////////////////////////////////////
-  //토큰을 통해서 userinfo가져와서 zustand에 저장
-  /////////////////////////////////////////////
+  ///////////////////////////////
+  //토큰을 해석해서 zustand에 저장
+  ///////////////////////////////
   useEffect(() => {
-    const getLoginInfo = async () => {
+    const getLoginInfo = () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_APP_BASE_URL}/api/auth/user-info`, {
-          headers: {
-            Authorization: token,
-            'Content-Type': 'application/json'
-          }
-        });
+        if (!token) {
+          clearLoginIngo();
+          return;
+        }
 
-        const USER_ID = response.data.data.USER_ID;
-        const ROLE = response.data.data.ROLE;
+        // Bearer 제거
+        const actualToken = token.replace('Bearer ', '');
+
+        // JWT 디코딩 (payload 부분)
+        const payload = JSON.parse(atob(actualToken.split('.')[1]));
+
+        const USER_ID = payload.id;
+        const ROLE = payload.role;
+
         if (ROLE === 'ROLE_CENTER' || ROLE === 'ROLE_VOLUNTEER') {
           setLoginInfo(USER_ID, ROLE);
         }
       } catch (error) {
-        console.error('로그인 정보 가져오기 실패:', error);
+        console.error('토큰 디코딩 실패:', error);
       }
     };
 
-    if (token) {
-      getLoginInfo();
-    }
+    getLoginInfo();
   }, [token, setLoginInfo]);
 
   //////////////////////////////////////////////
@@ -58,7 +61,6 @@ export default function MainPage() {
       try {
         const response = await axiosInstance.get('/api/interest-centers');
         const centerList = response.data;
-        console.log('관심기관 리스트', centerList);
         setCenterIds(centerList);
       } catch (error) {
         console.error('로그인 정보 가져오기 실패:', error);

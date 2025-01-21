@@ -3,6 +3,10 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   width: 30%;
 
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
+
   & > p {
     font-size: 12px;
     color: #373737;

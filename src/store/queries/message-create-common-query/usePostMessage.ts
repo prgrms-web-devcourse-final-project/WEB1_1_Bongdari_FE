@@ -8,6 +8,7 @@ export const postMessage = async (
   title: string,
   content: string
 ) => {
+  // try {
   if (from === 'volunteer') {
     const res: resType<number | string> = await axiosInstance.post('/api/note/volunteer-to-center', {
       receiver_id,
@@ -18,12 +19,15 @@ export const postMessage = async (
   } else if (from === 'center') {
     const res: resType<number | string> = await axiosInstance.post('api/note/center-to-volunteer', {
       receiver_id,
-      // 수정필요
       title,
       content
     });
     return res.data;
   }
+  // } catch (e) {
+  //   console.log('eeeeeeee', e);
+  //   return false;
+  // }
 };
 
 export const usePostMessage = () => {

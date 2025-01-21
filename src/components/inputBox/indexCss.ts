@@ -40,5 +40,9 @@ const InputBoxCss = styled.input<{ colortype: 'white' | 'gray' }>`
   padding: 15px;
 
   ${({ colortype }) => InputTypes[colortype]}
+
+  &:disabled {
+    background-color: ${inputGray.variants.focused.backgroundColor};
+  }
 `;
 export default InputBoxCss;

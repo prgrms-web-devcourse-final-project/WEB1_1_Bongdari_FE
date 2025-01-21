@@ -10,4 +10,10 @@ export const PMPGHalfListsCss = styled.div`
     width: 100%;
     text-align: center;
   }
+
+  @media (max-width: 1000px) {
+    & {
+      display: block;
+    }
+  }
 `;

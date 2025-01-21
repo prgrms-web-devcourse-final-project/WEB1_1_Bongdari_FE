@@ -33,8 +33,6 @@ const AidRqDetailAdminPage = () => {
     setOpenAdjustmentModal(!openAdjustmentModal);
   };
 
-  // console.log('모집글상세 데이터 하이', recruitDetailData);
-
   return (
     <>
       <PageWrapper>
@@ -50,6 +48,7 @@ const AidRqDetailAdminPage = () => {
           id={id}
           handleAdjustmentButton={handleAdjustmentButton}
           status={recruitDetailData.recruit_status}
+          volunteerStartDateTime={recruitDetailData.volunteer_start_date_time}
         />
       </PageWrapper>
       {openAdjustmentModal && <AdjustmentModal setOpenAdjustmentModal={setOpenAdjustmentModal} />}

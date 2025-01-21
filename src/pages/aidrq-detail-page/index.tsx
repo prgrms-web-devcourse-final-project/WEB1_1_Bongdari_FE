@@ -37,6 +37,9 @@ const AidRqDetailPage = () => {
   const [presentState, setPresentState] = useState<PresentResponse | null>(null);
 
   useEffect(() => {
+    if (myLoginState.loginType !== 'ROLE_VOLUNTEER') {
+      return;
+    }
     myPresentStatus(setPresentState, myLoginState.myLoginId, id);
   }, []);
 
@@ -103,7 +106,7 @@ const AidRqDetailPage = () => {
             onClick={() => {
               if (presentState?.attended) SetReviewModalState(true);
             }}
-            label="리뷰쓰기"
+            label={presentState?.is_reviewed ? '이미 작성한 리뷰가 있습니다' : '리뷰쓰기'}
             type="white"
             disabled={!presentState?.attended || presentState?.is_reviewed}
           />

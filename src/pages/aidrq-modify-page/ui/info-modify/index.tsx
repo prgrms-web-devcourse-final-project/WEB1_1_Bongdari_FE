@@ -43,7 +43,24 @@ const InfoModify: React.FC<InfoModifyProps> = ({ id, getTitleAndFilter, voluntee
     volunteer_hours: volunteerData.volunteer_hours
   };
 
+  //시작일 이전에만 수정이 가능하도록 로직 추가
+  const isModificationAllowed = () => {
+    if (!volunteerData.volunteer_start_date_time) return true;
+
+    const startDate = new Date(volunteerData.volunteer_start_date_time);
+    startDate.setHours(0, 0, 0, 0); // 해당 날짜의 00시 00분으로 설정
+
+    const currentDate = new Date();
+
+    return currentDate < startDate;
+  };
+
   const handleUpdateInfoDialog = async () => {
+    if (!isModificationAllowed()) {
+      openAlert('봉사 시작일 이후에는 정보를 수정할 수 없습니다.');
+      return;
+    }
+
     openConfirm(`정보를 수정하시겠습니까?`, async () => {
       const errors = validateVolunteerData(changedRegular, createdAt);
 
@@ -110,11 +127,10 @@ const InfoModify: React.FC<InfoModifyProps> = ({ id, getTitleAndFilter, voluntee
         <p>본문 내용</p>
         <ModifyTextArea
           key={volunteerData.content}
-          getInputText={(text) => {
+          setHtmlContent={(text) => {
             getTitleAndFilter('content', text);
           }}
-          colortype="white"
-          initialVal={volunteerData.content}></ModifyTextArea>
+          htmlContent={volunteerData.content}></ModifyTextArea>
       </TextAreaContainer>
       <ButtonContainer>
         <ModifyInfoBtn

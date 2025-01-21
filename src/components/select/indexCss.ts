@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import theme from '@/styles/theme';
 
-export const Box = styled.div<{ width: string; height: string; isOpen: boolean }>`
+export const Box = styled.div<{ width: string; height: string; $isOpen: boolean }>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   border-radius: 12px;
@@ -38,7 +38,7 @@ export const Arrow = styled.div`
   }
 `;
 
-export const List = styled.ul<{ isOpen: boolean }>`
+export const List = styled.ul<{ $isOpen: boolean }>`
   position: absolute;
   top: calc(100% + 8px);
   left: 0;
@@ -49,7 +49,7 @@ export const List = styled.ul<{ isOpen: boolean }>`
   background-color: white;
   overflow-y: auto;
   z-index: 1000;
-  display: ${(props) => (props.isOpen ? 'block' : 'none')};
+  display: ${(props) => (props.$isOpen ? 'block' : 'none')};
   padding: 0;
   margin: 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -68,14 +68,14 @@ export const List = styled.ul<{ isOpen: boolean }>`
   }
 `;
 
-export const ListItem = styled.li<{ isSelected?: boolean }>`
+export const ListItem = styled.li<{ $isSelected?: boolean }>`
   list-style: none;
   padding: 16px;
   cursor: pointer;
   transition: 0.2s;
   color: #414141;
   font-size: ${theme.fontSize.seventhSize};
-  background-color: ${(props) => (props.isSelected ? '#f5f8ff' : 'transparent')};
+  background-color: ${(props) => (props.$isSelected ? '#f5f8ff' : 'transparent')};
 
   &:hover {
     background-color: #f5f8ff;

@@ -1,6 +1,14 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { EmptyButton, SectionBox3, Title } from '../../indexCss';
-import { UserBox, UserIcon, VolunteerSubTitle, VolunteerTitle, VolunteerTitleBox } from './indexCss';
+import {
+  InfoSec,
+  StatusWrapper,
+  UserBox,
+  UserIcon,
+  VolunteerSubTitle,
+  VolunteerTitle,
+  VolunteerTitleBox
+} from './indexCss';
 
 interface ApplicantStatusProps {
   title: string;
@@ -10,16 +18,18 @@ const ApplicantStatus = ({ title, recruitStatus }: ApplicantStatusProps) => {
   const { id } = useParams();
   const navigate = useNavigate();
   return (
-    <div>
+    <StatusWrapper>
       <Title>지원자 현황</Title>
       <SectionBox3>
-        <UserBox>
-          <UserIcon src="/assets/imgs/user-icon.svg" alt="유저아이콘" />
-        </UserBox>
-        <VolunteerTitleBox>
-          <VolunteerTitle>지원자 현황 리스트</VolunteerTitle>
-          <VolunteerSubTitle>지원자 리스트를 확인해보세요</VolunteerSubTitle>
-        </VolunteerTitleBox>
+        <InfoSec>
+          <UserBox>
+            <UserIcon src="/assets/imgs/user-icon.svg" alt="유저아이콘" />
+          </UserBox>
+          <VolunteerTitleBox>
+            <VolunteerTitle>지원자 현황 리스트</VolunteerTitle>
+            <VolunteerSubTitle>지원자 리스트를 확인해보세요</VolunteerSubTitle>
+          </VolunteerTitleBox>
+        </InfoSec>
         <EmptyButton
           onClick={() =>
             navigate(`/mypage/adminaidreqlist/${id}/applicantList`, {
@@ -30,7 +40,7 @@ const ApplicantStatus = ({ title, recruitStatus }: ApplicantStatusProps) => {
           type="white"
         />
       </SectionBox3>
-    </div>
+    </StatusWrapper>
   );
 };
 
