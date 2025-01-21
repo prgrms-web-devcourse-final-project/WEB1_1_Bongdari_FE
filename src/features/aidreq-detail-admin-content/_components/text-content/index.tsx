@@ -1,3 +1,4 @@
+import parse from 'html-react-parser';
 import { Content, ExpectedRecruit, TextContentContainer } from './indexCss';
 
 interface TextContentProps {
@@ -7,7 +8,7 @@ interface TextContentProps {
 const TextContent = ({ content, recruitmentCount }: TextContentProps) => {
   return (
     <TextContentContainer>
-      <Content>{content}</Content>
+      <Content>{parse(content)}</Content>
       <ExpectedRecruit>예상 모집 인원: {recruitmentCount}명</ExpectedRecruit>
     </TextContentContainer>
   );

@@ -1,3 +1,4 @@
+import parse from 'html-react-parser';
 import { useDeleteCommunity } from '@/store/queries/community-create-common-query/useControlCommunity';
 import {
   ApplyButton,
@@ -59,7 +60,10 @@ const CommunityDetailContentBox = ({ content_id }: { content_id: number }) => {
           <CommunityImage src={detailData.image_url} alt="detailData.image_url" />
         </CommunityImageContainer>
       )}
-      <EditorContent dangerouslySetInnerHTML={{ __html: detailData.content }} className="content" />; ;
+      {/* 
+      일단 주석처리
+      <EditorContent dangerouslySetInnerHTML={{ __html: detailData.content }} className="content" /> */}
+      <EditorContent className="content">{parse(detailData.content)}</EditorContent>
       <div className="btnWrap">
         {isMyContent ? (
           <EditDeleteBtnCon>
