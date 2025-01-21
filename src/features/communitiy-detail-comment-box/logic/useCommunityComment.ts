@@ -5,6 +5,7 @@ import {
   usePostCommunityComment
 } from '@/store/queries/community-detail-common-query/useCommunityComment';
 import { useMyProfile } from '@/store/queries/volunteer-mypage/useFetchMyData';
+import { useAlertDialog } from '@/store/stores/dialog/dialogStore';
 
 interface useCommunityCommentReturn {
   commentData: commentType[] | undefined;
@@ -16,6 +17,7 @@ interface useCommunityCommentReturn {
 }
 
 export const useCommunityComment = (content_id: number): useCommunityCommentReturn => {
+  const { openAlert } = useAlertDialog();
   const [commentText, setCommentText] = useState<string>('');
   const { mutate: postComment } = usePostCommunityComment();
 
@@ -31,6 +33,11 @@ export const useCommunityComment = (content_id: number): useCommunityCommentRetu
 
   const onEventPost = () => {
     if (!commentText) return;
+
+    if (commentText.length > 200) {
+      openAlert('댓글은 200자를 초과할 수 없습니다.');
+      return;
+    }
 
     postComment(
       {
