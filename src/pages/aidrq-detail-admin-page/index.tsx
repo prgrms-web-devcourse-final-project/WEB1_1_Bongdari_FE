@@ -48,6 +48,7 @@ const AidRqDetailAdminPage = () => {
           id={id}
           handleAdjustmentButton={handleAdjustmentButton}
           status={recruitDetailData.recruit_status}
+          volunteerStartDateTime={recruitDetailData.volunteer_start_date_time}
         />
       </PageWrapper>
       {openAdjustmentModal && <AdjustmentModal setOpenAdjustmentModal={setOpenAdjustmentModal} />}
