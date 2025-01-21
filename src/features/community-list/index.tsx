@@ -23,6 +23,7 @@ const CommuntiyList = () => {
       <div className="listWrap">
         {isLoading ? <LoadingCss>Loading...</LoadingCss> : ''}
         {error ? <ErrorCss>{error.message}</ErrorCss> : ''}
+        {listData?.length ? '' : <div className="noData">검색 결과가 없습니다</div>}
         {listData?.map((v, i) => (
           <Link key={i} to={`/community/${v.id}`}>
             <LongListItem

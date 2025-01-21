@@ -44,16 +44,6 @@ export const CommunityDetailContentBoxCss = styled.div`
     }
   }
 
-  .content {
-    background-color: ${theme.box.section.backgroundColor};
-    border: ${theme.box.section.border};
-    border-radius: ${theme.box.section.borderRadius};
-    padding: 50px 40px;
-    margin: 10px 0;
-
-    font-size: ${theme.fontSize.seventhSize};
-    line-height: ${theme.fontSize.thirdSize};
-  }
   .btnWrap {
     width: 100%;
     text-align: center;
@@ -99,5 +89,41 @@ export const EditDeleteBtnCon = styled.div`
     & > * > * {
       width: 100%;
     }
+  }
+`;
+
+export const EditorContent = styled.div`
+  background-color: ${theme.box.section.backgroundColor};
+  border: ${theme.box.section.border};
+  border-radius: ${theme.box.section.borderRadius};
+  padding: 50px 40px;
+  margin: 10px 0;
+
+  font-size: ${theme.fontSize.seventhSize};
+  line-height: ${theme.fontSize.thirdSize};
+
+  h1 {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+
+  ul {
+    list-style-type: disc;
+  }
+
+  li {
+    margin-bottom: 5px;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  strong {
+    font-weight: bold;
   }
 `;

@@ -18,6 +18,28 @@ export const TinyMceContainer = ({
   //   }
   // };
 
+  // *** 이 부분은 로그인 가능할 떄 테스트 후 추가 예정 ***
+  // useEffect(() => {
+  //   // 마우스 클릭 시 에디터 외부를 클릭한 경우만 처리
+  //   const handleClickOutside = (e: MouseEvent) => {
+  //     // 에디터 컨테이너 외부를 클릭한 경우 처리
+  //     if (editorRef.current && !editorRef.current.getContainer().contains(e.target as Node)) {
+  //       console.log('Clicked outside of editor');
+  //       if (editorRef.current) {
+  //         setHtmlContent(editorRef.current.getContent());
+  //       }
+  //     }
+  //   };
+
+  //   // 클릭 이벤트 리스너 추가
+  //   document.addEventListener('click', handleClickOutside);
+
+  //   // 컴포넌트 언마운트 시 이벤트 리스너 제거
+  //   return () => {
+  //     document.removeEventListener('click', handleClickOutside);
+  //   };
+  // }, [setHtmlContent]);
+
   return (
     <>
       <Editor
@@ -115,6 +137,16 @@ export const TinyMceContainer = ({
           //   }
           // },
 
+          // 텍스트 길이 제한 (1000자)
+          setup: (editor) => {
+            editor.on('input', () => {
+              const content = editor.getContent({ format: 'text' }); // 텍스트만 가져옴
+              if (content.length > 1000) {
+                const trimmedContent = content.slice(0, 1000); // 1000자로 제한
+                editor.setContent(trimmedContent); // 내용을 잘라서 설정
+              }
+            });
+          },
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         }}
         plugins={[
@@ -142,7 +174,7 @@ export const TinyMceContainer = ({
         toolbar={
           'undo redo | blocks | ' +
           'bold italic forecolor | alignleft aligncenter ' +
-          'alignright alignjustify | bullist numlist outdent indent | link | image editimage |' +
+          'alignright alignjustify | bullist numlist outdent indent | link | image |' +
           'code | removeformat | help'
         }
       />

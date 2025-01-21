@@ -20,6 +20,12 @@ export const CommuntiyListCss = styled.div`
   flex-direction: column;
   align-items: center;
 
+  .noData {
+    width: 100%;
+    text-align: center;
+    padding-top: 100px;
+  }
+
   position: relative;
   & * {
     /* border: 1px solid gray; */
