@@ -1,4 +1,5 @@
 import { usePutMyProfile } from '@/store/queries/volunteer-mypage/usePutMyProfile';
+import { useAlertDialog } from '@/store/stores/dialog/dialogStore';
 import { useState } from 'react';
 
 interface useEditMyyProfileReturn {
@@ -6,6 +7,7 @@ interface useEditMyyProfileReturn {
   setNickname: (text: string) => void;
   setDescripton: (text: string) => void;
   onClickEditMyProfile: () => void;
+  description: string;
 }
 
 export const useEditMyProfile = ({
@@ -18,6 +20,7 @@ export const useEditMyProfile = ({
   const [img, setImg] = useState<File>();
   const [nickname, setNickname] = useState<string>(profileNickname ?? '');
   const [descripton, setDescripton] = useState<string>(profileDescription ?? '');
+  const { openAlert } = useAlertDialog();
 
   const changeProfileData = {
     nickname: nickname,
@@ -27,6 +30,10 @@ export const useEditMyProfile = ({
 
   // 프로필 수정 버튼 클릭시 실행
   const onClickEditMyProfile = async () => {
+    if (descripton.length > 500) {
+      openAlert('자기소개는 500자를 넘을 수 없습니다.');
+      return;
+    }
     mutate(
       {
         changeProfileData,
@@ -45,5 +52,5 @@ export const useEditMyProfile = ({
     );
   };
 
-  return { setImg, setNickname, setDescripton, onClickEditMyProfile };
+  return { setImg, setNickname, setDescripton, onClickEditMyProfile, description: descripton };
 };

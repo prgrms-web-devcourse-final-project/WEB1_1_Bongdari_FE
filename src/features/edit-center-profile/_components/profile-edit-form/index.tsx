@@ -1,3 +1,4 @@
+import { useAlertDialog } from '@/store/stores/dialog/dialogStore';
 import { validatePhone, validateURL } from '../../logic/validation';
 import {
   CenterIntroTextArea,
@@ -39,6 +40,19 @@ const EditProfileForm = ({
   handleURLChange,
   handleIntroductionChange
 }: EditProfileFormProps) => {
+  const { openAlert } = useAlertDialog();
+
+  // 소개글 500자 이상일 때 경고창
+  const handleIntroductionUpdate = () => {
+    if (centerIntroduction.length > 500) {
+      openAlert('소개글은 500자를 넘을 수 없습니다.');
+      return;
+    }
+
+    // TODO: 수정하기 api 연결 후에 수정 로직 구현현
+    console.log('기관 닉네임, 소개글 수정');
+  };
+
   return (
     <EditFormWrapper>
       <ProfileSection1>
@@ -103,10 +117,11 @@ const EditProfileForm = ({
               placeholder="기관에 대한 간단한 소개를 작성해주세요"
               value={centerIntroduction}
               onChange={(e) => handleIntroductionChange(e.target.value)}
+              maxLength={500}
             />
           </TextAreaWrapper>
         </EditItem_TextArea>
-        <EditProfileSectionButton label="수정하기" type="blue" onClick={() => console.log('기관명, 설명 수정')} />
+        <EditProfileSectionButton label="수정하기" type="blue" onClick={handleIntroductionUpdate} />
       </ProfileSection2>
     </EditFormWrapper>
   );
