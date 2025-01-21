@@ -12,11 +12,16 @@ interface ManageCenterPostSetProps {
 const ManageCenterPostSet = ({ centerId }: ManageCenterPostSetProps) => {
   const [selectedMenuItem, setSelectedMenuItem] = useState<number>(0);
 
+  // api 호출 성공 여부 flag
+  const hasError = false;
+
   return (
     <SectionWrapper>
       <TabMenu selectedMenuItem={selectedMenuItem} setSelectedMenuItem={setSelectedMenuItem} />
-      <SectionBox>
-        {selectedMenuItem === 0 ? (
+      <SectionBox className={hasError ? 'noData' : ''}>
+        {hasError ? (
+          <div className="noDataText">데이터를 불러오지 못했습니다.</div>
+        ) : selectedMenuItem === 0 ? (
           <GoAidReqSet />
         ) : selectedMenuItem === 1 ? (
           <MessageSet />

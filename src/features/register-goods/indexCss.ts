@@ -44,6 +44,24 @@ export const GoodsContainer = styled.div`
   justify-content: flex-start;
   padding-bottom: 40px;
 
+  .noData {
+    height: 100px;
+    width: 100%;
+    border: 1px dashed gray;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .noDataText {
+    height: 200px;
+    width: 100%;
+    border: 1px dashed gray;
+    border-radius: 13px;
+    display: block;
+  }
+
   @media (max-width: 1000px) {
     gap: 11px;
   }
