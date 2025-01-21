@@ -28,6 +28,17 @@ export const List = styled.ul`
   flex-direction: column;
   gap: 10px;
   margin-bottom: 115px;
+
+  .noData {
+    margin-top: 1rem;
+    height: 200px;
+    width: 100%;
+    border: 1px dashed gray;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 export const ListItem = styled.li`

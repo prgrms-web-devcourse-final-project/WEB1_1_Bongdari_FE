@@ -27,6 +27,16 @@ export const ProfileEditWrapper = styled.div`
   display: flex;
   gap: 29px;
 
+  .noData {
+    height: 200px;
+    width: 100%;
+    border: 1px dashed gray;
+    border-radius: 13px;
+    text-align: center;
+    display: block;
+    padding-top: 8%;
+  }
+
   @media (max-width: 1000px) {
     display: flex;
     flex-direction: column;

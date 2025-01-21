@@ -45,28 +45,34 @@ const EditCenterProfile = ({ data }: EditCenterProfileProps) => {
       )}
       <div>
         <ProfileEditWrapper>
-          <ProfileSection>
-            <ImageUploader
-              preview={preview || null} // preview가 없으면 기본 이미지 사용
-              initialImage={preview ? URL.createObjectURL(preview) : data.img_url || '/assets/imgs/no-img-person.svg'}
-              onImageUpload={handleImageUpload}
-            />
-            <ProfileImgEditButton label="수정하기" type="blue" onClick={() => console.log('프로필이미지 수정')} />
-          </ProfileSection>
-          <FormSection>
-            <EditProfileForm
-              handleNameChange={handleNameChange}
-              handlePhoneChange={handlePhoneChange}
-              handleURLChange={handleURLChange}
-              handleIntroductionChange={handleIntroductionChange}
-              centerName={centerName}
-              centerPhone={centerPhone}
-              centerURL={centerURL}
-              validURL={validURL}
-              validPhone={validPhone}
-              centerIntroduction={centerIntroduction}
-            />
-            {/* <EditButtonContainer>
+          {!data ? (
+            <div className="noData">데이터를 불러오지 못했습니다.</div>
+          ) : (
+            <>
+              <ProfileSection>
+                <ImageUploader
+                  preview={preview || null} // preview가 없으면 기본 이미지 사용
+                  initialImage={
+                    preview ? URL.createObjectURL(preview) : data.img_url || '/assets/imgs/no-img-person.svg'
+                  }
+                  onImageUpload={handleImageUpload}
+                />
+                <ProfileImgEditButton label="수정하기" type="blue" onClick={() => console.log('프로필이미지 수정')} />
+              </ProfileSection>
+              <FormSection>
+                <EditProfileForm
+                  handleNameChange={handleNameChange}
+                  handlePhoneChange={handlePhoneChange}
+                  handleURLChange={handleURLChange}
+                  handleIntroductionChange={handleIntroductionChange}
+                  centerName={centerName}
+                  centerPhone={centerPhone}
+                  centerURL={centerURL}
+                  validURL={validURL}
+                  validPhone={validPhone}
+                  centerIntroduction={centerIntroduction}
+                />
+                {/* <EditButtonContainer>
               <EditEtcProfileButton
                 label="수정하기"
                 type="blue"
@@ -74,7 +80,9 @@ const EditCenterProfile = ({ data }: EditCenterProfileProps) => {
                 disabled={isSubmitting || !validURL || !validPhone || !centerName.trim()}
               />
             </EditButtonContainer> */}
-          </FormSection>
+              </FormSection>
+            </>
+          )}
         </ProfileEditWrapper>
       </div>
     </CenterProfileEditContainer>

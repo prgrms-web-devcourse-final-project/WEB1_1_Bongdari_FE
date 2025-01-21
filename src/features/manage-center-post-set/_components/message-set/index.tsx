@@ -24,6 +24,7 @@ const MessageSet = () => {
   const queryClient = useQueryClient();
 
   const { data: messages } = useMessageList(page);
+  const hasMessages = messages?.content && messages.content.length > 0;
 
   const handleItemClick = (message: MessageItem) => {
     setSelectedMessageId(message.id);
@@ -48,21 +49,27 @@ const MessageSet = () => {
       <Wrapper>
         <NoteSetTitle>쪽지리스트</NoteSetTitle>
         <List>
-          {messages?.content?.map((message: MessageItem) => (
-            <ListItem key={message.id} onClick={() => handleItemClick(message)}>
-              <ListItemTitle $isRead={message.is_read}>
-                {message.title.length > 10 ? `${message.title.slice(0, 10)}...` : message.title}
-              </ListItemTitle>
-              <StateBox>
-                {!message.is_read && <MessageLabel />}
-                <Author>{message.sender_name}</Author>
-              </StateBox>
-            </ListItem>
-          ))}
+          {!hasMessages ? (
+            <div className="noData">받은 쪽지가 없습니다.</div>
+          ) : (
+            messages?.content?.map((message: MessageItem) => (
+              <ListItem key={message.id} onClick={() => handleItemClick(message)}>
+                <ListItemTitle $isRead={message.is_read}>
+                  {message.title.length > 10 ? `${message.title.slice(0, 10)}...` : message.title}
+                </ListItemTitle>
+                <StateBox>
+                  {!message.is_read && <MessageLabel />}
+                  <Author>{message.sender_name}</Author>
+                </StateBox>
+              </ListItem>
+            ))
+          )}
         </List>
-        <Stack spacing={2} sx={{ margin: 'auto' }}>
-          <CustomPagination page={page + 1} onChange={handlePageChange} count={messages?.totalPages} />
-        </Stack>
+        {hasMessages && (
+          <Stack spacing={2} sx={{ margin: 'auto' }}>
+            <CustomPagination page={page + 1} onChange={handlePageChange} count={messages?.totalPages} />
+          </Stack>
+        )}
       </Wrapper>
       {openNoteModal && <MessageReadModal handleModalClose={handleModalClose} noteId={selectedMessageId} />}
     </>

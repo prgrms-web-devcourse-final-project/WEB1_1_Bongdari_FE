@@ -22,6 +22,15 @@ export const SectionBox = styled.div`
   background-color: ${theme.box.section.backgroundColor};
   padding: 55px 42px 44px 48px;
 
+  &.noData,
+  .noDataText {
+    border: 1px dashed gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
   @media (max-width: 1000px) {
     padding: 22px 20px 68px 18px;
   }

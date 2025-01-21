@@ -18,6 +18,11 @@ const RegisterGoods = ({ name, preferData }: RegisterGoodsProps) => {
   const { currentInput, setCurrentInput, handleKeyPress, handleDeleteGoods } = useHandleItem();
   const { openAlert } = useAlertDialog();
 
+  // preferData가 undefined이거나 null일 때 api 또는 통신 오류로 간주 -> 영역 유지를 위함
+  const hasError = !preferData;
+  // preferData가 빈 배열일 때는 등록된 필요품이 없는 상태
+  const isEmpty = preferData?.length === 0;
+
   const handleAdd = async (itemName: string) => {
     if (!itemName.trim()) {
       openAlert('물품명을 입력해주세요.');
@@ -40,29 +45,44 @@ const RegisterGoods = ({ name, preferData }: RegisterGoodsProps) => {
   };
 
   return (
-    <SectionBox>
-      <RegisterTitleSection>
-        <ResisterTitle>{name}의 필요품 등록</ResisterTitle>
-        <Tooltip title={`기관에 필요한 물품을 직접 입력해 등록해보세요 (예: 어린이 동화 10권 or 옷 5벌)`} arrow>
-          <Button style={{ paddingLeft: 0 }}>
-            <TooltipBorder>
-              <i className="fa-solid fa-exclamation"></i>
-            </TooltipBorder>
-          </Button>
-        </Tooltip>
-      </RegisterTitleSection>
-      <GoodsContainer>
-        {preferData.map((item) => (
-          <GoodsItem key={item.id} prefer_item_id={item.id} item_name={item.itemName} onDelete={handleDeleteGoods} />
-        ))}
-      </GoodsContainer>
-      <RegisterBar
-        currentInput={currentInput}
-        setCurrentInput={setCurrentInput}
-        handleAddGoods={handleAdd}
-        handleKeyPress={(e) => handleKeyPress(e, handleAdd)}
-        disabled={isLoading}
-      />
+    <SectionBox className={hasError ? 'noData' : ''}>
+      {hasError ? (
+        <div className="noDataText">데이터를 불러오지 못했습니다</div>
+      ) : (
+        <>
+          <RegisterTitleSection>
+            <ResisterTitle>{name}의 필요품 등록</ResisterTitle>
+            <Tooltip title={`기관에 필요한 물품을 직접 입력해 등록해보세요 (예: 어린이 동화 10권 or 옷 5벌)`} arrow>
+              <Button style={{ paddingLeft: 0 }}>
+                <TooltipBorder>
+                  <i className="fa-solid fa-exclamation"></i>
+                </TooltipBorder>
+              </Button>
+            </Tooltip>
+          </RegisterTitleSection>
+          <GoodsContainer>
+            {isEmpty ? (
+              <div className="noData">등록된 필요품이 없습니다</div>
+            ) : (
+              preferData.map((item) => (
+                <GoodsItem
+                  key={item.id}
+                  prefer_item_id={item.id}
+                  item_name={item.itemName}
+                  onDelete={handleDeleteGoods}
+                />
+              ))
+            )}
+          </GoodsContainer>
+          <RegisterBar
+            currentInput={currentInput}
+            setCurrentInput={setCurrentInput}
+            handleAddGoods={handleAdd}
+            handleKeyPress={(e) => handleKeyPress(e, handleAdd)}
+            disabled={isLoading}
+          />
+        </>
+      )}
     </SectionBox>
   );
 };
