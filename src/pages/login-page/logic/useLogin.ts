@@ -33,8 +33,9 @@ export const useLogin = (): useReturn => {
   // pwd formatCheck
   const checkPwd = (pwd: string) => {
     setPwd(pwd);
-    if (pwd.length < 8 || pwd.length > 20) setPwdErr('8자 이상 20자 이내로 작성해주세요');
-    else setPwdErr('');
+    // if (pwd.length < 8 || pwd.length > 20) setPwdErr('8자 이상 20자 이내로 작성해주세요');
+    // else setPwdErr('');
+    setPwdErr('');
   };
 
   const onClickFindAcount = () => {
