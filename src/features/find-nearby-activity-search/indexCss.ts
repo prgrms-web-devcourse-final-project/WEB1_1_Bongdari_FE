@@ -61,6 +61,16 @@ export const Wrapper = styled.ul`
   gap: 10px;
   width: 100%;
   justify-content: center;
+
+  .noData {
+    height: 500px;
+    width: 100%;
+    border: 1px dashed gray;
+    border-radius: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const SearchButton = styled(Button)`

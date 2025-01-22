@@ -32,16 +32,14 @@ const FindNearByActivitySearch = ({ activities, isLoading, onSearch }: FindNearB
       <ScrollSection>
         <MapPageTitle>주변 활동 찾기</MapPageTitle>
         <SearchBarComponent>
-          <InputBox
-            // inputBox 고쳐주세요!!
-            // width="80%"
-            colortype="white"
-            getInputText={handleInputChange}
-          />
+          <InputBox colortype="white" getInputText={handleInputChange} placeholder="검색어를 입력해주세요." />
           <SearchButton label="검색" onClick={handleSearch} />
         </SearchBarComponent>
         <Wrapper>
-          {!isLoading &&
+          {(!activities || activities.length) === 0 ? (
+            <div className="noData">현재 주변에 모집중인 봉사가 없습니다.</div>
+          ) : (
+            !isLoading &&
             activities.map((activity) => (
               <AidReqListItem
                 key={activity.id}
@@ -49,7 +47,8 @@ const FindNearByActivitySearch = ({ activities, isLoading, onSearch }: FindNearB
                 onClick={() => handleActivityClick(activity.id)}
                 request={activity}
               />
-            ))}
+            ))
+          )}
         </Wrapper>
       </ScrollSection>
     </SearchBox>

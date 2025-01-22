@@ -50,7 +50,6 @@ const FindNearByActivityPage = () => {
 
   const handleActivityClick = (activity: Activity) => {
     console.log('선택한 봉사활동:', activity);
-    // TODO: 지도에서 활동 마커를 클릭했을 때 실행되는 함수 -> 어떤 정보를 띄울지 고민해봐야 함
     navigate(`/aidrqdetail/${activity.id}`);
   };
 
@@ -62,9 +61,6 @@ const FindNearByActivityPage = () => {
             <FindNearByActivitySearch activities={activities} isLoading={isLoading} onSearch={handleSearch} />
           </BottomSheet>
         ) : (
-          // <SearchContainer>
-          //   <FindNearByActivitySearch activities={activities} isLoading={isLoading} onSearch={handleSearch} />
-          // </SearchContainer>
           <FindNearByActivitySearch activities={activities} isLoading={isLoading} onSearch={handleSearch} />
         )}
 
