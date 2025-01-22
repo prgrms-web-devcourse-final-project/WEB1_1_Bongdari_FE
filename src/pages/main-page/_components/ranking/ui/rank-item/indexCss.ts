@@ -9,6 +9,10 @@ export const Wrapper = styled.div`
   height: 230px;
   flex: 0 0 calc(50% - 5px);
   background-color: white;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 
 export const Top = styled.div`
@@ -19,7 +23,15 @@ export const Top = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 24px;
+  gap: 16px;
+
+  @media (max-width: 1000px) {
+    padding: 1rem 0;
+  }
+`;
+
+export const RankText = styled.span`
+  font-weight: 600;
 `;
 
 export const Users = styled.div`
@@ -34,25 +46,29 @@ export const Users = styled.div`
 
 export const DisplayUser = styled.div`
   font-size: 14px;
-  display: inline-block;
+  display: flex;
+  gap: 10px;
+  align-items: center;
   border: 1px solid #e3e3e3;
   border-radius: 8px;
-  padding: 4px 8px;
-
-  & > p {
-    font-weight: 600;
-  }
+  padding: 10px;
 
   & > a {
     text-decoration: none;
     color: inherit;
-    font-weight: 600;
+    font-weight: 500;
+  }
+
+  & > p {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 12px;
+    font-weight: 500;
   }
 `;
 
 export const RemainingUsers = styled.div`
   position: absolute;
-  top: 25px;
+  top: 30px;
   width: 100%;
   left: 0;
   right: 0;
@@ -74,10 +90,11 @@ export const RemainingUsers = styled.div`
 
   .remainingUsersWrap > * {
     border-bottom: 1px solid #e3e3e3;
-    padding: 8px;
+    padding: 12px;
     text-align: center;
     text-decoration: none;
     color: black;
+    font-size: 14px;
   }
 `;
 
