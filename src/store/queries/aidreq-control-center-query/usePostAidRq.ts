@@ -5,20 +5,16 @@ import axios from 'axios';
 
 interface PostAidRqParams {
   volunteerData: VolunteerType;
-  imgFile?: File;
+  // imgFile?: File;
 }
 
-const postAidRqFn = async ({ volunteerData, imgFile }: PostAidRqParams) => {
-  const formData = new FormData();
-  formData.append('data', JSON.stringify(volunteerData));
-  formData.append('img_file', imgFile || '');
+const postAidRqFn = async ({ volunteerData }: PostAidRqParams) => {
+  // const formData = new FormData();
+  // formData.append('data', JSON.stringify(volunteerData));
+  // formData.append('img_file', imgFile || '');
 
-  const response = await axiosInstance.post('/api/recruit-board', formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    }
-  });
-  return response.data;
+  const response = await axiosInstance.post('/api/recruit-board', volunteerData);
+  return response;
 };
 
 export const usePostAidRq = () => {
