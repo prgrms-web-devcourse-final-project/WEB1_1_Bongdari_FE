@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
 export const Top = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: end;
   padding-bottom: 30px;
 `;
 
