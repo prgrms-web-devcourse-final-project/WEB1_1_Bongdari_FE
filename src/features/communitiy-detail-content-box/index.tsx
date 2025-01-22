@@ -1,4 +1,3 @@
-import parse from 'html-react-parser';
 import { useDeleteCommunity } from '@/store/queries/community-create-common-query/useControlCommunity';
 import {
   ApplyButton,
@@ -14,6 +13,7 @@ import WriterProfileBox from './ui/WriterProfileBox';
 import useDateFormat from '@/shared/hooks/useDateFormat';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAlertDialog, useConfirmDialog } from '@/store/stores/dialog/dialogStore';
+import SanitizedContent from '@/components/sanitized-content';
 
 const CommunityDetailContentBox = ({ content_id }: { content_id: number }) => {
   const { detailData, writerData, isMyContent } = useCommunityDetailContent(content_id);
@@ -60,10 +60,9 @@ const CommunityDetailContentBox = ({ content_id }: { content_id: number }) => {
           <CommunityImage src={detailData.image_url} alt="detailData.image_url" />
         </CommunityImageContainer>
       )}
-      {/* 
-      일단 주석처리
-      <EditorContent dangerouslySetInnerHTML={{ __html: detailData.content }} className="content" /> */}
-      <EditorContent className="content">{parse(detailData.content)}</EditorContent>
+      <EditorContent className="content">
+        <SanitizedContent content={detailData.content} />
+      </EditorContent>
       <div className="btnWrap">
         {isMyContent ? (
           <EditDeleteBtnCon>

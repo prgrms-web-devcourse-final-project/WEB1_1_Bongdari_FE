@@ -19,6 +19,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import useDateFormat from '@/shared/hooks/useDateFormat';
 import { useFindReview } from './logic/useFindReview';
+import SanitizedContent from '@/components/sanitized-content';
 
 interface ReviewModalProps {
   handleCloseReviewModal: () => void;
@@ -47,7 +48,9 @@ const ReviewReadModal = ({ handleCloseReviewModal, reviewId, isCenterReview = tr
               </ReviewImgBox>
             )}
           </ReviewImgBox>
-          <ReviewContent>{reviewData?.content}</ReviewContent>
+          <ReviewContent>
+            <SanitizedContent content={reviewData?.content} />
+          </ReviewContent>
           {isCenterReview ? (
             <ProfileBox>
               <ProfileInfo>
