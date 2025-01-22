@@ -3,18 +3,14 @@ import axios from 'axios';
 
 import { RegularData } from '@/shared/types/aidrq-detail/aidrqDetailType';
 
-export const updateRegular = async (id: string, changedRegular: RegularData, imgFile?: File) => {
+export const updateRegular = async (id: string, changedRegular: RegularData) => {
   try {
-    console.log(changedRegular);
-    const formData = new FormData();
-    formData.append('data', JSON.stringify(changedRegular));
-    formData.append('img_file', imgFile || '');
+    // console.log(changedRegular);
+    // const formData = new FormData();
+    // formData.append('data', JSON.stringify(changedRegular));
+    // formData.append('img_file', imgFile || '');
 
-    const response = await axiosInstance.put(`/api/recruit-board/${id}`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    });
+    const response = await axiosInstance.put(`/api/recruit-board/${id}`, changedRegular);
     return response;
   } catch (error) {
     console.log('Full error:', error);
