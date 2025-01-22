@@ -16,20 +16,8 @@ interface TopProps {
 
 const Top = ({ title, content, center, category, admitted }: TopProps) => {
   const sanitizedContent = sanitizeHtml(content, {
-    allowedTags: ['p', 'img', 'br', 'b', 'strong', 'em', 'ul', 'ol', 'li', 'a', 'span'],
-    allowedAttributes: {
-      '*': ['style'], // 모든 태그에 style 속성 허용
-      a: ['href', 'target'],
-      img: ['src', 'alt']
-    },
-    allowedStyles: {
-      '*': {
-        color: [/.*/],
-        'background-color': [/.*/],
-        'font-size': [/.*/],
-        'text-align': [/.*/]
-      }
-    }
+    allowedTags: ['p'], // p 태그만 허용하기
+    allowedAttributes: {} // 어떤 요소도 허용 x
   });
 
   return (

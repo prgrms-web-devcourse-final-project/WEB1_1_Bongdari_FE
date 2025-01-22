@@ -39,18 +39,6 @@ export const useMyReview = (): useMyReviewReturn => {
   useEffect(() => {
     // 로그인 상태가 아니라면 불러오지 않기
     if (myLoginId && data) setReviewData(data.content);
-    setReviewData([
-      {
-        id: 1,
-        volunteer_id: '123id',
-        volunteer_nickname: 'volnick',
-        title: '젛아요',
-        content: '너무 좋았습니다',
-        img_url: '1',
-        created_at: '19990301',
-        update_at: '20521212'
-      }
-    ]);
   }, [currPage, data, myLoginId]);
 
   // 데이터 fetch 및 페이지 수 계산
