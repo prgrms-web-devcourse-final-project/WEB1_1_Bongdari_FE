@@ -1,21 +1,12 @@
-export interface RankingDataType {
-  volunteer_id: string;
+export interface RankingItem {
+  volunteerId: string;
+  totalHours: number;
+  ranking: number;
   nickname: string;
-  img_url: string;
-  introduce: string;
-  tier: string;
-  total_volunteer_hours: number;
 }
 
-// interface RankingUserType {
-//   volunteer_id: string;
-//   nickname: string;
-//   img_url: string;
-//   introduce: string;
-//   tier: string;
-// }
-
-// export interface RankingDataType {
-//   users: RankingUserType[];
-//   total_volunteer_hours: number;
-// }
+export interface RankingResponse {
+  volunteer_total_ranking_response: RankingItem[];
+  volunteer_monthly_ranking_response: RankingItem[];
+  volunteer_weekly_ranking_response: RankingItem[];
+}

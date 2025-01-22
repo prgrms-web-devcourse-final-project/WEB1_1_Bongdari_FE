@@ -5,7 +5,6 @@ const TabGroupWrapper = styled.div`
   gap: 5px;
   justify-content: center;
   align-items: center;
-  margin-top: 16px;
 `;
 
 export default TabGroupWrapper;
