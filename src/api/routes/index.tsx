@@ -27,6 +27,7 @@ import SignupPage from '@/pages/signup-page';
 
 import CenterDetailInfoPage from '@/pages/detail-info-page/center';
 import VolunteerDetailInfoPage from '@/pages/detail-info-page/volunteer';
+import SuccessPage from '@/pages/success-page';
 
 const MyPage = () => {
   const loginType = useLoginStore((state) => state.loginType);
@@ -111,6 +112,10 @@ const routes: RouteObject[] = [
       {
         path: '/signup',
         element: <SignupPage />
+      },
+      {
+        path: '/success',
+        element: <SuccessPage />
       },
       {
         // TODO: 추후 라우팅 통합할 예정
