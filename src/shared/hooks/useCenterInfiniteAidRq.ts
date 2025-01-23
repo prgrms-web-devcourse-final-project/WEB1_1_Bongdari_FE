@@ -13,7 +13,7 @@ interface AidRequestParams {
 }
 
 const fetchCenterBoards = async ({
-  centerId,
+  // centerId,
   page,
   keyword,
   category,
@@ -22,7 +22,7 @@ const fetchCenterBoards = async ({
   sort,
   status
 }: AidRequestParams) => {
-  const response = await axios.get(`https://api.somemore.site/api/recruit-boards/center/${centerId}`, {
+  const response = await axios.get(`https://api.somemore.site/api/recruit-boards/center/me`, {
     params: {
       page,
       size: 6,
