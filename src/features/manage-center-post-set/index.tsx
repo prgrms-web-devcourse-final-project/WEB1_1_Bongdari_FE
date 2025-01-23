@@ -14,14 +14,20 @@ const ManageCenterPostSet = ({ centerId }: ManageCenterPostSetProps) => {
 
   // api 호출 성공 여부 flag
   const hasError = false;
+  if (hasError) {
+    return (
+      <SectionWrapper>
+        <TabMenu selectedMenuItem={selectedMenuItem} setSelectedMenuItem={setSelectedMenuItem} />
+        <div className="noData">데이터를 불러올 수 없습니다.</div>
+      </SectionWrapper>
+    );
+  }
 
   return (
     <SectionWrapper>
       <TabMenu selectedMenuItem={selectedMenuItem} setSelectedMenuItem={setSelectedMenuItem} />
-      <SectionBox className={hasError ? 'noData' : ''}>
-        {hasError ? (
-          <div className="noDataText">데이터를 불러오지 못했습니다.</div>
-        ) : selectedMenuItem === 0 ? (
+      <SectionBox>
+        {selectedMenuItem === 0 ? (
           <GoAidReqSet />
         ) : selectedMenuItem === 1 ? (
           <MessageSet />

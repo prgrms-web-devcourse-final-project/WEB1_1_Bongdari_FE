@@ -31,7 +31,7 @@ export const List = styled.ul`
 
   .noData {
     margin-top: 1rem;
-    height: 200px;
+    height: 600px;
     width: 100%;
     border: 1px dashed gray;
     border-radius: 13px;

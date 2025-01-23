@@ -8,6 +8,21 @@ export const CenterProfileEditContainer = styled.section`
   width: 100%;
   margin: 0 auto;
   gap: 1rem;
+
+  .noData {
+    height: 500px;
+    width: 100%;
+    border: 1px dashed gray;
+    border-radius: 13px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media (max-width: 1000px) {
+      height: 300px;
+    }
+  }
 `;
 
 export const CenterProfileTitle = styled.h1`
@@ -26,16 +41,6 @@ export const CenterProfileTitle = styled.h1`
 export const ProfileEditWrapper = styled.div`
   display: flex;
   gap: 29px;
-
-  .noData {
-    height: 200px;
-    width: 100%;
-    border: 1px dashed gray;
-    border-radius: 13px;
-    text-align: center;
-    display: block;
-    padding-top: 8%;
-  }
 
   @media (max-width: 1000px) {
     display: flex;
@@ -78,10 +83,10 @@ export const ProfileSection = styled.section`
   padding: 75px 110px 42px 110px;
 
   &.noData {
-    border-radius: 13px;
     border: 1px dashed gray;
-    height: 100%;
-    padding-top: 25%;
+    min-height: 300px;
+    justify-content: center;
+    gap: 0;
   }
 
   @media (max-width: 1000px) {

@@ -9,6 +9,21 @@ export const SectionBox = styled.div`
   padding: 58px 100px 84px 80px;
   margin: auto;
 
+  &.noData {
+    height: 200px;
+    width: 100%;
+    border: 1px dashed gray;
+    border-radius: 13px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media (max-width: 1000px) {
+      height: 300px;
+    }
+  }
+
   @media (max-width: 1000px) {
     padding: 34px 20px 44px 20px;
   }
@@ -44,7 +59,7 @@ export const GoodsContainer = styled.div`
   justify-content: flex-start;
   padding-bottom: 40px;
 
-  .noData {
+  .emptyData {
     height: 100px;
     width: 100%;
     border: 1px dashed gray;
@@ -53,15 +68,6 @@ export const GoodsContainer = styled.div`
     align-items: center;
     justify-content: center;
   }
-
-  .noDataText {
-    height: 200px;
-    width: 100%;
-    border: 1px dashed gray;
-    border-radius: 13px;
-    display: block;
-  }
-
   @media (max-width: 1000px) {
     gap: 11px;
   }

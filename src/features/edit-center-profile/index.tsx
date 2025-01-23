@@ -14,7 +14,7 @@ import useEditCenterProfile from './logic/useEditCenterProfile';
 import { centerProfileType } from '@/shared/types/center-profile/centerProfile';
 
 interface EditCenterProfileProps {
-  data: centerProfileType;
+  data?: centerProfileType;
 }
 
 const EditCenterProfile = ({ data }: EditCenterProfileProps) => {
@@ -32,8 +32,6 @@ const EditCenterProfile = ({ data }: EditCenterProfileProps) => {
     handleIntroductionChange,
     validURL,
     validPhone
-    // handleEditProfile,
-    // isSubmitting
   } = useEditCenterProfile({ data });
 
   return (
@@ -46,12 +44,14 @@ const EditCenterProfile = ({ data }: EditCenterProfileProps) => {
       <div>
         <ProfileEditWrapper>
           {!data ? (
-            <div className="noData">데이터를 불러오지 못했습니다.</div>
+            <ProfileSection className="noData">
+              <div>프로필을 불러올 수 없습니다.</div>
+            </ProfileSection>
           ) : (
             <>
               <ProfileSection>
                 <ImageUploader
-                  preview={preview || null} // preview가 없으면 기본 이미지 사용
+                  preview={preview || null}
                   initialImage={
                     preview ? URL.createObjectURL(preview) : data.img_url || '/assets/imgs/no-img-person.svg'
                   }
@@ -72,14 +72,6 @@ const EditCenterProfile = ({ data }: EditCenterProfileProps) => {
                   validPhone={validPhone}
                   centerIntroduction={centerIntroduction}
                 />
-                {/* <EditButtonContainer>
-              <EditEtcProfileButton
-                label="수정하기"
-                type="blue"
-                onClick={handleEditProfile}
-                disabled={isSubmitting || !validURL || !validPhone || !centerName.trim()}
-              />
-            </EditButtonContainer> */}
               </FormSection>
             </>
           )}
