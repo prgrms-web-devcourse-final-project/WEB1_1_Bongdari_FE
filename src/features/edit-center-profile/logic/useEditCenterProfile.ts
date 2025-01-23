@@ -4,23 +4,22 @@ import { useAlertDialog } from '@/store/stores/dialog/dialogStore';
 import { centerProfileType } from '@/shared/types/center-profile/centerProfile';
 
 interface UseEditCenterProfileProps {
-  data: centerProfileType;
+  data?: centerProfileType;
 }
 
 const useEditCenterProfile = ({ data }: UseEditCenterProfileProps) => {
   const updateProfile = useUpdateCenterProfile();
+  const { openAlert } = useAlertDialog();
 
   // 각 input 상태 관리
   const [preview, setPreview] = useState<File | null>(null);
-  const [centerName, setCenterName] = useState(data.name);
-  const [originalName, setOriginalName] = useState(data.name);
-  const [centerPhone, setCenterPhone] = useState(data.contact_number);
-  const [centerURL, setCenterURL] = useState(data.homepage_link);
-  const [centerIntroduction, setCenterIntroduction] = useState(data.introduce);
+  const [centerName, setCenterName] = useState(data?.name ?? '');
+  const [originalName, setOriginalName] = useState(data?.name ?? '');
+  const [centerPhone, setCenterPhone] = useState(data?.contact_number ?? '');
+  const [centerURL, setCenterURL] = useState(data?.homepage_link ?? '');
+  const [centerIntroduction, setCenterIntroduction] = useState(data?.introduce ?? '');
   const [validURL, setValidURL] = useState(true);
   const [validPhone, setValidPhone] = useState(true);
-
-  const { openAlert } = useAlertDialog();
 
   // 이미지 업로드 핸들러
   const handleImageUpload = (file: File) => {
@@ -61,7 +60,7 @@ const useEditCenterProfile = ({ data }: UseEditCenterProfileProps) => {
       const updateData = {
         data: profileData,
         ...(preview && { img_file: preview }), // 새 이미지가 있을 경우에만 추가
-        ...(data.img_url && !preview && { img_url: data.img_url }) // 기존 이미지를 유지
+        ...(data?.img_url && !preview && { img_url: data?.img_url }) // 기존 이미지를 유지
       };
 
       // const updateData =
