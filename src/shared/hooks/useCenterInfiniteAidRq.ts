@@ -1,5 +1,5 @@
+import axiosInstance from '@/api/apis';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import axios from 'axios';
 
 interface AidRequestParams {
   centerId: string;
@@ -12,17 +12,8 @@ interface AidRequestParams {
   status?: string;
 }
 
-const fetchCenterBoards = async ({
-  // centerId,
-  page,
-  keyword,
-  category,
-  region,
-  admitted,
-  sort,
-  status
-}: AidRequestParams) => {
-  const response = await axios.get(`https://api.somemore.site/api/recruit-boards/center/me`, {
+const fetchCenterBoards = async ({ page, keyword, category, region, admitted, sort, status }: AidRequestParams) => {
+  const response = await axiosInstance.get(`/api/recruit-boards/me`, {
     params: {
       page,
       size: 6,
@@ -36,9 +27,9 @@ const fetchCenterBoards = async ({
   });
 
   return {
-    items: response,
+    items: { data: response },
     nextPage: page + 1,
-    hasMore: !response.data.data.last
+    hasMore: !response.data.last
   };
 };
 
