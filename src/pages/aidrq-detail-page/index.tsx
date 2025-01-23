@@ -40,7 +40,7 @@ const AidRqDetailPage = () => {
     if (myLoginState.loginType !== 'ROLE_VOLUNTEER') {
       return;
     }
-    myPresentStatus(setPresentState, myLoginState.myLoginId, id);
+    myPresentStatus(setPresentState, id);
   }, []);
 
   const { mutate: applyAidRq, isPending: isApplyPending } = useApplyAidRq();
@@ -52,7 +52,7 @@ const AidRqDetailPage = () => {
     applyAidRq(id, {
       onSuccess: () => {
         // 지원 상태 다시 조회
-        myPresentStatus(setPresentState, myLoginState.myLoginId, id);
+        myPresentStatus(setPresentState, id);
         // 성공 알림
         openAlert(`지원이 성공적으로 완료되었습니다.`);
       },
@@ -69,7 +69,7 @@ const AidRqDetailPage = () => {
     withdrawAidRq(presentState.id, {
       onSuccess: () => {
         // 지원상태 다시 조회
-        myPresentStatus(setPresentState, myLoginState.myLoginId, id);
+        myPresentStatus(setPresentState, id);
         // 성공 알림
         openAlert('지원이 성공적으로 철회되었습니다.');
       },
