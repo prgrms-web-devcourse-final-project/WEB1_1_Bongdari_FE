@@ -66,6 +66,7 @@ const SignupPage = () => {
               textType="text"
               placeholder="아이디를 입력해주세요."
               getInputText={(inputText) => setId(inputText)}
+              disabled={idCheck === 'success'}
             />
           </div>
           <DuplicateCheck

@@ -43,6 +43,13 @@ const InputBoxCss = styled.input<{ colortype: 'white' | 'gray' }>`
 
   &:disabled {
     background-color: ${inputGray.variants.focused.backgroundColor};
+    cursor: not-allowed; // 비활성화됐을 때 커서 스타일 변경
+    opacity: 0.7; // 비활성화됐다는 것을 시각적으로 표현
+
+    &::placeholder {
+      color: ${inputGray.placeholderColor};
+      opacity: 0.7;
+    }
   }
 `;
 export default InputBoxCss;
