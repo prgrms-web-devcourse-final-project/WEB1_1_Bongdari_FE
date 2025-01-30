@@ -85,7 +85,7 @@ const ApplicantListItem = ({ applicant, recruitStatus }: ApplicantListItemProps)
                 <Name>
                   {applicant.volunteer.name} ({applicant.volunteer.nickname})
                 </Name>
-                <Email>{applicant.volunteer.email}</Email>
+                <Email>{applicant.volunteer.contact_number}</Email>
               </SimpleProfile>
               <Status>{applicant.status}</Status>
             </ProfileInfoWrapper>
