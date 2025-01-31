@@ -11,9 +11,12 @@ export default function Layout() {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
+  const hideHeaderPaths = ['/volunteer-detail', '/center-detail'];
+  const shouldShowHeader = !hideHeaderPaths.includes(location.pathname);
+
   return (
     <Wrapper>
-      <Header />
+      {shouldShowHeader && <Header />}
       <Main>
         <Outlet />
       </Main>

@@ -1,4 +1,5 @@
 import Button from '@/components/button';
+import TextArea from '@/components/textArea';
 import theme from '@/styles/theme';
 import styled from 'styled-components';
 
@@ -52,10 +53,22 @@ export const DetailInfoForm = styled.form`
   }
 `;
 
+export const DetailInfo = styled(TextArea)`
+  height: 150px;
+`;
+
 export const SubmitButton = styled(Button)`
   max-width: 460px;
   width: 100%;
   border-radius: 10px;
   height: 53px;
   margin-top: 50px;
+`;
+
+export const LogoutButton = styled(Button)`
+  max-width: 460px;
+  width: 100%;
+  border-radius: 10px;
+  height: 53px;
+  margin-top: 5px;
 `;
