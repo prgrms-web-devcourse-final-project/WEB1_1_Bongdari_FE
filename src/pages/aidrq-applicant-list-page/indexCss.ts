@@ -37,6 +37,11 @@ export const PageWrapper = styled.div`
 `;
 
 export const EmptyStateText = styled.div`
+  ${theme.defaultPageCss.defaultPageCss}
+  margin-top: 100px;
+  border-radius: 10px;
+  width: 100%;
+  height: 600px;
   font-size: ${(props) => props.theme.fontSize.seventhSize};
   text-align: center;
   border: 1px dashed gray;
