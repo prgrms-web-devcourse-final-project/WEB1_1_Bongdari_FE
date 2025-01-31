@@ -18,7 +18,7 @@ const VolunteerDetailInfoPage = () => {
       </TitleContainer>
       <DetailInfoForm onSubmit={() => console.log('봉사자상세정보입력폼제출')}>
         <div>
-          <label htmlFor="volunteerName">기관명</label>
+          <label htmlFor="volunteerName">이름</label>
           <InputBox colortype="white" textType="text" placeholder="이름을 입력해주세요." />
         </div>
         <div>

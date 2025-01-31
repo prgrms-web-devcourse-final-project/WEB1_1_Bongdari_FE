@@ -2,7 +2,7 @@ export interface Volunteer {
   id: string;
   name: string;
   nickname: string;
-  email: string;
+  contact_number: string;
   img_url: string;
 }
 
