@@ -36,10 +36,8 @@ export const PageWrapper = styled.div`
   gap: 30px;
 `;
 
-export const EmptyStateText = styled.p`
-  font-size: ${(props) => props.theme.fontSize.sixthSize};
-  color: ${(props) => props.theme.colors.gray3};
+export const EmptyStateText = styled.div`
+  font-size: ${(props) => props.theme.fontSize.seventhSize};
   text-align: center;
-  line-height: 1.5;
-  padding-top: 5rem;
+  border: 1px dashed gray;
 `;
