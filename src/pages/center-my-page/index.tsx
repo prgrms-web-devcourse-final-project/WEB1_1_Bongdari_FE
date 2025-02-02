@@ -6,7 +6,7 @@ import { useGetCenterProfile } from '@/store/queries/center-mypage/useCenterProf
 import { useLoginStore } from '@/store/stores/login/loginStore';
 
 const CenterMyPage = () => {
-  const centerId = useLoginStore((state) => state.myLoginId);
+  const centerId = useLoginStore((state) => state.myRoleId);
   const { data } = useGetCenterProfile(centerId || '');
 
   if (!centerId) {
