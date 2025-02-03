@@ -6,8 +6,6 @@ import { DetailInfoForm, PageWrapper, SubmitButton, TitleContainer } from '../ce
 import { DetailInfo, LogoutButton, TabButton, TabWrapper } from './indexCss';
 import { useAlertDialog } from '@/store/stores/dialog/dialogStore';
 import { putVolunteerInfo } from './logic/putVolunteerInfo';
-import { useLoginStore } from '@/store/stores/login/loginStore';
-import { commonLogout } from '@/store/queries/logout-query/useCommonLogout';
 
 interface FormDataType {
   name: string;
@@ -31,7 +29,6 @@ interface SubmitDataType {
 const VolunteerDetailInfoPage = () => {
   const navigate = useNavigate();
   const { openAlert } = useAlertDialog();
-  const clearLoginInfo = useLoginStore((state) => state.clearLoginInfo);
 
   const [formData, setFormData] = useState<FormDataType>({
     name: '',
@@ -132,16 +129,10 @@ const VolunteerDetailInfoPage = () => {
         </div>
         <SubmitButton label="입력하기" type="blue" onClick={handleSubmit} />
         <LogoutButton
-          label="로그아웃"
+          label="건너뛰기"
           type="white"
-          onClick={async () => {
-            try {
-              await commonLogout();
-              clearLoginInfo();
-              window.location.href = '/main';
-            } catch (error) {
-              console.error('로그아웃 실패:', error);
-            }
+          onClick={() => {
+            navigate('/main');
           }}
         />
       </DetailInfoForm>
