@@ -78,7 +78,7 @@ export const ProfileSection = styled.section`
   border-radius: ${theme.box.section.borderRadius};
   display: flex;
   flex-direction: column;
-  gap: 213px;
+  gap: 120px;
   align-items: center;
   padding: 75px 110px 42px 110px;
 

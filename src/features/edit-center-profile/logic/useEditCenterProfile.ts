@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useUpdateCenterProfile } from '@/store/queries/center-mypage/useCenterProfile';
+import {
+  useUpdateCenterProfile,
+  type CenterProfileUpdateRequest
+} from '@/store/queries/center-mypage/useCenterProfile';
 import { useAlertDialog } from '@/store/stores/dialog/dialogStore';
 import { centerProfileType } from '@/shared/types/center-profile/centerProfile';
 
@@ -54,40 +57,21 @@ const useEditCenterProfile = ({ data }: UseEditCenterProfileProps) => {
       return;
     }
 
-    const profileData = {
-      name: centerName.trim(),
-      contact_number: centerPhone,
-      homepage_link: centerURL,
-      introduce: centerIntroduction
-    };
-
     // 성공 시 처리
     try {
-      // const updateData = preview
-      //   ? { data: profileData, img_file: preview }
-      //   : { data: profileData, img_url: data.img_url };
-
-      const updateData = {
-        data: profileData,
-        ...(preview && { img_file: preview }), // 새 이미지가 있을 경우에만 추가
-        ...(data?.img_url && !preview && { img_url: data?.img_url }) // 기존 이미지를 유지
+      const editData: CenterProfileUpdateRequest = {
+        common_basic_info: {
+          name: centerName.trim(),
+          contact_number: centerPhone,
+          introduce: centerIntroduction,
+          img_url: data?.img_url || ''
+        },
+        homepage_url: centerURL
       };
 
-      // const updateData =
-      //   preview && preview instanceof File ? { data: profileData, img_file: preview } : { data: profileData };
-
-      // console.log('요청 데이터:', updateData);
-      // if (preview) {
-      //   console.log('파일 정보:', {
-      //     name: preview.name,
-      //     size: preview.size,
-      //     type: preview.type
-      //   });
-      // }
-
-      await updateProfile.mutateAsync(updateData);
+      await updateProfile.mutateAsync(editData);
       setOriginalName(centerName.trim());
-      openAlert('프로필이 성공적으로 수정되었습니다.');
+      openAlert('프로필이 수정되었습니다.');
     } catch (error) {
       console.error('오류 발생:', error);
       openAlert('프로필 수정 중 오류가 발생했습니다. 다시 시도해주세요.');

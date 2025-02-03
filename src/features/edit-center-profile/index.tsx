@@ -31,7 +31,9 @@ const EditCenterProfile = ({ data }: EditCenterProfileProps) => {
     handleURLChange,
     handleIntroductionChange,
     validURL,
-    validPhone
+    validPhone,
+    handleEditProfile,
+    isSubmitting
   } = useEditCenterProfile({ data });
 
   return (
@@ -71,6 +73,8 @@ const EditCenterProfile = ({ data }: EditCenterProfileProps) => {
                   validURL={validURL}
                   validPhone={validPhone}
                   centerIntroduction={centerIntroduction}
+                  handleEditProfile={handleEditProfile}
+                  isSubmitting={isSubmitting}
                 />
               </FormSection>
             </>

@@ -5,16 +5,16 @@ import { centerProfileType } from '@/shared/types/center-profile/centerProfile';
 // import Cookies from 'js-cookie';
 
 // 수정 인터페이스
-interface CenterProfileUpdateData {
+interface CommonBasicInfo {
   name: string;
   contact_number: string;
-  homepage_link: string;
+  img_url: string;
   introduce: string;
 }
 
-interface CenterProfileUpdateRequest {
-  data: CenterProfileUpdateData;
-  img_file?: File;
+export interface CenterProfileUpdateRequest {
+  common_basic_info: CommonBasicInfo;
+  homepage_url: string;
 }
 
 // 기관 프로필 get 해오는 fetch 함수
@@ -27,19 +27,8 @@ const fetchCenterProfile = async (centerId: string): Promise<centerProfileType> 
 };
 
 // 기관 프로필 수정 put
-const updateCenterProfile = async ({ data, img_file }: CenterProfileUpdateRequest) => {
-  const requestData = {
-    common_basic_info: {
-      name: data.name,
-      contact_number: data.contact_number,
-      img_url: img_file,
-      introduce: data.introduce,
-      homepage_url: data.homepage_link
-    }
-  };
-
-  const response = await axiosInstance.put('/api/user/basic-info/center', requestData);
-
+const updateCenterProfile = async (request: CenterProfileUpdateRequest) => {
+  const response = await axiosInstance.put('/api/user/basic-info/center', request);
   return response.data;
 };
 
