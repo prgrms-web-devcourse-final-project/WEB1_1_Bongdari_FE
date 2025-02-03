@@ -28,6 +28,7 @@ import SignupPage from '@/pages/signup-page';
 import CenterDetailInfoPage from '@/pages/detail-info-page/center';
 import VolunteerDetailInfoPage from '@/pages/detail-info-page/volunteer';
 import SuccessPage from '@/pages/success-page';
+import ProtectedRoute from '@/components/route/ProtectedRoute';
 
 const MyPage = () => {
   const loginType = useLoginStore((state) => state.loginType);
@@ -79,31 +80,59 @@ const routes: RouteObject[] = [
       },
       {
         path: '/aidrqdetail/:id',
-        element: <AidRqDetailPage />
+        element: (
+          <ProtectedRoute>
+            <AidRqDetailPage />
+          </ProtectedRoute>
+        )
       },
       {
         path: '/mypage',
-        element: <MyPage />
+        element: (
+          <ProtectedRoute>
+            <MyPage />
+          </ProtectedRoute>
+        )
       },
       {
         path: '/mypage/adminaidreqlist',
-        element: <AdminAidRqListPage />
+        element: (
+          <ProtectedRoute>
+            <AdminAidRqListPage />
+          </ProtectedRoute>
+        )
       },
       {
         path: '/mypage/adminaidreqcreate',
-        element: <AidRqCreatePage />
+        element: (
+          <ProtectedRoute>
+            <AidRqCreatePage />
+          </ProtectedRoute>
+        )
       },
       {
         path: '/mypage/adminaidreqmodify',
-        element: <AidRqModifyPage />
+        element: (
+          <ProtectedRoute>
+            <AidRqModifyPage />
+          </ProtectedRoute>
+        )
       },
       {
         path: '/mypage/adminaidreqlist/:id',
-        element: <AidRqDetailAdminPage />
+        element: (
+          <ProtectedRoute>
+            <AidRqDetailAdminPage />
+          </ProtectedRoute>
+        )
       },
       {
         path: '/mypage/adminaidreqlist/:id/applicantList',
-        element: <AidRqApplicantListPage />
+        element: (
+          <ProtectedRoute>
+            <AidRqApplicantListPage />
+          </ProtectedRoute>
+        )
       },
       {
         path: '/login',
@@ -120,20 +149,36 @@ const routes: RouteObject[] = [
       {
         // TODO: 추후 라우팅 통합할 예정
         path: '/center-detail',
-        element: <CenterDetailInfoPage />
+        element: (
+          <ProtectedRoute>
+            <CenterDetailInfoPage />
+          </ProtectedRoute>
+        )
       },
       {
         // TODO: 추후 라우팅 통합할 예정
         path: '/volunteer-detail',
-        element: <VolunteerDetailInfoPage />
+        element: (
+          <ProtectedRoute>
+            <VolunteerDetailInfoPage />
+          </ProtectedRoute>
+        )
       },
       {
         path: '/profile',
-        element: <PersonalProfilePage />
+        element: (
+          <ProtectedRoute>
+            <PersonalProfilePage />
+          </ProtectedRoute>
+        )
       },
       {
         path: '/profile/:userId',
-        element: <PersonalProfilePage />
+        element: (
+          <ProtectedRoute>
+            <PersonalProfilePage />
+          </ProtectedRoute>
+        )
       },
       {
         path: '/community',
@@ -141,19 +186,35 @@ const routes: RouteObject[] = [
       },
       {
         path: '/community/:content_id',
-        element: <CommunityDetailPage />
+        element: (
+          <ProtectedRoute>
+            <CommunityDetailPage />
+          </ProtectedRoute>
+        )
       },
       {
         path: '/communitycreate',
-        element: <CommunityCreatePage />
+        element: (
+          <ProtectedRoute>
+            <CommunityCreatePage />
+          </ProtectedRoute>
+        )
       },
       {
         path: '/communitycreate/:content_id',
-        element: <CommunityCreatePage />
+        element: (
+          <ProtectedRoute>
+            <CommunityCreatePage />
+          </ProtectedRoute>
+        )
       },
       {
         path: '/centerprofile/:center_id',
-        element: <CenterProfilePage />
+        element: (
+          <ProtectedRoute>
+            <CenterProfilePage />
+          </ProtectedRoute>
+        )
       },
       {
         path: '/findnearmyactivity',
