@@ -28,34 +28,18 @@ const fetchCenterProfile = async (centerId: string): Promise<centerProfileType> 
 
 // 기관 프로필 수정 put
 const updateCenterProfile = async ({ data, img_file }: CenterProfileUpdateRequest) => {
-  const formData = new FormData();
-
-  formData.append('data', JSON.stringify(data));
-
-  // 새로운 이미지가 있을 때만 img_file 필드 추가
-  if (img_file && img_file instanceof File) {
-    formData.append('img_file', img_file);
-  }
-  // img_file이 없으면 기존 이미지 유지를 위해 필드 자체를 포함하지 않음
-
-  // 로깅
-  console.log('FormData entries:');
-  for (const [key, value] of formData.entries()) {
-    console.log(`${key}:`, value instanceof File ? 'File object' : value);
-  }
-
-  // const response = await axiosInstance.put('/api/center/profile', formData, {
-  //   headers: {
-  //     'Content-Type': 'multipart/form-data',
-  //     Authorization: `Bearer ${Cookies.get('ACCESS')}`
-  //   }
-  // });
-
-  const response = await axiosInstance.put('/api/center/profile', formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data'
+  const requestData = {
+    common_basic_info: {
+      name: data.name,
+      contact_number: data.contact_number,
+      img_url: img_file,
+      introduce: data.introduce,
+      homepage_url: data.homepage_link
     }
-  });
+  };
+
+  const response = await axiosInstance.put('/api/user/basic-info/center', requestData);
+
   return response.data;
 };
 
@@ -64,6 +48,7 @@ export const useGetCenterProfile = (centerId: string) => {
   return useQuery({
     queryKey: ['centerProfile', centerId],
     queryFn: () => fetchCenterProfile(centerId),
+    enabled: !!centerId,
     staleTime: 1000 * 60 * 30, // 30분
     gcTime: 1000 * 60 * 60 // 1시간
   });

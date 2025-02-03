@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useUpdateCenterProfile } from '@/store/queries/center-mypage/useCenterProfile';
 import { useAlertDialog } from '@/store/stores/dialog/dialogStore';
 import { centerProfileType } from '@/shared/types/center-profile/centerProfile';
@@ -16,10 +16,20 @@ const useEditCenterProfile = ({ data }: UseEditCenterProfileProps) => {
   const [centerName, setCenterName] = useState(data?.name ?? '');
   const [originalName, setOriginalName] = useState(data?.name ?? '');
   const [centerPhone, setCenterPhone] = useState(data?.contact_number ?? '');
-  const [centerURL, setCenterURL] = useState(data?.homepage_link ?? '');
+  const [centerURL, setCenterURL] = useState(data?.homepage_url ?? '');
   const [centerIntroduction, setCenterIntroduction] = useState(data?.introduce ?? '');
   const [validURL, setValidURL] = useState(true);
   const [validPhone, setValidPhone] = useState(true);
+
+  useEffect(() => {
+    if (data) {
+      setCenterName(data.name ?? '');
+      setOriginalName(data.name ?? '');
+      setCenterPhone(data.contact_number ?? '');
+      setCenterURL(data.homepage_url ?? '');
+      setCenterIntroduction(data.introduce ?? '');
+    }
+  }, [data]);
 
   // 이미지 업로드 핸들러
   const handleImageUpload = (file: File) => {
