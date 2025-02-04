@@ -1,5 +1,5 @@
 import { useAlertDialog } from '@/store/stores/dialog/dialogStore';
-import { validatePhone, validateURL } from '../../logic/validation';
+import { validatePhone } from '../../logic/validation';
 import {
   CenterIntroTextArea,
   EditProfileSectionButton,
@@ -18,12 +18,11 @@ interface EditProfileFormProps {
   centerName: string;
   centerPhone: string;
   centerURL: string;
-  validURL: boolean;
   validPhone: boolean;
   centerIntroduction: string;
   handleNameChange: (value: string) => void;
   handlePhoneChange: (value: string, isValid: boolean) => void;
-  handleURLChange: (value: string, isValid: boolean) => void;
+  handleURLChange: (value: string) => void;
   handleIntroductionChange: (value: string) => void;
   handleEditProfile: () => void;
   isSubmitting?: boolean;
@@ -33,7 +32,6 @@ const EditProfileForm = ({
   centerName,
   centerPhone,
   centerURL,
-  validURL,
   validPhone,
   centerIntroduction,
   handleNameChange,
@@ -45,14 +43,42 @@ const EditProfileForm = ({
 }: EditProfileFormProps) => {
   const { openAlert } = useAlertDialog();
 
-  // 소개글 500자 이상일 때 경고창
-  const handleIntroductionUpdate = () => {
-    if (centerIntroduction.length > 500) {
-      openAlert('소개글은 500자를 넘을 수 없습니다.');
-      return;
+  const validateForm = () => {
+    if (!centerName.trim()) {
+      openAlert('닉네임을 입력해주세요.');
+      return false;
     }
 
-    handleEditProfile();
+    if (!centerPhone.trim()) {
+      openAlert('연락처를 입력해주세요.');
+      return false;
+    }
+    if (!validPhone) {
+      openAlert('올바른 연락처 형식으로 입력해주세요.');
+      return false;
+    }
+
+    if (!centerURL.trim()) {
+      openAlert('사이트 주소를 입력해주세요.');
+      return false;
+    }
+
+    if (!centerIntroduction.trim()) {
+      openAlert('기관 소개를 입력해주세요.');
+      return false;
+    }
+    if (centerIntroduction.length > 500) {
+      openAlert('소개글은 500자를 넘을 수 없습니다.');
+      return false;
+    }
+
+    return true;
+  };
+
+  const handleSubmit = () => {
+    if (validateForm()) {
+      handleEditProfile();
+    }
   };
 
   return (
@@ -97,14 +123,10 @@ const EditProfileForm = ({
               id="centerURL"
               type="text"
               value={centerURL}
-              onChange={(e) => {
-                const value = e.target.value;
-                const isValid = validateURL(value);
-                handleURLChange(value, isValid);
-              }}
+              onChange={(e) => handleURLChange(e.target.value)}
               placeholder="사이트 주소를 입력하세요."
             />
-            {centerURL && !validURL && <ErrorMessage>⚠️ 올바른 URL 형식이 아닙니다.</ErrorMessage>}
+            {centerURL === '' && <ErrorMessage>⚠️ 사이트 주소를 입력해주세요.</ErrorMessage>}
           </InputWrapper>
         </EditItem>
         <EditItem_TextArea>
@@ -120,11 +142,7 @@ const EditProfileForm = ({
             />
           </TextAreaWrapper>
         </EditItem_TextArea>
-        <EditProfileSectionButton
-          label={isSubmitting ? '수정중...' : '수정하기'}
-          type="blue"
-          onClick={handleIntroductionUpdate}
-        />
+        <EditProfileSectionButton label={isSubmitting ? '수정중...' : '수정하기'} type="blue" onClick={handleSubmit} />
       </ProfileSection1>
     </EditFormWrapper>
   );
