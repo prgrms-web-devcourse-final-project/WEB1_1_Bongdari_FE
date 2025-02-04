@@ -16,7 +16,7 @@ export interface personProfileType {
 interface personProfileDetailType {
   name: string;
   email: string;
-  gender: 'male' | 'female';
+  gender: 'MALE' | 'FEMALE';
   birthDate: string;
   contact_number: string;
 }

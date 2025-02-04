@@ -1,16 +1,9 @@
 import axiosInstance from '@/api/apis';
 import { ApplicantDetailInfo } from '@/shared/types/aidrq-volunteer-list/volunteerListType';
 import { useQuery } from '@tanstack/react-query';
-// import Cookies from 'js-cookie';
 
 const fetchApplicantDetail = async (volunteerId: string): Promise<ApplicantDetailInfo> => {
-  // const response = await axiosInstance.get(`/api/volunteer/profile/${volunteerId}/detailed`, {
-  //   headers: {
-  //     Authorization: `${Cookies.get('ACCESS')}`
-  //   }
-  // });
-
-  const response = await axiosInstance.get(`/api/volunteer/profile/${volunteerId}/detailed`);
+  const response = await axiosInstance.get(`/api/volunteer/profile/volunteer-id/${volunteerId}`);
 
   return response.data;
 };

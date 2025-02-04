@@ -2,25 +2,32 @@ import { useMutation } from '@tanstack/react-query';
 import axiosInstance from '@/api/apis';
 import { resType } from '@/shared/types/resType';
 
-// 커뮤니티 게시글 수정
-const putMyProfile = async (changeProfileData: { introduce: string; nickname: string }, imgFile?: File) => {
-  const formData = new FormData();
-  formData.append('data', JSON.stringify(changeProfileData));
-  formData.append('img_file', imgFile || '');
+interface CommonBasicInfo {
+  name: string;
+  contact_number: string;
+  img_url: string;
+  introduce: string;
+}
 
-  // formData 콘솔에 찍기
-  for (const [key, value] of formData.entries()) {
-    console.log(`${key}:`, value instanceof File ? 'File object' : value);
-  }
+export interface VolunteerInfo {
+  common_basic_info: CommonBasicInfo;
+  nickname: string;
+  gender: 'MALE' | 'FEMALE';
+}
+
+// 커뮤니티 게시글 수정
+const putMyProfile = async (currentInfo: VolunteerInfo, changes: { introduce: string; nickname: string }) => {
+  const updateData: VolunteerInfo = {
+    ...currentInfo,
+    nickname: changes.nickname,
+    common_basic_info: {
+      ...currentInfo.common_basic_info,
+      introduce: changes.introduce
+    }
+  };
 
   try {
-    // axios PUT 요청
-    const res: resType<string> = await axiosInstance.put(`/api/profile`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    });
-    console.log('putMyProfile data', res);
+    const res: resType<string> = await axiosInstance.put(`/api/user/basic-info/volunteer`, updateData);
 
     if (res.code >= 200 || res.code < 300) return res.data;
     else console.log(`putMyProfile res ${res.code}`);
@@ -34,11 +41,11 @@ const putMyProfile = async (changeProfileData: { introduce: string; nickname: st
 export const usePutMyProfile = () => {
   return useMutation({
     mutationFn: ({
-      changeProfileData,
-      imgFile
+      currentInfo,
+      changes
     }: {
-      changeProfileData: { introduce: string; nickname: string };
-      imgFile?: File;
-    }) => putMyProfile(changeProfileData, imgFile)
+      currentInfo: VolunteerInfo;
+      changes: { introduce: string; nickname: string };
+    }) => putMyProfile(currentInfo, changes)
   });
 };

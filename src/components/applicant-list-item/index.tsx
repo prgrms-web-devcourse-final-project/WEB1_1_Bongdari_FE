@@ -30,7 +30,6 @@ const ApplicantListItem = ({ applicant, recruitStatus }: ApplicantListItemProps)
   const { openConfirm } = useConfirmDialog();
   const { openAlert } = useAlertDialog();
 
-  // console.log('applicant(얜 아이템)', applicant);
   const applymentId = applicant.id;
 
   const { mutate: approve } = useApproveApplyment();

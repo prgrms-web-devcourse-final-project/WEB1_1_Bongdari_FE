@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import axiosInstance from '@/api/apis';
 
 const fetchPersonProfile = async (volunteerId: string) => {
-  const res = await axiosInstance.get(`/api/volunteer/profile/${volunteerId}`);
+  const res = await axiosInstance.get(`/api/volunteer/profile/user-id/${volunteerId}`);
   return res.data;
 };
 
