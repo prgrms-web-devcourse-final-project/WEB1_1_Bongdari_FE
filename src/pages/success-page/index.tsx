@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
 const SuccessPage = () => {
-  const token = sessionStorage.getItem('token');
+  const token = localStorage.getItem('token');
 
   const loginType = useLoginStore((state) => state.loginType);
   const setLoginInfo = useLoginStore((state) => state.setLoginInfo);
@@ -13,7 +13,7 @@ const SuccessPage = () => {
   const navigate = useNavigate();
 
   //단기토큰 받는거로 바뀌면, 해당 단기토큰으로 ACCESS토큰 받아오는 useEffect하나 더 필요 (쿠키에서 꺼내서 보내는거로)
-  //로그인 로직에서는 session에 저장하는 것 삭제하고, 여기서 ACCESS받아서 session에 저장하도록 해야함.
+  //로그인 로직에서는 local에 저장하는 것 삭제하고, 여기서 ACCESS받아서 local에 저장하도록 해야함.
 
   ///////////////////////////////
   //토큰을 해석해서 zustand에 저장

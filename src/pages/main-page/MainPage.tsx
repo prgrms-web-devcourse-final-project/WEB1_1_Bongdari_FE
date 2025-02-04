@@ -11,7 +11,7 @@ import axiosInstance from '@/api/apis';
 import useInterestStore from '@/store/stores/interest-center/interestStore';
 
 export default function MainPage() {
-  const token = sessionStorage.getItem('token');
+  const token = localStorage.getItem('token');
 
   const loginType = useLoginStore((state) => state.loginType);
   const setLoginInfo = useLoginStore((state) => state.setLoginInfo);
