@@ -76,17 +76,9 @@ const ApplicantDetailModal: React.FC<ApplicantDetailModalProps> = ({ handleOpenD
               <Value>{applicantDetail.detail.gender === 'MALE' ? '남자' : '여자'}</Value>
             </DetailItem>
             <DetailItem>
-              <Key>생년월일</Key>
-              <Value>{applicantDetail.detail.birth_date}</Value>
-            </DetailItem>
-            <DetailItem>
               <Key>전화번호</Key>
               <Value>{applicantDetail.detail.contact_number}</Value>
             </DetailItem>
-            {/* <DetailItem>
-              <Key>이메일</Key>
-              <Value>{applicantDetail.detail.email}</Value>
-            </DetailItem> */}
           </SectionBox>
         </ScrollSection>
       </ModalWrapper>
