@@ -21,7 +21,7 @@ const useEditCenterProfile = ({ data }: UseEditCenterProfileProps) => {
   const [centerPhone, setCenterPhone] = useState(data?.contact_number ?? '');
   const [centerURL, setCenterURL] = useState(data?.homepage_url ?? '');
   const [centerIntroduction, setCenterIntroduction] = useState(data?.introduce ?? '');
-  const [validURL, setValidURL] = useState(true);
+  // const [validURL, setValidURL] = useState(true);
   const [validPhone, setValidPhone] = useState(true);
 
   useEffect(() => {
@@ -45,15 +45,16 @@ const useEditCenterProfile = ({ data }: UseEditCenterProfileProps) => {
     setCenterPhone(phone);
     setValidPhone(isValid);
   };
-  const handleURLChange = (url: string, isValid: boolean) => {
+  const handleURLChange = (url: string) => {
     setCenterURL(url);
-    setValidURL(isValid);
+    // setValidURL(isValid);
   };
   const handleIntroductionChange = (introduce: string) => setCenterIntroduction(introduce);
 
   // 제출 핸들러
   const handleEditProfile = async () => {
-    if (!validURL || !validPhone || !centerName.trim()) {
+    if (!centerName.trim() || !centerPhone.trim() || !centerURL.trim() || !centerIntroduction.trim()) {
+      openAlert('모든 필드를 입력해주세요.');
       return;
     }
 
@@ -90,7 +91,7 @@ const useEditCenterProfile = ({ data }: UseEditCenterProfileProps) => {
     handlePhoneChange,
     handleURLChange,
     handleIntroductionChange,
-    validURL,
+    // validURL,
     validPhone,
     handleEditProfile,
     isSubmitting: updateProfile.isPending

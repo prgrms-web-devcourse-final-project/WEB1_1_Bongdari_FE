@@ -4,8 +4,6 @@ import {
   CenterProfileEditContainer,
   CenterProfileTitle,
   FormSection,
-  // EditButtonContainer,
-  // EditEtcProfileButton,
   ProfileEditWrapper,
   ProfileImgEditButton,
   ProfileSection
@@ -30,7 +28,6 @@ const EditCenterProfile = ({ data }: EditCenterProfileProps) => {
     handlePhoneChange,
     handleURLChange,
     handleIntroductionChange,
-    validURL,
     validPhone,
     handleEditProfile,
     isSubmitting
@@ -70,7 +67,6 @@ const EditCenterProfile = ({ data }: EditCenterProfileProps) => {
                   centerName={centerName}
                   centerPhone={centerPhone}
                   centerURL={centerURL}
-                  validURL={validURL}
                   validPhone={validPhone}
                   centerIntroduction={centerIntroduction}
                   handleEditProfile={handleEditProfile}
