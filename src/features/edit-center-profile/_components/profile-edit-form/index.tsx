@@ -8,7 +8,6 @@ import {
   EditItem_TextArea,
   EditLabel,
   ErrorMessage,
-  ProfileSection2,
   Input,
   InputWrapper,
   ProfileSection1,
@@ -26,6 +25,8 @@ interface EditProfileFormProps {
   handlePhoneChange: (value: string, isValid: boolean) => void;
   handleURLChange: (value: string, isValid: boolean) => void;
   handleIntroductionChange: (value: string) => void;
+  handleEditProfile: () => void;
+  isSubmitting?: boolean;
 }
 
 const EditProfileForm = ({
@@ -38,7 +39,9 @@ const EditProfileForm = ({
   handleNameChange,
   handlePhoneChange,
   handleURLChange,
-  handleIntroductionChange
+  handleIntroductionChange,
+  handleEditProfile,
+  isSubmitting = false
 }: EditProfileFormProps) => {
   const { openAlert } = useAlertDialog();
 
@@ -49,13 +52,25 @@ const EditProfileForm = ({
       return;
     }
 
-    // TODO: 수정하기 api 연결 후에 수정 로직 구현현
-    console.log('기관 닉네임, 소개글 수정');
+    handleEditProfile();
   };
 
   return (
     <EditFormWrapper>
       <ProfileSection1>
+        <EditItem>
+          <EditLabel htmlFor="centerName">닉네임</EditLabel>
+          <InputWrapper>
+            <Input
+              id="centerName"
+              type="text"
+              value={centerName}
+              onChange={(e) => handleNameChange(e.target.value)}
+              placeholder="기관명을 입력해주세요"
+            />
+            {centerName === '' && <ErrorMessage>⚠️ 닉네임을 입력해주세요.</ErrorMessage>}
+          </InputWrapper>
+        </EditItem>
         <EditItem>
           <EditLabel htmlFor="centerPhone">연락처</EditLabel>
           <InputWrapper>
@@ -92,22 +107,6 @@ const EditProfileForm = ({
             {centerURL && !validURL && <ErrorMessage>⚠️ 올바른 URL 형식이 아닙니다.</ErrorMessage>}
           </InputWrapper>
         </EditItem>
-        <EditProfileSectionButton label="수정하기" type="blue" onClick={() => console.log('연락처, 사이트 수정')} />
-      </ProfileSection1>
-      <ProfileSection2>
-        <EditItem>
-          <EditLabel htmlFor="centerName">닉네임</EditLabel>
-          <InputWrapper>
-            <Input
-              id="centerName"
-              type="text"
-              value={centerName}
-              onChange={(e) => handleNameChange(e.target.value)}
-              placeholder="기관명을 입력해주세요"
-            />
-            {centerName === '' && <ErrorMessage>⚠️ 닉네임을 입력해주세요.</ErrorMessage>}
-          </InputWrapper>
-        </EditItem>
         <EditItem_TextArea>
           <EditLabel htmlFor="centerDescription" style={{ paddingTop: '14px' }}>
             설명
@@ -121,8 +120,12 @@ const EditProfileForm = ({
             />
           </TextAreaWrapper>
         </EditItem_TextArea>
-        <EditProfileSectionButton label="수정하기" type="blue" onClick={handleIntroductionUpdate} />
-      </ProfileSection2>
+        <EditProfileSectionButton
+          label={isSubmitting ? '수정중...' : '수정하기'}
+          type="blue"
+          onClick={handleIntroductionUpdate}
+        />
+      </ProfileSection1>
     </EditFormWrapper>
   );
 };

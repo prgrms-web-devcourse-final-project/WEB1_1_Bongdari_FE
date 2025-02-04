@@ -24,21 +24,21 @@ export const ProfileSection1 = styled.section`
   }
 `;
 
-export const ProfileSection2 = styled.section`
-  border: ${theme.box.section.border};
-  background-color: ${theme.box.section.backgroundColor};
-  border-radius: ${theme.box.section.borderRadius};
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 33px 133px 42px 57px;
-  width: 100%;
-  gap: 12px;
+// export const ProfileSection2 = styled.section`
+//   border: ${theme.box.section.border};
+//   background-color: ${theme.box.section.backgroundColor};
+//   border-radius: ${theme.box.section.borderRadius};
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-around;
+//   padding: 33px 133px 42px 57px;
+//   width: 100%;
+//   gap: 12px;
 
-  @media (max-width: 1000px) {
-    padding: 26px 34px 30px 26px;
-  }
-`;
+//   @media (max-width: 1000px) {
+//     padding: 26px 34px 30px 26px;
+//   }
+// `;
 
 export const EditItem = styled.div`
   display: flex;
@@ -133,6 +133,7 @@ export const EditProfileSectionButton = styled(Button)`
   font-weight: 600;
   font-size: ${theme.fontSize.eighthSize};
   margin-left: auto;
+  margin-top: 40px;
 
   @media (max-width: 1000px) {
     margin: 40px auto 0;
