@@ -14,7 +14,7 @@ const InfoContainer: React.FC<InfoContainerProps> = ({ centerProfile }) => {
     <Wrapper>
       <InterestHeartBtn center_id={centerProfile.center_id} top={'0px'} right={'100px'} />
       <Title>{centerProfile.name}</Title>
-      <Site>{centerProfile.homepage_link}</Site>
+      <Site>{centerProfile.homepage_url}</Site>
       <Explain>{centerProfile.introduce}</Explain>
       <PreferItemContainer>
         <p>이러한 지원이 필요해요!</p>

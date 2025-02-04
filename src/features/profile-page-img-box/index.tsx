@@ -42,7 +42,7 @@ const ProfileImgBox: React.FC<ProfileImgBoxProps> = (props) => {
       </ProfileImgBoxCss>
     );
   } else {
-    const { center_id, name, homepage_link, img_url } = props;
+    const { center_id, name, homepage_url, img_url } = props;
 
     return (
       <ProfileImgBoxCss id={center_id}>
@@ -50,7 +50,7 @@ const ProfileImgBox: React.FC<ProfileImgBoxProps> = (props) => {
         <img src={img_url || '/assets/imgs/no-img-center.svg'} />
         <p>
           <i>{name}</i>
-          <i>{homepage_link}</i>
+          <i>{homepage_url}</i>
         </p>
         {/* 센터는 센터에게 쪽지 보낼 수 없음 */}
         <ApplyButton
