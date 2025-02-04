@@ -10,7 +10,7 @@ const ProtectedRoute = ({ children }: PropsWithChildren) => {
   const [hasBasicInfo, setHasBasicInfo] = useState<boolean | null>(null);
   const location = useLocation();
   const loginType = useLoginStore((state) => state.loginType);
-  const token = sessionStorage.getItem('token');
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     let isMounted = true; // 컴포넌트 언마운트 체크
@@ -29,7 +29,7 @@ const ProtectedRoute = ({ children }: PropsWithChildren) => {
         if (isMounted) {
           // 토큰 만료 체크
           if (axiosError.response?.status === 401 || axiosError.response?.status === 403) {
-            sessionStorage.removeItem('token');
+            localStorage.removeItem('token');
             // 로그인 리다이렉트 로직 필요하면 추가하기
           }
           console.error('상세정보 확인 실패:', error);

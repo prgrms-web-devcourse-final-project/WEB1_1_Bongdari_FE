@@ -26,7 +26,7 @@ export const useLoginStore = create(
           isLoggedIn: true
         })),
       clearLoginInfo: () => {
-        sessionStorage.removeItem('token');
+        localStorage.removeItem('token');
         window.history.replaceState({}, document.title);
         set((state) => ({
           ...state,

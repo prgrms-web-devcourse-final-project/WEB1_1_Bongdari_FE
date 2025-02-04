@@ -64,7 +64,7 @@ export default function Header() {
     let eventSource: EventSourcePolyfill;
 
     const connectSSE = () => {
-      const token = sessionStorage.getItem('token');
+      const token = localStorage.getItem('token');
       eventSource = new EventSourcePolyfill(`${import.meta.env.VITE_APP_BASE_URL}/api/sse/subscribe`, {
         headers: {
           Authorization: `${token}`
