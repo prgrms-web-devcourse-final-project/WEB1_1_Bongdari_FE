@@ -26,3 +26,11 @@ export const LogoutButton = styled(Button)`
   height: 53px;
   margin-top: 5px;
 `;
+
+export const ErrorMessage = styled.p`
+  color: #ff0000;
+  font-size: ${theme.fontSize.ninthSize};
+  margin-top: 4px;
+  margin-left: 4px;
+  padding-bottom: 10px;
+`;

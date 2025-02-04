@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import InputBox from '@/components/inputBox';
 import { DetailInfoForm, PageWrapper, SubmitButton, TitleContainer } from '../center/indexCss';
-import { DetailInfo, LogoutButton, TabButton, TabWrapper } from './indexCss';
+import { DetailInfo, ErrorMessage, LogoutButton, TabButton, TabWrapper } from './indexCss';
 import { useAlertDialog } from '@/store/stores/dialog/dialogStore';
 import { putVolunteerInfo } from './logic/putVolunteerInfo';
 
@@ -13,6 +13,10 @@ interface FormDataType {
   nickname: string;
   gender: '남성' | '여성';
   introduce: string;
+}
+
+interface FormErrorType {
+  contact: string;
 }
 
 interface SubmitDataType {
@@ -26,6 +30,12 @@ interface SubmitDataType {
   gender: 'MALE' | 'FEMALE';
 }
 
+const validatePhone = (phone: string) => {
+  const phoneRegex =
+    /^(?:\d{3}-\d{3}-\d{4}|\d{3}-\d{4}-\d{4}|\d{2}-\d{3}-\d{4}|\d{2}-\d{4}-\d{4}|\d{4}-\d{4}|\d{3}-\d{3}-\d{3}|\d{2}-\d{3}-\d{3})$/;
+  return phoneRegex.test(phone);
+};
+
 const VolunteerDetailInfoPage = () => {
   const navigate = useNavigate();
   const { openAlert } = useAlertDialog();
@@ -38,7 +48,21 @@ const VolunteerDetailInfoPage = () => {
     introduce: ''
   });
 
+  const [formError, setFormError] = useState<FormErrorType>({
+    contact: ''
+  });
+
   const handleSubmit = async () => {
+    // 전화번호 유효성 검사
+    if (!validatePhone(formData.contact)) {
+      setFormError((prev) => ({
+        ...prev,
+        contact: '올바른 전화번호 형식이 아닙니다.'
+      }));
+      openAlert('전화번호 형식을 확인해주세요.');
+      return;
+    }
+
     const submitData: SubmitDataType = {
       common_basic_info: {
         name: formData.name,
@@ -65,12 +89,26 @@ const VolunteerDetailInfoPage = () => {
       ...prev,
       [field]: value
     }));
+
+    // 전화번호 입력 시 유효성 검사
+    if (field === 'contact') {
+      if (value.length > 0 && !validatePhone(value)) {
+        setFormError((prev) => ({
+          ...prev,
+          contact: '올바른 전화번호 형식이 아닙니다.'
+        }));
+      } else {
+        setFormError((prev) => ({
+          ...prev,
+          contact: ''
+        }));
+      }
+    }
   };
 
   return (
     <PageWrapper>
       <TitleContainer>
-        {/* TODO: 통합하면 loginType에 따라 기관/봉사자로 title 구분하기 */}
         <h1>처음 방문하는 봉사자이신가요?</h1>
         <p>아래 정보를 입력해주세요.</p>
       </TitleContainer>
@@ -89,15 +127,20 @@ const VolunteerDetailInfoPage = () => {
           <InputBox
             colortype="white"
             textType="text"
-            placeholder="전화번호를 입력해주세요."
+            placeholder="전화번호를 입력해주세요. (예: 010-1234-5678)"
             getInputText={(value: string) => handleInputChange('contact', value)}
           />
+          {formData.contact && !validatePhone(formData.contact) && (
+            <ErrorMessage>
+              {formError.contact} 연락처는 "oo-ooo(o)-oooo" 또는 "ooo-ooo(o)-oooo" 형식으로 입력해주세요.
+            </ErrorMessage>
+          )}
         </div>
         <div>
           <label htmlFor="volunteerNickName">닉네임</label>
           <InputBox
             colortype="white"
-            textType="url"
+            textType="text"
             placeholder="닉네임을 입력해주세요."
             getInputText={(value: string) => handleInputChange('nickname', value)}
           />
