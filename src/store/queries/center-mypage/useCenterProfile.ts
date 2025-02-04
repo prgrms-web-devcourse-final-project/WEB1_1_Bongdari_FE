@@ -21,8 +21,6 @@ export interface CenterProfileUpdateRequest {
 const fetchCenterProfile = async (centerId: string): Promise<centerProfileType> => {
   const response = await axiosInstance.get(`/api/center/profile/${centerId}`);
 
-  // console.log('기관프로필 get 결과: ', response.data);
-
   return response.data;
 };
 
