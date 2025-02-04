@@ -19,7 +19,7 @@ export const useEditMyProfile = ({
   profileNickname?: string;
   profileDescription?: string;
 }): useEditMyyProfileReturn => {
-  const [img, setImg] = useState<File>();
+  const [, setImg] = useState<File>();
   const [nickname, setNickname] = useState<string>(profileNickname ?? '');
   const [descripton, setDescripton] = useState<string>(profileDescription ?? '');
   const { openAlert } = useAlertDialog();
