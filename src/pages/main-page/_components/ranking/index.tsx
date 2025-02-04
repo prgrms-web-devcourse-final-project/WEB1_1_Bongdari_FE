@@ -7,7 +7,7 @@ import TabButtonGroup from '@/components/tab-button';
 import { useRanking } from '@/store/queries/main-page-common-query/useFetchRanking';
 
 const Ranking = () => {
-  const [activeTab, setActiveTab] = useState<'주단위' | '월단위' | '전체'>('주단위');
+  const [activeTab, setActiveTab] = useState<'주단위' | '월단위' | '전체'>('전체');
 
   const { data, isLoading, error } = useRanking();
 
@@ -28,13 +28,31 @@ const Ranking = () => {
       주단위: rankingList.volunteer_weekly_ranking_response
     };
 
-    return _.chain(rankingMap[activeTab])
+    const existingRankings = _.chain(rankingMap[activeTab])
       .groupBy('ranking')
       .map((participants, ranking) => ({
         ranking: parseInt(ranking),
         participants
       }))
       .value();
+
+    return Array.from({ length: 4 }, (_, index) => {
+      const rank = index + 1;
+      const existingRank = existingRankings.find((item) => item.ranking === rank);
+
+      return (
+        existingRank || {
+          ranking: rank,
+          participants: [
+            {
+              ranking: rank,
+              nickname: '공석',
+              volunteer_time: 0
+            }
+          ]
+        }
+      );
+    });
   }, [activeTab, rankingList]);
 
   if (isLoading) return <div>로딩 중...</div>;
@@ -45,13 +63,13 @@ const Ranking = () => {
       <Top>
         <Title>봉사랭킹</Title>
         <TabButtonGroup
-          tabs={[{ label: '주단위' }, { label: '월단위' }, { label: '전체' }]}
-          initialActiveTab="주단위"
+          tabs={[{ label: '전체' }, { label: '월단위' }, { label: '주단위' }]}
+          initialActiveTab="전체"
           width="80px"
           height="35px"
           fontSize="14px"
           borderRadius="8px"
-          onTabChange={(tab) => setActiveTab(tab as '주단위' | '월단위' | '전체')}
+          onTabChange={(tab) => setActiveTab(tab as '전체' | '월단위' | '주단위')}
         />
       </Top>
       <Bottom>
