@@ -3,6 +3,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 import { type PropsWithChildren } from 'react';
 import axiosInstance from '@/api/apis';
 import { useLoginStore } from '@/store/stores/login/loginStore';
+import { AxiosError } from 'axios';
 
 const ProtectedRoute = ({ children }: PropsWithChildren) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -12,28 +13,50 @@ const ProtectedRoute = ({ children }: PropsWithChildren) => {
   const token = sessionStorage.getItem('token');
 
   useEffect(() => {
+    let isMounted = true; // 컴포넌트 언마운트 체크
+
     const checkBasicInfo = async () => {
       try {
         const response = await axiosInstance.get('api/user/check/basic-info');
-        setHasBasicInfo(response.data);
-      } catch (error) {
-        console.error('상세정보 확인 실패:', error);
-        setHasBasicInfo(false);
+
+        // 컴포넌트가 마운트된 상태일 때만 상태 업데이트
+        if (isMounted) {
+          setHasBasicInfo(response.data);
+        }
+      } catch (error: unknown) {
+        const axiosError = error as AxiosError;
+
+        if (isMounted) {
+          // 토큰 만료 체크
+          if (axiosError.response?.status === 401 || axiosError.response?.status === 403) {
+            sessionStorage.removeItem('token');
+            // 로그인 리다이렉트 로직 필요하면 추가하기
+          }
+          console.error('상세정보 확인 실패:', error);
+          setHasBasicInfo(false);
+        }
       } finally {
-        setIsLoading(false);
+        if (isMounted) {
+          setIsLoading(false);
+        }
       }
     };
 
-    // 로그인 상태일 때만 상세정보 체크
-    if (token) {
+    // 토큰이 존재하고 유효한 형식인지 확인
+    if (token && token.split('.').length === 3) {
       checkBasicInfo();
     } else {
       setIsLoading(false);
     }
+
+    // cleanup 함수
+    return () => {
+      isMounted = false;
+    };
   }, [token]);
 
   if (isLoading) {
-    return null;
+    return <div>Loading...</div>;
   }
 
   // 로그인 체크
