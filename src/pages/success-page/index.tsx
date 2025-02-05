@@ -3,6 +3,7 @@ import { updateLoginInfo } from '@/store/queries/update-login-info/updateLoginIn
 import { useLoginStore } from '@/store/stores/login/loginStore';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
+import axios from 'axios'; // AxiosError import 추가
 
 const SuccessPage = () => {
   const loginType = useLoginStore((state) => state.loginType);
@@ -16,23 +17,44 @@ const SuccessPage = () => {
   useEffect(() => {
     const getAccessToken = async () => {
       try {
+        // 요청 전 쿠키 확인
+        console.log('Current cookies:', document.cookie);
+
         const response = await axiosInstance.get('/api/auth/token/exchange');
-        const token = response.data;
 
-        // ACCESS 토큰을 localStorage에 저장
+        console.log('Exchange API 전체 응답:', response);
+
+        // 응답 데이터 형식 확인
+        const token = response.data?.token || response.data;
+        console.log('Extracted token:', token);
+
+        if (!token) {
+          throw new Error('Token not found in response');
+        }
+
         localStorage.setItem('token', token);
+        await updateLoginInfo(token);
 
-        updateLoginInfo(token);
+        // 토큰 저장 후 상태 확인
+        console.log('Stored token:', localStorage.getItem('token'));
       } catch (error) {
-        console.error('ACCESS 토큰 교환 실패:', error);
+        if (axios.isAxiosError(error)) {
+          // Type Guard를 사용하여 AxiosError 타입 체크
+          console.error('상세 에러 정보:', {
+            message: error.message,
+            response: error.response?.data,
+            status: error.response?.status
+          });
+        } else {
+          console.error('알 수 없는 에러:', error);
+        }
         clearLoginInfo();
-        // 에러 시 로그인 페이지로 리디렉션
         navigate('/login');
       }
     };
 
     getAccessToken();
-  }, []);
+  }, [clearLoginInfo, navigate]);
 
   ////////////////////////////
   //상세정보입력 여부 가져와서 리디렉션 위치 판별
