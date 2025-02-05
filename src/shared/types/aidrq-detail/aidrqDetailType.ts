@@ -7,6 +7,7 @@ interface Location {
 // 봉사활동 상세 정보 타입
 export interface AidRqDetailType {
   id: number;
+  center_id: string;
   title: string;
   content: string;
   recruitment_count: number;
