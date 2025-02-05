@@ -1,6 +1,7 @@
 import Modal from '@/components/modal';
 import {
   CreatedAt,
+  DetailPageButton,
   GloveImg,
   GoToProfileButton,
   ImgWrapper,
@@ -14,12 +15,14 @@ import {
   ReviewImgBox,
   ReviewTitle,
   ReviewTitleBox,
-  ScrollSection
+  ScrollSection,
+  TitleWrapper
 } from './indexCss';
 import { useNavigate } from 'react-router-dom';
 import useDateFormat from '@/shared/hooks/useDateFormat';
 import { useFindReview } from './logic/useFindReview';
 import SanitizedContent from '@/components/sanitized-content';
+import { useLoginStore } from '@/store/stores/login/loginStore';
 
 interface ReviewModalProps {
   handleCloseReviewModal: () => void;
@@ -31,16 +34,30 @@ const ReviewReadModal = ({ handleCloseReviewModal, reviewId, isCenterReview = tr
   const { reviewData, volunteerData, centerData } = useFindReview({ isCenterReview, reviewId });
   const { formatDate } = useDateFormat();
   const navigate = useNavigate();
+  const roleType = useLoginStore((state) => state.loginType);
 
   if (!reviewData) return null;
+
+  const handleDetailPageButtonClick = () => {
+    const detailPathAsRoleType =
+      roleType === 'ROLE_CENTER'
+        ? `/mypage/adminaidreqlist/${reviewData.recruit_board_id}`
+        : `/mypage/adminaidreqlist/${reviewData.recruit_board_id}`;
+
+    navigate(detailPathAsRoleType);
+  };
+
   return (
     <Modal variant="big" isOpen onClose={handleCloseReviewModal}>
       <ModalContentWrapper>
         <ScrollSection>
-          <ReviewTitleBox>
-            <ReviewTitle>{reviewData?.title}</ReviewTitle>
-            <CreatedAt>{formatDate(reviewData?.created_at)}</CreatedAt>
-          </ReviewTitleBox>
+          <TitleWrapper>
+            <ReviewTitleBox>
+              <ReviewTitle>{reviewData?.title}</ReviewTitle>
+              <CreatedAt>{formatDate(reviewData?.created_at)}</CreatedAt>
+            </ReviewTitleBox>
+            <DetailPageButton label="모집글 확인하기" type="white" onClick={handleDetailPageButtonClick} />
+          </TitleWrapper>
           <ReviewImgBox>
             {reviewData?.img_url && (
               <ReviewImgBox>

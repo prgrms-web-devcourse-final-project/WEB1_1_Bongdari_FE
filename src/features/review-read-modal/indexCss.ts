@@ -50,6 +50,11 @@ export const ScrollSection = styled.div`
   }
 `;
 
+export const TitleWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 export const ReviewTitleBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -156,6 +161,19 @@ export const GloveImg = styled.img`
 `;
 
 export const GoToProfileButton = styled(Button)`
+  width: 221px;
+  height: 53px;
+  font-size: ${theme.fontSize.eighthSize};
+  font-weight: 600;
+  border-radius: 13px;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+    height: 40px;
+  }
+`;
+
+export const DetailPageButton = styled(Button)`
   width: 221px;
   height: 53px;
   font-size: ${theme.fontSize.eighthSize};

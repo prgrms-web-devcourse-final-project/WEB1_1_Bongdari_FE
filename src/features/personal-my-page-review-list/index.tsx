@@ -30,9 +30,9 @@ const ReviewList = () => {
         <ReviewListCss>
           <TitleWithPagenation title="내 리뷰 목록" totPage={totPage} currPage={currPage} setCurrPage={setCurrPage} />
           <div className="listWrap">
-            {reviewData.map((v: reviewType, i) => (
+            {reviewData.map((v: reviewType) => (
               <ReviewBox
-                key={i}
+                key={v.id}
                 orgName={v.title}
                 reviewText={v.content}
                 createdDate={v.created_at}
