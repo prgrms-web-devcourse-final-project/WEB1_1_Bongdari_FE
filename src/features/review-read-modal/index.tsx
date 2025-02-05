@@ -34,7 +34,8 @@ const ReviewReadModal = ({ handleCloseReviewModal, reviewId, isCenterReview = tr
   const { reviewData, volunteerData } = useFindReview({ isCenterReview, reviewId });
   const { formatDate } = useDateFormat();
   const navigate = useNavigate();
-  const roleType = useLoginStore((state) => state.loginType);
+  // const roleType = useLoginStore((state) => state.loginType);
+  const { loginType: roleType, myRoleId: volunteerId } = useLoginStore();
 
   if (!reviewData) return null;
 
@@ -83,7 +84,7 @@ const ReviewReadModal = ({ handleCloseReviewModal, reviewId, isCenterReview = tr
                 label="프로필 확인하기"
                 type="blue"
                 onClick={() => {
-                  navigate(`/profile/${volunteerData?.volunteer_id}`);
+                  navigate(`/profile/${volunteerId}`);
                 }}
               />
             </ProfileBox>
