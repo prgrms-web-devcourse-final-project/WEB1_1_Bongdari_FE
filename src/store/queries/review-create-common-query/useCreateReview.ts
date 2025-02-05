@@ -1,12 +1,14 @@
 import axiosInstance from '@/api/apis';
 
-export const createReview = async (formData: FormData) => {
+interface ReviewQuest {
+  volunteer_apply_id: number;
+  title: string;
+  content: string;
+}
+
+export const createReview = async (reviewBody: ReviewQuest) => {
   try {
-    const response = await axiosInstance.post('/api/review', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    });
+    const response = await axiosInstance.post('/api/review', reviewBody);
     return response;
   } catch (error) {
     if (error instanceof Error) {

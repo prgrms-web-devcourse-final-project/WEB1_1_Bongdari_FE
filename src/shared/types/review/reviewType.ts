@@ -12,5 +12,4 @@ export interface Review {
 export interface ReviewForm {
   title: string;
   content: string;
-  img_file?: File;
 }

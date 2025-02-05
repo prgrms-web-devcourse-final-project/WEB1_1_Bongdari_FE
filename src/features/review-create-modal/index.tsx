@@ -1,7 +1,6 @@
 import Modal from '@/components/modal';
 import { ButtonContainer, Contents, ReviewText, ScrollSection, Title, Wrapper } from './indexCss';
 import InputBox from '@/components/inputBox';
-import UploadBox from '@/components/img-drag-box';
 import { useState } from 'react';
 import { createReview } from '@/store/queries/review-create-common-query/useCreateReview';
 import { ReviewForm } from '@/shared/types/review/reviewType';
@@ -23,34 +22,14 @@ const ReviewCreateModal: React.FC<ReviewCreateModalProps> = ({ reviewModalState,
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const handleFileSelect = (files: File[]) => {
-    if (files.length > 0) {
-      setFormData((prev) => ({
-        ...prev,
-        img_file: files[0] // 첫 번째 파일만 사용
-      }));
-    }
-  };
-
   const handleSubmit = async () => {
+    if (!applyId) return;
+
     try {
       setIsLoading(true);
 
-      const reviewFormData = new FormData();
-      reviewFormData.append(
-        'data',
-        JSON.stringify({
-          volunteer_apply_id: applyId,
-          title: formData.title,
-          content: formData.content
-        })
-      );
+      await createReview({ volunteer_apply_id: applyId, title: formData.title, content: formData.content });
 
-      if (formData.img_file) {
-        reviewFormData.append('img_file', formData.img_file);
-      }
-
-      await createReview(reviewFormData);
       openAlert(`리뷰가 성공적으로 작성되었습니다.`);
 
       SetReviewModalState(false);
@@ -92,10 +71,6 @@ const ReviewCreateModal: React.FC<ReviewCreateModalProps> = ({ reviewModalState,
                     title: text
                   }));
                 }}></InputBox>
-            </div>
-            <div>
-              <span>이미지</span>
-              <UploadBox onFileSelect={handleFileSelect}></UploadBox>
             </div>
             <div>
               <span>내용</span>
