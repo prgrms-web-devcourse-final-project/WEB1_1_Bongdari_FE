@@ -40,7 +40,6 @@ const ReviewSet = ({ centerId }: ReviewSetProps) => {
   const handleReviewModal = (review: Review) => {
     setSelectedReviewId(review.id);
     setOpenReviewModal(true);
-    // console.log('States after update:', { selectedReviewId: review.id, openReviewModal: true });
   };
 
   const handleCloseReviewModal = () => {

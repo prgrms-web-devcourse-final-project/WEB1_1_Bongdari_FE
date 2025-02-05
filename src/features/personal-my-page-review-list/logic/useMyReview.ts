@@ -19,7 +19,7 @@ export const useMyReview = (): useMyReviewReturn => {
   const [reviewData, setReviewData] = useState<reviewType[]>();
   const [totPage, setTotPage] = useState<number>(1);
   const [currPage, setCurrPage] = useState<number>(1);
-  const myLoginId = useLoginStore((state) => state.myLoginId);
+  const myLoginId = useLoginStore((state) => state.myRoleId);
   const { data } = useMyReviewQuery(myLoginId ?? '', currPage);
   const [selectedReviewId, setSelectedReviewId] = useState<number>(0);
   const [openReviewModal, setOpenReviewModal] = useState<boolean>(false);

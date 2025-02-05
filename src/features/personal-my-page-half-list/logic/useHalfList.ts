@@ -21,7 +21,7 @@ export const useHalfList = ({ listType }: useHalfListProps): useHalfListReturn =
   const [totPage, setTotPage] = useState<number>(1);
   const [currPage, setCurrPage] = useState<number>(1);
   const [myData, setData] = useState<myVolunteerType[] | myMessageType[]>();
-  const myLoginId = useLoginStore((state) => state.myLoginId);
+  const myLoginId = useLoginStore((state) => state.myRoleId);
   const [isMsgModalOpen, setIsMsgModalOpen] = useState<boolean>(false);
   const [msgOpenId, setMsgOpenId] = useState<number>(0);
   const { data: volunteerData } = useMyVolunteer(myLoginId ?? '', currPage);

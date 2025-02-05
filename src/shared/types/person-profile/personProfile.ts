@@ -62,6 +62,7 @@ export interface reviewType {
   id: number;
   volunteer_id: string;
   volunteer_nickname: string;
+  recruit_board_id: number;
   title: string;
   content: string;
   img_url: string;

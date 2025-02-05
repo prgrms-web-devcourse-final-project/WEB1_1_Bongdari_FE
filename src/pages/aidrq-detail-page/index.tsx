@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import AidRqDetailCenterProfile from '@/features/aidreq-detail-center-profile';
 import { ButtonBox, Wrapper, ReviewBtn, ApplyBtn } from './indexCss';
@@ -20,21 +20,25 @@ import { useWithDrawAidRq } from '@/store/queries/aidreq-detail-volunteer-query/
 const AidRqDetailPage = () => {
   // 로그인 상태 관리
   const myLoginState = useLoginStore((state) => state);
-  // url 파라미터, state 가져오기
+  // url 파라미터 가져오기
   const { id } = useParams();
-  const location = useLocation();
-  const centerId = location.state?.centerId;
   // 모달 관리
   const [reviewModalState, SetReviewModalState] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   // api 데이터 조회
-  const { data: centerData } = useFetchCenterProfileForAidRq(centerId);
   const { data: data } = useFetchAidRqDetail(id);
+  const { data: centerData } = useFetchCenterProfileForAidRq(data?.center_id ?? '');
   // 다이얼로그 컴포넌트
   const { openConfirm } = useConfirmDialog();
   const { openAlert } = useAlertDialog();
   // 지원상태 관리
   const [presentState, setPresentState] = useState<PresentResponse | null>(null);
+
+  useEffect(() => {
+    if (data?.center_id) {
+      console.log('센터 아이디 가져옴', data.center_id);
+    }
+  }, [data]);
 
   useEffect(() => {
     if (myLoginState.loginType !== 'ROLE_VOLUNTEER') {
@@ -137,7 +141,7 @@ const AidRqDetailPage = () => {
         reviewModalState={reviewModalState}
         SetReviewModalState={SetReviewModalState}
         applyId={presentState?.id}></ReviewCreateModal>
-      <MessageCreateModal user_id={centerId || ''} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+      <MessageCreateModal user_id={data?.center_id || ''} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       {!data && <p>요청하신 글에 접근이 불가합니다.</p>}
     </Wrapper>
   );

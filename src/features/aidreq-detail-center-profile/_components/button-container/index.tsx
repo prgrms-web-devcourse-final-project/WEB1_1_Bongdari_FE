@@ -16,7 +16,7 @@ const ButtonContainer: React.FC<ButtonContainerProps> = ({ centerProfile, setIsM
     <Wrapper>
       <ProfileBtn
         onClick={() => {
-          navigate(`/centerprofile/${centerProfile.center_id}`);
+          navigate(`/centerprofile/${centerProfile.id}`);
         }}
         label="프로필 보러가기"
         type="blue"
