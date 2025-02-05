@@ -61,7 +61,7 @@ export default function MainPage() {
         const centerList = response.data;
         setCenterIds(centerList);
       } catch (error) {
-        console.error('로그인 정보 가져오기 실패:', error);
+        console.error('관심기관 리스트 가져오기 실패:', error);
       }
     };
     if (loginType === 'ROLE_VOLUNTEER') {

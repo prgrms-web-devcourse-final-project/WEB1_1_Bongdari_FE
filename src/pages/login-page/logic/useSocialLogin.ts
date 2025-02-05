@@ -3,5 +3,5 @@ export const handleNaverLogin = async () => {
 };
 
 export const handleKakaoLogin = () => {
-  console.log('카카오 로그인 시도');
+  window.location.href = `${import.meta.env.VITE_APP_BASE_URL}/oauth2/authorization/kakao`;
 };

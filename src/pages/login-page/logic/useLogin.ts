@@ -45,13 +45,8 @@ export const useLogin = (): useReturn => {
     if (idErr !== '' || pwdErr !== '') throw new Error('id와 pwd 형식을 확인해주세요.');
     else {
       try {
-        //현재 -> 토큰을 그대로 받아서 local에 넣고 사용
-        //나중 -> 쿠키에 단기토큰 넣고 그거로 token을 가져오는 api호출 후, local에 넣고 사용
-        const response = await handleLogin(id, pwd);
-        const token = response.headers['authorization'];
-
-        //token을 세션스토리지에 저장
-        localStorage.setItem('token', token);
+        await handleLogin(id, pwd);
+        // 토큰 저장 로직 제거하고 바로 리디렉션
         navigate('/success');
       } catch (error) {
         console.error('Login failed:', error);
