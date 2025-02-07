@@ -7,8 +7,6 @@ const addPreferItem = async (itemName: string) => {
     item_name: itemName
   });
 
-  console.log('물품등록 response', response.data);
-
   return response.data;
 };
 
@@ -16,10 +14,9 @@ export const usePreferItem = () => {
   const queryClient = useQueryClient();
   const { mutate: addItem, isPending } = useMutation({
     mutationFn: addPreferItem,
-    onSuccess: (data) => {
+    onSuccess: () => {
       // 데이터 post 성공시
       queryClient.invalidateQueries({ queryKey: ['centerProfile'] });
-      console.log('물품등록 완료!', data);
     },
     onError: (error) => {
       // 등록 post 실패시
@@ -47,7 +44,6 @@ export const useDeletePreferItem = () => {
     onSuccess: () => {
       // 삭제 성공시 물품 리스트 갱신
       queryClient.invalidateQueries({ queryKey: ['centerProfile'] });
-      console.log('물품삭제가 완료되었습니다.');
     },
     onError: (error) => {
       console.error('물품삭제 실패...', error);
