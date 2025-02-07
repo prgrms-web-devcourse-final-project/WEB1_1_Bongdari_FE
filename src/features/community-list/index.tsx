@@ -7,7 +7,7 @@ import { useCommunityList } from './logic/useCommunityList';
 
 const CommuntiyList = () => {
   const { listData, totPage, currPage, isLoading, error } = useCommunityList();
-  const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
+  const LoginType = useLoginStore((state) => state.loginType);
   const navigate = useNavigate();
 
   return (
@@ -38,7 +38,7 @@ const CommuntiyList = () => {
       </div>
       <CustomPagination totPage={totPage} currPage={currPage} />
       <div className="btnWrap">
-        {isLoggedIn ? (
+        {LoginType === 'ROLE_VOLUNTEER' ? (
           <ApplyButton
             label="작성하기"
             type="white"

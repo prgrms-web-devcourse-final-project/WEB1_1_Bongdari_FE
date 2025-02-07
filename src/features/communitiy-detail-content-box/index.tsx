@@ -54,7 +54,7 @@ const CommunityDetailContentBox = ({ content_id }: { content_id: number }) => {
     <CommunityDetailContentBoxCss>
       <i className="title">{detailData.title}</i>
       <i className="modifiedDate">최근 수정일: {formatDate(detailData.updated_at)}</i>
-      <WriterProfileBox {...writerData} />
+      <WriterProfileBox {...writerData} volunteer_id={detailData.writer_id} />
       {detailData.image_url && (
         <CommunityImageContainer>
           <CommunityImage src={detailData.image_url} alt="detailData.image_url" />

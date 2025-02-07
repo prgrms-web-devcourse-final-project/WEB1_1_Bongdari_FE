@@ -45,7 +45,7 @@ const HalfList: React.FC<HalfListProps> = ({ listType }) => {
   } else if (listType === 'myMessage') {
     return (
       <HalfListCss>
-        <TitleWithPagenation title="내 쪽지 목록" totPage={totPage} currPage={currPage} setCurrPage={setCurrPage} />
+        <TitleWithPagenation title="받은 쪽지 목록" totPage={totPage} currPage={currPage} setCurrPage={setCurrPage} />
 
         <section className="contentWrap">
           {!myData || myData.length === 0 ? (

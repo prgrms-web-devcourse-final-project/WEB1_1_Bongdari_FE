@@ -26,6 +26,8 @@ export const useCommunityDetailContent = (content_id: number): useCommunityDetai
 
   // 데이터 업데이트되면 리랜더링
   useEffect(() => {
+    console.log('Detail Data:', detailData);
+    console.log('Writer Data:', writerData);
     if (detailData) setCommunityDetailData(detailData);
     if (writerData) setCommunityWriterData(writerData);
   }, [detailData, writerData]);
