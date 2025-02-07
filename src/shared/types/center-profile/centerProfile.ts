@@ -13,6 +13,6 @@ export interface centerProfileType {
 
 export interface centerPreferItemType {
   id: number;
-  centerId?: string;
-  itemName: string;
+  center_id?: string;
+  item_name: string;
 }
