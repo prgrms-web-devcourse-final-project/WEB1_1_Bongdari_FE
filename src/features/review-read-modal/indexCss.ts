@@ -181,7 +181,7 @@ export const DetailPageButton = styled(Button)`
   border-radius: 13px;
 
   @media (max-width: 1000px) {
-    width: 100%;
+    width: 30%;
     height: 40px;
   }
 `;
