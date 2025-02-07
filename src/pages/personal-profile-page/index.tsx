@@ -9,7 +9,11 @@ const PersonalProfilePage = () => {
 
   if (!profileData) {
     // 해당 profile이 없을 경우
-    return <Wrapper>No Profile Found</Wrapper>;
+    return (
+      <Wrapper>
+        <div className="noData">해당 봉사자 정보를 찾을 수 없습니다.</div>
+      </Wrapper>
+    );
   } else {
     return (
       <Wrapper>
