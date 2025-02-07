@@ -1,7 +1,6 @@
 export interface centerProfileType {
   id: string;
   user_id: string;
-  center_id: string;
   name: string;
   contact_number: string;
   img_url?: string;

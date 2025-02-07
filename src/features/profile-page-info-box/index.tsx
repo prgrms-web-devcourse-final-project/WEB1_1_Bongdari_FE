@@ -44,9 +44,9 @@ const ProfileInfoBox: React.FC<ProfileInfoBoxProps> = (props) => {
       </ProfileInfoBoxCss>
     );
   } else {
-    const { center_id, name, contact_number, introduce } = props;
+    const { id, name, contact_number, introduce } = props;
     return (
-      <ProfileInfoBoxCss id={`${center_id}`}>
+      <ProfileInfoBoxCss id={`${id}`}>
         <p className="blueTitle">상세정보</p>
         <p className="info">
           <i className="label">기관명</i>

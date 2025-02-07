@@ -18,11 +18,9 @@ export default function MainPage() {
   const clearLoginInfo = useLoginStore((state) => state.clearLoginInfo);
   const setCenterIds = useInterestStore((state) => state.setCenterIds);
 
-  //단기토큰 받는거로 바뀌면, 해당 단기토큰으로 ACCESS토큰 받아오는 useEffect하나 더 필요 (쿠키에서 꺼내서 보내는거로)
-
-  /////////////////////////////////////////////////////////////////////////////////////////////
-  //로그아웃 시에 LoginInfo초기화, 로그인 한 직후가 아닌데 토큰이 있는 경우가 생긴다면 주석 풀어야함//
-  /////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////
+  //로그아웃 시에 LoginInfo초기화//
+  ///////////////////////////////
   useEffect(() => {
     // const getLoginInfo = () => {
     //   try {
