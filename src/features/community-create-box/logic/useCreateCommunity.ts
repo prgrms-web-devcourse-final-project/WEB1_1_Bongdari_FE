@@ -43,7 +43,6 @@ export const useCreateCommunity = ({ content_id }: { content_id?: number }): use
 
   const [titleText, setTitleText] = useState<string>('');
   const [contentText, setContentText] = useState<string>();
-  // const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [imageURL, setImageURL] = useState<string | null>(null);
   const [isMyContent, setIsMyContent] = useState<boolean>(false);
   const myLoginId = useLoginStore((state) => state.myLoginId);
@@ -84,48 +83,6 @@ export const useCreateCommunity = ({ content_id }: { content_id?: number }): use
       openAlert('게시글 등록 중 오류가 발생했습니다. 다시 시도해주세요.');
     }
   };
-
-  // const onClickPost = async () => {
-  //   if (!titleText.trim()) {
-  //     openAlert('제목을 입력해주세요.');
-  //     return;
-  //   }
-  //   if (!contentText.trim()) {
-  //     openAlert('내용을 입력해주세요.');
-  //     return;
-  //   }
-
-  //   // FormData 생성
-  //   const formData = new FormData();
-
-  //   // 수정하는 경우와 새로 작성하는 경우를 구분
-  //   if (isMyContent && content_id) {
-  //     // 수정의 경우
-  //     const jsonPayload = {
-  //       title: titleText.trim(),
-  //       content: contentText.trim(),
-  //       image_url: imageURL // 기존 이미지 URL 포함
-  //     };
-  //     formData.append('data', JSON.stringify(jsonPayload));
-
-  //     // 새로운 이미지가 선택된 경우에만 img_file 추가
-  //     if (selectedFiles.length > 0) {
-  //       formData.append('img_file', selectedFiles[0]);
-  //     }
-  //     putCommunity({ content_id, formData });
-  //   } else {
-  //     // 새로 작성하는 경우
-  //     const jsonPayload = {
-  //       title: titleText.trim(),
-  //       content: contentText.trim()
-  //     };
-  //     formData.append('data', JSON.stringify(jsonPayload));
-  //     if (selectedFiles.length > 0) {
-  //       formData.append('img_file', selectedFiles[0]);
-  //     }
-  //     postCommunity(formData);
-  //   }
-  // };
 
   // content_id가 존재하고 내 글이면 수정, 아니면 새로 작성
   const { data } = useCommunityDetail(content_id);

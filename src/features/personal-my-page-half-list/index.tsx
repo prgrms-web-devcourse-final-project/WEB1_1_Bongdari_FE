@@ -69,7 +69,7 @@ const HalfList: React.FC<HalfListProps> = ({ listType }) => {
           )}
         </section>
 
-        {isMsgModalOpen && <MessageReadModal handleModalClose={onCloseMsgModal} noteId={msgOpenId} />}
+        {isMsgModalOpen && <MessageReadModal handleModalClose={onCloseMsgModal} noteId={msgOpenId} type="volunteer" />}
       </HalfListCss>
     );
   }
