@@ -2,14 +2,12 @@ import { ApplyButton, CommunityCreateBoxCss } from './indexCss';
 import { useCreateCommunity } from './logic/useCreateCommunity';
 import InputBox from '@/components/inputBox';
 // import TextArea from '@/components/textArea';
-import UploadBox from '@/components/img-drag-box';
 import { TinyMceContainer } from '@/components/tinyMCE-editor';
 
 const CommunityCreateBox = ({ content_id }: { content_id?: number }) => {
-  const { titleText, setTitleText, contentText, setContentText, handleFileSelect, onClickPost, imageURL } =
-    useCreateCommunity({
-      content_id
-    });
+  const { titleText, setTitleText, contentText, setContentText, onClickPost } = useCreateCommunity({
+    content_id
+  });
 
   return (
     <CommunityCreateBoxCss>
@@ -23,10 +21,6 @@ const CommunityCreateBox = ({ content_id }: { content_id?: number }) => {
           getInputText={(str) => console.log(str)}
           setFunc={setTitleText}
         />
-      </div>
-      <div className="inputWrap">
-        <i className="label">대표사진</i>
-        <UploadBox onFileSelect={handleFileSelect} savedImage={imageURL} />
       </div>
       <div className="inputWrap">
         <i className="label">내용</i>
