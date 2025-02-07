@@ -17,6 +17,12 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { useApplicantDetail, useMessageDetail } from '@/store/queries/center-mypage/useMessage';
 import useDateFormat from '@/shared/hooks/useDateFormat';
+import { personProfileType } from '@/shared/types/person-profile/personProfile';
+
+// 봉사자 프로필인지 확인하는 타입 가드 -> 봉사자 프로필일 때만 티어 노출하기 위함
+const isVolunteerProfile = (profile: object): profile is personProfileType => {
+  return 'tier' in profile;
+};
 
 interface NoteModalProps {
   handleModalClose: () => void;
@@ -28,7 +34,10 @@ const MessageReadModal = ({ handleModalClose, noteId, type = 'center' }: NoteMod
   const navigate = useNavigate();
   const { formatDateTime } = useDateFormat();
   const { data: messageDetail, isLoading: isMessageLoading } = useMessageDetail(noteId, type);
-  const { data: profileDetail, isLoading: isProfileLoading } = useApplicantDetail(messageDetail?.sender_id);
+  const { data: profileDetail, isLoading: isProfileLoading } = useApplicantDetail(
+    messageDetail?.sender_id,
+    type === 'center' ? 'volunteer' : 'center'
+  );
 
   if (isMessageLoading || isProfileLoading) {
     return <div>로딩 중...</div>;
@@ -55,11 +64,9 @@ const MessageReadModal = ({ handleModalClose, noteId, type = 'center' }: NoteMod
                   alt="profileImg"
                 />
               </ImgWrapper>
-              <NickName>{profileDetail?.nickname || messageDetail.sender_name}</NickName>
-              {type === 'center' ? (
+              <NickName>{messageDetail.sender_name}</NickName>
+              {type === 'center' && profileDetail && isVolunteerProfile(profileDetail) && (
                 <GloveImg src={`/assets/imgs/mitten-${profileDetail?.tier.toLowerCase()}.svg`} alt="tierGlove" />
-              ) : (
-                ''
               )}
             </ProfileInfo>
             <GoToProfileButton

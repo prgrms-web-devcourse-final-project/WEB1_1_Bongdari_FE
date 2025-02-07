@@ -1,15 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import axiosInstance from '@/api/apis';
 import { personProfileType } from '@/shared/types/person-profile/personProfile';
-// import Cookies from 'js-cookie';
+import { centerProfileType } from '@/shared/types/center-profile/centerProfile';
 
 // 해당 기관에게 온 쪽지 리스트 api---------------------------------------------------------------
 const fetchMessageList = async (page: number) => {
-  // const response = await axiosInstance.get(`/api/note/center?page=${page}&size=6`, {
-  //   headers: {
-  //     Authorization: `Bearer ${Cookies.get('ACCESS')}`
-  //   }
-  // });
   const response = await axiosInstance.get(`/api/note/center?page=${page}&size=6`);
 
   return response.data;
@@ -44,23 +39,35 @@ export const useMessageDetail = (noteId: number, type: 'center' | 'volunteer') =
   });
 };
 
-// 티어를 넣기 위한 타인 프로필 조회 api 연결
-// interface ApiResponse {
-//   code: number;
-//   message: string;
-//   data: ProfileDetail;
-// }
+// const fetchProfileDetail = async (senderId: string) => {
+//   const response = await axiosInstance.get<personProfileType>(`/api/volunteer/profile/volunteer-id/${senderId}`);
+//   return response.data;
+// };
 
-const fetchProfileDetail = async (senderId: string) => {
-  const response = await axiosInstance.get<personProfileType>(`/api/volunteer/profile/${senderId}`);
-  return response.data;
+const fetchProfileDetail = async (senderId: string, type: 'center' | 'volunteer') => {
+  if (type === 'volunteer') {
+    const response = await axiosInstance.get<personProfileType>(`/api/volunteer/profile/volunteer-id/${senderId}`);
+    return response.data;
+  } else {
+    const response = await axiosInstance.get<centerProfileType>(`/api/center/profile/${senderId}`);
+    return response.data;
+  }
 };
 
-export const useApplicantDetail = (senderId: string) => {
-  return useQuery<personProfileType>({
-    // ApiResponse 타입으로 지정
-    queryKey: ['profileDetail', senderId],
-    queryFn: () => fetchProfileDetail(senderId),
+// export const useApplicantDetail = (senderId: string) => {
+//   return useQuery<personProfileType>({
+//     // ApiResponse 타입으로 지정
+//     queryKey: ['profileDetail', senderId],
+//     queryFn: () => fetchProfileDetail(senderId),
+//     enabled: !!senderId,
+//     staleTime: 1000 * 60 * 5
+//   });
+// };
+
+export const useApplicantDetail = (senderId: string, type: 'center' | 'volunteer') => {
+  return useQuery({
+    queryKey: ['profileDetail', senderId, type],
+    queryFn: () => fetchProfileDetail(senderId, type),
     enabled: !!senderId,
     staleTime: 1000 * 60 * 5
   });

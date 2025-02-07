@@ -1,13 +1,14 @@
 import axiosInstance from '@/api/apis';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
+interface CommunityData {
+  title: string;
+  content: string;
+}
+
 // 커뮤니티 게시글 등록
-const postCommunity = async (formData: FormData) => {
-  const res = await axiosInstance.post('/api/community-board', formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    }
-  });
+const postCommunity = async (communityPostData: CommunityData) => {
+  const res = await axiosInstance.post('/api/community-board', communityPostData);
 
   return res.data;
 };
@@ -33,12 +34,8 @@ export const usePostCommunity = (options?: {
 };
 
 // 커뮤니티 게시글 수정
-const putCommunity = async (content_id: number, formData: FormData) => {
-  const res = await axiosInstance.put(`/api/community-board/${content_id}`, formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    }
-  });
+const putCommunity = async (content_id: number, communityPutData: CommunityData) => {
+  const res = await axiosInstance.put(`/api/community-board/${content_id}`, communityPutData);
   return res.data;
 };
 
@@ -49,8 +46,8 @@ export const usePutCommunity = (options?: {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ content_id, formData }: { content_id: number; formData: FormData }) =>
-      putCommunity(content_id, formData),
+    mutationFn: ({ content_id, communityPutData }: { content_id: number; communityPutData: CommunityData }) =>
+      putCommunity(content_id, communityPutData),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['communityDetail'] });
       options?.onSuccess?.(data);
