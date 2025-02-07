@@ -75,6 +75,7 @@ export const CommunityImage = styled.img`
 `;
 
 export const EditDeleteBtnCon = styled.div`
+  height: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
