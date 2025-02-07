@@ -18,7 +18,7 @@ const InfoContainer: React.FC<InfoContainerProps> = ({ centerProfile }) => {
       <Explain>{centerProfile.introduce}</Explain>
       <PreferItemContainer>
         <p>이러한 지원이 필요해요!</p>
-        {centerProfile.prefer_items?.map((item) => <PreferItem label={item.itemName}></PreferItem>)}
+        {centerProfile.prefer_items?.map((item) => <PreferItem label={item.item_name}></PreferItem>)}
       </PreferItemContainer>
     </Wrapper>
   );
