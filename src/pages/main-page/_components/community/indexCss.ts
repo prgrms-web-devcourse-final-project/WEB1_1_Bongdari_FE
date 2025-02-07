@@ -36,7 +36,7 @@ export const Title = styled.p`
 export const Bottom = styled.div`
   height: 500px;
   display: flex;
+  gap: 5px;
   flex-direction: column;
-  justify-content: space-between;
   text-decoration: none;
 `;

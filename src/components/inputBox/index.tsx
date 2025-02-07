@@ -20,7 +20,7 @@ const InputBox = ({
   textType = 'text',
   disabled = false,
   initialVal = '',
-  placeholder = disabled ? '로그인이 필요합니다' : '작성하세요.',
+  placeholder = disabled ? '작성할 수 없습니다.' : '작성하세요.',
   value,
   setFunc,
   onEnterFunc,

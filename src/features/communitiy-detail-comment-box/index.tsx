@@ -5,7 +5,7 @@ import Comment from './ui/Comment';
 import { useLoginStore } from '@/store/stores/login/loginStore';
 
 const CommunityDetailCommentBox = ({ content_id }: { content_id: number }) => {
-  const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
+  const LoginType = useLoginStore((state) => state.loginType);
   const { commentData, commentCount, commentText, loginName, setCommentText, onEventPost } =
     useCommunityComment(content_id);
 
@@ -16,7 +16,7 @@ const CommunityDetailCommentBox = ({ content_id }: { content_id: number }) => {
         commentText={commentText}
         setCommentText={setCommentText}
         onEventPost={onEventPost}
-        disabled={!isLoggedIn}
+        disabled={LoginType === 'ROLE_CENTER'}
       />
       <div className="commentWrap">
         {commentData?.map((v, i) => <Comment key={i} {...v} content_id={content_id} login_name={loginName} />)}
