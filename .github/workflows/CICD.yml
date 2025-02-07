@@ -25,6 +25,7 @@ jobs:
         env:
           VITE_APP_BASE_URL: ${{ secrets.VITE_APP_BASE_URL }}
           VITE_APP_JAVASCRIPT_KEY: ${{ secrets.VITE_APP_JAVASCRIPT_KEY }}
+          VITE_APP_TINYMCE_API_KEY: ${{ secrets.VITE_APP_TINYMCE_API_KEY }}
         run: yarn build
       
       - name: 배포              

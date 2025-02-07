@@ -163,7 +163,6 @@ export const TinyMceContainer = ({
           'code',
           'fullscreen',
           'image',
-          'editimage',
           'insertdatetime',
           'media',
           'table',
