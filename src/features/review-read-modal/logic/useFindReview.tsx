@@ -35,9 +35,6 @@ export const useFindReview = ({ isCenterReview, reviewId }: useFindReviewProps):
     return { reviewData: undefined };
   }
 
-  console.log('review data:', reviewData);
-  // if (isReviewLoading) console.log('리뷰 로딩중');
-
   return {
     reviewData,
     volunteerData,

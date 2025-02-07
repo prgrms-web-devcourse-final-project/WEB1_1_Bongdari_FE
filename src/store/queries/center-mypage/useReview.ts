@@ -1,6 +1,5 @@
 import axiosInstance from '@/api/apis';
 import { useQuery } from '@tanstack/react-query';
-// import Cookies from 'js-cookie';
 
 // 리뷰 목록 조회
 const fetchCenterReviews = async (centerId: string, page: number, category?: string) => {
@@ -9,11 +8,7 @@ const fetchCenterReviews = async (centerId: string, page: number, category?: str
     url += `&category=${category}`;
   }
 
-  const response = await axiosInstance.get(url, {
-    // headers: {
-    //   Authorization: `Bearer ${Cookies.get('ACCESS')}`
-    // }
-  });
+  const response = await axiosInstance.get(url, {});
   return response.data;
 };
 

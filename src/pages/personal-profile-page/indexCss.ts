@@ -4,6 +4,21 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   ${theme.defaultPageCss.defaultPageCss}
 
+  .noData {
+    height: 500px;
+    width: 100%;
+    border: 1px dashed gray;
+    border-radius: 13px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media (max-width: 1000px) {
+      height: 300px;
+    }
+  }
+
   display: flex;
   gap: 15px;
 

@@ -32,12 +32,12 @@ const RegisterGoods = ({ name, preferData }: RegisterGoodsProps) => {
       openAlert('물품명을 입력해주세요.');
       return;
     }
-    if (itemName.length > 15) {
+    if (itemName.trim().length > 15) {
       openAlert('물품명은 15자 이내로 입력해주세요.');
       return;
     }
 
-    addItem(itemName, {
+    addItem(itemName.trim(), {
       onSuccess: () => {
         setCurrentInput('');
       },
@@ -65,7 +65,7 @@ const RegisterGoods = ({ name, preferData }: RegisterGoodsProps) => {
           <div className="emptyData">등록된 필요품이 없습니다</div>
         ) : (
           preferData.map((item) => (
-            <GoodsItem key={item.id} prefer_item_id={item.id} item_name={item.itemName} onDelete={handleDeleteGoods} />
+            <GoodsItem key={item.id} prefer_item_id={item.id} item_name={item.item_name} onDelete={handleDeleteGoods} />
           ))
         )}
       </GoodsContainer>
