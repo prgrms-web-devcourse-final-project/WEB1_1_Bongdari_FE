@@ -42,11 +42,11 @@ const ProfileImgBox: React.FC<ProfileImgBoxProps> = (props) => {
       </ProfileImgBoxCss>
     );
   } else {
-    const { center_id, name, homepage_url, img_url } = props;
+    const { id, name, homepage_url, img_url } = props;
 
     return (
-      <ProfileImgBoxCss id={center_id}>
-        <InterestHeartBtn center_id={center_id} top={'15px'} right={'15px'} />
+      <ProfileImgBoxCss id={id}>
+        <InterestHeartBtn center_id={id} top={'15px'} right={'15px'} />
         <img src={img_url || '/assets/imgs/no-img-center.svg'} />
         <p>
           <i>{name}</i>

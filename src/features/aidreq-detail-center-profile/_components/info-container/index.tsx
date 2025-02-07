@@ -12,7 +12,7 @@ const InfoContainer: React.FC<InfoContainerProps> = ({ centerProfile }) => {
   console.log(centerProfile);
   return (
     <Wrapper>
-      <InterestHeartBtn center_id={centerProfile.center_id} top={'0px'} right={'100px'} />
+      <InterestHeartBtn center_id={centerProfile.id} top={'0px'} right={'100px'} />
       <Title>{centerProfile.name}</Title>
       <Site>{centerProfile.homepage_url}</Site>
       <Explain>{centerProfile.introduce}</Explain>
