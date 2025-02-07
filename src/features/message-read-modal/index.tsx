@@ -30,6 +30,9 @@ const MessageReadModal = ({ handleModalClose, noteId, type = 'center' }: NoteMod
   const { data: messageDetail, isLoading: isMessageLoading } = useMessageDetail(noteId, type);
   const { data: profileDetail, isLoading: isProfileLoading } = useApplicantDetail(messageDetail?.sender_id);
 
+  console.log('메세지디테일', messageDetail);
+  console.log('프로필디테일', profileDetail);
+
   if (isMessageLoading || isProfileLoading) {
     return <div>로딩 중...</div>;
   }
