@@ -14,7 +14,7 @@ interface useCommunityDetailContentReturn {
 export const useCommunityDetailContent = (content_id: number): useCommunityDetailContentReturn => {
   const [communityWriterData, setCommunityWriterData] = useState();
   const [communityDetailData, setCommunityDetailData] = useState();
-  const myLoginId = useLoginStore((state) => state.myLoginId);
+  const myRoleId = useLoginStore((state) => state.myRoleId);
   const loginType = useLoginStore((state) => state.loginType);
 
   // 커뮤니티 상세 데이터 가져오기
@@ -22,7 +22,7 @@ export const useCommunityDetailContent = (content_id: number): useCommunityDetai
   const { data: writerData } = usePersonProfileQuery(detailData?.writer_id ?? '');
 
   // 내 콘텐츠 여부 확인
-  const isMyContent = detailData ? loginType === 'ROLE_VOLUNTEER' && detailData.writer_id === myLoginId : false;
+  const isMyContent = detailData ? loginType === 'ROLE_VOLUNTEER' && detailData.writer_id === myRoleId : false;
 
   // 데이터 업데이트되면 리랜더링
   useEffect(() => {

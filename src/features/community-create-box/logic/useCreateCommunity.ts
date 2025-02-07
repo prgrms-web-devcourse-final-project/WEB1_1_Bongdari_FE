@@ -45,7 +45,7 @@ export const useCreateCommunity = ({ content_id }: { content_id?: number }): use
   const [contentText, setContentText] = useState<string>();
   const [imageURL, setImageURL] = useState<string | null>(null);
   const [isMyContent, setIsMyContent] = useState<boolean>(false);
-  const myLoginId = useLoginStore((state) => state.myLoginId);
+  const myRoleId = useLoginStore((state) => state.myRoleId);
   const navigate = useNavigate();
 
   // 글 작성 완료
@@ -91,7 +91,7 @@ export const useCreateCommunity = ({ content_id }: { content_id?: number }): use
     // 수정 모드일 때만 데이터를 체크하도록 수정
     // 새로 작성하는 글은 post 할 때 id가 부여되기 때문에 content_id가 없어서 400 에러가 발생한다고 판단
     if (content_id && data) {
-      if (data.writer_id === myLoginId) {
+      if (data.writer_id === myRoleId) {
         setIsMyContent(true);
         setTitleText(data.title);
         setContentText(data.content);
@@ -103,7 +103,7 @@ export const useCreateCommunity = ({ content_id }: { content_id?: number }): use
         navigate('/community');
       }
     }
-  }, [data, myLoginId, navigate, content_id]);
+  }, [data, myRoleId, navigate, content_id]);
 
   return { titleText, setTitleText, contentText, setContentText, onClickPost, imageURL };
 };
