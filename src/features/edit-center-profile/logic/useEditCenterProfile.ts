@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import {
   useUpdateCenterProfile,
+  useUpdateProfileImage,
   type CenterProfileUpdateRequest
 } from '@/store/queries/center-mypage/useCenterProfile';
 import { useAlertDialog } from '@/store/stores/dialog/dialogStore';
@@ -12,6 +13,7 @@ interface UseEditCenterProfileProps {
 
 const useEditCenterProfile = ({ data }: UseEditCenterProfileProps) => {
   const updateProfile = useUpdateCenterProfile();
+  const updateProfileImage = useUpdateProfileImage();
   const { openAlert } = useAlertDialog();
 
   // 각 input 상태 관리
@@ -37,6 +39,37 @@ const useEditCenterProfile = ({ data }: UseEditCenterProfileProps) => {
   // 이미지 업로드 핸들러
   const handleImageUpload = (file: File) => {
     setPreview(file);
+  };
+
+  // const handlePutProfileImage = async () => {
+  //   if (!preview) {
+  //     openAlert('변경할 이미지를 선택해주세요.');
+  //     return;
+  //   }
+
+  //   try {
+  //     const fileName = preview.name;
+  //     await updateProfileImage.mutateAsync(fileName);
+  //     openAlert('프로필 이미지가 수정되었습니다.');
+  //   } catch (error) {
+  //     console.error('이미지 수정 중 오류가 발생했습니다:', error);
+  //     openAlert('이미지 수정 중 오류가 발생했습니다. 다시 시도해주세요.');
+  //   }
+  // };
+
+  const handlePutProfileImage = async () => {
+    if (!preview) {
+      openAlert('변경할 이미지를 선택해주세요.');
+      return;
+    }
+
+    try {
+      await updateProfileImage.mutateAsync(preview); // File 객체 직접 전달
+      openAlert('프로필 이미지가 수정되었습니다.');
+    } catch (error) {
+      console.error('이미지 수정 중 오류가 발생했습니다:', error);
+      openAlert('이미지 수정 중 오류가 발생했습니다. 다시 시도해주세요.');
+    }
   };
 
   // 입력 핸들러 모음
@@ -82,6 +115,7 @@ const useEditCenterProfile = ({ data }: UseEditCenterProfileProps) => {
   return {
     preview,
     handleImageUpload,
+    handlePutProfileImage,
     centerName,
     originalName,
     centerPhone,
@@ -94,7 +128,7 @@ const useEditCenterProfile = ({ data }: UseEditCenterProfileProps) => {
     // validURL,
     validPhone,
     handleEditProfile,
-    isSubmitting: updateProfile.isPending
+    isSubmitting: updateProfile.isPending || updateProfileImage.isPending
   };
 };
 

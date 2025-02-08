@@ -19,6 +19,7 @@ const EditCenterProfile = ({ data }: EditCenterProfileProps) => {
   const {
     preview,
     handleImageUpload,
+    handlePutProfileImage,
     centerName,
     originalName,
     centerPhone,
@@ -56,7 +57,7 @@ const EditCenterProfile = ({ data }: EditCenterProfileProps) => {
                   }
                   onImageUpload={handleImageUpload}
                 />
-                <ProfileImgEditButton label="수정하기" type="blue" onClick={() => console.log('프로필이미지 수정')} />
+                <ProfileImgEditButton label="수정하기" type="blue" onClick={handlePutProfileImage} />
               </ProfileSection>
               <FormSection>
                 <EditProfileForm
