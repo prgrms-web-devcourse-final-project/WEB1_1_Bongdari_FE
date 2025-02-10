@@ -73,28 +73,19 @@ export const useUpdateProfileImage = () => {
   return useMutation({
     mutationFn: async (file: File) => {
       try {
-        // 프리사인드 URL 요청
         const response = await axiosInstance.put('/api/user/image', {
           file_name: file.name
         });
-
-        console.log('프리사인드 url 확인:', response);
 
         if (!response.data) {
           throw new Error('프리사인드 url이 존재하지 않습니다.');
         }
 
-        const token = localStorage.getItem('token');
+        // pre-signed url &와 = 앞에 이스케이프(\) 추가
+        const escapedUrl = response.data.replace(/([&=])/g, '\\$1');
 
-        // 프리사인드 url로 파일 업로드
-        await axios.put(response.data, file, {
-          headers: {
-            'Content-Type': file.type,
-            Authorization: token || ''
-          }
-        });
-
-        console.log('파일 업로드 성공');
+        // 이스케이프된 url로 파일 업로드
+        await axios.put(escapedUrl, file);
       } catch (error) {
         console.error('pre-signed 이미지 업로드 중 오류 발생:', error);
         throw error;
