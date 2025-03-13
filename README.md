@@ -2,7 +2,9 @@
 
 재해나 지원이 필요한 현장에서 도움을 원하는 단체와 자원봉사자를 연결해주는 중계 플랫폼입니다.
 
-[손모아 배포사이트🔗](https://www.somemore.site/)
+- [손모아 배포사이트🔗](https://www.somemore.site/)  
+- [봉사자 시연 영상 보기▶️](https://youtu.be/Y_pWZVyEhyI)  
+- [기관 시연 영상 보기▶️](https://youtu.be/jq6GtXT8OKU)
 
 ## 🎇프로젝트 개요
 
