@@ -2,9 +2,9 @@
 
 재해나 지원이 필요한 현장에서 도움을 원하는 단체와 자원봉사자를 연결해주는 중계 플랫폼입니다.
 
-- [손모아 배포사이트🔗](https://www.somemore.site/)  
 - [봉사자 시연 영상 보기▶️](https://youtu.be/Y_pWZVyEhyI)  
 - [기관 시연 영상 보기▶️](https://youtu.be/jq6GtXT8OKU)
+
 
 ## 🎇프로젝트 개요
 
@@ -41,25 +41,24 @@
 
 - **기관**은 봉사 활동에 대한 모집글을 등록할 수 있습니다.
 
-<img src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png" width="600" />
-
+![Image](https://github.com/user-attachments/assets/f15a2000-d148-4422-9461-6f4d95d32c41)
 <br />
 
 - **봉사자**는 기관들이 올린 봉사 활동 모집글들을 전부 볼 수 있고, 원하는 봉사 활동 모집글에 대해 지원할 수 있습니다.
 
-<img src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png" width="600" />
+![Image](https://github.com/user-attachments/assets/df579161-5a3e-4484-9e27-d70af5d9bb89)
 
 <br />
 
 - **기관**은 자신이 올린 봉사 활동에 지원한 봉사자들의 명단을 리스트로 관리하며 지원 수락, 반려할 수 있습니다.
 
-<img src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png" width="600" />
+![Image](https://github.com/user-attachments/assets/d65c20b2-10ab-4df3-8fe6-e8cfb467421a)
 
 <br />
 
 - **기관**은 해당 봉사 활동이 종료된 후, 봉사 활동에 참여한 지원자들에 한하여 봉사 시간을 정산할 수 있습니다. 
 
-<img src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png" width="600" />
+![Image](https://github.com/user-attachments/assets/7dfcd0b1-42df-499e-b0f2-4ad07b3ed4f6)
 
 <br />
 
@@ -68,19 +67,19 @@
 
 - 메인 페이지에는 봉사자들의 프로필에 등록돼있는 봉사 시간을 기준으로 "이 달의 봉사왕" 봉사시간이 많은 봉사자 4명의 랭킹이 매겨집니다.
 
-<img src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png" width="600" />
+![Image](https://github.com/user-attachments/assets/aa95b166-070a-4c9e-8f61-bdebe06e2197)
 
 <br />
 
 - 각 봉사자들은 봉사 시간/횟수에 따라 10단계의 티어를 가질 수 있습니다.
 
-<img src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png" width="600" />
+<img src="https://github.com/user-attachments/assets/d1a71d01-8e5b-4efb-b42e-902469a43054" width="600" />
 
 <br />
 
 - 기관과 봉사자는 모두 커뮤니티를 공유하며, 댓글과 대댓글 기능을 통해 활발한 소통을 할 수 있습니다. 
 
-<img src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png" width="600" />
+![Image](https://github.com/user-attachments/assets/577324c4-aa0f-4f20-9dbd-2c7f792e9212)
 
 <br />
 
@@ -89,13 +88,13 @@
 
 - 기관은 봉사자에게, 봉사자는 기관에게 쪽지를 전달할 수 있습니다. 이를 통해 기관과 봉사자의 소통에 편의를 보장합니다. 
 
-<img src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png" width="600" />
+![Image](https://github.com/user-attachments/assets/0a47f4d2-6033-4121-a1ab-25f40c3cc89b)
 
 <br />
 
 - 기관과 봉사자 모두 쪽지, 리뷰, 봉사 신청 결과 등을 실시간 알림으로 받아볼 수 있습니다. 
 
-<img src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/quick-actions/remove-background-before-qa1.png" width="600" />
+![Image](https://github.com/user-attachments/assets/8830f08e-0766-4779-9831-b5996f92a149)
 
 
 <br />
